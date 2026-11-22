@@ -4,16 +4,16 @@ Programmi in rete
 
 Molti degli esempi di questo libro si sono concentrati sulla lettura dei file e sulla ricerca di dati al loro interno, ma se si pensa a Internet le fonti di informazione sono molte e di tipo diverso.
 
-In questo capitolo faremo finta di essere un browser web e recupereremo pagine web usando l'Hypertext Transfer Protocol (HTTP). Poi leggeremo i dati delle pagine web e li analizzeremo.
+In questo capitolo faremo finta di essere un browser web e recupereremo pagine web usando l'Hypertext Transfer Protocol (HTTP). Poi leggeremo i dati di quelle pagine e li analizzeremo.
 
 Hypertext Transfer Protocol - HTTP
 -----------------------------------
 
 Il protocollo di rete su cui si basa il web è in realtà piuttosto semplice, e Python ha un supporto built-in, chiamato `socket`, che rende molto facile aprire connessioni di rete e recuperare dati attraverso quei socket in un programma Python.
 
-Un *socket* è molto simile a un file, tranne per il fatto che un singolo socket fornisce una connessione bidirezionale tra due programmi. Sullo stesso socket puoi sia leggere sia scrivere. Se scrivi qualcosa su un socket, viene inviato all'applicazione che si trova all'altra estremità del socket. Se leggi dal socket, ricevi i dati che l'altra applicazione ha inviato.
+Un *socket* è molto simile a un file, con la differenza che un solo socket fornisce una connessione bidirezionale tra due programmi. Sullo stesso socket puoi sia leggere sia scrivere. Se scrivi qualcosa su un socket, viene inviato all'applicazione che si trova all'altra estremità del socket. Se leggi dal socket, ricevi i dati che l'altra applicazione ha inviato.
 
-Ma se provi a leggere da un socket^[Se vuoi saperne di più sui socket, sui protocolli o su come si sviluppano i server web, puoi esplorare il corso su https://www.dj4e.com.] quando il programma all'altra estremità non ha inviato alcun dato, resti lì ad aspettare. Se i programmi ai due capi del socket aspettano semplicemente dei dati senza inviare nulla, aspetteranno per moltissimo tempo; per questo una parte importante dei programmi che comunicano su Internet è avere un qualche tipo di protocollo.
+Ma se provi a leggere da un socket^[Se vuoi saperne di più sui socket, sui protocolli o su come si sviluppano i server web, puoi esplorare il corso su https://www.dj4e.com.] quando il programma all'altra estremità non ha inviato alcun dato, resti lì ad aspettare. Se i programmi ai due capi del socket aspettano semplicemente dei dati senza inviare nulla, aspetteranno per moltissimo tempo; per questo, nei programmi che comunicano su Internet, è importante avere un qualche tipo di protocollo.
 
 Un protocollo è un insieme di regole precise che stabiliscono chi deve cominciare, cosa deve fare, quali sono poi le risposte a quel messaggio, chi invia dopo, e così via. In un certo senso le due applicazioni ai capi del socket stanno ballando e fanno attenzione a non pestarsi i piedi.
 
@@ -21,7 +21,7 @@ Esistono molti documenti che descrivono questi protocolli di rete. L'Hypertext T
 
 <https://www.w3.org/Protocols/rfc2616/rfc2616.txt>
 
-È un documento lungo e complesso, di 176 pagine, con moltissimi dettagli. Se lo trovi interessante, leggilo pure tutto. Ma se dai un'occhiata intorno a pagina 36 di RFC2616, troverai la sintassi della richiesta GET. Per richiedere un documento a un server web, apriamo una connessione, ad esempio con il server `www.pr4e.org` sulla porta 80, e poi inviamo una riga di questa forma
+È un documento lungo e complesso, di 176 pagine, con moltissimi dettagli. Se lo trovi interessante, leggilo pure tutto. Ma se dai un'occhiata intorno a pagina 36 dell'RFC2616, troverai la sintassi della richiesta `GET`. Per richiedere un documento a un server web, apriamo una connessione, ad esempio con il server `www.pr4e.org` sulla porta 80, e poi inviamo una riga di questa forma
 
 `GET http://data.pr4e.org/romeo.txt HTTP/1.0 `
 
@@ -34,7 +34,7 @@ Forse il modo più facile per mostrare come funziona il protocollo HTTP è scriv
 
 \VerbatimInput{../code3/socket1.py}
 
-Per prima cosa il programma apre una connessione sulla porta 80 del server [www.pr4e.com](http://www.pr4e.com). Dato che il programma recita la parte del "browser web", il protocollo HTTP dice che dobbiamo inviare il comando GET seguito da una riga vuota. `\r\n` indica un EOL (end of line, fine riga), quindi `\r\n\r\n` indica che tra due sequenze EOL non c'è niente. Equivale a una riga vuota.
+Per prima cosa il programma apre una connessione sulla porta 80 del server [www.pr4e.com](http://www.pr4e.com). Dato che il programma recita la parte del "browser web", il protocollo HTTP dice che dobbiamo inviare il comando `GET` seguito da una riga vuota. `\r\n` indica un EOL (end of line, fine riga), quindi `\r\n\r\n` indica che tra due sequenze EOL non c'è niente. Equivale a una riga vuota.
 
 ![Una connessione tramite socket](height=2.0in@../images/socket)
 
@@ -68,7 +68,7 @@ Dopo averci inviato le intestazioni, il server aggiunge una riga vuota per indic
 
 Questo esempio mostra come aprire una connessione di rete di basso livello con i socket. I socket si possono usare per comunicare con un server web, con un server di posta o con molti altri tipi di server. Basta trovare il documento che descrive il protocollo e scrivere il codice che invia e riceve i dati secondo quel protocollo.
 
-Tuttavia, dato che il protocollo che usiamo più spesso è HTTP, il protocollo del web, Python ha una libreria speciale, progettata apposta per supportarlo nel recupero di documenti e dati dal web: `urllib`, che vedremo tra poco.
+Tuttavia, dato che il protocollo che usiamo più spesso è HTTP, il protocollo del web, Python ha una libreria speciale, progettata apposta per supportare HTTP nel recupero di documenti e dati dal web: `urllib`, che vedremo tra poco.
 
 Uno dei requisiti per usare il protocollo HTTP è inviare e ricevere i dati come oggetti bytes, invece che come stringhe. Nell'esempio precedente, i metodi `encode()` e `decode()` convertono le stringhe in oggetti bytes e viceversa.
 
@@ -88,7 +88,7 @@ Recuperare un'immagine tramite HTTP
 \index{immagine!jpg}
 \index{jpg}
 
-Nell'esempio precedente abbiamo recuperato un file di testo semplice che conteneva dei newline (il carattere di fine riga) e ci siamo limitati a copiare i dati sullo schermo mentre il programma veniva eseguito. Possiamo usare un programma simile per recuperare un'immagine tramite HTTP. Invece di copiare i dati sullo schermo durante l'esecuzione, li accumuliamo in una stringa, togliamo le intestazioni e poi salviamo i dati dell'immagine in un file, come segue:
+Nell'esempio precedente abbiamo recuperato un file di solo testo che conteneva dei newline (il carattere di fine riga) e ci siamo limitati a copiare i dati sullo schermo mentre il programma veniva eseguito. Possiamo usare un programma simile per recuperare un'immagine tramite HTTP. Invece di copiare i dati sullo schermo durante l'esecuzione, li accumuliamo in una stringa, togliamo le intestazioni e poi salviamo i dati dell'immagine in un file, come segue:
 
 \VerbatimInput{../code3/urljpeg.py}
 
@@ -160,7 +160,7 @@ Content-Type: image/jpeg
 
 Ora, tranne che nella prima e nell'ultima chiamata a `recv()`, riceviamo 5120 caratteri ogni volta che chiediamo nuovi dati.
 
-Tra il server che fa richieste `send()` e la nostra applicazione che fa richieste `recv()` c'è un buffer. Quando eseguiamo il programma con il ritardo attivo, a un certo punto il server potrebbe riempire il buffer del socket ed essere costretto a fermarsi finché il nostro programma non comincia a svuotarlo. La pausa dell'applicazione che invia o di quella che riceve si chiama "controllo di flusso".
+Tra il server che fa richieste `send()` e la nostra applicazione che fa richieste `recv()` c'è un buffer. Quando eseguiamo il programma con il ritardo attivo, a un certo punto il server potrebbe riempire il buffer del socket ed essere costretto a fermarsi finché il nostro programma non comincia a svuotarlo. La pausa dell'applicazione che invia o di quella che riceve si chiama "controllo di flusso" (flow control).
 
 \index{controllo di flusso}
 
@@ -169,7 +169,7 @@ Recuperare pagine web con `urllib`
 
 Anche se possiamo inviare e ricevere a mano dati via HTTP con la libreria `socket`, in Python c'è un modo molto più semplice per svolgere questo compito comune: usare la libreria `urllib`.
 
-Con `urllib` puoi trattare una pagina web in modo molto simile a un file. Basta indicare quale pagina web vuoi recuperare, e `urllib` gestisce tutti i dettagli del protocollo HTTP e delle intestazioni.
+Con `urllib` puoi trattare una pagina web in modo molto simile a un file. Ti basta indicare quale pagina web vuoi recuperare, e `urllib` gestisce tutti i dettagli del protocollo HTTP e delle intestazioni.
 
 Il codice equivalente per leggere dal web il file `romeo.txt` con `urllib` è il seguente:
 
@@ -226,9 +226,9 @@ Analizzare l'HTML e fare lo scraping del web
 
 Uno degli usi comuni delle funzionalità di `urllib` in Python è fare lo *scraping* del web. Fare web scraping significa scrivere un programma che finge di essere un browser web e recupera pagine, poi esamina i dati di quelle pagine alla ricerca di schemi.
 
-Ad esempio, un motore di ricerca come Google esaminerà il sorgente di una pagina web, ne estrarrà i link ad altre pagine e recupererà quelle pagine, estraendone i link, e così via. Con questa tecnica Google, come uno *spider*, si fa strada attraverso quasi tutte le pagine del web.
+Ad esempio, un motore di ricerca come Google esamina il sorgente di una pagina web, ne estrae i link ad altre pagine, recupera quelle pagine, ne estrae i link, e così via. Con questa tecnica Google, come uno *spider*, si fa strada attraverso quasi tutte le pagine del web.
 
-Google usa anche la frequenza dei link che puntano a una determinata pagina dalle pagine che trova: è una delle misure di quanto la pagina sia "importante" e di quanto in alto debba comparire nei risultati di ricerca.
+Google usa anche la frequenza dei link che, dalle pagine che trova, puntano a una determinata pagina: è una delle misure di quanto quella pagina sia "importante" e di quanto in alto debba comparire nei risultati di ricerca.
 
 Analizzare l'HTML con le espressioni regolari
 --------------------------------------
@@ -266,7 +266,7 @@ Aggiungiamo all'espressione regolare delle parentesi per indicare quale parte de
 
 \VerbatimInput{../code3/urlregex.py}
 
-La libreria `ssl` permette a questo programma di accedere ai siti web che impongono rigorosamente HTTPS. Il metodo `read` restituisce il codice sorgente HTML come oggetto bytes invece di restituire un oggetto `HTTPResponse`. Il metodo delle espressioni regolari `findall` ci darà una lista di tutte le stringhe che corrispondono all'espressione regolare, restituendo solo il testo del link tra le virgolette doppie.
+La libreria `ssl` permette a questo programma di accedere ai siti web che impongono rigorosamente HTTPS. Il metodo `read` restituisce il codice sorgente HTML come oggetto bytes invece di restituire un oggetto `HTTPResponse`. Il metodo `findall` delle espressioni regolari ci darà una lista di tutte le stringhe che corrispondono all'espressione regolare e restituirà solo il testo del link tra le virgolette doppie.
 
 Quando eseguiamo il programma e inseriamo un URL, otteniamo l'output seguente:
 
@@ -368,7 +368,7 @@ bugs.html
 http://sphinx.pocoo.org/
 ~~~~
 
-Questo elenco è molto più lungo perché alcuni tag ancora dell'HTML contengono percorsi relativi (ad esempio `tutorial/index.html`) o riferimenti interni alla pagina (ad esempio `#`) che non includono `http://` o `https://`, come richiedeva la nostra espressione regolare.
+Questo elenco è molto più lungo perché alcuni tag ancora dell'HTML contengono percorsi relativi (ad esempio `tutorial/index.html`) o riferimenti interni alla pagina (ad esempio `#`) che non includono `http://` o `https://`, richiesti invece dalla nostra espressione regolare.
 
 Puoi usare BeautifulSoup anche per estrarre le varie parti di ogni tag:
 
@@ -393,7 +393,7 @@ Questi esempi cominciano appena a mostrare la potenza di BeautifulSoup quando si
 Sezione bonus per gli utenti Unix / Linux
 ------------------------------------
 
-Se hai un computer Linux, Unix o Macintosh, probabilmente il sistema operativo include dei comandi che recuperano sia file di testo semplice sia file binari con i protocolli HTTP o FTP (File Transfer Protocol). Uno di questi comandi è `curl`:
+Se hai un computer Linux, Unix o Macintosh, probabilmente il sistema operativo include dei comandi che recuperano sia file di solo testo sia file binari con i protocolli HTTP o FTP (File Transfer Protocol). Uno di questi comandi è `curl`:
 
 \index{curl}
 
@@ -421,7 +421,7 @@ Glossario
 \index{BeautifulSoup}
 
 **Porta**
-: Un numero che di solito indica quale applicazione stai contattando quando apri una connessione socket con un server. Ad esempio, il traffico web usa di solito la porta 80, mentre il traffico email usa la porta 25.
+: Un numero che in genere indica quale applicazione stai contattando quando apri una connessione socket con un server. Ad esempio, il traffico web usa di solito la porta 80, mentre il traffico email usa la porta 25.
 \index{porta}
 
 **Scraping**
