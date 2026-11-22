@@ -12,7 +12,7 @@ Dizionari
 
 Un *dizionario* è come una lista, ma più generale. In una lista le posizioni degli indici devono essere numeri interi; in un dizionario gli indici possono essere di (quasi) qualsiasi tipo.
 
-Puoi pensare a un dizionario come a una mappatura tra un insieme di indici (che sono chiamati *chiavi*) e un insieme di valori. Ogni chiave corrisponde a un valore. L'associazione di una chiave e di un valore è chiamata *coppia chiave-valore* o a volte *elemento*.
+Puoi pensare a un dizionario come a una mappatura tra un insieme di indici (chiamati *chiavi*) e un insieme di valori. Ogni chiave corrisponde a un valore. L'associazione tra una chiave e un valore è chiamata *coppia chiave-valore* o, a volte, *elemento*.
 
 Come esempio costruiremo un dizionario che fa corrispondere parole inglesi a parole spagnole, quindi le chiavi e i valori sono tutti stringhe.
 
@@ -51,9 +51,9 @@ Questo formato di output è anche un formato di input. Ad esempio, puoi creare u
 {'one': 'uno', 'two': 'dos', 'three': 'tres'}
 ~~~~
 
-Da Python 3.7x l'ordine delle coppie chiave-valore è lo stesso con cui sono state inserite, cioè i dizionari ora sono strutture ordinate.
+Da Python 3.7x l'ordine delle coppie chiave-valore è quello in cui sono state inserite, cioè i dizionari ora sono strutture ordinate.
 
-Ma questo non conta davvero, perché gli elementi di un dizionario non sono mai indicizzati con indici interi. Usi invece le chiavi per cercare i valori corrispondenti:
+Ma questo non conta poi molto, perché gli elementi di un dizionario non sono mai indicizzati con indici interi. Usi invece le chiavi per cercare i valori corrispondenti:
 
 ~~~~ {.python}
 >>> print(eng2sp['two'])
@@ -72,7 +72,7 @@ Se la chiave non è nel dizionario, ottieni un'eccezione:
 KeyError: 'four'
 ~~~~
 
-La funzione `len` funziona sui dizionari; restituisce il numero di coppie chiave-valore:
+La funzione `len` si applica ai dizionari; restituisce il numero di coppie chiave-valore:
 
 \index{funzione len}
 \index{funzione!len}
@@ -95,7 +95,7 @@ True
 False
 ~~~~
 
-Per vedere se qualcosa compare come valore in un dizionario, puoi usare il metodo `values`, che restituisce i valori come un tipo che può essere convertito in una lista, e poi usare l'operatore `in`:
+Per vedere se qualcosa compare come valore in un dizionario, puoi usare il metodo `values`, che restituisce i valori in un tipo che si può convertire in una lista, e poi usare l'operatore `in`:
 
 \index{metodo values}
 \index{metodo!values}
@@ -106,7 +106,7 @@ Per vedere se qualcosa compare come valore in un dizionario, puoi usare il metod
 True
 ~~~~
 
-L'operatore `in` usa algoritmi diversi per le liste e per i dizionari. Per le liste usa un algoritmo di ricerca lineare. Man mano che la lista si allunga, il tempo di ricerca si allunga in proporzione diretta alla lunghezza della lista. Per i dizionari Python usa un algoritmo chiamato *tabella hash* (hash table), che ha una proprietà notevole: l'operatore `in` impiega circa lo stesso tempo, non importa quanti elementi ci siano in un dizionario. Non spiegherò perché le funzioni hash sono così magiche, ma puoi saperne di più su [wikipedia.org/wiki/Hash\_table](https://wikipedia.org/wiki/Hash_table).^[Se vuoi davvero imparare di più sulle tabelle hash, c'è un corso su https://www.cc4e.com che esplora come il linguaggio di programmazione C implementa un dizionario Python.]
+L'operatore `in` usa algoritmi diversi per le liste e per i dizionari. Per le liste usa un algoritmo di ricerca lineare. Man mano che la lista si allunga, il tempo di ricerca si allunga in modo direttamente proporzionale alla lunghezza della lista. Per i dizionari, Python usa un algoritmo chiamato *tabella hash* (hash table), che ha una proprietà notevole: l'operatore `in` impiega circa lo stesso tempo, non importa quanti elementi ci siano in un dizionario. Non spiegherò perché le funzioni hash sono così magiche, ma puoi saperne di più su [wikipedia.org/wiki/Hash\_table](https://wikipedia.org/wiki/Hash_table).^[Se vuoi davvero saperne di più sulle tabelle hash, c'è un corso su https://www.cc4e.com che esamina come il linguaggio di programmazione C implementa un dizionario Python.]
 
 \index{tabella hash}
 \index{appartenenza a un insieme}
@@ -116,28 +116,28 @@ L'operatore `in` usa algoritmi diversi per le liste e per i dizionari. Per le li
 
 [www.py4e.com/code3/words.txt](http://www.py4e.com/code3/words.txt)
 
-Scrivi un programma che legga le parole in `words.txt` e le memorizzi come chiavi in un dizionario. Non importa quali siano i valori. Poi puoi usare l'operatore `in` come modo rapido per controllare se una stringa è nel dizionario.
+Scrivi un programma che legga le parole di `words.txt` e le memorizzi come chiavi in un dizionario. Non importa quali siano i valori. Poi puoi usare l'operatore `in` come modo rapido per controllare se una stringa è nel dizionario.
 
 Il dizionario come insieme di contatori
 -------------------------------
 
 \index{contatore}
 
-Supponi che ti venga data una stringa e che tu voglia contare quante volte compare ogni lettera. Ci sono diversi modi in cui potresti farlo:
+Supponi di ricevere una stringa e di voler contare quante volte compare ogni lettera. Potresti farlo in diversi modi:
 
 1.  Potresti creare 26 variabili, una per ogni lettera dell'alfabeto. Poi potresti scorrere la stringa e, per ogni carattere, incrementare il contatore corrispondente, probabilmente usando una condizione concatenata.
 
 2.  Potresti creare una lista con 26 elementi. Poi potresti convertire ogni carattere in un numero (usando la funzione built-in `ord`), usare il numero come indice nella lista e incrementare il contatore appropriato.
 
-3.  Potresti creare un dizionario con i caratteri come chiavi e i contatori come valori corrispondenti. La prima volta che vedi un carattere, aggiungeresti un elemento al dizionario. Dopo, incrementeresti il valore di un elemento esistente.
+3.  Potresti creare un dizionario con i caratteri come chiavi e i contatori come valori corrispondenti. La prima volta che vedi un carattere, aggiungeresti un elemento al dizionario. In seguito incrementeresti il valore di un elemento esistente.
 
-Ognuna di queste opzioni esegue lo stesso calcolo, ma ognuna implementa quel calcolo in un modo diverso.
+Ognuna di queste opzioni esegue lo stesso calcolo, ma ognuna lo implementa in modo diverso.
 
 \index{implementazione}
 
 Un'*implementazione* è un modo di eseguire un calcolo; alcune implementazioni sono migliori di altre. Ad esempio, un vantaggio dell'implementazione con il dizionario è che non dobbiamo sapere in anticipo quali lettere compaiono nella stringa e dobbiamo fare spazio solo per le lettere che compaiono davvero.
 
-Ecco come potrebbe apparire il codice:
+Ecco come potrebbe essere il codice:
 
 ~~~~ {.python}
 word = 'brontosaurus'
@@ -150,7 +150,7 @@ for c in word:
 print(d)
 ~~~~
 
-In effetti stiamo calcolando un *istogramma*, che è un termine statistico per un insieme di contatori (o frequenze).
+Di fatto stiamo calcolando un *istogramma*, termine statistico che indica un insieme di contatori (o frequenze).
 
 \index{istogramma}
 \index{frequenza}
@@ -181,7 +181,7 @@ I dizionari hanno un metodo chiamato `get` che accetta una chiave e un valore pr
 0
 ~~~~
 
-Possiamo usare `get` per scrivere il nostro ciclo dell'istogramma in modo più conciso. Poiché il metodo `get` gestisce automaticamente il caso in cui una chiave non è in un dizionario, possiamo ridurre quattro righe a una ed eliminare l'istruzione `if`.
+Possiamo usare `get` per scrivere in modo più conciso il ciclo dell'istogramma. Poiché il metodo `get` gestisce automaticamente il caso in cui una chiave non è in un dizionario, possiamo ridurre quattro righe a una ed eliminare l'istruzione `if`.
 
 ~~~~ {.python}
 word = 'brontosaurus'
@@ -191,7 +191,7 @@ for c in word:
 print(d)
 ~~~~
 
-L'uso del metodo `get` per semplificare questo ciclo di conteggio finisce per essere un "idioma" usato molto spesso in Python, e lo useremo molte volte nel resto del libro. Quindi dovresti prenderti un momento e confrontare il ciclo che usa l'istruzione `if` e l'operatore `in` con il ciclo che usa il metodo `get`. Fanno esattamente la stessa cosa, ma uno è più conciso.
+L'uso del metodo `get` per semplificare questo ciclo di conteggio finisce per essere un "idioma" molto diffuso in Python, e lo useremo molte volte nel resto del libro. Quindi dovresti prenderti un momento per confrontare il ciclo che usa l'istruzione `if` e l'operatore `in` con il ciclo che usa il metodo `get`. Fanno esattamente la stessa cosa, ma uno dei due è più conciso.
 
 \index{idioma}
 
@@ -200,21 +200,21 @@ Dizionari e file
 
 Uno degli usi comuni di un dizionario è contare le occorrenze delle parole in un file che contiene del testo scritto. Cominciamo con un file di parole molto semplice, preso dal testo di *Romeo e Giulietta*.
 
-Per la prima serie di esempi useremo una versione abbreviata e semplificata del testo, senza punteggiatura. Più avanti lavoreremo con il testo della scena con la punteggiatura inclusa.
+Per la prima serie di esempi useremo una versione abbreviata e semplificata del testo, senza punteggiatura. Più avanti lavoreremo con il testo della scena, punteggiatura compresa.
 
     But soft what light through yonder window breaks
     It is the east and Juliet is the sun
     Arise fair sun and kill the envious moon
     Who is already sick and pale with grief
 
-Scriveremo un programma Python che legge le righe del file, spezza ogni riga in una lista di parole e poi scorre ognuna delle parole della riga e conta ogni parola usando un dizionario.
+Scriveremo un programma Python che legge le righe del file, spezza ogni riga in una lista di parole, poi scorre le parole della riga e conta ogni parola usando un dizionario.
 
 \index{ciclo annidato}
 \index{ciclo!annidato}
 
-Vedrai che abbiamo due cicli `for`. Il ciclo esterno legge le righe del file e il ciclo interno itera su ognuna delle parole di quella particolare riga. Questo è un esempio di uno schema chiamato *cicli annidati*, perché uno dei cicli è il ciclo *esterno* e l'altro ciclo è il ciclo *interno*.
+Vedrai che abbiamo due cicli `for`. Il ciclo esterno legge le righe del file e il ciclo interno itera su ogni parola di quella riga. Questo è un esempio di uno schema chiamato *cicli annidati*, perché uno dei cicli è quello *esterno* e l'altro è quello *interno*.
 
-Poiché il ciclo interno esegue tutte le sue iterazioni ogni volta che il ciclo esterno fa una singola iterazione, pensiamo al ciclo interno come a un ciclo che itera "più velocemente" e al ciclo esterno come a un ciclo che itera più lentamente.
+Poiché il ciclo interno esegue tutte le sue iterazioni ogni volta che il ciclo esterno fa una sola iterazione, consideriamo il ciclo interno come quello che itera "più velocemente" e il ciclo esterno come quello che itera più lentamente.
 
 \index{Romeo e Giulietta}
 
@@ -222,9 +222,9 @@ La combinazione dei due cicli annidati garantisce che conteremo ogni parola di o
 
 \VerbatimInput{../code3/count1.py}
 
-Nella nostra istruzione `else` usiamo l'alternativa più compatta per incrementare una variabile. `counts[word] += 1` è equivalente a `counts[word] = counts[word] + 1`. Tutti e due i metodi si possono usare per cambiare il valore di una variabile di una quantità qualsiasi. Esistono alternative simili per `-=`, `*=` e `/=`.
+Nell'istruzione `else` usiamo l'alternativa più compatta per incrementare una variabile. `counts[word] += 1` è equivalente a `counts[word] = counts[word] + 1`. Entrambi i metodi si possono usare per cambiare di una quantità qualsiasi il valore di una variabile. Esistono alternative simili per `-=`, `*=` e `/=`.
 
-Quando eseguiamo il programma, vediamo l'elenco grezzo di tutti i conteggi nell'ordine non ordinato dell'hash. (Il file `romeo.txt` è disponibile su [www.py4e.com/code3/romeo.txt](http://www.py4e.com/code3/romeo.txt))
+Quando eseguiamo il programma, vediamo una stampa grezza di tutti i conteggi, non ordinati, nell'ordine dell'hash. (Il file `romeo.txt` è disponibile su [www.py4e.com/code3/romeo.txt](http://www.py4e.com/code3/romeo.txt))
 
 ~~~~
 python count1.py
@@ -236,7 +236,7 @@ Enter the file name: romeo.txt
 'grief': 1}
 ~~~~
 
-È un po' scomodo scorrere il dizionario per trovare le parole più comuni e i loro conteggi, quindi dobbiamo aggiungere altro codice Python per ottenere un output più utile.
+È un po' scomodo esaminare il dizionario per trovare le parole più comuni e i loro conteggi, quindi dobbiamo aggiungere altro codice Python per ottenere un output più utile.
 
 Cicli e dizionari
 ------------------------
@@ -261,7 +261,7 @@ annie 42
 jan 100
 ~~~~
 
-Di nuovo, le chiavi sono ordinate.
+Anche qui le chiavi sono ordinate.
 
 \index{idioma}
 
@@ -308,7 +308,7 @@ chuck 1
 jan 100
 ~~~~
 
-Per prima cosa vedi la lista delle chiavi in ordine non alfabetico che otteniamo dal metodo `keys`. Poi vediamo le coppie chiave-valore in ordine alfabetico prodotte dal ciclo `for`.
+Prima vedi la lista delle chiavi in ordine non alfabetico che otteniamo dal metodo `keys`. Poi vediamo le coppie chiave-valore in ordine alfabetico prodotte dal ciclo `for`.
 
 Analisi avanzata del testo
 ---------------------
@@ -324,11 +324,11 @@ Arise, fair sun, and kill the envious moon,
 Who is already sick and pale with grief,
 ~~~~
 
-Poiché la funzione `split` di Python cerca gli spazi e tratta le parole come token separati da spazi, tratteremmo le parole `soft!` e `soft` come parole *diverse* e creeremmo una voce di dizionario separata per ciascuna parola.
+Poiché la funzione `split` di Python cerca gli spazi e tratta le parole come token separati da spazi, tratteremmo `soft!` e `soft` come parole *diverse* e creeremmo nel dizionario una voce separata per ciascuna.
 
 Inoltre, poiché nel file ci sono le maiuscole, tratteremmo `who` e `Who` come parole diverse con conteggi diversi.
 
-Possiamo risolvere tutti e due questi problemi usando i metodi delle stringhe `lower`, `punctuation` e `translate`. `translate` è il più sottile dei metodi. Ecco la documentazione di `translate`:
+Possiamo risolvere entrambi i problemi usando i metodi delle stringhe `lower`, `punctuation` e `translate`. Il più sottile dei metodi è `translate`. Ecco la documentazione di `translate`:
 
 `line.translate(str.maketrans(fromstr, tostr, deletestr))`
 
@@ -344,11 +344,11 @@ Non specificheremo `tostr`, ma useremo il parametro `deletestr` per eliminare tu
 
 I parametri usati da `translate` erano diversi in Python 2.0.
 
-Facciamo le seguenti modifiche al nostro programma:
+Facciamo le seguenti modifiche al programma:
 
 \VerbatimInput{../code3/count2.py}
 
-Parte dell'imparare l'"Arte di Python" o il "Pensare in modo Pythonic" è rendersi conto che Python ha spesso funzionalità built-in per molti problemi comuni di analisi dei dati. Con il tempo vedrai abbastanza codice di esempio e leggerai abbastanza documentazione da sapere dove guardare per vedere se qualcuno ha già scritto qualcosa che rende il tuo lavoro molto più facile.
+Imparare l'"Arte di Python" o il "Pensare in modo Pythonic" significa anche rendersi conto che Python ha spesso funzionalità built-in per molti problemi comuni di analisi dei dati. Con il tempo vedrai abbastanza codice di esempio e leggerai abbastanza documentazione da sapere dove guardare per vedere se qualcuno ha già scritto qualcosa che rende il tuo lavoro molto più facile.
 
 Quella che segue è una versione abbreviata dell'output:
 
@@ -362,7 +362,7 @@ Enter the file name: romeo-full.txt
 'breaks': 1, ...}
 ~~~~
 
-Scorrere questo output è ancora poco pratico e possiamo usare Python per farci dare esattamente ciò che stiamo cercando, ma per farlo dobbiamo conoscere le *tuple* di Python. Riprenderemo questo esempio una volta che avremo conosciuto le tuple.
+Esaminare questo output è ancora poco pratico e possiamo usare Python per farci dare esattamente ciò che stiamo cercando, ma per farlo dobbiamo conoscere le *tuple* di Python. Riprenderemo questo esempio quando conosceremo le tuple.
 
 Debug
 ---------
@@ -372,26 +372,26 @@ Debug
 Quando lavori con insiemi di dati più grandi, può diventare poco pratico fare il debug stampando e controllando i dati a mano. Ecco alcuni suggerimenti per il debug di grandi insiemi di dati:
 
 Riduci l'input
-:   Se possibile, riduci la dimensione dell'insieme di dati. Ad esempio, se il programma legge un file di testo, comincia con le sole prime 10 righe, o con l'esempio più piccolo che riesci a trovare. Puoi modificare i file stessi oppure (meglio) modificare il programma in modo che legga solo le prime `n` righe.
+:   Se possibile, riduci le dimensioni dell'insieme di dati. Ad esempio, se il programma legge un file di testo, comincia solo con le prime 10 righe, o con l'esempio più piccolo che riesci a trovare. Puoi modificare direttamente i file oppure (meglio) modificare il programma in modo che legga solo le prime `n` righe.
 
-    Se c'è un errore, puoi ridurre `n` al valore più piccolo che manifesta l'errore e poi aumentarlo gradualmente man mano che trovi e correggi gli errori.
+    Se c'è un errore, puoi ridurre `n` al valore più piccolo con cui l'errore si manifesta e poi aumentarlo gradualmente man mano che trovi e correggi gli errori.
 
 Controlla i riepiloghi e i tipi
-:   Invece di stampare e controllare l'intero insieme di dati, considera di stampare dei riepiloghi dei dati: ad esempio, il numero di elementi di un dizionario o il totale di una lista di numeri.
+:   Invece di stampare e controllare l'intero insieme di dati, valuta se stampare dei riepiloghi dei dati: ad esempio, il numero di elementi di un dizionario o il totale di una lista di numeri.
 
-    Una causa comune di errori di runtime è un valore che non è del tipo giusto. Per il debug di questo tipo di errore, spesso basta stampare il tipo di un valore.
+    Una causa comune di errori di runtime è un valore che non è del tipo giusto. Per il debug di questo genere di errore, spesso basta stampare il tipo di un valore.
 
 Scrivi controlli automatici
-:   A volte puoi scrivere del codice che controlla gli errori in modo automatico. Ad esempio, se stai calcolando la media di una lista di numeri, potresti controllare che il risultato non sia maggiore dell'elemento più grande della lista né minore del più piccolo. Questo è chiamato "controllo di plausibilità" (sanity check) perché rileva i risultati che sono "completamente illogici".
+:   A volte puoi scrivere del codice che controlla in modo automatico se ci sono errori. Ad esempio, se calcoli la media di una lista di numeri, potresti controllare che il risultato non sia maggiore dell'elemento più grande della lista né minore del più piccolo. Questo si chiama "controllo di plausibilità" (sanity check) perché rileva i risultati "completamente illogici".
 \index{controllo di plausibilità}
 \index{controllo di coerenza}
 
-    Un altro tipo di controllo confronta i risultati di due calcoli diversi per vedere se sono coerenti. Questo è chiamato "controllo di coerenza" (consistency check).
+    Un altro tipo di controllo confronta i risultati di due calcoli diversi per vedere se sono coerenti. Questo si chiama "controllo di coerenza" (consistency check).
 
 Formatta bene l'output
 :   Formattare l'output di debug può rendere più facile individuare un errore.
 
-Di nuovo, il tempo che dedichi a costruire impalcature può ridurre il tempo che dedichi al debug.
+Ancora una volta, il tempo che dedichi a costruire impalcature può ridurre il tempo che dedichi al debug.
 \index{impalcatura}
 
 Glossario
@@ -418,7 +418,7 @@ Glossario
 \index{implementazione}
 
 **Elemento**
-: Un altro nome per una coppia chiave-valore.
+: Un altro nome della coppia chiave-valore.
 \index{elemento!dizionario}
 
 **Chiave**
@@ -439,13 +439,13 @@ Glossario
 \index{ciclo!annidato}
 
 **Valore**
-: Un oggetto che compare in un dizionario come seconda parte di una coppia chiave-valore. È un uso più specifico del nostro precedente uso della parola "valore".
+: Un oggetto che compare in un dizionario come seconda parte di una coppia chiave-valore. È un uso della parola "valore" più specifico di quello precedente.
 \index{valore}
 
 Esercizi
 ---------
 
-**Esercizio 2:** Scrivi un programma che classifichi ogni messaggio di posta in base al giorno della settimana in cui è stato fatto il commit. Per farlo cerca le righe che iniziano con `From`, poi cerca la terza parola e tieni un conteggio progressivo di ciascuno dei giorni della settimana. Alla fine del programma stampa il contenuto del tuo dizionario (l'ordine non conta).
+**Esercizio 2:** Scrivi un programma che classifichi ogni messaggio di posta in base al giorno della settimana in cui è stato fatto il commit. Per farlo cerca le righe che iniziano con `From`, poi cerca la terza parola e tieni un conteggio progressivo per ciascun giorno della settimana. Alla fine del programma stampa il contenuto del dizionario (l'ordine non conta).
 
 Riga di esempio:
 
@@ -473,7 +473,7 @@ Enter file name: mbox-short.txt
 'ray@media.berkeley.edu': 1}
 ~~~~
 
-**Esercizio 4:** Aggiungi al programma qui sopra del codice per scoprire chi ha inviato più messaggi nel file. Dopo che tutti i dati sono stati letti e il dizionario è stato creato, scorri il dizionario usando un ciclo di massimo (vedi Capitolo 5: Cicli di massimo e minimo) per trovare chi ha più messaggi e stampa quanti messaggi ha quella persona.
+**Esercizio 4:** Aggiungi al programma qui sopra del codice per scoprire chi ha inviato più messaggi nel file. Una volta letti tutti i dati e creato il dizionario, scorri il dizionario usando un ciclo di massimo (vedi Capitolo 5: Cicli di massimo e minimo) per trovare chi ha più messaggi e stampa quanti messaggi ha quella persona.
 
 ~~~~
 Enter a file name: mbox-short.txt
@@ -483,7 +483,7 @@ Enter a file name: mbox.txt
 zqian@umich.edu 195
 ~~~~
 
-**Esercizio 5:** Questo programma registra il nome di dominio (invece dell'indirizzo) da cui è stato inviato il messaggio, invece di chi ha inviato la posta (cioè l'intero indirizzo email). Alla fine del programma stampa il contenuto del tuo dizionario.
+**Esercizio 5:** Questo programma registra il nome di dominio (invece dell'indirizzo) da cui è stato inviato il messaggio, invece di chi ha inviato la posta (cioè l'intero indirizzo email). Alla fine del programma stampa il contenuto del dizionario.
 
 ~~~~
 python schoolcount.py
