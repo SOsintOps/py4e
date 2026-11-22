@@ -1,56 +1,67 @@
 <?php include("top.php"); ?>
 <?php include("nav.php"); ?>
 <h1>
-Getting started with Python on a Macintosh
+Iniziare con Python su Macintosh
 </h1>
-<p>Python 2 and Python 3 are already installed on Macintosh OS/X operating system so all you need to add
-is a programmer text editor.
+<p>Su macOS (Macintosh OS X) Python è spesso già disponibile o facile da aggiungere, quindi la prima cosa che ti serve
+è un editor di testo per la programmazione.
 </p>
-<b>Installing the Atom Text Editor</b>
-<p>Please download and install Atom from this site:
+<b>Installare un editor di testo per la programmazione</b>
+<p>Se hai già installato un editor per programmatori come
+<a href="https://code.visualstudio.com/" target="_blank" rel="noopener noreferrer">VS Code</a>, puoi usarlo nel corso,
+oppure puoi installarlo sul tuo sistema.
 </p>
-<p><a href="http://atom.io" target="_blank">http://atom.io</a>
+<p>
+Se l'installazione di VS Code ti sembra un po' complessa, consigliamo l'editor di testo gratuito e open source
+<a href="https://phcode.io/" target="_blank" rel="noopener noreferrer">Phoenix Code</a>: è facile
+da installare e ha tutto ciò che serve per il corso.
+</p>
 
-<h1>Writing a Python 3 program with Atom on Macintosh</h1>
+<h1>Scrivere un programma Python 3 su Macintosh</h1>
 <p>
-We have a short
-<a href="https://www.youtube.com/watch?v=aIcLCww_kQM" target="_blank">
-step-by-step video</a> showing how to use Atom and write your first Python 3 program.
-<p>
-<h1>Starting Terminal on Macintosh OS/X</h1>
-<p>
-The Terminal program on Macintosh is kind of buried under <b>Macintosh HD -> Applications -> Utilities -> Terminal</b>
-<p>
-There are several shortcuts that you might find helpful.   You can go into the upper-right of 
-your screen and click on the Spotlight search button and type 
-<b>terminal</b> and you can execute Terminal from the pop-up 
-list of items.
-<p>
-You can get Terminal to stay in your dock once terminal is launched by clicking and 
-holding on the Terminal icon in the dock and then selecting "Keep in Dock".  
-Then you can quickly launch Terminal by clicking on the icon in the dock.
+Abbiamo preparato un breve
+<a href="https://www.youtube.com/watch?v=rI26CVAAzL0" target="_blank" rel="noopener noreferrer">
+video passo per passo</a> che mostra come usare un editor per programmatori e scrivere il tuo primo programma Python 3.
+Questo video usa l'editor Phoenix Code — che consigliamo di installare e usare, in alternativa a VS Code, se non hai già
+un editor di testo per la programmazione.
+</p>
 
-<h1>Where Are You?</h1>
+<h1>Avviare il Terminale su macOS</h1>
 <p>
-When the command line starts up, you are in your "home" directory.   
-In each of these examples, your logged in account should be used instead of csev.
+Il programma Terminale su Macintosh si trova in <b>Macintosh HD -> Applicazioni -> Utility -> Terminale</b>.
+</p>
+<p>
+Ci sono diverse scorciatoie comode. Puoi fare clic sul pulsante di ricerca Spotlight in alto a destra
+sullo schermo, digitare <b>terminal</b> (o <b>terminale</b>) e avviare Terminale dall'elenco dei risultati.
+</p>
+<p>
+Puoi mantenere Terminale nel Dock una volta avviato: fai clic tenendo premuto sull'icona di Terminale nel Dock
+e seleziona "Opzioni -> Mantieni nel Dock". In questo modo potrai avviarlo rapidamente con un clic.
+</p>
+<h1>Dove ti trovi?</h1>
+<p>
+Quando la riga di comando si avvia, ti trovi nella tua directory "home".
+In tutti questi esempi, sostituisci <b>csev</b> con il tuo nome utente.
+</p>
 <pre>
-    Macintosh Home Directory: 		/Users/csev
+    Directory home su Macintosh: 		/Users/csev
 </pre>
-The command line prompt usually includes some clue as to where you are at 
-in the folder structure on your hard drive.  If you want to really figure out 
-where you are, on Macintosh use the <b>pwd</b> command.
+<p>
+    Il prompt della riga di comando di solito mostra un indizio sulla tua posizione
+    nella struttura delle cartelle del disco. Se vuoi sapere con esattezza
+    dove ti trovi, su Macintosh usa il comando <b>pwd</b>.
+</p>
 <pre>
     udhcp-macvpn-624:~ csev$ pwd
     /Users/csev
     udhcp-macvpn-624:~ csev$ 
 </pre>
 
-<h1>Where can you go?</h1>
+<h1>Come spostarsi?</h1>
 <p>
-Generally the first thing you want to do when you open a command line 
-interface is to navigate to the right folder.  Say you wanted to run a file from your desktop.   The command is 
-<b>cd Desktop </b>
+Di solito, la prima cosa da fare quando apri un'interfaccia a riga di comando
+è spostarti nella cartella giusta. Ad esempio, per eseguire un file salvato sulla Scrivania (Desktop), il comando è
+<b>cd Desktop</b>:</p>
 <pre>
     udhcp-macvpn-624:~ csev$ pwd
     /Users/csev
@@ -59,14 +70,16 @@ interface is to navigate to the right folder.  Say you wanted to run a file from
     /Users/csev/Desktop
     udhcp-macvpn-624:Desktop csev$
 </pre>
-Nifty Trick:  On the cd command, you can partially type a folder name like Desktop 
-and then press the TAB key and the system will auto-complete the folder name 
-if you have typed enough that the system can accurately guess what you mean to type.
 <p>
-Going Backwards (or Upwards)
+    <b>Trucco utile:</b> con il comando <b>cd</b> puoi digitare solo una parte del nome di una cartella, come Desktop,
+    e poi premere il tasto TAB: il sistema completerà automaticamente il nome della cartella
+    se hai digitato abbastanza caratteri perché possa indovinare con precisione.
+</p>
+<p><b>Tornare indietro (o salire di livello)</b></p>
 <p>
-You can change directory to the parent folder (the folder "above" the folder you 
-are in using the <b>cd ..</b> command.   It just says "go up one".
+Puoi cambiare directory passando alla cartella padre (quella "sopra" la cartella in cui
+ti trovi) usando il comando <b>cd ..</b>, che significa semplicemente "sali di un livello".
+</p>
 <pre>
     udhcp-macvpn-624:Desktop csev$ pwd
     /Users/csev/Desktop
@@ -75,15 +88,15 @@ are in using the <b>cd ..</b> command.   It just says "go up one".
     /Users/csev
     udhcp-macvpn-624:~ csev$ 
 </pre>
-If you get Lost...
+<p><b>Se ti perdi...</b></p>
 <p>
-If you can't figure out what folder you are in and/or cannot figure 
-out how to get to the folder you want to get to "home" simply close and 
-re-open the Command Line / Terminal window.  
+Se non riesci a capire in quale cartella ti trovi o non riesci
+a raggiungere la cartella desiderata, per tornare alla directory "home" chiudi e
+riapri la finestra del Terminale.
+</p>
+<p><b>Quali file e cartelle ci sono qui?</b></p>
 <p>
-What Files/Folders are Here?
-<p>
-You can list the contents of the current directory using the <b>ls -l</b>  command.
+Puoi elencare il contenuto della directory corrente usando il comando <b>ls -l</b>:</p>
 <pre>
     udhcp-macvpn-624:Desktop csev$ pwd
     /Users/csev/Desktop
@@ -92,19 +105,19 @@ You can list the contents of the current directory using the <b>ls -l</b>  comma
     -rw-r--r--  1 csev  staff   15 Sep 16 15:17 hello.py
     udhcp-macvpn-624:Desktop csev$ 
 </pre>
-Running Your Python Program in the Terminal
+<h1>Eseguire il tuo programma Python nel Terminale</h1>
 <p>
-Start the Terminal program, navigate to the proper directory and type the following command:
+Avvia Terminale, spostati nella directory corretta e digita il comando seguente:</p>
 <pre>
     python3 hello.py
 </pre>
-This loads the Python 3 interpreter and runs <b>firstprog.py</b>, showing the program output 
-and/or errors in the Terminal window.
+<p>Questo comando carica l'interprete Python 3 ed esegue il file (ad esempio <b>hello.py</b> o <b>firstprog.py</b>), mostrando l'output
+del programma ed eventuali errori nella finestra del Terminale.</p>
 <p>
-Some Cool Hints on The Macintosh Terminal Program
+<b>Alcuni suggerimenti utili sul Terminale di Macintosh</b></p>
 <p>
-You can scroll back through previous commands by pressing the up and down arrows and re-execute 
-commands using the enter key.  This can save a lot of typing.
-If you like keeping your screen uncluttered, you can clear the scroll 
-back buffer by pressing the Command key and the K key at the same time.
+Puoi scorrere i comandi precedenti premendo i tasti freccia su e freccia giù ed eseguirli di nuovo
+premendo Invio: ti farà risparmiare molta digitazione.
+Se preferisci tenere lo schermo ordinato, puoi pulire il buffer di scorrimento
+premendo contemporaneamente il tasto Comando (Command) e il tasto K.</p>
 <?php include('footer.php');?>

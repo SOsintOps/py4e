@@ -1,1067 +1,2066 @@
 {
-"title": "Python per Tutti (PY4E)",
-"description" : "Ciao e benvenuti nel mio sito dove potrete imparare Python anche se non avete alcuna esperienza nel programmare.",
-"count": true,
-"required_modules": [
-    "https://github.com/tsugitools/peer-grade"
-],
-"badges": [
-    {
-        "title" : "Iscritto a Python per Tutti (PY4E)",
-        "image" : "00_enrolled_py4e.png",
-        "threshold" : "0.0",
-        "assignments" : [
-        ]
-    },
-    {
-        "title" : "Introduzione a Python - Hello World!",
-        "threshold" : "0.8",
-        "image" : "01_hello_world.png",
-        "assignments" : [
-            "pythonauto_01_hello"
-        ]
-    },
-    {
-        "title" : "Introduzione a Python - Per iniziare",
-        "threshold" : "0.8",
-        "image" : "badge_01_code.png",
-        "assignments" : [
-            "install",
-            "pythonauto_01_hello",
-            "pythonauto_02_03",
-            "pythonauto_03_03",
-            "pythonauto_04_06",
-            "pythonauto_05_02"
-        ]
-    },
-    {
-        "title" : "Struttura dei Dati in Python",
-        "threshold" : "1.0",
-        "image" : "badge_02_data.png",
-        "assignments" : [
-            "pythonauto_06_05",
-            "pythonauto_07_02",
-            "pythonauto_08_04",
-            "pythonauto_08_05",
-            "pythonauto_09_04",
-            "pythonauto_10_02"
-        ]
-    },
-    {
-        "title" : "Accesso ai dati presenti nel Web o in rete con Python",
-        "threshold" : "0.8",
-        "image" : "badge_03_network.png",
-        "assignments" : [
-            "pythondata_01_regex",
-            "pythondata_02_rrc",
-            "pythondata_03_html",
-            "pythondata_04_links",
-            "pythondata_05_xml",
-            "pythondata_06_json",
-            "pythondata_07_geo"
-        ]
-    },
-    {
-        "title" : "Utilizzare database con Python",
-        "threshold" : "1.0",
-        "image" : "badge_04_database.png",
-        "assignments" : [
-            "pythonsql_01_single",
-            "pythonsql_02_email",
-            "pythonsql_03_tracks",
-            "pythonsql_04_many"
-        ]
-    },
-    {
-        "title" : "Python Per Tutti",
-        "threshold" : "1.0",
-        "image" : "badge_py4e.png",
-        "assignments" : [
-            "install",
-            "pythonauto_01_hello",
-            "pythonauto_02_03",
-            "pythonauto_03_03",
-            "pythonauto_04_06",
-            "pythonauto_05_02",
-            "pythonauto_06_05",
-            "pythonauto_07_02",
-            "pythonauto_08_04",
-            "pythonauto_08_05",
-            "pythonauto_09_04",
-            "pythonauto_10_02",
-            "pythondata_01_regex",
-            "pythondata_02_rrc",
-            "pythondata_03_html",
-            "pythondata_04_links",
-            "pythondata_05_xml",
-            "pythondata_06_json",
-            "pythondata_07_geo",
-            "pythonsql_01_single",
-            "pythonsql_02_email",
-            "pythonsql_03_tracks",
-            "pythonsql_04_many"
-        ]
-    }
-],
-"other_courses": [
-    {
-        "title" : "Python for Everybody Specialization (Coursera)",
-        "href" : "https://www.coursera.org/specializations/python"
-    },
-    {
-        "title" : "Python for Everybody - Getting Started (edX)",
-        "href" : "https://www.edx.org/course/programming-for-everybody-getting-started-with-python"
-    }
-],
-"modules": [
-{ 
-    "title": "Installare Python",
-    "anchor": "install",
-    "icon" : "fa-bicycle",
-    "description": "Il primo compito è quello di procedere con l'installazione di Python e di un editor di testo.",
-    "assignment" : "install.php",
-    "references" : [
+    "title": "Python per tutti (PY4E)",
+    "description": "Ciao e benvenuto nel mio sito, dove puoi imparare Python anche se non hai nessuna esperienza di programmazione.",
+    "count": true,
+    "required_modules": [
+        "https://github.com/tsugitools/youtube",
+        "https://github.com/tsugitools/pythongrader"
+    ],
+    "badges": [
         {
-            "title" : "Impostare l'ambiente PythonLearn Environment in Microsoft Windows",
-            "href" : "software-win.php"
+            "title": "Iscritto a Python per tutti (PY4E)",
+            "image": "00_enrolled_py4e.png",
+            "threshold": "0.0",
+            "assignments": []
         },
         {
-            "title" : "Impostare l'ambiente PythonLearn Environment in Macintosh",
-            "href" : "software-mac.php"
+            "title": "Introduzione a Python – Hello World!",
+            "threshold": "0.8",
+            "linkedin": true,
+            "completion": true,
+            "image": "01_hello_world.png",
+            "assignments": [
+                "pythonauto_01_hello"
+            ]
+        },
+        {
+            "title": "Introduzione a Python – Per iniziare",
+            "threshold": "0.8",
+            "image": "badge_01_code.png",
+            "assignments": [
+                "install",
+                "pythonauto_01_hello",
+                "pythonauto_02_03",
+                "pythonauto_03_03",
+                "pythonauto_04_06",
+                "pythonauto_05_02"
+            ]
+        },
+        {
+            "title": "Strutture di dati in Python",
+            "threshold": "1.0",
+            "image": "badge_02_data.png",
+            "assignments": [
+                "pythonauto_06_05",
+                "pythonauto_07_02",
+                "pythonauto_08_04",
+                "pythonauto_08_05",
+                "pythonauto_09_04",
+                "pythonauto_10_02"
+            ]
+        },
+        {
+            "title": "Accedere ai dati web e di rete con Python",
+            "threshold": "0.8",
+            "image": "badge_03_network.png",
+            "assignments": [
+                "pythondata_01_regex",
+                "pythondata_02_rrc",
+                "pythondata_03_html",
+                "pythondata_04_links",
+                "pythondata_05_xml",
+                "pythondata_06_json",
+                "pythondata_07_geo"
+            ]
+        },
+        {
+            "title": "Usare i database con Python",
+            "threshold": "1.0",
+            "image": "badge_04_database.png",
+            "assignments": [
+                "pythonsql_01_single",
+                "pythonsql_02_email",
+                "pythonsql_03_tracks",
+                "pythonsql_04_many"
+            ]
+        },
+        {
+            "title": "Python per tutti",
+            "threshold": "1.0",
+            "image": "badge_py4e.png",
+            "linkedin": true,
+            "completion": true,
+            "assignments": [
+                "install",
+                "pythonauto_01_hello",
+                "pythonauto_02_03",
+                "pythonauto_03_03",
+                "pythonauto_04_06",
+                "pythonauto_05_02",
+                "pythonauto_06_05",
+                "pythonauto_07_02",
+                "pythonauto_08_04",
+                "pythonauto_08_05",
+                "pythonauto_09_04",
+                "pythonauto_10_02",
+                "pythondata_01_regex",
+                "pythondata_02_rrc",
+                "pythondata_03_html",
+                "pythondata_04_links",
+                "pythondata_05_xml",
+                "pythondata_06_json",
+                "pythondata_07_geo",
+                "pythonsql_01_single",
+                "pythonsql_02_email",
+                "pythonsql_03_tracks",
+                "pythonsql_04_many"
+            ]
         }
     ],
-    "lti" : {
-        "title": "Peer Graded: Screenshot dell'Installazione",
-        "launch" : "mod/peer-grade/",
-        "resource_link_id": "install",
-        "custom" : [
-            {
-                "key": "config",
-                "json": 
-
-{
-  "title":"Peer Review: Screenshot dell'Installazione ed Avvio di Python",
-  "description":"Installate Python e un editor di testo dedicato alla programmazione. Scrivete un programma che stampi una riga diversa da 'hello world'. Fate due screenshot e caricateli qui sotto. Dovreste usare la riga di comando per eseguire il programma Python che avete scritto. Vi prego di *non* usare la shell IDLE Python, l'interprete Python (>>>), o una scorciatoia nell'editor di testo per eseguire il codice. Più avanti nel corso, quando inizieremo a leggere i file, Avremo bisogno di essere in grado di eseguire programmi Python presenti in particolari directory. Fate riferimento ai video per i dettagli.",
-  "grading":"Questo é un compito relativamente semplice. L'obiettivo è quello di mostrare che ogni studente ha Python installato sul proprio desktop o laptop e può eseguire degli screenshot. Per favore, scrivete i vostri commenti in modo da aiutare lo studente che state esaminando.",
-  "assignment":"http://www.py4e.com/install",
-  "parts":[
-    {
-      "title":"Immagine del programma durante la modifica nell'editor",
-      "type":"image"
-    },
-    {
-      "title":"Immagine del programma durante l'esecuzione da terminale o da linea di comando",
-      "type":"image"
-    }
-  ],
-  "totalpoints":10,
-  "minassess":2,
-  "assesspoints":2,
-  "instructorpoints":0,
-  "maxassess":8,
-  "peerpoints":6,
-  "flag":true,
-  "rating":0,
-  "gallery":"off",
-  "resubmit":"off",
-  "notepublic":"false",
-  "galleryformat":"card"
-}
-
-            }
-        ]
-    }
-},
-{
-    "title": "Perché dovresti imparare a programmare?",
-    "anchor": "intro",
-    "icon" : "fa-hand-o-right",
-    "description": "Scopriamo perché si potrebbe voler imparare a programmare ed esaminiamo i principali problemi legati all'imparare a programmare.",
-    "slides": "lectures3/Pythonlearn-01-Intro.pptx",
-    "references" : [
+    "other_courses": [
         {
-            "title" : "Capitolo 1: Introduzione",
-            "href" : "https://www.py4e.com/html3/01-intro"
+            "title": "Python for Everybody Specialization (Coursera)",
+            "href": "https://www.coursera.org/specializations/python"
+        },
+        {
+            "title": "Python for Everybody – Getting Started (edX)",
+            "href": "https://www.edx.org/course/programming-for-everybody-getting-started-with-python"
         }
     ],
-    "videos" : [
+    "discussions": [
         {
-            "title" : "Perché programmare? - Parte 1",
-            "youtube" : "fvhNadKjE8g"
+            "title": "Benvenuto in Python per tutti",
+            "launch": "tsugi/tool/tdiscus/",
+            "resource_link_id": "discussion_welcome"
         },
         {
-            "title" : "Perché programmare? - Parte 2",
-            "youtube" : "VQZTZsXk8sA"
-        },
-        {
-            "title" : "Cosa succede quando viene rimosso il dissipatore di calore della CPU?",
-            "youtube" : "y39D4529FM4"
-        },
-        {
-            "title" : "All'interno del disco rigido",
-            "youtube" : "9eMWG3fwiEU"
-        },
-        {
-            "title" : "Perché programmare? - Parte 3",
-            "youtube" : "LLzFNlCjTSo"
-        },
-        {
-            "title" : "Perché programmare? - Parte 4",
-            "youtube" : "gsry2SYOFCw"
-        },
-        {
-            "title" : "Scrivere 'hello world' nell`Autograder",
-            "youtube" : "aDwb41EMEQQ"
+            "title": "Nuove funzionalità e aggiornamenti",
+            "launch": "tsugi/tool/tdiscus/",
+            "resource_link_id": "discussion_features"
         }
     ],
-    "lti" : {
-        "title" : "Autograder: Write Hello World",
-        "launch" : "tools/pythonauto/",
-        "resource_link_id": "pythonauto_01_hello",
-        "custom" : [
-            {
-                "key": "exercise",
-                "value": "hello"
-            }
-        ]
-    }
-},
-{
-    "title": "Variabili, espressioni ed Istruzioni",
-    "anchor": "memory",
-    "icon" : "fa-database",
-    "description": "Impariamo come creare delle variabili ed utilizzarle per conservarci dati.",
-    "slides": "lectures3/Pythonlearn-02-Expressions.pptx",
-    "references" : [
+    "modules": [
         {
-            "title" : "Capitolo 2: Variabili",
-            "href" : "https://www.py4e.com/html3/02-variables"
+            "title": "Installare Python",
+            "anchor": "install",
+            "icon": "fa-bicycle",
+            "description": "Il primo compito è completare i passaggi di installazione, compresa l'installazione di Python e di un editor di testo.",
+            "items": [
+                {
+                    "type": "header",
+                    "text": "Riferimenti",
+                    "level": 2
+                },
+                {
+                    "type": "reference",
+                    "title": "Usare Replit per scrivere programmi Python",
+                    "href": "{apphome}/software-replit.php"
+                },
+                {
+                    "type": "reference",
+                    "title": "Configurare l'ambiente Python su Microsoft Windows",
+                    "href": "{apphome}/software-win.php"
+                },
+                {
+                    "type": "reference",
+                    "title": "Configurare l'ambiente Python su Macintosh",
+                    "href": "{apphome}/software-mac.php"
+                },
+                {
+                    "type": "reference",
+                    "title": "Editor di testo consigliati per la programmazione",
+                    "href": "{apphome}/editors.php"
+                },
+                {
+                    "type": "reference",
+                    "title": "Shell Python – Ambiente di sviluppo nel browser",
+                    "href": "https://shell.py4e.com/"
+                },
+                {
+                    "type": "header",
+                    "text": "Compito",
+                    "level": 2
+                },
+                {
+                    "type": "assignment",
+                    "href": "{apphome}/install.php"
+                },
+                {
+                    "type": "header",
+                    "text": "Strumenti",
+                    "level": 2
+                },
+                {
+                    "type": "lti",
+                    "title": "Valutazione tra pari: schermate dell'installazione",
+                    "launch": "tsugi/tool/peer-grade/",
+                    "resource_link_id": "install",
+                    "custom": [
+                        {
+                            "key": "config",
+                            "json": {
+                                "title": "Revisione tra pari: schermate dell'installazione e dell'esecuzione di Python",
+                                "description": "Installa Python e un editor di testo per la programmazione, scrivi un programma che stampi una riga diversa da 'hello world', poi scatta due schermate e caricale qui sotto. Devi usare la riga di comando per eseguire il programma Python che hai scritto nell'editor di testo. *Non* usare la shell IDLE di Python, l'interprete interattivo (>>>) o una scorciatoia dell'editor di testo per eseguire il codice. Più avanti nel corso, quando inizieremo a leggere i file, dovremo saper eseguire programmi Python da directory specifiche. Guarda i video per i dettagli.",
+                                "grading": "Questo è un compito relativamente semplice: l'obiettivo è solo dimostrare che ogni studente ha installato Python sul proprio computer e sa acquisire schermate. Scrivi i tuoi commenti in modo da aiutare lo studente che stai valutando.",
+                                "assignment": "https://www.py4e.com/install",
+                                "parts": [
+                                    {
+                                        "title": "Immagine del programma aperto nell'editor di testo",
+                                        "type": "image"
+                                    },
+                                    {
+                                        "title": "Immagine del programma eseguito da riga di comando o terminale",
+                                        "type": "image"
+                                    }
+                                ],
+                                "totalpoints": 10,
+                                "minassess": 2,
+                                "assesspoints": 2,
+                                "instructorpoints": 0,
+                                "maxassess": 8,
+                                "peerpoints": 6,
+                                "flag": true,
+                                "rating": 0,
+                                "gallery": "off",
+                                "resubmit": "off",
+                                "notepublic": "false",
+                                "galleryformat": "card"
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "title": "Perché programmare?",
+            "anchor": "intro",
+            "icon": "fa-hand-o-right",
+            "description": "Scopriamo perché vale la pena imparare a programmare ed esaminiamo le basi dell'apprendimento della programmazione.",
+            "items": [
+                {
+                    "type": "header",
+                    "text": "Slide",
+                    "level": 2
+                },
+                {
+                    "type": "slide",
+                    "title": "Pythonlearn-01-Intro.pptx",
+                    "href": "{apphome}/lectures3/Pythonlearn-01-Intro.pptx"
+                },
+                {
+                    "type": "slide",
+                    "title": "Pythonlearn-01-Intro.pdf",
+                    "href": "{apphome}/lectures3/Pythonlearn-01-Intro.pdf"
+                },
+                {
+                    "type": "header",
+                    "text": "Video",
+                    "level": 2
+                },
+                {
+                    "type": "video",
+                    "title": "Perché programmare? – Parte 1 (12:31)",
+                    "youtube": "fvhNadKjE8g",
+                    "media": "01-Intro/01-Intro-A.m4v"
+                },
+                {
+                    "type": "video",
+                    "title": "Perché programmare? – Parte 2 (12:16)",
+                    "youtube": "VQZTZsXk8sA",
+                    "media": "01-Intro/01-Intro-B.m4v"
+                },
+                {
+                    "type": "video",
+                    "title": "Cosa succede quando si rimuove il dissipatore della CPU?",
+                    "youtube": "y39D4529FM4"
+                },
+                {
+                    "type": "video",
+                    "title": "All'interno di un disco rigido",
+                    "youtube": "9eMWG3fwiEU"
+                },
+                {
+                    "type": "video",
+                    "title": "Perché programmare? – Parte 3 (7:49)",
+                    "youtube": "LLzFNlCjTSo",
+                    "media": "01-Intro/01-Intro-C.m4v"
+                },
+                {
+                    "type": "video",
+                    "title": "Perché programmare? – Parte 4 (12:35)",
+                    "youtube": "hBkDRKBJj9k",
+                    "media": "01-Intro/01-Intro-D.m4v",
+                    "youtube-2016": "gsry2SYOFCw"
+                },
+                {
+                    "type": "video",
+                    "title": "Scrivere 'hello world' nel correttore automatico (5:13)",
+                    "youtube": "aDwb41EMEQQ",
+                    "media": "01-Intro/01-Intro-Q-EX-hello.mp4"
+                },
+                {
+                    "type": "header",
+                    "text": "Riferimenti",
+                    "level": 2
+                },
+                {
+                    "type": "reference",
+                    "title": "Capitolo 1: Introduzione",
+                    "href": "{apphome}/html3/01-intro"
+                },
+                {
+                    "type": "header",
+                    "text": "Discussioni",
+                    "level": 2
+                },
+                {
+                    "type": "discussion",
+                    "title": "Perché programmare?",
+                    "launch": "tsugi/tool/tdiscus/",
+                    "resource_link_id": "discuss_01_hello"
+                },
+                {
+                    "type": "header",
+                    "text": "Strumenti",
+                    "level": 2
+                },
+                {
+                    "type": "lti",
+                    "labs": true,
+                    "title": "Autograder: scrivere Hello World",
+                    "launch": "tools/pythonauto/",
+                    "resource_link_id": "pythonauto_01_hello",
+                    "custom": [
+                        {
+                            "key": "exercise",
+                            "value": "hello"
+                        }
+                    ]
+                },
+                {
+                    "type": "lti",
+                    "title": "Quiz: Perché programmare?",
+                    "launch": "tsugi/tool/gift/?quiz=Py4Inf-01-Intro.txt",
+                    "resource_link_id": "py4e_01_in_quiz"
+                }
+            ]
+        },
+        {
+            "title": "Variabili, espressioni e istruzioni",
+            "anchor": "memory",
+            "icon": "fa-database",
+            "description": "Impariamo a creare variabili e a memorizzarvi dati.",
+            "items": [
+                {
+                    "type": "header",
+                    "text": "Slide",
+                    "level": 2
+                },
+                {
+                    "type": "slide",
+                    "title": "Pythonlearn-02-Expressions.pptx",
+                    "href": "{apphome}/lectures3/Pythonlearn-02-Expressions.pptx"
+                },
+                {
+                    "type": "slide",
+                    "title": "Pythonlearn-02-Expressions.pdf",
+                    "href": "{apphome}/lectures3/Pythonlearn-02-Expressions.pdf"
+                },
+                {
+                    "type": "header",
+                    "text": "Video",
+                    "level": 2
+                },
+                {
+                    "type": "video",
+                    "title": "Variabili, espressioni e istruzioni – Parte 1 (9:41)",
+                    "youtube": "yf95LLCbmLs",
+                    "media": "02-Expressions/02-Expressions-A.m4v",
+                    "youtube-2016": "7KHdV6FSpo8"
+                },
+                {
+                    "type": "video",
+                    "title": "Variabili, espressioni e istruzioni – Parte 2 (19:53)",
+                    "youtube": "kefrGMAglGs",
+                    "media": "02-Expressions/02-Expressions-B.m4v"
+                },
+                {
+                    "type": "video",
+                    "title": "Esercizio svolto: 2.2 (6:12)",
+                    "youtube": "_b-nVJrl02M",
+                    "media": "02-Expressions/02-Expressions-Q-EX-02-02.mp4"
+                },
+                {
+                    "type": "video",
+                    "title": "Esercizio svolto: 2.3 (7:49)",
+                    "youtube": "DVmspDooG2c",
+                    "media": "02-Expressions/02-Expressions-R-EX-02-03.mp4"
+                },
+                {
+                    "type": "header",
+                    "text": "Riferimenti",
+                    "level": 2
+                },
+                {
+                    "type": "reference",
+                    "title": "Capitolo 2: Variabili",
+                    "href": "{apphome}/html3/02-variables"
+                },
+                {
+                    "type": "header",
+                    "text": "Discussioni",
+                    "level": 2
+                },
+                {
+                    "type": "discussion",
+                    "title": "Variabili, espressioni e istruzioni",
+                    "launch": "tsugi/tool/tdiscus/",
+                    "resource_link_id": "discuss_chap_02"
+                },
+                {
+                    "type": "header",
+                    "text": "Strumenti",
+                    "level": 2
+                },
+                {
+                    "type": "lti",
+                    "title": "Autograder: Esercizio 2.2",
+                    "launch": "tools/pythonauto/",
+                    "resource_link_id": "pythonauto_02_02",
+                    "custom": [
+                        {
+                            "key": "exercise",
+                            "value": "2.2"
+                        }
+                    ],
+                    "labs": true
+                },
+                {
+                    "type": "lti",
+                    "title": "Autograder: Esercizio 2.3",
+                    "launch": "tools/pythonauto/",
+                    "resource_link_id": "pythonauto_02_03",
+                    "custom": [
+                        {
+                            "key": "exercise",
+                            "value": "2.3"
+                        }
+                    ],
+                    "labs": true
+                },
+                {
+                    "type": "lti",
+                    "title": "Quiz: Variabili, espressioni e istruzioni",
+                    "launch": "tsugi/tool/gift/?quiz=Py4Inf-02-Expressions.txt",
+                    "resource_link_id": "py4e_02_ex_quiz"
+                }
+            ]
+        },
+        {
+            "title": "Esecuzione condizionale",
+            "anchor": "logic",
+            "icon": "fa-diamond",
+            "description": "Vediamo come Python esegue alcune istruzioni e ne salta altre.",
+            "items": [
+                {
+                    "type": "header",
+                    "text": "Slide",
+                    "level": 2
+                },
+                {
+                    "type": "slide",
+                    "title": "Pythonlearn-03-Conditional.pptx",
+                    "href": "{apphome}/lectures3/Pythonlearn-03-Conditional.pptx"
+                },
+                {
+                    "type": "slide",
+                    "title": "Pythonlearn-03-Conditional.pdf",
+                    "href": "{apphome}/lectures3/Pythonlearn-03-Conditional.pdf"
+                },
+                {
+                    "type": "header",
+                    "text": "Video",
+                    "level": 2
+                },
+                {
+                    "type": "video",
+                    "title": "Esecuzione condizionale – Parte 1 (11:06)",
+                    "youtube": "DmzEdsqxTbU",
+                    "media": "03-Conditional/03-Conditional-A.m4v"
+                },
+                {
+                    "type": "video",
+                    "title": "Esecuzione condizionale – Parte 2 (13:52)",
+                    "youtube": "OczkNrHPBps",
+                    "media": "03-Conditional/03-Conditional-B.m4v"
+                },
+                {
+                    "type": "video",
+                    "title": "Esercizio svolto 3.1 (12:07)",
+                    "youtube": "oUMQbZ4SBuM",
+                    "media": "03-Conditional/03-Conditional-Q-EX-03-01.mp4"
+                },
+                {
+                    "type": "video",
+                    "title": "Esercizio svolto 3.2 (9:26)",
+                    "youtube": "-iUA4cCKRlM",
+                    "media": "03-Conditional/03-Conditional-R-EX-03-02.mp4"
+                },
+                {
+                    "type": "header",
+                    "text": "Riferimenti",
+                    "level": 2
+                },
+                {
+                    "type": "reference",
+                    "title": "Capitolo 3: Esecuzione condizionale",
+                    "href": "{apphome}/html3/03-conditional"
+                },
+                {
+                    "type": "header",
+                    "text": "Discussioni",
+                    "level": 2
+                },
+                {
+                    "type": "discussion",
+                    "title": "Esecuzione condizionale",
+                    "launch": "tsugi/tool/tdiscus/",
+                    "resource_link_id": "discuss_chap_03"
+                },
+                {
+                    "type": "header",
+                    "text": "Strumenti",
+                    "level": 2
+                },
+                {
+                    "type": "lti",
+                    "title": "Autograder: Esercizio 3.1",
+                    "launch": "tools/pythonauto/",
+                    "resource_link_id": "pythonauto_03_01",
+                    "custom": [
+                        {
+                            "key": "exercise",
+                            "value": "3.1"
+                        }
+                    ],
+                    "labs": true
+                },
+                {
+                    "type": "lti",
+                    "title": "Autograder: Esercizio 3.3",
+                    "launch": "tools/pythonauto/",
+                    "resource_link_id": "pythonauto_03_03",
+                    "custom": [
+                        {
+                            "key": "exercise",
+                            "value": "3.3"
+                        }
+                    ],
+                    "labs": true
+                },
+                {
+                    "type": "lti",
+                    "title": "Quiz: Esecuzione condizionale",
+                    "launch": "tsugi/tool/gift/?quiz=Py4Inf-03-Conditional.txt",
+                    "resource_link_id": "py4e_03_if_quiz"
+                }
+            ]
+        },
+        {
+            "title": "Funzioni",
+            "anchor": "functions",
+            "icon": "fa-files-o",
+            "description": "Vediamo brevemente come Python implementa lo schema di programmazione «memorizza e riutilizza».",
+            "items": [
+                {
+                    "type": "header",
+                    "text": "Slide",
+                    "level": 2
+                },
+                {
+                    "type": "slide",
+                    "title": "Pythonlearn-04-Functions.pptx",
+                    "href": "{apphome}/lectures3/Pythonlearn-04-Functions.pptx"
+                },
+                {
+                    "type": "slide",
+                    "title": "Pythonlearn-04-Functions.pdf",
+                    "href": "{apphome}/lectures3/Pythonlearn-04-Functions.pdf"
+                },
+                {
+                    "type": "header",
+                    "text": "Video",
+                    "level": 2
+                },
+                {
+                    "type": "video",
+                    "title": "Funzioni – Parte 1 (10:29)",
+                    "youtube": "5Kzw-0-DQAk",
+                    "media": "04-Functions/04-Functions-A.m4v"
+                },
+                {
+                    "type": "video",
+                    "title": "Funzioni – Parte 2 (12:35)",
+                    "youtube": "AJVNYRqn8kM",
+                    "media": "04-Functions/04-Functions-B.m4v"
+                },
+                {
+                    "type": "video",
+                    "title": "Esercizio svolto 4.6 (10:08)",
+                    "youtube": "l93PhBUJ_S0",
+                    "media": "04-Functions/04-Functions-Q-EX-04-06.mp4"
+                },
+                {
+                    "type": "header",
+                    "text": "Riferimenti",
+                    "level": 2
+                },
+                {
+                    "type": "reference",
+                    "title": "Capitolo 4: Funzioni",
+                    "href": "{apphome}/html3/04-functions"
+                },
+                {
+                    "type": "header",
+                    "text": "Discussioni",
+                    "level": 2
+                },
+                {
+                    "type": "discussion",
+                    "title": "Funzioni",
+                    "launch": "tsugi/tool/tdiscus/",
+                    "resource_link_id": "discuss_chap_04"
+                },
+                {
+                    "type": "header",
+                    "text": "Strumenti",
+                    "level": 2
+                },
+                {
+                    "type": "lti",
+                    "title": "Autograder: Esercizio 4.6",
+                    "launch": "tools/pythonauto/",
+                    "resource_link_id": "pythonauto_04_06",
+                    "custom": [
+                        {
+                            "key": "exercise",
+                            "value": "4.6"
+                        }
+                    ],
+                    "labs": true
+                },
+                {
+                    "type": "lti",
+                    "title": "Quiz: Funzioni",
+                    "launch": "tsugi/tool/gift/?quiz=Py4Inf-04-Functions.txt",
+                    "resource_link_id": "py4e_04_def_quiz"
+                }
+            ]
+        },
+        {
+            "title": "Cicli e iterazione",
+            "anchor": "loops",
+            "icon": "fa-gears",
+            "description": "Vediamo come Python ripete le istruzioni usando i cicli.",
+            "items": [
+                {
+                    "type": "header",
+                    "text": "Slide",
+                    "level": 2
+                },
+                {
+                    "type": "slide",
+                    "title": "Pythonlearn-05-Iterations.pptx",
+                    "href": "{apphome}/lectures3/Pythonlearn-05-Iterations.pptx"
+                },
+                {
+                    "type": "slide",
+                    "title": "Pythonlearn-05-Iterations.pdf",
+                    "href": "{apphome}/lectures3/Pythonlearn-05-Iterations.pdf"
+                },
+                {
+                    "type": "header",
+                    "text": "Video",
+                    "level": 2
+                },
+                {
+                    "type": "video",
+                    "title": "Cicli e iterazione – Parte 1 (9:59)",
+                    "youtube": "FzpurxjwmsM",
+                    "media": "05-Iterations/05-Iterations-A.m4v"
+                },
+                {
+                    "type": "video",
+                    "title": "Cicli e iterazione – Parte 2 (6:52)",
+                    "youtube": "5QDrj5ogPYc",
+                    "media": "05-Iterations/05-Iterations-B.m4v"
+                },
+                {
+                    "type": "video",
+                    "title": "Cicli e iterazione – Parte 3 (8:44)",
+                    "youtube": "xsavQp8hd78",
+                    "media": "05-Iterations/05-Iterations-C.m4v"
+                },
+                {
+                    "type": "video",
+                    "title": "Cicli e iterazione – Parte 4 (18:48)",
+                    "youtube": "yjlMMwf9Y5I",
+                    "media": "05-Iterations/05-Iterations-D.m4v"
+                },
+                {
+                    "type": "video",
+                    "title": "Esercizio svolto: 5.1 (8:31)",
+                    "youtube": "R2GrfqRofZc",
+                    "media": "05-Iterations/05-Iterations-Q-EX-05-01.mp4"
+                },
+                {
+                    "type": "header",
+                    "text": "Riferimenti",
+                    "level": 2
+                },
+                {
+                    "type": "reference",
+                    "title": "Capitolo 5: Iterazione",
+                    "href": "{apphome}/html3/05-iterations"
+                },
+                {
+                    "type": "header",
+                    "text": "Discussioni",
+                    "level": 2
+                },
+                {
+                    "type": "discussion",
+                    "title": "Cicli e iterazione",
+                    "launch": "tsugi/tool/tdiscus/",
+                    "resource_link_id": "discuss_chap_05"
+                },
+                {
+                    "type": "header",
+                    "text": "Strumenti",
+                    "level": 2
+                },
+                {
+                    "type": "lti",
+                    "title": "Autograder: Esercizio 5.2",
+                    "launch": "tools/pythonauto/",
+                    "resource_link_id": "pythonauto_05_02",
+                    "custom": [
+                        {
+                            "key": "exercise",
+                            "value": "5.2"
+                        }
+                    ],
+                    "labs": true
+                },
+                {
+                    "type": "lti",
+                    "title": "Quiz: Cicli e iterazione",
+                    "launch": "tsugi/tool/gift/?quiz=Py4Inf-05-Iterations.txt",
+                    "resource_link_id": "py4e_05_for_quiz"
+                }
+            ]
+        },
+        {
+            "title": "Stringhe",
+            "anchor": "strings",
+            "icon": "fa-file-text-o",
+            "description": "Vediamo come Python memorizza e manipola i dati di testo usando variabili stringa e funzioni.",
+            "items": [
+                {
+                    "type": "header",
+                    "text": "Slide",
+                    "level": 2
+                },
+                {
+                    "type": "slide",
+                    "title": "Pythonlearn-06-Strings.pptx",
+                    "href": "{apphome}/lectures3/Pythonlearn-06-Strings.pptx"
+                },
+                {
+                    "type": "slide",
+                    "title": "Pythonlearn-06-Strings.pdf",
+                    "href": "{apphome}/lectures3/Pythonlearn-06-Strings.pdf"
+                },
+                {
+                    "type": "header",
+                    "text": "Video",
+                    "level": 2
+                },
+                {
+                    "type": "video",
+                    "title": "Stringhe – Parte 1 (10:43)",
+                    "youtube": "dr98iM4app8",
+                    "media": "06-Strings/06-Strings-A.m4v"
+                },
+                {
+                    "type": "video",
+                    "title": "Stringhe – Parte 2 (18:44)",
+                    "youtube": "bIFpJ-qZ3Cc",
+                    "media": "06-Strings/06-Strings-B.m4v"
+                },
+                {
+                    "type": "video",
+                    "title": "Esercizio svolto: 6.5 (8:27)",
+                    "youtube": "BGTxwsDI9KY",
+                    "media": "06-Strings/06-Strings-Q-EX-06-05.mp4"
+                },
+                {
+                    "type": "header",
+                    "text": "Riferimenti",
+                    "level": 2
+                },
+                {
+                    "type": "reference",
+                    "title": "Capitolo 6: Stringhe",
+                    "href": "{apphome}/html3/06-strings"
+                },
+                {
+                    "type": "header",
+                    "text": "Discussioni",
+                    "level": 2
+                },
+                {
+                    "type": "discussion",
+                    "title": "Stringhe",
+                    "launch": "tsugi/tool/tdiscus/",
+                    "resource_link_id": "discuss_chap_06"
+                },
+                {
+                    "type": "header",
+                    "text": "Strumenti",
+                    "level": 2
+                },
+                {
+                    "type": "lti",
+                    "title": "Autograder: Esercizio 6.5",
+                    "resource_link_id": "pythonauto_06_05",
+                    "launch": "tools/pythonauto/",
+                    "custom": [
+                        {
+                            "key": "exercise",
+                            "value": "6.5"
+                        }
+                    ],
+                    "labs": true
+                },
+                {
+                    "type": "lti",
+                    "title": "Quiz: Stringhe",
+                    "launch": "tsugi/tool/gift/?quiz=Py4Inf-06-Strings.txt",
+                    "resource_link_id": "py4e_06_str_quiz"
+                }
+            ]
+        },
+        {
+            "title": "File",
+            "anchor": "files",
+            "icon": "fa-database",
+            "description": "Impariamo ad aprire i file di dati sul tuo computer e a leggerli con Python.",
+            "items": [
+                {
+                    "type": "header",
+                    "text": "Slide",
+                    "level": 2
+                },
+                {
+                    "type": "slide",
+                    "title": "Pythonlearn-07-Files.pptx",
+                    "href": "{apphome}/lectures3/Pythonlearn-07-Files.pptx"
+                },
+                {
+                    "type": "slide",
+                    "title": "Pythonlearn-07-Files.pdf",
+                    "href": "{apphome}/lectures3/Pythonlearn-07-Files.pdf"
+                },
+                {
+                    "type": "header",
+                    "text": "Video",
+                    "level": 2
+                },
+                {
+                    "type": "video",
+                    "title": "Leggere i file – Parte 1 (7:55)",
+                    "youtube": "9KJ-XeQ6ZlI",
+                    "media": "07-Files/07-Files-A.m4v"
+                },
+                {
+                    "type": "video",
+                    "title": "Leggere i file – Parte 2 (13:46)",
+                    "youtube": "0t4rvnySKR4",
+                    "media": "07-Files/07-Files-B.m4v"
+                },
+                {
+                    "type": "video",
+                    "title": "Esercizio svolto: 7.1 (9:44)",
+                    "youtube": "MHZ4KnFZ7Y0",
+                    "media": "07-Files/07-Files-Q-EX-07-01.mp4"
+                },
+                {
+                    "type": "header",
+                    "text": "Riferimenti",
+                    "level": 2
+                },
+                {
+                    "type": "reference",
+                    "title": "Capitolo 7: File",
+                    "href": "{apphome}/html3/07-files"
+                },
+                {
+                    "type": "header",
+                    "text": "Discussioni",
+                    "level": 2
+                },
+                {
+                    "type": "discussion",
+                    "title": "File",
+                    "launch": "tsugi/tool/tdiscus/",
+                    "resource_link_id": "discuss_chap_07"
+                },
+                {
+                    "type": "header",
+                    "text": "Strumenti",
+                    "level": 2
+                },
+                {
+                    "type": "lti",
+                    "title": "Autograder: Esercizio 7.2",
+                    "launch": "tools/pythonauto/",
+                    "resource_link_id": "pythonauto_07_02",
+                    "custom": [
+                        {
+                            "key": "exercise",
+                            "value": "7.2"
+                        }
+                    ],
+                    "labs": true
+                },
+                {
+                    "type": "lti",
+                    "title": "Quiz: File",
+                    "launch": "tsugi/tool/gift/?quiz=Py4Inf-07-Files.txt",
+                    "resource_link_id": "py4e_07_files_quiz"
+                }
+            ]
+        },
+        {
+            "title": "Liste",
+            "anchor": "lists",
+            "icon": "fa-list-ol",
+            "description": "Esaminiamo la struttura di dati più semplice di Python: la lista. Le liste possono memorizzare più elementi in una sola variabile.",
+            "items": [
+                {
+                    "type": "header",
+                    "text": "Slide",
+                    "level": 2
+                },
+                {
+                    "type": "slide",
+                    "title": "Pythonlearn-08-Lists.pptx",
+                    "href": "{apphome}/lectures3/Pythonlearn-08-Lists.pptx"
+                },
+                {
+                    "type": "slide",
+                    "title": "Pythonlearn-08-Lists.pdf",
+                    "href": "{apphome}/lectures3/Pythonlearn-08-Lists.pdf"
+                },
+                {
+                    "type": "header",
+                    "text": "Video",
+                    "level": 2
+                },
+                {
+                    "type": "video",
+                    "title": "Liste – Parte 1 (10:57)",
+                    "youtube": "oVOcqQNpOFM",
+                    "media": "08-Lists/08-Lists-A.m4v"
+                },
+                {
+                    "type": "video",
+                    "title": "Liste – Parte 2 (9:37)",
+                    "youtube": "bV1FQUBIApM",
+                    "media": "08-Lists/08-Lists-B.m4v"
+                },
+                {
+                    "type": "video",
+                    "title": "Liste – Parte 3 (8:03)",
+                    "youtube": "GxADdpo6EP4",
+                    "media": "08-Lists/08-Lists-C.m4v"
+                },
+                {
+                    "type": "video",
+                    "title": "Liste, file e lo schema del guardiano (11:34)",
+                    "youtube": "WU6_0A9zYRA",
+                    "media": "08-Lists/08-Lists-Q-EX.mov"
+                },
+                {
+                    "type": "header",
+                    "text": "Riferimenti",
+                    "level": 2
+                },
+                {
+                    "type": "reference",
+                    "title": "Capitolo 8: Liste",
+                    "href": "{apphome}/html3/08-lists"
+                },
+                {
+                    "type": "header",
+                    "text": "Discussioni",
+                    "level": 2
+                },
+                {
+                    "type": "discussion",
+                    "title": "Liste",
+                    "launch": "tsugi/tool/tdiscus/",
+                    "resource_link_id": "discuss_chap_08"
+                },
+                {
+                    "type": "header",
+                    "text": "Strumenti",
+                    "level": 2
+                },
+                {
+                    "type": "lti",
+                    "title": "Autograder: Esercizio 8.4",
+                    "launch": "tools/pythonauto/",
+                    "resource_link_id": "pythonauto_08_04",
+                    "custom": [
+                        {
+                            "key": "exercise",
+                            "value": "8.4"
+                        }
+                    ],
+                    "labs": true
+                },
+                {
+                    "type": "lti",
+                    "title": "Autograder: Esercizio 8.5",
+                    "launch": "tools/pythonauto/",
+                    "resource_link_id": "pythonauto_08_05",
+                    "custom": [
+                        {
+                            "key": "exercise",
+                            "value": "8.5"
+                        }
+                    ],
+                    "labs": true
+                },
+                {
+                    "type": "lti",
+                    "title": "Quiz: Liste",
+                    "launch": "tsugi/tool/gift/?quiz=Py4Inf-08-Lists.txt",
+                    "resource_link_id": "py4e_08_list_quiz"
+                }
+            ]
+        },
+        {
+            "title": "Dizionari",
+            "anchor": "dictionary",
+            "icon": "fa-key",
+            "description": "La struttura di dati del dizionario permette di memorizzare più valori in un oggetto e di cercarli tramite la loro chiave.",
+            "items": [
+                {
+                    "type": "header",
+                    "text": "Slide",
+                    "level": 2
+                },
+                {
+                    "type": "slide",
+                    "title": "Pythonlearn-09-Dictionaries.pptx",
+                    "href": "{apphome}/lectures3/Pythonlearn-09-Dictionaries.pptx"
+                },
+                {
+                    "type": "slide",
+                    "title": "Pythonlearn-09-Dictionaries.pdf",
+                    "href": "{apphome}/lectures3/Pythonlearn-09-Dictionaries.pdf"
+                },
+                {
+                    "type": "header",
+                    "text": "Video",
+                    "level": 2
+                },
+                {
+                    "type": "video",
+                    "title": "Dizionari – Parte 1 (9:51)",
+                    "youtube": "hoH7fTkmnWY",
+                    "media": "09-Dictionaries/09-Dictionaries-A.m4v",
+                    "youtube-2016": "yDDRMb-1cxI"
+                },
+                {
+                    "type": "video",
+                    "title": "Dizionari – Parte 2 (9:27)",
+                    "youtube": "LRSIuH94XM4",
+                    "media": "09-Dictionaries/09-Dictionaries-B.m4v"
+                },
+                {
+                    "type": "video",
+                    "title": "Dizionari – Parte 3 (11:23)",
+                    "youtube": "a-NVUngu2Zs",
+                    "media": "09-Dictionaries/09-Dictionaries-C.m4v",
+                    "youtube-2016": "ZDjiFB1Ib84"
+                },
+                {
+                    "type": "video",
+                    "title": "Contare la frequenza delle parole con un dizionario (26:26)",
+                    "youtube": "HqYAtchZrjE",
+                    "media": "09-Dictionaries/09-Dictionaries-Q-EX.m4v",
+                    "youtube-2016": "lLbyEYjU55A"
+                },
+                {
+                    "type": "header",
+                    "text": "Riferimenti",
+                    "level": 2
+                },
+                {
+                    "type": "reference",
+                    "title": "Capitolo 9: Dizionari",
+                    "href": "{apphome}/html3/09-dictionaries"
+                },
+                {
+                    "type": "reference",
+                    "title": "Curiosità: Sesame Street – Il Conte",
+                    "href": "https://www.youtube.com/watch?v=YtfnsX3Vgrs"
+                },
+                {
+                    "type": "header",
+                    "text": "Discussioni",
+                    "level": 2
+                },
+                {
+                    "type": "discussion",
+                    "title": "Dizionari",
+                    "launch": "tsugi/tool/tdiscus/",
+                    "resource_link_id": "discuss_chap_09"
+                },
+                {
+                    "type": "header",
+                    "text": "Strumenti",
+                    "level": 2
+                },
+                {
+                    "type": "lti",
+                    "title": "Autograder: Esercizio 9.4",
+                    "launch": "tools/pythonauto/",
+                    "resource_link_id": "pythonauto_09_04",
+                    "custom": [
+                        {
+                            "key": "exercise",
+                            "value": "9.4"
+                        }
+                    ],
+                    "labs": true
+                },
+                {
+                    "type": "lti",
+                    "title": "Quiz: Dizionari",
+                    "launch": "tsugi/tool/gift/?quiz=Py4Inf-09-Dictionaries.txt",
+                    "resource_link_id": "py4e_09_dict_quiz"
+                }
+            ]
+        },
+        {
+            "title": "Tuple",
+            "anchor": "tuples",
+            "icon": "fa-inbox",
+            "description": "La tupla è una struttura di dati di Python simile a una lista semplice ed efficiente.",
+            "items": [
+                {
+                    "type": "header",
+                    "text": "Slide",
+                    "level": 2
+                },
+                {
+                    "type": "slide",
+                    "title": "Pythonlearn-10-Tuples.pptx",
+                    "href": "{apphome}/lectures3/Pythonlearn-10-Tuples.pptx"
+                },
+                {
+                    "type": "slide",
+                    "title": "Pythonlearn-10-Tuples.pdf",
+                    "href": "{apphome}/lectures3/Pythonlearn-10-Tuples.pdf"
+                },
+                {
+                    "type": "header",
+                    "text": "Video",
+                    "level": 2
+                },
+                {
+                    "type": "video",
+                    "title": "Tuple – Parte 1 (9:48)",
+                    "youtube": "CaVhM65wD6g",
+                    "media": "10-Tuples/10-Tuples-A.m4v"
+                },
+                {
+                    "type": "video",
+                    "title": "Tuple – Parte 2 (12:24)",
+                    "youtube": "TkU_PmtVhQo",
+                    "media": "10-Tuples/10-Tuples-B.m4v"
+                },
+                {
+                    "type": "video",
+                    "title": "Ordinare un dizionario usando le tuple (12:42)",
+                    "youtube": "QRyOwoV00QU",
+                    "media": "10-Tuples/10-Tuples-Q-EX.m4v",
+                    "youtube-2016": "hMJpet-gtc0"
+                },
+                {
+                    "type": "header",
+                    "text": "Riferimenti",
+                    "level": 2
+                },
+                {
+                    "type": "reference",
+                    "title": "Capitolo 10: Tuple",
+                    "href": "{apphome}/html3/10-tuples"
+                },
+                {
+                    "type": "header",
+                    "text": "Discussioni",
+                    "level": 2
+                },
+                {
+                    "type": "discussion",
+                    "title": "Tuple",
+                    "launch": "tsugi/tool/tdiscus/",
+                    "resource_link_id": "discuss_chap_10"
+                },
+                {
+                    "type": "header",
+                    "text": "Strumenti",
+                    "level": 2
+                },
+                {
+                    "type": "lti",
+                    "title": "Autograder: Esercizio 10.2",
+                    "launch": "tools/pythonauto/",
+                    "resource_link_id": "pythonauto_10_02",
+                    "custom": [
+                        {
+                            "key": "exercise",
+                            "value": "10.2"
+                        }
+                    ],
+                    "labs": true
+                },
+                {
+                    "type": "lti",
+                    "title": "Quiz: Tuple",
+                    "launch": "tsugi/tool/gift/?quiz=Py4Inf-10-Tuples.txt",
+                    "resource_link_id": "py4e_10_tup_quiz"
+                }
+            ]
+        },
+        {
+            "title": "Espressioni regolari",
+            "anchor": "regex",
+            "icon": "fa-magic",
+            "description": "Le espressioni regolari ci permettono di cercare schemi nelle stringhe ed estrarne dati usando il linguaggio delle espressioni regolari.",
+            "items": [
+                {
+                    "type": "header",
+                    "text": "Slide",
+                    "level": 2
+                },
+                {
+                    "type": "slide",
+                    "title": "Pythonlearn-11-Regex.pptx",
+                    "href": "{apphome}/lectures3/Pythonlearn-11-Regex.pptx"
+                },
+                {
+                    "type": "slide",
+                    "title": "Pythonlearn-11-Regex.pdf",
+                    "href": "{apphome}/lectures3/Pythonlearn-11-Regex.pdf"
+                },
+                {
+                    "type": "header",
+                    "text": "Video",
+                    "level": 2
+                },
+                {
+                    "type": "video",
+                    "title": "Espressioni regolari – Parte 1 (10:47)",
+                    "youtube": "ovZsvN67Glc",
+                    "media": "11-RegEx/11-RegEx-A.m4v"
+                },
+                {
+                    "type": "video",
+                    "title": "Espressioni regolari – Parte 2 (8:47)",
+                    "youtube": "fiar4QZZ7Xo",
+                    "media": "11-RegEx/11-RegEx-B.m4v"
+                },
+                {
+                    "type": "video",
+                    "title": "Espressioni regolari – Parte 3 (8:51)",
+                    "youtube": "GiQdXo2Bvgc",
+                    "media": "11-RegEx/11-RegEx-C.m4v"
+                },
+                {
+                    "type": "header",
+                    "text": "Riferimenti",
+                    "level": 2
+                },
+                {
+                    "type": "reference",
+                    "title": "Capitolo 11: Espressioni regolari",
+                    "href": "{apphome}/html3/11-regex"
+                },
+                {
+                    "type": "reference",
+                    "title": "Guida rapida alle espressioni regolari in Python",
+                    "href": "{apphome}/lectures3/Pythonlearn-11-Regex-Handout.txt"
+                },
+                {
+                    "type": "header",
+                    "text": "Discussioni",
+                    "level": 2
+                },
+                {
+                    "type": "discussion",
+                    "title": "Espressioni regolari",
+                    "launch": "tsugi/tool/tdiscus/",
+                    "resource_link_id": "discuss_chap_11"
+                },
+                {
+                    "type": "header",
+                    "text": "Strumenti",
+                    "level": 2
+                },
+                {
+                    "type": "lti",
+                    "title": "Autograder: Espressioni regolari",
+                    "launch": "tools/python-data/",
+                    "resource_link_id": "pythondata_01_regex",
+                    "custom": [
+                        {
+                            "key": "exercise",
+                            "value": "regex_sum.php"
+                        }
+                    ],
+                    "labs": true
+                },
+                {
+                    "type": "lti",
+                    "title": "Quiz: Espressioni regolari",
+                    "launch": "tsugi/tool/gift/?quiz=Py4Inf-11-Regex.txt",
+                    "resource_link_id": "py4e_11_reg_quiz"
+                }
+            ]
+        },
+        {
+            "title": "Programmi in rete",
+            "anchor": "network",
+            "icon": "fa-cloud",
+            "description": "Diamo una rapida occhiata a come i dati viaggiano in rete con l'Hypertext Transfer Protocol (HTTP) e a come scriviamo programmi per leggere dati dalla rete.",
+            "items": [
+                {
+                    "type": "header",
+                    "text": "Slide",
+                    "level": 2
+                },
+                {
+                    "type": "slide",
+                    "title": "Pythonlearn-12-HTTP.pptx",
+                    "href": "{apphome}/lectures3/Pythonlearn-12-HTTP.pptx"
+                },
+                {
+                    "type": "slide",
+                    "title": "Pythonlearn-12-HTTP.pdf",
+                    "href": "{apphome}/lectures3/Pythonlearn-12-HTTP.pdf"
+                },
+                {
+                    "type": "header",
+                    "text": "Video",
+                    "level": 2
+                },
+                {
+                    "type": "video",
+                    "title": "Reti e pacchetti – Parte 1 (7:44)",
+                    "youtube": "RsnaRPC52G0",
+                    "media": "12-HTTP/12-HTTP-A.mov"
+                },
+                {
+                    "type": "video",
+                    "title": "Server e protocolli – Parte 2 (9:21)",
+                    "youtube": "nA0XC-FbXdQ",
+                    "media": "12-HTTP/12-HTTP-B.m4v",
+                    "youtube-2016": "Bvx7vY454xw"
+                },
+                {
+                    "type": "video",
+                    "title": "Usare HTTP in Python – Parte 3 (4:36)",
+                    "youtube": "Lr9Vm-VghAk",
+                    "media": "12-HTTP/12-HTTP-C.mov"
+                },
+                {
+                    "type": "video",
+                    "title": "Esempio svolto: socket (6:12)",
+                    "youtube": "EqUyu8ZZYUE",
+                    "media": "12-HTTP/12-HTTP-Q-EX-socket1.mov"
+                },
+                {
+                    "type": "video",
+                    "title": "Caratteri, ASCII e Unicode – Parte 4 (11:15)",
+                    "youtube": "-cmlmaVSONg",
+                    "media": "12-HTTP/12-HTTP-D.mov"
+                },
+                {
+                    "type": "video",
+                    "title": "Usare urllib in Python – Parte 5 (5:31)",
+                    "youtube": "k1sUxGPpQOk",
+                    "media": "12-HTTP/12-HTTP-E.mov"
+                },
+                {
+                    "type": "video",
+                    "title": "Esempio svolto: urllib (3:40)",
+                    "youtube": "jKaCKIdIoks",
+                    "media": "12-HTTP/12-HTTP-R-EX-urllib.mov"
+                },
+                {
+                    "type": "video",
+                    "title": "BeautifulSoup in Python – Parte 6 (6:40)",
+                    "youtube": "D7ZI8--qbBw",
+                    "media": "12-HTTP/12-HTTP-F.mov"
+                },
+                {
+                    "type": "video",
+                    "title": "Esempio svolto: BeautifulSoup (9:21)",
+                    "youtube": "mhaHWiSPxxE",
+                    "media": "12-HTTP/12-HTTP-S-EX-urllinks.mov"
+                },
+                {
+                    "type": "header",
+                    "text": "Riferimenti",
+                    "level": 2
+                },
+                {
+                    "type": "reference",
+                    "title": "Capitolo 12: Programmi in rete",
+                    "href": "{apphome}/html3/12-network"
+                },
+                {
+                    "type": "reference",
+                    "title": "Codifica ASCII e sistema binario",
+                    "href": "https://www.youtube.com/watch?v=H4l42nbYmrU&t=308s"
+                },
+                {
+                    "type": "reference",
+                    "title": "Caratteri, simboli e il miracolo di Unicode – Computerphile",
+                    "href": "https://www.youtube.com/watch?v=MijmeoH9LT4&t=385s"
+                },
+                {
+                    "type": "header",
+                    "text": "Discussioni",
+                    "level": 2
+                },
+                {
+                    "type": "discussion",
+                    "title": "Programmi in rete",
+                    "launch": "tsugi/tool/tdiscus/",
+                    "resource_link_id": "discuss_chap_12"
+                },
+                {
+                    "type": "header",
+                    "text": "Strumenti",
+                    "level": 2
+                },
+                {
+                    "type": "lti",
+                    "title": "Autograder: ciclo richiesta-risposta",
+                    "launch": "tools/python-data/",
+                    "resource_link_id": "pythondata_02_rrc",
+                    "custom": [
+                        {
+                            "key": "exercise",
+                            "value": "http_headers.php"
+                        }
+                    ],
+                    "labs": true
+                },
+                {
+                    "type": "lti",
+                    "title": "Autograder: scraping di dati HTML con BeautifulSoup",
+                    "launch": "tools/python-data/",
+                    "resource_link_id": "pythondata_03_html",
+                    "custom": [
+                        {
+                            "key": "exercise",
+                            "value": "comment_html.php"
+                        }
+                    ],
+                    "labs": true
+                },
+                {
+                    "type": "lti",
+                    "title": "Autograder: seguire i link con BeautifulSoup",
+                    "launch": "tools/python-data/",
+                    "resource_link_id": "pythondata_04_links",
+                    "custom": [
+                        {
+                            "key": "exercise",
+                            "value": "knows.php"
+                        }
+                    ],
+                    "labs": true
+                },
+                {
+                    "type": "lti",
+                    "title": "Quiz: HTTP",
+                    "launch": "tsugi/tool/gift/?quiz=Py4Inf-12-HTTP.txt",
+                    "resource_link_id": "py4e_12_http_quiz"
+                }
+            ]
+        },
+        {
+            "title": "Usare i servizi web",
+            "anchor": "servces",
+            "icon": "fa-briefcase",
+            "description": "I servizi web permettono a un programma di accedere a dati disponibili su un altro server.",
+            "items": [
+                {
+                    "type": "header",
+                    "text": "Slide",
+                    "level": 2
+                },
+                {
+                    "type": "slide",
+                    "title": "Pythonlearn-13-WebServices.pptx",
+                    "href": "{apphome}/lectures3/Pythonlearn-13-WebServices.pptx"
+                },
+                {
+                    "type": "slide",
+                    "title": "Pythonlearn-13-WebServices.pdf",
+                    "href": "{apphome}/lectures3/Pythonlearn-13-WebServices.pdf"
+                },
+                {
+                    "type": "header",
+                    "text": "Video",
+                    "level": 2
+                },
+                {
+                    "type": "video",
+                    "title": "Servizi web – Parte 1 (2:49)",
+                    "youtube": "7NEtEctD9Cw",
+                    "media": "13-Web-Services/13-Web-Services-A.mov"
+                },
+                {
+                    "type": "video",
+                    "title": "Servizi web – XML – Parte 2 (5:42)",
+                    "youtube": "A8KcBx9153Y",
+                    "media": "13-Web-Services/13-Web-Services-B.mov"
+                },
+                {
+                    "type": "video",
+                    "title": "Esempio svolto: XML (6:07)",
+                    "youtube": "7q8uUehNRK0",
+                    "media": "13-Web-Services/13-Web-Services-Q-EX-XML.mov"
+                },
+                {
+                    "type": "video",
+                    "title": "Servizi web – Schema XML – Parte 3 (14:08)",
+                    "youtube": "0cA6W-4JPQ4",
+                    "media": "13-Web-Services/13-Web-Services-C.mov"
+                },
+                {
+                    "type": "video",
+                    "title": "Servizi web – JSON – Parte 4 (6:29)",
+                    "youtube": "J5DjteDzgoM",
+                    "media": "13-Web-Services/13-Web-Services-D.mov"
+                },
+                {
+                    "type": "video",
+                    "title": "Esempio svolto: JSON (5:51)",
+                    "youtube": "RGQfDirZ7_s",
+                    "media": "13-Web-Services/13-Web-Services-R-EX-JSON.mov"
+                },
+                {
+                    "type": "video",
+                    "title": "Alla scoperta di JSON – Douglas Crockford (7:08)",
+                    "youtube": "kc8BAR7SHJI"
+                },
+                {
+                    "type": "video",
+                    "title": "Servizi web – SOA – Parte 5 (2:02)",
+                    "youtube": "SNeJcvBY-h4",
+                    "media": "13-Web-Services/13-Web-Services-E.mov"
+                },
+                {
+                    "type": "video",
+                    "title": "Il JISC e-Framework (5:16)",
+                    "youtube": "mj-kCFzF0ME"
+                },
+                {
+                    "type": "video",
+                    "title": "Servizi web – GeoJSON – Parte 6 (8:46)",
+                    "youtube": "iqW7BdL8riY",
+                    "media": "13-Web-Services/13-Web-Services-F.m4v",
+                    "youtube-2016": "QyHcOL3C7fQ"
+                },
+                {
+                    "type": "video",
+                    "title": "Esempio svolto: opengeo.py (20:09)",
+                    "youtube": "5hi6llQzTnk",
+                    "media": "13-Web-Services/13-Web-Services-S-EX-OpenGeo.m4v",
+                    "youtube-2016": "vjQZscHOaG4"
+                },
+                {
+                    "type": "header",
+                    "text": "Riferimenti",
+                    "level": 2
+                },
+                {
+                    "type": "reference",
+                    "title": "Capitolo 13: Usare i servizi web",
+                    "href": "{apphome}/html3/13-web"
+                },
+                {
+                    "type": "header",
+                    "text": "Discussioni",
+                    "level": 2
+                },
+                {
+                    "type": "discussion",
+                    "title": "Usare i servizi web",
+                    "launch": "tsugi/tool/tdiscus/",
+                    "resource_link_id": "discuss_chap_13"
+                },
+                {
+                    "type": "header",
+                    "text": "Strumenti",
+                    "level": 2
+                },
+                {
+                    "type": "lti",
+                    "title": "Autograder: estrarre dati da XML",
+                    "resource_link_id": "pythondata_05_xml",
+                    "launch": "tools/python-data/",
+                    "custom": [
+                        {
+                            "key": "exercise",
+                            "value": "comment_xml.php"
+                        }
+                    ],
+                    "labs": true
+                },
+                {
+                    "type": "lti",
+                    "title": "Quiz: XML",
+                    "launch": "tsugi/tool/gift/?quiz=Py4Inf-13-WebServices-XML.txt",
+                    "resource_link_id": "py4e_13_xml_quiz"
+                },
+                {
+                    "type": "lti",
+                    "title": "Autograder: estrarre dati da JSON",
+                    "launch": "tools/python-data/",
+                    "resource_link_id": "pythondata_06_json",
+                    "custom": [
+                        {
+                            "key": "exercise",
+                            "value": "comment_json.php"
+                        }
+                    ],
+                    "labs": true
+                },
+                {
+                    "type": "lti",
+                    "title": "Quiz: JSON",
+                    "launch": "tsugi/tool/gift/?quiz=Py4Inf-13-WebServices-JSON.txt",
+                    "resource_link_id": "py4e_13_json_quiz"
+                },
+                {
+                    "type": "lti",
+                    "title": "Autograder: usare l'API GeoJSON",
+                    "launch": "tools/python-data/",
+                    "resource_link_id": "pythondata_07_geo",
+                    "custom": [
+                        {
+                            "key": "exercise",
+                            "value": "geo_json.php"
+                        }
+                    ],
+                    "labs": true
+                }
+            ]
+        },
+        {
+            "title": "Programmazione orientata agli oggetti",
+            "anchor": "Objects",
+            "icon": "fa-cubes",
+            "description": "Diamo una rapida occhiata a come Python supporta il modello di programmazione orientata agli oggetti.",
+            "items": [
+                {
+                    "type": "header",
+                    "text": "Slide",
+                    "level": 2
+                },
+                {
+                    "type": "slide",
+                    "title": "Pythonlearn-14-Objects.pptx",
+                    "href": "{apphome}/lectures3/Pythonlearn-14-Objects.pptx"
+                },
+                {
+                    "type": "slide",
+                    "title": "Pythonlearn-14-Objects.pdf",
+                    "href": "{apphome}/lectures3/Pythonlearn-14-Objects.pdf"
+                },
+                {
+                    "type": "header",
+                    "text": "Video",
+                    "level": 2
+                },
+                {
+                    "type": "video",
+                    "title": "Oggetti – Introduzione – Parte 1 (10:40)",
+                    "youtube_preplus": "u9xZE5t9Y30",
+                    "youtube": "MafXTB8UXIg",
+                    "media": "14-Objects/14-Objects-A.mov"
+                },
+                {
+                    "type": "video",
+                    "title": "Oggetti – Una classe di esempio – Parte 2 (8:22)",
+                    "youtube_preplud": "xYSY7JwpqTM",
+                    "youtube": "cBgtQK6vhN4",
+                    "media": "14-Objects/14-Objects-B.m4v",
+                    "youtube-2016": "b2vc5uzUfoE"
+                },
+                {
+                    "type": "video",
+                    "title": "Oggetti – Ciclo di vita – Parte 3 (6:09)",
+                    "youtube_preplus": "7A5PEOK-AF0",
+                    "youtube": "QSaHfuMf5QI",
+                    "media": "14-Objects/14-Objects-C.m4v",
+                    "youtube-2016": "bal0Fv6QE9w"
+                },
+                {
+                    "type": "video",
+                    "title": "Oggetti – Ereditarietà – Parte 4 (7:34)",
+                    "youtube_preplus": "VzVaj8orzOE",
+                    "youtube": "cOf7g_E2G8g",
+                    "media": "14-Objects/14-Objects-D.m4v",
+                    "youtube-2016": "EE9PaHPPm2w"
+                },
+                {
+                    "type": "header",
+                    "text": "Riferimenti",
+                    "level": 2
+                },
+                {
+                    "type": "reference",
+                    "title": "Capitolo 14: Programmazione orientata agli oggetti",
+                    "href": "{apphome}/html3/14-objects"
+                },
+                {
+                    "type": "header",
+                    "text": "Discussioni",
+                    "level": 2
+                },
+                {
+                    "type": "discussion",
+                    "title": "Programmazione orientata agli oggetti",
+                    "launch": "tsugi/tool/tdiscus/",
+                    "resource_link_id": "discuss_chap_14"
+                },
+                {
+                    "type": "header",
+                    "text": "Strumenti",
+                    "level": 2
+                },
+                {
+                    "type": "lti",
+                    "title": "Quiz: Programmazione orientata agli oggetti",
+                    "launch": "tsugi/tool/gift/?quiz=Py4Inf-14-Objects.txt",
+                    "resource_link_id": "py4e_14_oo_quiz"
+                }
+            ]
+        },
+        {
+            "title": "Database",
+            "anchor": "database",
+            "icon": "fa-database",
+            "description": "I database ci offrono un accesso diretto molto rapido a grandi quantità di dati. In questo capitolo c'è molto materiale mentre impariamo lo Structured Query Language (SQL).",
+            "items": [
+                {
+                    "type": "header",
+                    "text": "Slide",
+                    "level": 2
+                },
+                {
+                    "type": "slide",
+                    "title": "Pythonlearn-15-Databases.pptx",
+                    "href": "{apphome}/lectures3/Pythonlearn-15-Databases.pptx"
+                },
+                {
+                    "type": "slide",
+                    "title": "Pythonlearn-15-Databases.pdf",
+                    "href": "{apphome}/lectures3/Pythonlearn-15-Databases.pdf"
+                },
+                {
+                    "type": "header",
+                    "text": "Video",
+                    "level": 2
+                },
+                {
+                    "type": "video",
+                    "title": "Database – Parte 1 (15:41)",
+                    "youtube": "3RMPveOMd0k",
+                    "media": "15-Databases/15-Databases-A.mov"
+                },
+                {
+                    "type": "video",
+                    "title": "Database – SQL su una sola tabella – Parte 2 (10:07)",
+                    "youtube": "yRJE-nk20sM",
+                    "media": "15-Databases/15-Databases-B.mov"
+                },
+                {
+                    "type": "video",
+                    "title": "Esempio svolto: emaildb.py (13:39)",
+                    "youtube": "MsZoGw4QEpU",
+                    "media": "15-Databases/15-Databases-Q-EX-Email.mov"
+                },
+                {
+                    "type": "video",
+                    "title": "Database – Modelli complessi – Parte 3 (8:44)",
+                    "youtube": "rHjRpYUl5eg",
+                    "media": "15-Databases/15-Databases-C.mov"
+                },
+                {
+                    "type": "video",
+                    "title": "Database – Relazioni – Parte 4 (4:06)",
+                    "youtube": "PgE--P-ZWvU",
+                    "media": "15-Databases/15-Databases-D.mov"
+                },
+                {
+                    "type": "video",
+                    "title": "Database – Chiavi esterne – Parte 5 (11:32)",
+                    "youtube": "GfuH_8uH16k",
+                    "media": "15-Databases/15-Databases-E.mov"
+                },
+                {
+                    "type": "video",
+                    "title": "Database – JOIN – Parte 6 (10:30)",
+                    "youtube": "zMOSVrb82iU",
+                    "media": "15-Databases/15-Databases-F.mov"
+                },
+                {
+                    "type": "video",
+                    "title": "Esempio svolto: tracks.py (7:56)",
+                    "media": "15-Databases/15-Databases-R-EX-Tracks-CSV.m4v",
+                    "youtube": "XvBF8BLXnNk",
+                    "youtube-old": "UGe7X_L-lHc"
+                },
+                {
+                    "type": "video",
+                    "title": "Database – Relazioni molti-a-molti – Parte 7 (13:13)",
+                    "youtube": "uq_Wf4nuXqE",
+                    "media": "15-Databases/15-Databases-G.mov"
+                },
+                {
+                    "type": "video",
+                    "title": "Esempio svolto: roster.py (11:27)",
+                    "media": "15-Databases/15-Databases-S-EX-Roster.mov",
+                    "youtube": "CqzELd0R9zc"
+                },
+                {
+                    "type": "header",
+                    "text": "Riferimenti",
+                    "level": 2
+                },
+                {
+                    "type": "reference",
+                    "title": "Capitolo 15: Usare i database e SQL",
+                    "href": "{apphome}/html3/15-database"
+                },
+                {
+                    "type": "reference",
+                    "title": "Dispensa sui database di Python per tutti",
+                    "href": "{apphome}/lectures3/Pythonlearn-15-Database-Handout.txt"
+                },
+                {
+                    "type": "header",
+                    "text": "Discussioni",
+                    "level": 2
+                },
+                {
+                    "type": "discussion",
+                    "title": "Database",
+                    "launch": "tsugi/tool/tdiscus/",
+                    "resource_link_id": "discuss_chap_15"
+                },
+                {
+                    "type": "header",
+                    "text": "Strumenti",
+                    "level": 2
+                },
+                {
+                    "type": "lti",
+                    "title": "Autograder: SQL su una sola tabella",
+                    "launch": "tools/sql-intro/",
+                    "resource_link_id": "pythonsql_01_single",
+                    "custom": [
+                        {
+                            "key": "exercise",
+                            "value": "single_lite.php"
+                        }
+                    ],
+                    "labs": true
+                },
+                {
+                    "type": "lti",
+                    "title": "Quiz: SQL su una sola tabella",
+                    "launch": "tsugi/tool/gift/?quiz=Py4Inf-15-Database-Single.txt",
+                    "resource_link_id": "py4e_15_one_quiz"
+                },
+                {
+                    "type": "lti",
+                    "title": "Autograder: contare le email in un database",
+                    "launch": "tools/sql-intro/",
+                    "resource_link_id": "pythonsql_02_email",
+                    "custom": [
+                        {
+                            "key": "exercise",
+                            "value": "count_lite.php"
+                        }
+                    ],
+                    "labs": true
+                },
+                {
+                    "type": "lti",
+                    "title": "Autograder: database con più tabelle – Brani",
+                    "launch": "tools/sql-intro/",
+                    "resource_link_id": "pythonsql_03_tracks",
+                    "custom": [
+                        {
+                            "key": "exercise",
+                            "value": "many_one_lite.php"
+                        }
+                    ],
+                    "labs": true
+                },
+                {
+                    "type": "lti",
+                    "title": "Quiz: Modellazione dei dati",
+                    "launch": "tsugi/tool/gift/?quiz=Py4Inf-15-Database-Model.txt",
+                    "resource_link_id": "py4e_15_mod_quiz"
+                },
+                {
+                    "type": "lti",
+                    "title": "Autograder: molti studenti in molti corsi",
+                    "launch": "tools/sql-intro/",
+                    "resource_link_id": "pythonsql_04_many",
+                    "custom": [
+                        {
+                            "key": "exercise",
+                            "value": "many_many_lite.php"
+                        }
+                    ],
+                    "labs": true
+                },
+                {
+                    "type": "lti",
+                    "title": "Quiz: Relazioni molti-a-molti",
+                    "launch": "tsugi/tool/gift/?quiz=Py4Inf-15-Database-Many.txt",
+                    "resource_link_id": "py4e_15_many_quiz"
+                }
+            ]
+        },
+        {
+            "title": "Visualizzare i dati",
+            "anchor": "dataviz",
+            "icon": "fa-bar-chart-o",
+            "description": "In questa sezione impariamo a raccogliere dati dalla rete, a memorizzarli in un database e poi a leggerli dal database per visualizzarli nel browser.",
+            "items": [
+                {
+                    "type": "header",
+                    "text": "Slide",
+                    "level": 2
+                },
+                {
+                    "type": "slide",
+                    "title": "Pythonlearn-16-Data-Viz.pptx",
+                    "href": "{apphome}/lectures3/Pythonlearn-16-Data-Viz.pptx"
+                },
+                {
+                    "type": "slide",
+                    "title": "Pythonlearn-16-Data-Viz.pdf",
+                    "href": "{apphome}/lectures3/Pythonlearn-16-Data-Viz.pdf"
+                },
+                {
+                    "type": "header",
+                    "text": "Video",
+                    "level": 2
+                },
+                {
+                    "type": "video",
+                    "title": "Visualizzazione – Dati geografici – Parte 1 (6:44)",
+                    "TODO": "Re-edit withthe right slides",
+                    "youtube": "gy6l4DTv1KU",
+                    "media": "16-viz/16-Viz-A.mov"
+                },
+                {
+                    "type": "video",
+                    "title": "Esempio svolto: OpenGeo (18:47)",
+                    "media": "16-viz/16-Viz-Q-EX-OpenGeo.m4v",
+                    "youtube": "wr8xpWda4wU",
+                    "youtube-2016": "mt03Z2QjndQ"
+                },
+                {
+                    "type": "video",
+                    "title": "Visualizzazione – PageRank – Parte 2 (11:24)",
+                    "youtube": "x2KMFkvDtI8",
+                    "media": "16-viz/16-Viz-B.mov"
+                },
+                {
+                    "type": "video",
+                    "title": "Esempio svolto: PageRank – Scansione (17:25)",
+                    "youtube": "SbtGozLk5Yk",
+                    "media": "16-viz/16-Viz-R-EX-Page-Spider.mov"
+                },
+                {
+                    "type": "video",
+                    "title": "Esempio svolto: PageRank – Calcolo (15:36)",
+                    "youtube": "9gtLOS87ZPs",
+                    "media": "16-viz/16-Viz-S-EX-Page-Rank.mov"
+                },
+                {
+                    "type": "video",
+                    "title": "Esempio svolto: PageRank – Visualizzazione (6:43)",
+                    "youtube": "vM4kJNePwhI",
+                    "media": "16-viz/16-Viz-T-EX-Page-Viz.mov"
+                },
+                {
+                    "type": "video",
+                    "title": "Visualizzazione – Gmane (email) – Parte 3 (6:59)",
+                    "youtube": "vE0_PM2BOiU",
+                    "media": "16-viz/16-Viz-C.mov"
+                },
+                {
+                    "type": "video",
+                    "title": "Esempio svolto: Gmane – Spider (17:01)",
+                    "youtube": "NFS5MLKdNGw",
+                    "media": "16-viz/16-Viz-U-EX-Gmane-Spider.mov"
+                },
+                {
+                    "type": "video",
+                    "title": "Esempio svolto: Gmane – Modello (12:56)",
+                    "youtube": "8GHtT7GqRKk",
+                    "media": "16-viz/16-Viz-V-EX-Gmane-Model.mov"
+                },
+                {
+                    "type": "video",
+                    "title": "Esempio svolto: Gmane – Visualizzazione (13:33)",
+                    "youtube": "AQtKm02FQq4",
+                    "media": "16-viz/16-Viz-W-EX-Gmane-Viz.mov"
+                },
+                {
+                    "type": "header",
+                    "text": "Riferimenti",
+                    "level": 2
+                },
+                {
+                    "type": "reference",
+                    "title": "Capitolo 16: Visualizzare i dati",
+                    "href": "{apphome}/html3/16-viz"
+                },
+                {
+                    "type": "header",
+                    "text": "Discussioni",
+                    "level": 2
+                },
+                {
+                    "type": "discussion",
+                    "title": "Visualizzare i dati",
+                    "launch": "tsugi/tool/tdiscus/",
+                    "resource_link_id": "discuss_chap_16"
+                }
+            ]
         }
-    ],
-    "videos" : [
-        {
-            "title" : "Variabili, espressioni e Istruzioni - Parte 1",
-            "youtube" : "7KHdV6FSpo8"
-        },
-        {
-            "title" : "Variabili, espressioni e Istruzioni - Parte 2",
-            "youtube" : "kefrGMAglGs"
-        },
-        {
-            "title" : "Esercizio Dimostrativo: 2.2",
-            "youtube" : "_b-nVJrl02M"
-        },
-        {
-            "title" : "Esercizio Dimostrativo: 2.3",
-            "youtube" : "DVmspDooG2c"
-        }
-    ],
-    "lti" : {
-        "title" : "Autograder: Esercizio 2.3",
-        "launch" : "tools/pythonauto/",
-        "resource_link_id": "pythonauto_02_03",
-        "custom" : [
-            {
-                "key": "exercise",
-                "value": "2.3"
-            }
-        ]
-    }
-},
-{
-    "title": "Esecuzione condizionale",
-    "anchor": "logic",
-    "icon" : "fa-diamond",
-    "description": "Analizziamo il modo in cui Python effettua alcune istruzioni e ne salti altre.",
-    "slides": "lectures3/Pythonlearn-03-Conditional.pptx",
-    "references" : [
-        {
-            "title" : "Capitolo 3: Conditionals",
-            "href" : "https://www.py4e.com/html3/03-conditional"
-        }
-    ],
-    "videos" : [
-        {
-            "title" : "Esecuzione condizionale - Parte 1",
-            "youtube" : "2aA3VBdcl6A"
-        },
-        {
-            "title" : "Esecuzione condizionale - Parte 2",
-            "youtube" : "OczkNrHPBps"
-        },
-        {
-            "title" : "Esercizio Dimostrativo 3.1",
-            "youtube" : "oUMQbZ4SBuM"
-        },
-        {
-            "title" : "Esercizio Dimostrativo 3.2",
-            "youtube" : "-iUA4cCKRlM"
-        }
-    ],
-    "lti" : [ 
-    {
-        "title" : "Autograder: Esercizio 3.1",
-        "launch" : "tools/pythonauto/",
-        "resource_link_id": "pythonauto_03_01",
-        "custom" : [
-            {
-                "key": "exercise",
-                "value": "3.1"
-            }
-        ]
-    },
-    {
-        "title" : "Autograder: Esercizio 3.3",
-        "launch" : "tools/pythonauto/",
-        "resource_link_id": "pythonauto_03_03",
-        "custom" : [
-            {
-                "key": "exercise",
-                "value": "3.3"
-            }
-        ]
-    }
     ]
-},
-{
-    "title": "Funzioni",
-    "anchor": "functions",
-    "icon" : "fa-files-o",
-    "description": "Osservate brevemente come Python implementa il modello di programmazione 'store and use later'.",
-    "slides": "lectures3/Pythonlearn-04-Functions.pptx",
-    "references" : [
-        {
-            "title" : "Capitolo 4: Functioni",
-            "href" : "https://www.py4e.com/html3/04-functions"
-        }
-    ],
-    "videos" : [
-        {
-            "title" : "Funzioni - Parte 1",
-            "youtube" : "5Kzw-0-DQAk"
-        },
-        {
-            "title" : "Funzioni - Parte 2",
-            "youtube" : "AJVNYRqn8kM"
-        },
-        {
-            "title" : "Esercizio Dimostrativo 4.6",
-            "youtube" : "l93PhBUJ_S0"
-        }
-    ],
-    "lti" : {
-        "title" : "Autograder: Esercizio 4.6",
-        "launch" : "tools/pythonauto/",
-        "resource_link_id": "pythonauto_04_06",
-        "custom" : [
-            {
-                "key": "exercise",
-                "value": "4.6"
-            }
-        ]
-    }
-},
-{
-    "title": "Loop e Iterazioni",
-    "anchor": "loops",
-    "icon" : "fa-gears",
-    "description": "Osserviamo come Python reitera le istruzioni utilizzando i loop.",
-    "slides": "lectures3/Pythonlearn-05-Iterations.pptx",
-    "references" : [
-        {
-            "title" : "Capitolo 5: Iterazioni",
-            "href" : "https://www.py4e.com/html3/05-iterations"
-        }
-    ],
-    "videos" : [
-        {
-            "title" : "Loop e Iterazioni - Parte 1",
-            "youtube" : "FzpurxjwmsM"
-        },
-        {
-            "title" : "Loop e Iterazioni - Parte 2",
-            "youtube" : "5QDrj5ogPYc"
-        },
-        {
-            "title" : "Loop e Iterazioni - Parte 3",
-            "youtube" : "xsavQp8hd78"
-        },
-        {
-            "title" : "Loop e Iterazioni - Parte 4",
-            "youtube" : "yjlMMwf9Y5I"
-        },
-        {
-            "title" : "Esercizio Dimostrativo 5.1",
-            "youtube" : "R2GrfqRofZc"
-        }
-    ],
-    "lti" : {
-        "title" : "Autograder: Esercizio 5.2",
-        "launch" : "tools/pythonauto/",
-        "resource_link_id": "pythonauto_05_02",
-        "custom" : [
-            {
-                "key": "exercise",
-                "value": "5.2"
-            }
-        ]
-    }
-},
-{
-    "title": "Stringhe",
-    "anchor": "strings",
-    "icon" : "fa-file-text-o",
-    "description": "Analizziamo come Python memorizza e manipola le stringe di testo utilizzando variabili e funzioni.",
-    "slides": "lectures3/Pythonlearn-06-Strings.pptx",
-    "references" : [
-        {
-            "title" : "Capitolo 6: Strings",
-            "href" : "https://www.py4e.com/html3/06-strings"
-        }
-    ],
-    "videos" : [
-        {
-            "title" : "Stringhe - Parte 1",
-            "youtube" : "dr98iM4app8"
-        },
-        {
-            "title" : "Stringhe - Parte 2",
-            "youtube" : "bIFpJ-qZ3Cc"
-        },
-        {
-            "title" : "Esercizio Dimostrativo 6.5",
-            "youtube" : "BGTxwsDI9KY"
-        }
-    ],
-    "lti" : {
-        "title" : "Autograder: Esercizio 6.5",
-        "resource_link_id": "pythonauto_06_05",
-        "launch" : "tools/pythonauto/",
-        "custom" : [
-            {
-                "key": "exercise",
-                "value": "6.5"
-            }
-        ]
-    }
-},
-{
-    "title": "File",
-    "anchor": "files",
-    "icon" : "fa-database",
-    "description": "Impariamo ad aprire file contenenti dati nel vostro computer e a leggerne il contenuto utilizzando Python.",
-    "slides": "lectures3/Pythonlearn-07-Files.pptx",
-    "references" : [
-        {
-            "title" : "Capitolo 7: File",
-            "href" : "https://www.py4e.com/html3/07-files"
-        }
-    ],
-    "videos" : [
-        {
-            "title" : "Aprire i file - Parte 1",
-            "youtube" : "9KJ-XeQ6ZlI"
-        },
-        {
-            "title" : "Aprire i file - Parte 2",
-            "youtube" : "0t4rvnySKR4"
-        },
-        {
-            "title" : "Esercizio Dimostrativo 7.1",
-            "youtube" : "MHZ4KnFZ7Y0"
-        }
-    ],
-    "lti" : {
-        "title" : "Autograder: Esercizio 7.2",
-        "launch" : "tools/pythonauto/",
-        "resource_link_id": "pythonauto_07_02",
-        "custom" : [
-            {
-                "key": "exercise",
-                "value": "7.2"
-            }
-        ]
-    }
-},
-{
-    "title": "Elenchi",
-    "anchor": "lists",
-    "icon" : "fa-list-ol",
-    "description": "Analizziamo la struttura dei dati più semplice di Python - l'Elenco. Gli elenchi possono memorizzare più di una voce in una variabile.",
-    "slides": "lectures3/Pythonlearn-08-Lists.pptx",
-    "references" : [
-        {
-            "title" : "Capitolo 8: Elenchi",
-            "href" : "https://www.py4e.com/html3/08-lists"
-        }
-    ],
-    "videos" : [
-        {
-            "title" : "Elenchi - Parte 1",
-            "youtube" : "ljExWqnWQvo"
-        },
-        {
-            "title" : "Elenchi - Parte 2",
-            "youtube" : "bV1FQUBIApM"
-        },
-        {
-            "title" : "Elenchi - Parte 3",
-            "youtube" : "GxADdpo6EP4"
-        },
-        {
-            "title" : "Elenchi, File e Guardian Pattern",
-            "youtube" : "WU6_0A9zYRA"
-        }
-    ],
-    "lti" : [
-    {
-        "title" : "Autograder: Esercizio 8.4",
-        "launch" : "tools/pythonauto/",
-        "resource_link_id": "pythonauto_08_04",
-        "custom" : [
-            {
-                "key": "exercise",
-                "value": "8.4"
-            }
-        ]
-    },
-    {
-        "title" : "Autograder: Esercizio 8.5",
-        "launch" : "tools/pythonauto/",
-        "resource_link_id": "pythonauto_08_05",
-        "custom" : [
-            {
-                "key": "exercise",
-                "value": "8.5"
-            }
-        ]
-    }
-    ]
-},
-{
-    "title": "Dizionari",
-    "anchor": "dictionary",
-    "icon" : "fa-key",
-    "description": "La struttura dati del dizionario ci permette di memorizzare più valori in un oggetto e di effettuare ricerche sui valori sulla base della loro chiave.",
-    "slides": "lectures3/Pythonlearn-09-Dictionaries.pptx",
-    "videos" : [
-        {
-            "title" : "Dizionari - Parte 1",
-            "youtube" : "yDDRMb-1cxI"
-        },
-        {
-            "title" : "Dizionari - Parte 2",
-            "youtube" : "LRSIuH94XM4"
-        },
-        {
-            "title" : "Dizionari - Parte 1",
-            "youtube" : "ZDjiFB1Ib84"
-        },
-        {
-            "title" : "Verifichiamo la frequenza di una parola utilizzando un dizionario",
-            "youtube" : "lLbyEYjU55A"
-        }
-    ],
-    "references" : [
-        {
-            "title" : "Capitolo 9: Dizionari",
-            "href" : "https://www.py4e.com/html3/09-dictionaries"
-        },
-        {
-            "title" : "Divertiamoci con Sesame Street - The Count",
-            "href" : "https://www.youtube.com/watch?v=EHJ9uYx5L58"
-        }
-    ],
-    "lti" : {
-        "title" : "Autograder: Esercizio 9.4",
-        "launch" : "tools/pythonauto/",
-        "resource_link_id": "pythonauto_09_04",
-        "custom" : [
-            {
-                "key": "exercise",
-                "value": "9.4"
-            }
-        ]
-    }
-},
-{
-    "title": "Tuple",
-    "anchor": "tuples",
-    "icon" : "fa-inbox",
-    "description": "La tupla è una struttura di dati di Python simile agli elenchi ma più semplice ed efficiente.",
-    "slides": "lectures3/Pythonlearn-10-Tuples.pptx",
-    "references" : [
-        {
-            "title" : "Capitolo 10: Tuple",
-            "href" : "https://www.py4e.com/html3/10-tuples"
-        }
-    ],
-
-    "videos" : [
-        {
-            "title" : "Tuple - Parte 1",
-            "youtube" : "CaVhM65wD6g"
-        },
-        {
-            "title" : "Tuple - Parte 2",
-            "youtube" : "FdUdA6o0Ij0"
-        },
-        {
-            "title" : "Ordinare un dizionario usando le tuple",
-            "youtube" : "hMJpet-gtc0"
-        }
-    ],
-    "lti" : {
-        "title" : "Autograder: Esercizio 10.2",
-        "launch" : "tools/pythonauto/",
-        "resource_link_id": "pythonauto_10_02",
-        "custom" : [
-            {
-                "key": "exercise",
-                "value": "10.2"
-            }
-        ]
-    }
-},
-{
-    "title": "Espressioni Regolari",
-    "anchor": "regex",
-    "icon" : "fa-magic",
-    "description": "Le espressioni regolari ci permettono di cercare ed estrarre determinati pattern di dati nelle stringhe utilizzando uno specifico linguaggio.",
-    "slides": "lectures3/Pythonlearn-11-Regex.pptx",
-    "videos" : [
-        {
-            "title" : "Espressioni Regolari - Parte 1",
-            "youtube" : "ovZsvN67Glc"
-        },
-        {
-            "title" : "Espressioni Regolari - Parte 2",
-            "youtube" : "fiar4QZZ7Xo"
-        },
-        {
-            "title" : "Espressioni Regolari - Parte 3",
-            "youtube" : "GiQdXo2Bvgc"
-        }
-    ],
-    "references" : [
-        {
-            "title" : "Regular expressions",
-            "href" : "https://www.py4e.com/html3/11-regex"
-        },
-        {
-            "title" : "Python Regular Expression Quick Guide",
-            "href" : "lectures3/Pythonlearn-11-Regex-Handout.txt"
-        }
-    ],
-    "lti" : {
-        "title" : "Autograder: Regular Expressions",
-        "launch" : "tools/python-data/",
-        "resource_link_id": "pythondata_01_regex",
-        "custom" : [
-            {
-                "key": "exercise",
-                "value": "regex_sum.php"
-            }
-        ]
-    }
-},
-{
-    "title": "Programmi per Internet",
-    "anchor": "network",
-    "icon" : "fa-cloud",
-    "description": "Diamo una veloce occhiata a come i dati si muovano in rete grazie all'HyperText Transport Protocol (HTTP) e a come scrivere dei programmi per leggerli.",
-    "slides": "lectures3/Pythonlearn-12-HTTP.pptx",
-    "references" : [
-        {
-            "title" : "Capitolo 12: Networked Programs",
-            "href" : "https://www.py4e.com/html3/12-network"
-        }
-    ],
-
-    "videos" : [
-        {
-            "title" : "Programmi per Internet - Parte 1",
-            "youtube" : "RsnaRPC52G0"
-        },
-        {
-            "title" : "Programmi per Internet - Parte 2",
-            "youtube" : "Bvx7vY454xw"
-        },
-        {
-            "title" : "Network Programming - Parte 3",
-            "youtube" : "Lr9Vm-VghAk"
-        },
-        {
-            "title" : "Esempio: Sockets",
-            "youtube" : "EqUyu8ZZYUE"
-        },
-        {
-            "title" : "Programmi per Internet - Parte 4",
-            "youtube" : "-cmlmaVSONg"
-        },
-        {
-            "title" : "Programmi per Internet - Parte 5",
-            "youtube" : "k1sUxGPpQOk"
-        },
-        {
-            "title" : "Esempio: Urllib",
-            "youtube" : "jKaCKIdIoks"
-        },
-        {
-            "title" : "Programmi per Internet - Parte 6",
-            "youtube" : "D7ZI8--qbBw"
-        },
-        {
-            "title" : "Esempio: BeautifulSoup",
-            "youtube" : "mhaHWiSPxxE"
-        }
-    ],
-    "lti" : [
-    {
-        "title" : "Autograder: ciclo Request-Response",
-        "launch" : "tools/python-data/",
-        "resource_link_id": "pythondata_02_rrc",
-        "custom" : [
-            {
-                "key": "exercise",
-                "value": "http_headers.php"
-            }
-        ]
-    },
-    {
-        "title" : "Autograder: Scraping dati HTML con BeautifulSoup",
-        "launch" : "tools/python-data/",
-        "resource_link_id": "pythondata_03_html",
-        "custom" : [
-            {
-                "key": "exercise",
-                "value": "comment_html.php"
-            }
-        ]
-    },
-    {
-        "title" : "Autograder: Leggere Links with BeautifulSoup",
-        "launch" : "tools/python-data/",
-        "resource_link_id": "pythondata_04_links",
-        "custom" : [
-            {
-                "key": "exercise",
-                "value": "knows.php"
-            }
-        ]
-    }
-    ]
-},
-{
-    "title": "Utilizzo di servizi Web",
-    "anchor": "servces",
-    "icon" : "fa-briefcase",
-    "description": "I servizi web consentono ad un programma di accedere a dati disponibili in un server esterno.",
-    "slides": "lectures3/Pythonlearn-13-WebServices.pptx",
-    "references" : [
-        {
-            "title" : "Capitolo 13: Python and Web Services",
-            "href" : "https://www.py4e.com/html3/13-web"
-        }
-    ],
-
-    "videos" : [
-        {
-            "title" : "Utilizzo di servizi Web - Parte 1",
-            "youtube" : "7NEtEctD9Cw"
-        },
-        {
-            "title" : "Utilizzo di servizi Web - XML - Part 2",
-            "youtube" : "A8KcBx9153Y"
-        },
-        {
-            "title" : "Esempio: XML",
-            "youtube" : "7q8uUehNRK0"
-        },
-        {
-            "title" : "Utilizzo di servizi Web - Schema XML - Parte 3",
-            "youtube" : "0cA6W-4JPQ4"
-        },
-        {
-            "title" : "Web Services - JSON - Parte 4",
-            "youtube" : "J5DjteDzgoM"
-        },
-        {
-            "title" : "Esempio: JSON",
-            "youtube" : "RGQfDirZ7_s"
-        },
-        {
-            "title" : "Alla scoperta dei JSON - Douglas Crockford",
-            "youtube" : "kc8BAR7SHJI"
-        },
-        {
-            "title" : "Utilizzo di servizi Web - SOA - Parte 5",
-            "youtube" : "SNeJcvBY-h4"
-        },
-        {
-            "title" : "The JISC e-Framework",
-            "youtube" : "mj-kCFzF0ME"
-        },
-        {
-            "title" : "Utilizzo di servizi Web - GeoJSON - Parte 6",
-            "youtube" : "QyHcOL3C7fQ"
-        },
-        {
-            "title" : "Esempio: GeoJSON",
-            "youtube" : "vjQZscHOaG4"
-        },
-        {
-            "title" : "Utilizzo di servizi Web - Twitter - Parte 7",
-            "youtube" : "mrRo2xX39nw"
-        },
-        {
-            "title" : "Esempio: Twitter",
-            "youtube" : "zJzPyEPCbXs"
-        }
-    ],
-    "lti" : [
-    {
-        "title" : "Autograder: Estrarre dati da un file XML",
-        "resource_link_id": "pythondata_05_xml",
-        "launch" : "tools/python-data/",
-        "custom" : [
-            {
-                "key": "exercise",
-                "value": "comment_xml.php"
-            }
-        ]
-    },
-    {
-        "title" : "Autograder: Estrarre dati da un file JSON",
-        "launch" : "tools/python-data/",
-        "resource_link_id": "pythondata_06_json",
-        "custom" : [
-            {
-                "key": "exercise",
-                "value": "comment_json.php"
-            }
-        ]
-    },
-    {
-        "title" : "Autograder: utilizzare le API GeoJSON",
-        "launch" : "tools/python-data/",
-        "resource_link_id": "pythondata_07_geo",
-        "custom" : [
-            {
-                "key": "exercise",
-                "value": "geo_json.php"
-            }
-        ]
-    }
-    ]
-},
-{
-    "title": "Programmazione ad Oggetti",
-    "anchor": "Objects",
-    "icon" : "fa-cubes",
-    "description": "Diamo un veloce occhiata a come Python supporti il modello di programmazione Object-Oriented.",
-    "slides": "lectures3/Pythonlearn-14-Objects.pptx",
-    "references" : [
-        {
-            "title" : "Capitolo 14: Python Objects",
-            "href" : "https://www.py4e.com/html3/14-objects"
-        }
-    ],
-    "videos" : [
-        {
-            "title" : "Programmazione ad Oggetti - Parte 1",
-            "youtube" : "u9xZE5t9Y30"
-        },
-        {
-            "title" : "Programmazione ad Oggetti - Parte 2",
-            "youtube" : "b2vc5uzUfoE"
-        },
-        {
-            "title" : "Programmazione ad Oggetti - Parte 3",
-            "youtube" : "bal0Fv6QE9w"
-        },
-        {
-            "title" : "Programmazione ad Oggetti - Parte 4",
-            "youtube" : "EE9PaHPPm2w"
-        }
-    ],
-    "lti" : [
-        {
-            "title" : "Quiz: Programmazione ad Oggetti",
-            "launch" : "mod/gift/?quiz=16-Python-Objects.txt",
-            "resource_link_id" : "py4e_16_oo_quiz"
-        }
-    ]
-},
-{
-    "title": "Database",
-    "chapter" : "15",
-    "anchor": "database",
-    "icon" : "fa-database",
-    "description": "I database ci consentono un accesso casuale molto rapido a grandi quantità di dati. In questo capitolo troverete molto materiale per studiare il linguaggio SQL (Structured Query Language).",
-    "slides": "lectures3/Pythonlearn-15-Databases.pptx",
-    "videos" : [
-        {
-            "title" : "Database - Parte 1",
-            "youtube" : "3RMPveOMd0k"
-        },
-        {
-            "title" : "Database - SQL con una tabella - Parte 2",
-            "youtube" : "yRJE-nk20sM"
-        },
-        {
-            "title" : "Esempio: Emaildb.py",
-            "youtube" : "MsZoGw4QEpU"
-        },
-        {
-            "title" : "Esempio: Twspider.py",
-            "youtube" : "wQNjza1gb_g"
-        },
-        {
-            "title" : "Database - Modelli complessi - Parte 3",
-            "youtube" : "rHjRpYUl5eg"
-        },
-        {
-            "title" : "Database - Parte 4",
-            "youtube" : "PgE--P-ZWvU"
-        },
-        {
-            "title" : "Database - Foreign Keys - Parte 5",
-            "youtube" : "GfuH_8uH16k"
-        },
-        {
-            "title" : "Database - JOIN - Parte 6",
-            "youtube" : "zMOSVrb82iU"
-        },
-        {
-            "title" : "Esempio: Tracks.py",
-            "youtube" : "UGe7X_L-lHc"
-        },
-        {
-            "title" : "Database - Many-to-Many - Parte 7",
-            "youtube" : "uq_Wf4nuXqE"
-        },
-        {
-            "title" : "Esempio: Roster.py",
-            "youtube" : "CqzELd0R9zc"
-        },
-        {
-            "title" : "Esempio: Twfriends.py",
-            "youtube" : "A_TpMJkSOcI"
-        }
-    ],
-    "references" : [
-        {
-            "title" : "Capitolo 15: Python e Database",
-            "href" : "https://www.py4e.com/html3/15-database"
-        },
-        {
-            "title" : "Python for Everybody Database Handout",
-            "href" : "lectures3/Pythonlearn-15-Database-Handout.txt"
-        }
-    ],
-    "lti" : [
-    {
-        "title" : "Autograder: SQL con una tabella",
-        "launch" : "tools/sql-intro/",
-        "resource_link_id": "pythonsql_01_single",
-        "custom" : [
-            {
-                "key": "exercise",
-                "value": "single_lite.php"
-            }
-        ]
-    },
-    {
-        "title" : "Autograder: Contare le Email presenti in a Database",
-        "launch" : "tools/sql-intro/",
-        "resource_link_id": "pythonsql_02_email",
-        "custom" : [
-            {
-                "key": "exercise",
-                "value": "count_lite.php"
-            }
-        ]
-    },
-    {
-        "title" : "Autograder: Database con più tabelle - Tracks",
-        "launch" : "tools/sql-intro/",
-        "resource_link_id": "pythonsql_03_tracks",
-        "custom" : [
-            {
-                "key": "exercise",
-                "value": "many_one_lite.php"
-            }
-        ]
-    },
-    {
-        "title" : "Autograder: Molti Studenti in molti Corsi",
-        "launch" : "tools/sql-intro/",
-        "resource_link_id": "pythonsql_04_many",
-        "custom" : [
-            {
-                "key": "exercise",
-                "value": "many_many_lite.php"
-            }
-        ]
-    }
-    ]
-},
-{
-    "title": "Visualizzazione dati",
-    "anchor": "dataviz",
-    "icon" : "fa-bar-chart-o",
-    "description": "In questa sezione impareremo a raccogliere dati dalla rete, a memorizzarli in un database che utilizzeremo per visualizzarne il contenuto in un browser.",
-    "slides": "lectures3/Pythonlearn-16-Data-Viz.pptx",
-    "references" : [
-        {
-            "title" : "Capitolo 16: Data Vizualization",
-            "href" : "https://www.py4e.com/html3/16-viz"
-        }
-    ],
-    "videos" : [
-        {
-            "title" : "Visualizzazione dati - Geodata - Parte 1",
-            "youtube" : "gy6l4DTv1KU"
-        },
-        {
-            "title" : "Esempio: Geodata",
-            "youtube" : "mt03Z2QjndQ"
-        },
-        {
-            "title" : "Visualizzazione dati - Page Rank - Parte 2",
-            "youtube" : "x2KMFkvDtI8"
-        },
-        {
-            "title" : "Esempio: Page Rank - Spidering",
-            "youtube" : "SbtGozLk5Yk"
-        },
-        {
-            "title" : "Esempio: Page Rank - Computation",
-            "youtube" : "9gtLOS87ZPs"
-        },
-        {
-            "title" : "Esempio: Page Rank - Visualizzazione",
-            "youtube" : "vM4kJNePwhI"
-        },
-        {
-            "title" : "Visualizzazione dati - Gmane (Email) - Parte 3",
-            "youtube" : "vE0_PM2BOiU"
-        },
-        {
-            "title" : "Esempio: Gmane - Spider",
-            "youtube" : "NFS5MLKdNGw"
-        },
-        {
-            "title" : "Esempio: Gmane - Modello",
-            "youtube" : "8GHtT7GqRKk"
-        },
-        {
-            "title" : "Esempio: Gmane - Visualizzazione",
-            "youtube" : "AQtKm02FQq4"
-        }
-    ]
-}
-
-]
 }
