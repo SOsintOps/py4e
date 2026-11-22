@@ -27,7 +27,7 @@ Il primo problema da risolvere è che queste API di geocodifica hanno un *limite
 
 \index{cache}
 
-Nella prima fase prendiamo i dati di input del "sondaggio", nel file `where.data`, li leggiamo una riga alla volta, recuperiamo da Google le informazioni geocodificate e le memorizziamo in un database, `geodata.sqlite`. Prima di usare l'API di geocodifica per ogni località inserita da un utente, controlliamo semplicemente se abbiamo già i dati di quella riga di input. Il database funziona da "cache" locale dei dati di geocodifica, per essere sicuri di non chiedere mai a Google due volte gli stessi dati.
+Nella prima fase prendiamo i dati di input del "sondaggio", nel file `where.data`, li leggiamo una riga alla volta, recuperiamo da Google le informazioni geocodificate e le memorizziamo in un database, `geodata.sqlite`. Per ogni località inserita da un utente, prima di usare l'API di geocodifica controlliamo semplicemente se abbiamo già i dati di quella riga di input. Il database funziona da "cache" locale dei dati di geocodifica, per essere sicuri di non chiedere mai a Google due volte gli stessi dati.
 
 Puoi riavviare da zero il processo in qualsiasi momento eliminando il file `geodata.sqlite`.
 
@@ -62,7 +62,7 @@ Retrieved 866 characters {"type":"FeatureColl
 
 Le prime cinque località sono già nel database, quindi vengono saltate. Il programma scorre i dati fino al punto in cui trova località nuove e comincia a recuperarle.
 
-Il programma `geoload.py` si può fermare in qualsiasi momento, e c'è un contatore che puoi usare per limitare il numero di chiamate all'API di geocodifica a ogni esecuzione. Dato che `where.data` contiene solo qualche centinaio di voci, non dovresti raggiungere il limite giornaliero delle richieste; ma se avessi più dati, potrebbero servire varie esecuzioni in più giorni perché il database contenga tutti i dati geocodificati dell'input.
+Il programma `geoload.py` si può fermare in qualsiasi momento, e c'è un contatore che puoi usare per limitare il numero di chiamate all'API di geocodifica a ogni esecuzione. Dato che `where.data` contiene solo qualche centinaio di elementi, non dovresti raggiungere il limite giornaliero delle richieste; ma se avessi più dati, potrebbero servire diverse esecuzioni in più giorni perché il database contenga tutti i dati geocodificati dell'input.
 
 Una volta caricati alcuni dati in `geodata.sqlite`, puoi visualizzarli con il programma `geodump.py`. Il programma legge il database e scrive il file `where.js` con la località, la latitudine e la longitudine, in forma di codice JavaScript eseguibile.
 
@@ -99,7 +99,7 @@ Masovian Voivodeship, 00-046, Poland'],
 
 Si tratta di una variabile JavaScript che contiene una lista di liste. La sintassi delle costanti di tipo lista in JavaScript è molto simile a quella di Python, quindi dovrebbe esserti familiare.
 
-Per vedere le località basta aprire `where.html` in un browser. Puoi passare con il mouse su ogni segnaposto della mappa per scoprire la località che l'API di geocodifica ha restituito per l'input inserito dall'utente. Se aprendo il file `where.html` non vedi nessun dato, ti conviene controllare la console JavaScript (o console per sviluppatori) del browser.
+Per vedere le località ti basta aprire `where.html` in un browser. Puoi passare con il mouse su ogni segnaposto della mappa per scoprire la località che l'API di geocodifica ha restituito per l'input inserito dall'utente. Se aprendo il file `where.html` non vedi nessun dato, ti conviene controllare la console JavaScript (o console per sviluppatori) del browser.
 
 Visualizzare reti e interconnessioni
 -----------------------------------------
@@ -139,7 +139,7 @@ How many pages:3
 How many pages:
 ~~~~
 
-Nello stesso database puoi avere più punti di partenza: nel programma si chiamano "webs". Lo spider sceglie a caso la prossima pagina da scansionare tra tutti i link non ancora visitati di tutti i webs.
+Nello stesso database puoi avere più punti di partenza: nel programma si chiamano `webs`. Lo spider sceglie a caso la prossima pagina da scansionare tra tutti i link non ancora visitati di tutti i webs.
 
 Se vuoi fare il dump del contenuto del file `spider.sqlite`, puoi eseguire `spdump.py` in questo modo:
 
@@ -153,7 +153,7 @@ Se vuoi fare il dump del contenuto del file `spider.sqlite`, puoi eseguire `spdu
 
 Qui vedi il numero di link in entrata, il vecchio PageRank, il nuovo PageRank, l'id della pagina e il suo URL. Il programma `spdump.py` mostra solo le pagine che hanno almeno un link in entrata.
 
-Quando nel database ci sono alcune pagine, puoi calcolarne il PageRank con il programma `sprank.py`. Basta dirgli quante iterazioni di PageRank eseguire.
+Quando nel database ci sono alcune pagine, puoi calcolarne il PageRank con il programma `sprank.py`. Ti basta dirgli quante iterazioni di PageRank eseguire.
 
 ~~~~
 How many iterations:2
@@ -172,7 +172,7 @@ Puoi fare di nuovo il dump del database per vedere che il PageRank è stato aggi
 4 rows.
 ~~~~
 
-Puoi eseguire `sprank.py` tutte le volte che vuoi: a ogni esecuzione affinerà il PageRank. Puoi anche eseguire `sprank.py` qualche volta, poi scansionare qualche altra pagina con `spider.py` e infine eseguire `sprank.py` per far convergere di nuovo i valori del PageRank. Di solito un motore di ricerca esegue di continuo entrambi i programmi, quello di scansione e quello di classificazione.
+Puoi eseguire `sprank.py` tutte le volte che vuoi: a ogni esecuzione si limiterà ad affinare il PageRank. Puoi anche eseguire `sprank.py` qualche volta, poi scansionare qualche altra pagina con `spider.py` e infine eseguire `sprank.py` per far convergere di nuovo i valori del PageRank. Di solito un motore di ricerca esegue di continuo entrambi i programmi, quello di scansione e quello di classificazione.
 
 Se vuoi ricominciare da capo il calcolo del PageRank senza scansionare di nuovo le pagine web, puoi usare `spreset.py` e poi riavviare `sprank.py`.
 
@@ -199,7 +199,7 @@ How many iterations:50
 
 A ogni iterazione dell'algoritmo PageRank il programma stampa la variazione media del PageRank per pagina. All'inizio la rete è piuttosto sbilanciata, quindi i singoli valori del PageRank cambiano moltissimo da un'iterazione all'altra. Ma in poche iterazioni il PageRank converge. Dovresti eseguire `sprank.py` abbastanza a lungo da far convergere i valori del PageRank.
 
-Se vuoi visualizzare le pagine che al momento hanno il PageRank più alto, esegui `spjson.py`: il programma legge il database e scrive in formato JSON i dati delle pagine con più link, da visualizzare in un browser web.
+Se vuoi visualizzare le pagine che al momento hanno il PageRank più alto, esegui `spjson.py`: il programma legge il database e scrive in formato JSON i dati delle pagine con più link, da vedere in un browser web.
 
 ~~~~
 Creating JSON output on spider.json...
@@ -214,9 +214,9 @@ Se riesegui gli altri programmi, riesegui anche `spjson.py` e aggiorna la pagina
 Visualizzare i dati della posta
 ---------------------
 
-Arrivato a questo punto del libro, hai acquisito una discreta familiarità con i file di dati `mbox-short.txt` e `mbox.txt`. Ora è il momento di portare a un livello superiore l'analisi dei dati delle email.
+A questo punto del libro hai acquisito una discreta familiarità con i file di dati `mbox-short.txt` e `mbox.txt`. Ora è il momento di portare a un livello superiore l'analisi dei dati delle email.
 
-Nel mondo reale a volte devi scaricare i dati della posta dai server. Potrebbe volerci parecchio tempo, e i dati potrebbero essere incoerenti, pieni di errori e richiedere molto lavoro di pulizia o di correzione. In questa sezione lavoriamo con l'applicazione più complessa vista finora: scarichiamo quasi un gigabyte di dati e li visualizziamo.
+Nel mondo reale a volte devi scaricare i dati della posta dai server. Potrebbe volerci parecchio tempo, e i dati potrebbero essere incoerenti e pieni di errori, e richiedere molto lavoro di pulizia o di correzione. In questa sezione lavoriamo con l'applicazione più complessa vista finora: scarichiamo quasi un gigabyte di dati e li visualizziamo.
 
 ![Una nuvola di parole della mailing list degli sviluppatori di Sakai](height=3.5in@../images/wordcloud)
 
@@ -224,15 +224,15 @@ Puoi scaricare questa applicazione da:
 
 [https://www.py4e.com/code3/gmane.zip](https://www.py4e.com/code3/gmane.zip)
 
-Useremo i dati di un servizio gratuito di archiviazione di mailing list che si chiamava *gmane*. Il servizio è stato poi chiuso, ma per questo corso ne è stato conservato un archivio parziale su [http://mbox.dr-chuck.net](http://mbox.dr-chuck.net). Il servizio gmane era molto popolare tra i progetti open source perché offriva un comodo archivio consultabile della loro attività di posta.
+Useremo i dati di un servizio gratuito di archiviazione di mailing list che si chiamava *gmane*. Il servizio è stato poi chiuso, ma per questo corso ne è stato conservato un archivio parziale su [http://mbox.dr-chuck.net](http://mbox.dr-chuck.net). Il servizio gmane era molto popolare tra i progetti open source perché offriva un comodo archivio della loro attività di posta in cui si potevano fare ricerche.
 
 [http://mbox.dr-chuck.net/export.php](http://mbox.dr-chuck.net/export.php)
 
-La scansione dei dati della posta di Sakai con questo software ha prodotto quasi un gigabyte di dati e ha richiesto varie esecuzioni in più giorni. Nel file ZIP indicato sopra, il file `README.txt` potrebbe spiegarti come scaricare una copia già scansionata del file `content.sqlite`, con la maggior parte dei messaggi di Sakai, così non devi passare cinque giorni a scansionare solo per eseguire i programmi. Se scarichi il contenuto già scansionato, dovresti comunque eseguire la scansione per metterti in pari con i messaggi più recenti.
+La scansione dei dati della posta di Sakai con questo software ha prodotto quasi un gigabyte di dati e ha richiesto diverse esecuzioni in più giorni. Nello ZIP indicato sopra, il file `README.txt` potrebbe spiegarti come scaricare una copia già scansionata del file `content.sqlite`, con la maggior parte dei messaggi di Sakai, così non ti serve passare cinque giorni a scansionare solo per eseguire i programmi. Se scarichi il contenuto già scansionato, dovresti comunque eseguire la scansione per metterti in pari con i messaggi più recenti.
 
 Il primo passo è scansionare il repository. L'URL di base è scritto direttamente nel codice di `gmane.py` e punta alla mailing list degli sviluppatori di Sakai. Puoi scansionare un altro repository cambiando quell'URL di base. Se cambi l'URL di base, assicurati di eliminare il file `content.sqlite`.
 
-Il file `gmane.py` si comporta da spider responsabile e con cache: procede lentamente e recupera un messaggio di posta al secondo, per non subire limitazioni. Memorizza tutti i dati in un database e si può interrompere e riavviare tutte le volte che serve. Per scaricare tutti i dati possono volerci molte ore, quindi potresti doverlo riavviare più volte.
+Il file `gmane.py` funziona come uno spider responsabile dotato di cache: procede lentamente e recupera un messaggio di posta al secondo, per non subire limitazioni. Memorizza tutti i dati in un database e si può interrompere e riavviare tutte le volte che serve. Per scaricare tutti i dati possono volerci molte ore, quindi potresti doverlo riavviare più volte.
 
 Ecco un'esecuzione di `gmane.py` che recupera gli ultimi cinque messaggi della mailing list degli sviluppatori di Sakai:
 
@@ -263,7 +263,7 @@ I dati di `content.sqlite` sono piuttosto grezzi, hanno un modello di dati ineff
 
 Il secondo processo consiste nell'eseguire il programma `gmodel.py`. Il programma legge i dati grezzi da `content.sqlite` e produce nel file `index.sqlite` una versione dei dati ripulita e ben modellata. Il file `index.sqlite` sarà molto più piccolo di `content.sqlite` (spesso 10 volte più piccolo), perché il programma comprime anche il testo delle intestazioni e del corpo.
 
-Ogni volta che viene eseguito, `gmodel.py` cancella e ricostruisce `index.sqlite`; così puoi regolare i parametri del programma e modificare le tabelle di mappatura in `content.sqlite` per mettere a punto la pulizia dei dati. Ecco un esempio di esecuzione di `gmodel.py`. Il programma stampa una riga ogni 250 messaggi di posta elaborati, così puoi vedere che il lavoro va avanti: l'esecuzione può durare un bel po', perché deve elaborare quasi un gigabyte di dati di posta.
+Ogni volta che viene eseguito, `gmodel.py` cancella e ricostruisce `index.sqlite`; così puoi regolare i parametri del programma e modificare le tabelle di mappatura in `content.sqlite` per mettere a punto la pulizia dei dati. Ecco un esempio di esecuzione di `gmodel.py`. Il programma stampa una riga ogni 250 messaggi di posta elaborati, così puoi vedere che il lavoro va avanti: l'esecuzione può durare un bel po', perché c'è quasi un gigabyte di dati di posta da elaborare.
 
 ~~~~
 Loaded allsenders 1588 and mapping 28 dns mapping 1
@@ -274,14 +274,14 @@ Loaded allsenders 1588 and mapping 28 dns mapping 1
 ...
 ~~~~
 
-Il programma `gmodel.py` svolge vari compiti di pulizia dei dati.
+Il programma `gmodel.py` svolge diversi compiti di pulizia dei dati.
 
 I nomi di dominio vengono troncati a due livelli per `.com`, `.org`, `.edu` e `.net`. Gli altri nomi di dominio vengono troncati a tre livelli. Così `si.umich.edu` diventa `umich.edu` e `caret.cam.ac.uk` diventa `cam.ac.uk`. Inoltre gli indirizzi email vengono convertiti tutti in minuscolo, e alcuni indirizzi `@gmane.org` come il seguente
 
 ~~~~
 arwhyte-63aXycvo3TyHXe+LvDLADg@public.gmane.org
 ~~~~
-vengono convertiti nell'indirizzo reale ogni volta che altrove, nell'insieme dei messaggi, c'è un indirizzo email reale corrispondente.
+vengono sostituiti con l'indirizzo reale ogni volta che altrove, nell'insieme dei messaggi, c'è un indirizzo email reale corrispondente.
 
 Nel database `mapping.sqlite` ci sono due tabelle che ti permettono di creare mappature sia per i nomi di dominio sia per i singoli indirizzi email che cambiano nel corso della vita della mailing list. Ad esempio, Steve Githens ha usato questi indirizzi email man mano che cambiava lavoro, negli anni di vita della mailing list degli sviluppatori di Sakai:
 
@@ -304,9 +304,9 @@ Puoi anche inserire voci simili nella tabella `DNSMapping`, se ci sono più nomi
 iupui.edu -> indiana.edu
 ~~~~
 
-così tutti gli account dei vari campus della Indiana University vengono conteggiati insieme.
+così tutti gli account dei vari campus dell'Indiana University vengono conteggiati insieme.
 
-Mentre esamini i dati, puoi eseguire `gmodel.py` più e più volte e aggiungere mappature per rendere i dati sempre più puliti. Alla fine avrai in `index.sqlite` una versione delle email ben indicizzata. È questo il file da usare per l'analisi dei dati: con questo file l'analisi sarà davvero rapida.
+Mentre esamini i dati, puoi eseguire `gmodel.py` più e più volte e aggiungere mappature per rendere i dati sempre più puliti. Alla fine avrai in `index.sqlite` una versione ben indicizzata delle email. È questo il file da usare per l'analisi dei dati: con questo file l'analisi sarà davvero rapida.
 
 La prima analisi dei dati, la più semplice, consiste nello stabilire "chi ha inviato più messaggi?" e "quale organizzazione ha inviato più messaggi?". Per farla si usa `gbasic.py`:
 
@@ -340,7 +340,7 @@ Output written to gword.js
 
 Il programma produce il file `gword.js`, che puoi visualizzare con `gword.htm` per ottenere una *nuvola di parole* (word cloud) simile a quella all'inizio di questa sezione.
 
-Una seconda visualizzazione è prodotta da `gline.py`. Il programma calcola nel corso del tempo la partecipazione via email delle organizzazioni.
+Una seconda visualizzazione è prodotta da `gline.py`. Il programma calcola la partecipazione via email delle organizzazioni nel corso del tempo.
 
 ~~~~
 Loaded messages= 51330 senders= 1584
