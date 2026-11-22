@@ -1,23 +1,22 @@
-﻿
+
 Dettagli sul copyright
 ================
 
-Questo lavoro è concesso in licenza in formato Unported Creative Common Attribution-NonCommercial-ShareAlike 3.0. Questa licenza è disponibile all'indirizzo
+Quest'opera è rilasciata sotto licenza Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License. La licenza è disponibile all'indirizzo
 
 [creativecommons.org/licenses/by-nc-sa/3.0/](creativecommons.org/licenses/by-nc-sa/3.0/).
 
-Avrei preferito pubblicare il libro con la meno restrittiva licenza CC-BY-SA.
-Sfortunatamente ci sono alcune organizzazioni senza scrupoli che cercano e trovano libri con licenza libera, quindi pubblicano e vendono copie praticamente identiche dei libri tramite un servizio di stampa on demand come LuLu o CreateSpace. CreateSpace ha (per fortuna) aggiunto una politica che dà priorità alle volontà delle preferenze dei reali detentori dei copyright, rispetto a quelle di un non possessore di tali diritti che tenti di pubblicare un'opera liberamente concessa in licenza. Sfortunatamente ci sono molti servizi di stampa su richiesta e pochissimi hanno una politica ben ponderata come CreateSpace.
+Avrei preferito pubblicare il libro con la meno restrittiva licenza CC-BY-SA. Purtroppo, però, ci sono alcune organizzazioni senza scrupoli che cercano e trovano libri con licenza libera e poi pubblicano e vendono copie praticamente identiche di quei libri su un servizio di stampa su richiesta come LuLu o KDP. KDP ha (per fortuna) aggiunto una politica che dà la precedenza alla volontà del vero detentore del copyright rispetto a chi, senza detenerlo, tenta di pubblicare un'opera con licenza libera. Purtroppo ci sono molti servizi di stampa su richiesta e pochissimi hanno una politica ben ponderata come quella di KDP.
 
-Con rammarico, ho aggiunto l'elemento NC alla licenza di questo libro al fine di poter fare ricorso nel caso qualcuno cerchi di clonare questo libro e venderlo commercialmente. Sfortunatamente, l'aggiunta della sigla NC limita gli usi di questo materiale come mi piacerebbe permettere. Ho quindi aggiunto questa sezione del documento per descrivere situazioni specifiche in cui concedo il mio permesso in anticipo ad utilizzare il materiale in questo libro in situazioni che alcuni potrebbero considerare commerciali.
+Con rammarico, ho aggiunto l'elemento NC alla licenza di questo libro per poter fare ricorso nel caso qualcuno cerchi di clonarlo e venderlo commercialmente. Purtroppo, l'aggiunta di NC limita alcuni usi di questo materiale che vorrei permettere. Ho quindi aggiunto questa sezione del documento per descrivere i casi specifici in cui do in anticipo il permesso di usare il materiale di questo libro in situazioni che alcuni potrebbero considerare commerciali.
 
-- Se si sta stampando un numero limitato di copie di tutto o parte di questo libro per l'uso in un corso (ad esempio, come materiale didattico), viene concessa la licenza CC-BY su tali materiali.
+-   Se stampi un numero limitato di copie di tutto il libro o di una sua parte per usarle in un corso (ad esempio, come dispensa), ti viene concessa per questo scopo la licenza CC-BY su questi materiali.
 
-- Nel caso di insegnanti universitari che intendano tradurre questo libro in una lingua diversa dall'inglese per utilizzarlo nel proprio insegnamento, è possibile contattarmi per la concessione di una licenza CC-BY-SA per questi materiali in relazione alla pubblicazione della traduzione In particolare, sarà consentita la commercializzazione del risultante libro tradotto.
+-   Se sei un docente universitario, traduci questo libro in una lingua diversa dall'inglese e lo usi tradotto nelle tue lezioni, puoi contattarmi e ti concederò una licenza CC-BY-SA su questi materiali per la pubblicazione della tua traduzione. In particolare, potrai vendere commercialmente il libro tradotto che ne risulta.
 
-Se si intende tradurre il libro, è possibile contattarmi per ottenere l'accesso ai materiali correlati al corso per la relativa traduzione.
+Se intendi tradurre il libro, ti conviene contattarmi, così possiamo assicurarci che tu abbia tutti i relativi materiali del corso e possa tradurre anche quelli.
 
-Naturalmente, siete invitati a contattarmi e chiedere il permesso nel caso queste clausole non risultino sufficienti. In tutti i casi, sarà concesso il permesso di riutilizzare e modificare questo materiale, purché dal risultato del nuovo lavoro derivi un chiaro valore aggiunto o beneficio per studenti o insegnanti.
+Naturalmente, puoi contattarmi e chiedere il permesso se queste clausole non sono sufficienti. In ogni caso, il permesso di riutilizzare e remixare questo materiale sarà concesso purché dal nuovo lavoro derivi un chiaro valore aggiunto o un beneficio per studenti o insegnanti.
 
 Charles Severance\
 www.dr-chuck.com\
