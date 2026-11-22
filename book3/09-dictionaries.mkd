@@ -106,7 +106,7 @@ Per vedere se qualcosa compare come valore in un dizionario, puoi usare il metod
 True
 ~~~~
 
-L'operatore `in` usa algoritmi diversi per le liste e per i dizionari. Per le liste usa un algoritmo di ricerca lineare. Man mano che la lista si allunga, il tempo di ricerca si allunga in proporzione diretta alla lunghezza della lista. Per i dizionari Python usa un algoritmo chiamato *tabella hash* (hash table), che ha una proprietà notevole: l'operatore `in` impiega circa lo stesso tempo, non importa quanti elementi ci sono in un dizionario. Non spiegherò perché le funzioni hash sono così magiche, ma puoi saperne di più su [wikipedia.org/wiki/Hash\_table](https://wikipedia.org/wiki/Hash_table).^[Se vuoi davvero imparare di più sulle tabelle hash, c'è un corso su https://www.cc4e.com che esplora come il linguaggio di programmazione C implementa un dizionario Python.]
+L'operatore `in` usa algoritmi diversi per le liste e per i dizionari. Per le liste usa un algoritmo di ricerca lineare. Man mano che la lista si allunga, il tempo di ricerca si allunga in proporzione diretta alla lunghezza della lista. Per i dizionari Python usa un algoritmo chiamato *tabella hash* (hash table), che ha una proprietà notevole: l'operatore `in` impiega circa lo stesso tempo, non importa quanti elementi ci siano in un dizionario. Non spiegherò perché le funzioni hash sono così magiche, ma puoi saperne di più su [wikipedia.org/wiki/Hash\_table](https://wikipedia.org/wiki/Hash_table).^[Se vuoi davvero imparare di più sulle tabelle hash, c'è un corso su https://www.cc4e.com che esplora come il linguaggio di programmazione C implementa un dizionario Python.]
 
 \index{tabella hash}
 \index{appartenenza a un insieme}
