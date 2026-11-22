@@ -274,7 +274,7 @@ for key in counts:
         print(key, counts[key])
 ~~~~
 
-Il ciclo `for` itera sulle *chiavi* del dizionario, quindi dobbiamo usare l'operatore indice per recuperare il *valore* corrispondente a ogni chiave. Ecco come appare l'output:
+Il ciclo `for` itera sulle *chiavi* del dizionario, quindi dobbiamo usare l'operatore di indicizzazione per recuperare il *valore* corrispondente a ogni chiave. Ecco come appare l'output:
 
 ~~~~
 annie 42
