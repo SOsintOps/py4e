@@ -2,7 +2,7 @@
 Usare i servizi web
 ==================
 
-Quando è diventato facile recuperare e analizzare documenti via HTTP con dei programmi, non ci è voluto molto per sviluppare un approccio in cui abbiamo cominciato a produrre documenti pensati apposta per essere usati da altri programmi (cioè non HTML da visualizzare in un browser).
+Quando è diventato facile recuperare e analizzare documenti via HTTP con dei programmi, non ci è voluto molto per sviluppare un approccio in cui produciamo documenti pensati apposta per essere usati da altri programmi (cioè non HTML da visualizzare in un browser).
 
 Per scambiare dati sul web usiamo due formati comuni. L'eXtensible Markup Language (XML) è in uso da moltissimo tempo ed è il più adatto per scambiare dati in forma di documento. Quando i programmi vogliono solo scambiarsi dizionari, liste o altre informazioni interne, usano la JavaScript Object Notation (JSON) (vedi [www.json.org](http://www.json.org)). Vedremo entrambi i formati.
 
@@ -21,7 +21,7 @@ XML somiglia molto a HTML, ma è più strutturato. Ecco un esempio di documento 
 </person>
 ~~~~
 
-Ogni coppia di tag, di apertura (come `<person>`) e di chiusura (come `</person>`), rappresenta un *elemento* o *nodo* che ha lo stesso nome del tag (ad esempio `person`). Ogni elemento può avere del testo, alcuni attributi (ad esempio `hide`) e altri elementi annidati. Se un elemento XML è vuoto (cioè non ha contenuto), lo si può rappresentare con un *tag a chiusura automatica* (self-closing tag), come `<email />`.
+Ogni coppia formata da un tag di apertura (come `<person>`) e da uno di chiusura (come `</person>`) rappresenta un *elemento* o *nodo* che ha lo stesso nome del tag (ad esempio `person`). Ogni elemento può avere del testo, alcuni attributi (ad esempio `hide`) e altri elementi annidati. Se un elemento XML è vuoto (cioè non ha contenuto), lo si può rappresentare con un *tag a chiusura automatica* (self-closing tag), come `<email />`.
 
 Spesso è utile pensare a un documento XML come a una struttura ad albero, in cui c'è un elemento di primo livello (qui `person`) e gli altri tag (ad esempio `phone`) sono disegnati come *figli* dei rispettivi elementi *padre*.
 
@@ -40,7 +40,7 @@ Ecco una semplice applicazione che analizza un po' di XML e ne estrae alcuni ele
 
 Le triple virgolette singole (`'''`), così come le triple virgolette doppie (`"""`), permettono di creare stringhe che si estendono su più righe.
 
-La chiamata a `fromstring` converte la rappresentazione dell'XML come stringa in un "albero" di elementi XML. Una volta che l'XML è in forma di albero, abbiamo una serie di metodi da chiamare per estrarre parti dei dati dalla stringa XML. La funzione `find` cerca nell'albero XML e recupera l'elemento che corrisponde al tag indicato.
+La chiamata a `fromstring` converte la stringa che rappresenta l'XML in un "albero" di elementi XML. Una volta che l'XML è in forma di albero, abbiamo una serie di metodi che possiamo chiamare per estrarre parti dei dati dalla stringa XML. La funzione `find` cerca nell'albero XML e recupera l'elemento che corrisponde al tag indicato.
 
 ~~~~
 Name: Chuck
@@ -144,7 +144,7 @@ Nel programma seguente usiamo la libreria built-in `json` per analizzare il JSON
 
 \VerbatimInput{../code3/json2.py}
 
-Se confronti il codice che estrae i dati dal JSON e dall'XML analizzati, vedrai che ciò che otteniamo da `json.loads()` è una lista Python, che scorriamo con un ciclo `for` e i cui elementi sono dizionari Python. Una volta analizzato il JSON, possiamo usare l'operatore di indicizzazione di Python per estrarre i vari dati di ogni utente. Non dobbiamo usare la libreria JSON per frugare nel JSON analizzato, perché i dati restituiti sono semplicemente strutture native di Python.
+Se confronti il codice che estrae i dati dal JSON e dall'XML analizzati, vedrai che ciò che otteniamo da `json.loads()` è una lista Python, che scorriamo con un ciclo `for` e i cui elementi sono dizionari Python. Una volta analizzato il JSON, possiamo usare l'operatore di indicizzazione di Python per estrarre i vari dati di ogni utente. Non abbiamo bisogno di usare la libreria JSON per frugare nel JSON analizzato, perché i dati restituiti sono semplicemente strutture native di Python.
 
 L'output di questo programma è identico a quello della versione XML vista sopra.
 
@@ -158,7 +158,7 @@ Id 009
 Attribute 7
 ~~~~
 
-In generale, nei servizi web c'è una tendenza del settore ad abbandonare XML in favore di JSON. Poiché il JSON è più semplice e corrisponde in modo più diretto alle strutture di dati native che abbiamo già nei linguaggi di programmazione, con JSON il codice che analizza ed estrae i dati è di solito più semplice e più diretto. Ma XML è più autodescrittivo di JSON, e per questo ci sono alcune applicazioni in cui XML conserva un vantaggio. Ad esempio, la maggior parte dei programmi di videoscrittura memorizza internamente i documenti in XML invece che in JSON.
+In generale, per i servizi web il settore tende ad abbandonare XML in favore di JSON. Poiché JSON è più semplice e corrisponde in modo più diretto alle strutture di dati native che abbiamo già nei linguaggi di programmazione, con JSON il codice che analizza ed estrae i dati è di solito più semplice e più diretto. Ma XML è più autodescrittivo di JSON, e per questo ci sono alcune applicazioni in cui XML conserva un vantaggio. Ad esempio, la maggior parte dei programmi di videoscrittura memorizza internamente i documenti in XML invece che in JSON.
 
 Interfacce di programmazione delle applicazioni
 ----------------------------------
@@ -167,7 +167,7 @@ Ora possiamo scambiare dati tra applicazioni con l'Hypertext Transfer Protocol (
 
 Il passo successivo è cominciare a definire e documentare, con queste tecniche, dei "contratti" tra applicazioni. Questi contratti tra un'applicazione e l'altra si chiamano in generale *interfacce di programmazione delle applicazioni* (API, Application Program Interfaces). Quando usiamo un'API, di solito un programma mette a disposizione di altre applicazioni un insieme di *servizi* e pubblica le API (cioè le "regole") da seguire per accedere ai servizi forniti dal programma.
 
-Quando cominciamo a costruire programmi le cui funzionalità comprendono l'accesso a servizi forniti da altri programmi, chiamiamo questo approccio *architettura orientata ai servizi* (SOA, Service-oriented architecture). In un approccio SOA l'applicazione nel suo complesso usa i servizi di altre applicazioni. In un approccio non SOA l'applicazione è unica e autonoma, con al suo interno tutto il codice necessario per implementarla.
+Quando cominciamo a costruire programmi le cui funzionalità comprendono l'accesso a servizi forniti da altri programmi, chiamiamo questo approccio *architettura orientata ai servizi* (SOA, Service-Oriented Architecture). In un approccio SOA l'applicazione nel suo complesso usa i servizi di altre applicazioni. In un approccio non SOA l'applicazione è unica e autonoma e contiene tutto il codice necessario per implementarla.
 
 Quando usiamo il web vediamo molti esempi di SOA. Possiamo prenotare voli, alberghi e automobili, tutto da un solo sito web. I dati degli alberghi non sono memorizzati sui computer della compagnia aerea: sono questi computer a contattare i servizi sui computer degli alberghi, a recuperarne i dati e a presentarli all'utente. Quando l'utente accetta di prenotare un albergo tramite il sito della compagnia aerea, il sito usa un altro servizio web dei sistemi dell'albergo per effettuare la prenotazione vera e propria. E quando arriva il momento di addebitare l'intera transazione sulla tua carta di credito, entrano in gioco altri computer ancora.
 
@@ -187,9 +187,9 @@ Capita spesso che ti serva una chiave API per usare l'API di un fornitore. L'ide
 
 A volte, dopo aver ottenuto la chiave API, ti basta includerla tra i dati POST, o magari come parametro dell'URL, quando chiami l'API.
 
-Altre volte il fornitore vuole più garanzie sulla provenienza delle richieste: per questo si aspetta che tu invii messaggi firmati crittograficamente con chiavi e segreti condivisi. Una tecnologia molto diffusa per firmare le richieste su Internet si chiama *OAuth*. Puoi saperne di più sul protocollo OAuth su [www.oauth.net](http://www.oauth.net).
+Altre volte il fornitore vuole più garanzie sulla provenienza delle richieste: per questo si aspetta che tu invii messaggi firmati crittograficamente con chiavi e segreti condivisi. Una tecnologia molto diffusa per firmare le richieste su Internet si chiama *OAuth*. Puoi saperne di più sul protocollo OAuth all'indirizzo [www.oauth.net](http://www.oauth.net).
 
-Per fortuna esistono diverse librerie OAuth comode e gratuite, così puoi evitare di scrivere da zero un'implementazione di OAuth partendo dalla specifica. Queste librerie hanno una complessità variabile e offrono funzionalità più o meno ricche. Il sito web di OAuth contiene informazioni su varie librerie OAuth.
+Per fortuna esistono diverse librerie OAuth comode e gratuite, così puoi evitare di scrivere da zero un'implementazione di OAuth partendo dalla specifica. Queste librerie sono di complessità diversa e offrono funzionalità più o meno ricche. Il sito web di OAuth contiene informazioni su varie librerie OAuth.
 
 Glossario
 --------
@@ -203,12 +203,12 @@ Glossario
 \index{ElementTree}
 
 **JSON**
-: JavaScript Object Notation - Un formato che permette il markup di dati strutturati sulla base della sintassi degli oggetti JavaScript.
+: JavaScript Object Notation - Un formato, basato sulla sintassi degli oggetti JavaScript, che permette il markup di dati strutturati.
 \index{JSON}
 \index{JavaScript Object Notation}
 
 **SOA**
-: Service-Oriented Architecture (architettura orientata ai servizi) - Un'architettura in cui un'applicazione è composta da componenti collegati attraverso una rete.
+: Service-Oriented Architecture (architettura orientata ai servizi) - Un'architettura in cui un'applicazione è formata da componenti collegati attraverso una rete.
 \index{SOA}
 \index{architettura orientata ai servizi}
 
