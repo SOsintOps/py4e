@@ -9,20 +9,20 @@ Le tuple sono immutabili
 \index{tipo!tupla}
 \index{sequenza}
 
-Una tupla^[Curiosità: la parola "tupla" deriva dai nomi dati alle sequenze di numeri di lunghezza variabile: singola, doppia, tripla, quadrupla, quintupla, sestupla, settupla, ecc.] è una sequenza di valori molto simile a una lista. I valori memorizzati in una tupla possono essere di qualsiasi tipo e sono indicizzati da interi. La differenza importante è che le tuple sono *immutabili*. Le tuple sono anche *confrontabili* e *hashable*, quindi possiamo ordinare liste di tuple e usare le tuple come valori chiave nei dizionari Python.
+Una tupla^[Curiosità: la parola "tupla" deriva dai nomi dati alle sequenze di numeri di diversa lunghezza: singola, doppia, tripla, quadrupla, quintupla, sestupla, settupla, ecc.] è una sequenza di valori molto simile a una lista. I valori memorizzati in una tupla possono essere di qualsiasi tipo e sono indicizzati da interi. La differenza importante è che le tuple sono *immutabili*. Le tuple sono anche *confrontabili* e *hashable*, quindi possiamo ordinare liste di tuple e usare le tuple come valori chiave nei dizionari Python.
 
 \index{mutabilità}
 \index{hashable}
 \index{confrontabile}
 \index{immutabilità}
 
-Sintatticamente, una tupla è una lista di valori separati da virgole:
+Sintatticamente, una tupla è un elenco di valori separati da virgole:
 
 ~~~~ {.python}
 >>> t = 'a', 'b', 'c', 'd', 'e'
 ~~~~
 
-Anche se non è necessario, è comune racchiudere le tuple tra parentesi tonde, per aiutarci a riconoscerle subito quando guardiamo il codice Python:
+Anche se non è necessario, di solito le tuple si racchiudono tra parentesi tonde, per aiutarci a riconoscerle subito quando guardiamo il codice Python:
 
 \index{parentesi!tupla tra}
 
@@ -130,17 +130,17 @@ True
 True
 ~~~~
 
-La funzione `sort` funziona allo stesso modo. Ordina prima di tutto in base al primo elemento, ma in caso di parità ordina in base al secondo elemento, e così via.
+La funzione `sort` si comporta allo stesso modo. Ordina prima di tutto in base al primo elemento, ma in caso di parità ordina in base al secondo elemento, e così via.
 
 Questa caratteristica si presta a uno schema chiamato *DSU*, che sta per
 
-*Decorare* (decorate)
+*Decorate* (decorare)
 :   una sequenza costruendo una lista di tuple con una o più chiavi di ordinamento che precedono gli elementi della sequenza,
 
-*Ordinare* (sort)
-:   la lista di tuple usando il `sort` built-in di Python, e
+*Sort* (ordinare)
+:   la lista di tuple usando il `sort` built-in di Python e
 
-*Togliere la decorazione* (undecorate)
+*Undecorate* (togliere la decorazione)
 :   estraendo gli elementi ordinati della sequenza.
 
 \index{schema DSU}
@@ -155,13 +155,13 @@ Ad esempio, supponi di avere una lista di parole e di volerle ordinare dalla pi�
 
 Il primo ciclo costruisce una lista di tuple, in cui ogni tupla è una parola preceduta dalla sua lunghezza.
 
-`sort` confronta prima il primo elemento, la lunghezza, e considera il secondo elemento solo per risolvere i casi di parità. L'*argomento chiave-valore* (keyword argument) `reverse=True` dice a `sort` di procedere in ordine decrescente.
+`sort` confronta innanzitutto il primo elemento, la lunghezza, e considera il secondo elemento solo per risolvere i casi di parità. L'*argomento chiave-valore* (keyword argument) `reverse=True` dice a `sort` di procedere in ordine decrescente.
 
 \index{argomento chiave-valore}
 \index{argomento!chiave-valore}
 \index{scorrimento}
 
-Il secondo ciclo scorre la lista di tuple e costruisce una lista di parole in ordine decrescente di lunghezza. Le parole di quattro caratteri sono ordinate in ordine alfabetico *inverso*, quindi `"what"` compare prima di `"soft"` nella lista seguente.
+Il secondo ciclo scorre la lista di tuple e costruisce una lista di parole in ordine decrescente di lunghezza. Le parole di quattro caratteri sono in ordine alfabetico *inverso*, quindi `"what"` compare prima di `"soft"` nella lista seguente.
 
 L'output del programma è il seguente:
 
@@ -194,7 +194,7 @@ In questo esempio abbiamo una tupla di due elementi e assegniamo il primo e il s
 >>>
 ~~~~
 
-Questo è più generale di un'assegnazione da tupla a tupla. Sia le tuple sia le liste sono sequenze, quindi questa sintassi funziona anche con una lista di due elementi.
+Questa sintassi è più generale di un'assegnazione da tupla a tupla. Sia le tuple sia le liste sono sequenze, quindi funziona anche con una lista di due elementi.
 
 ~~~~ {.python}
 >>> m = [ 'have', 'fun' ]
@@ -288,7 +288,7 @@ I dizionari hanno un metodo chiamato `items` che restituisce una lista di tuple,
 
 Come dovresti aspettarti da un dizionario, gli elementi non sono in ordine alfabetico.
 
-Però, poiché la lista di tuple è una lista e le tuple sono confrontabili, ora possiamo ordinare la lista di tuple. Convertire un dizionario in una lista di tuple è un modo per ottenere in output il contenuto di un dizionario ordinato per chiave:
+Però, dato che la lista di tuple è una lista e le tuple sono confrontabili, ora possiamo ordinarla. Convertire un dizionario in una lista di tuple è un modo per ottenere in output il contenuto di un dizionario ordinato per chiave:
 
 ~~~~ {.python}
 >>> d = {'b':1, 'a':10, 'c':22}
@@ -305,7 +305,7 @@ Ora la lista di tuple è ordinata per chiave, in ordine alfabetico crescente.
 Assegnazione multipla con i dizionari
 -------------------------------------
 
-\index{scorrere!dizionario}
+\index{scorrimento!dizionario}
 \index{dizionario!scorrimento}
 
 Combinando `items`, l'assegnazione di tupla e `for`, puoi vedere un bello schema di codice per scorrere le chiavi e i valori di un dizionario in un solo ciclo:
@@ -316,9 +316,9 @@ for key, val in d.items():
     print(val, key)
 ~~~~
 
-Questo ciclo ha due *variabili di iterazione*, perché `items` restituisce una lista di tuple e `key, val` è un'assegnazione di tupla che scorre in successione ciascuna delle coppie chiave-valore del dizionario.
+Questo ciclo ha due *variabili di iterazione*, perché `items` restituisce una lista di tuple e `key, val` è un'assegnazione di tupla che scorre in successione le coppie chiave-valore del dizionario.
 
-A ogni iterazione del ciclo, sia `key` sia `val` avanzano alla coppia chiave-valore successiva del dizionario (sempre in ordine di hash).
+A ogni iterazione del ciclo, sia `key` sia `val` avanzano alla coppia chiave-valore successiva del dizionario (sempre nell'ordine dell'hash).
 
 L'output di questo ciclo è:
 
@@ -328,11 +328,11 @@ L'output di questo ciclo è:
 22 c
 ~~~~
 
-Di nuovo, l'ordine è quello di hash delle chiavi (cioè nessun ordine particolare).
+Di nuovo, l'ordine è quello dell'hash delle chiavi (cioè nessun ordine particolare).
 
 Se combiniamo queste due tecniche, possiamo stampare il contenuto di un dizionario ordinato in base al *valore* memorizzato in ciascuna coppia chiave-valore.
 
-Per farlo, per prima cosa creiamo una lista di tuple in cui ogni tupla è `(value, key)`. Il metodo `items` ci darebbe una lista di tuple `(key, value)`, ma questa volta vogliamo ordinare per valore, non per chiave. Una volta costruita la lista con le tuple valore-chiave, è semplice ordinare la lista in ordine inverso e stamparla.
+Per farlo, creiamo prima una lista di tuple in cui ogni tupla è `(value, key)`. Il metodo `items` ci darebbe una lista di tuple `(key, value)`, ma questa volta vogliamo ordinare per valore, non per chiave. Una volta costruita la lista con le tuple valore-chiave, è semplice ordinarla in ordine inverso e stamparla.
 
 ~~~~ {.python}
 >>> d = {'a':10, 'b':1, 'c':22}
@@ -348,18 +348,18 @@ Per farlo, per prima cosa creiamo una lista di tuple in cui ogni tupla è `(valu
 >>>
 ~~~~
 
-Costruendo con cura la lista di tuple in modo che il valore sia il primo elemento di ogni tupla, possiamo ordinare la lista di tuple e stampare il contenuto del nostro dizionario ordinato per valore.
+Costruendo con cura la lista di tuple in modo che il valore sia il primo elemento di ogni tupla, possiamo ordinarla e stampare il contenuto del dizionario ordinato per valore.
 
 Le parole più comuni
 ---------------------
 
 \index{Romeo e Giulietta}
 
-Tornando al nostro esempio ricorrente, il testo di *Romeo e Giulietta*, atto 2, scena 2, possiamo ampliare il nostro programma perché usi questa tecnica per stampare le dieci parole più comuni del testo, come segue:
+Tornando al nostro esempio ricorrente, il testo di *Romeo e Giulietta*, atto II, scena II, possiamo ampliare il programma perché usi questa tecnica per stampare le dieci parole più comuni del testo, come segue:
 
 \VerbatimInput{../code3/count3.py} 
 
-La prima parte del programma, che legge il file e calcola il dizionario che associa ogni parola al conteggio delle parole nel documento, non è cambiata. Ma invece di stampare semplicemente `counts` e terminare il programma, costruiamo una lista di tuple `(val, key)` e poi ordiniamo la lista in ordine inverso.
+La prima parte del programma, che legge il file e calcola il dizionario che fa corrispondere ogni parola al conteggio delle parole nel documento, non è cambiata. Ma invece di stampare semplicemente `counts` e terminare il programma, costruiamo una lista di tuple `(val, key)` e poi ordiniamo la lista in ordine inverso.
 
 Poiché il valore viene per primo, sarà usato per i confronti. Se c'è più di una tupla con lo stesso valore, verrà esaminato il secondo elemento (la chiave), quindi le tuple con lo stesso valore saranno ordinate ulteriormente secondo l'ordine alfabetico della chiave.
 
@@ -388,9 +388,9 @@ Usare le tuple come chiavi nei dizionari
 \index{tupla!come chiave in un dizionario}
 \index{hashable}
 
-Poiché le tuple sono *hashable* e le liste no, se vogliamo creare una chiave *composta* da usare in un dizionario dobbiamo usare una tupla come chiave.
+Poiché le tuple sono *hashable* e le liste no, se vogliamo creare una chiave *composta* per un dizionario dobbiamo usare come chiave una tupla.
 
-Incontreremmo una chiave composta se volessimo creare una rubrica telefonica che associa coppie cognome-nome a numeri di telefono. Supponendo di aver definito le variabili `last`, `first` e `number`, potremmo scrivere un'istruzione di assegnazione del dizionario come segue:
+Avremmo a che fare con una chiave composta se volessimo creare una rubrica telefonica che fa corrispondere coppie cognome-nome a numeri di telefono. Supponendo di aver definito le variabili `last`, `first` e `number`, potremmo scrivere un'istruzione di assegnazione al dizionario come segue:
 
 ~~~~ {.python}
 directory[last,first] = number
@@ -422,7 +422,7 @@ In molti contesti i diversi tipi di sequenze (stringhe, liste e tuple) possono e
 \index{mutabilità}
 \index{immutabilità}
 
-Per cominciare dall'ovvio, le stringhe sono più limitate delle altre sequenze perché gli elementi devono essere caratteri. Sono anche immutabili. Se ti serve la possibilità di cambiare i caratteri di una stringa (invece di creare una nuova stringa), ti conviene usare piuttosto una lista di caratteri.
+Per cominciare dall'ovvio, le stringhe sono più limitate delle altre sequenze perché gli elementi devono essere caratteri. Sono anche immutabili. Se ti serve poter cambiare i caratteri di una stringa (invece di creare una nuova stringa), ti conviene usare piuttosto una lista di caratteri.
 
 Le liste sono più comuni delle tuple, soprattutto perché sono mutabili. Ma ci sono alcuni casi in cui potresti preferire le tuple:
 
@@ -469,19 +469,19 @@ Debug
 \index{debug}
 \index{struttura di dati}
 \index{errore di forma}
-\index{errore!di forma}
+\index{errore!forma}
 
-Liste, dizionari e tuple sono chiamati genericamente *strutture di dati*; in questo capitolo cominciamo a vedere strutture di dati composte, come liste di tuple e dizionari che contengono tuple come chiavi e liste come valori. Le strutture di dati composte sono utili, ma sono soggette a quelli che io chiamo *errori di forma* (shape error), cioè errori causati da una struttura di dati che ha il tipo, la dimensione o la composizione sbagliati, oppure scrivi del codice, dimentichi la forma dei tuoi dati e introduci un errore. Ad esempio, se ti aspetti una lista con un intero e io ti do un semplice intero (non dentro una lista), non funzionerà.
+Liste, dizionari e tuple sono chiamati genericamente *strutture di dati*; in questo capitolo cominciamo a vedere strutture di dati composte, come liste di tuple e dizionari che contengono tuple come chiavi e liste come valori. Le strutture di dati composte sono utili, ma sono soggette a quelli che io chiamo *errori di forma* (shape error), cioè errori causati da una struttura di dati che ha il tipo, la dimensione o la composizione sbagliati; oppure magari scrivi del codice, dimentichi la forma dei dati e introduci un errore. Ad esempio, se ti aspetti una lista con un solo intero e io ti do un semplice intero (non dentro una lista), non funzionerà.
 
 Glossario
 --------
 
 **Confrontabile**
-: Relativo a un tipo in cui si può controllare se un valore è maggiore, minore o uguale a un altro valore dello stesso tipo. I tipi confrontabili possono essere messi in una lista e ordinati.
+: Relativo a un tipo in cui si può controllare se un valore è maggiore o minore di un altro valore dello stesso tipo, o uguale a esso. I tipi confrontabili possono essere messi in una lista e ordinati.
 \index{confrontabile}
 
 **Struttura di dati**
-: Una raccolta di valori correlati, spesso organizzati in liste, dizionari, tuple, ecc.
+: Una collezione di valori correlati, spesso organizzati in liste, dizionari, tuple, ecc.
 \index{struttura di dati}
 
 **DSU**
@@ -489,15 +489,15 @@ Glossario
 \index{schema DSU}
 
 **Raccolta (gather)**
-: L'operazione di assemblare una tupla di argomenti di lunghezza variabile.
+: L'operazione che assembla una tupla di argomenti di lunghezza variabile.
 \index{raccolta}
 
 **Hashable**
-: Relativo a un tipo che ha una funzione di hash. I tipi immutabili come gli interi, i numeri in virgola mobile e le stringhe sono hashable; i tipi mutabili come le liste e i dizionari non lo sono.
+: Relativo a un tipo che ha una funzione hash. I tipi immutabili come gli interi, i numeri in virgola mobile e le stringhe sono hashable; i tipi mutabili come le liste e i dizionari non lo sono.
 \index{hashable}
 
 **Spacchettamento (scatter)**
-: L'operazione di trattare una sequenza come una lista di argomenti.
+: L'operazione che tratta una sequenza come un elenco di argomenti.
 \index{spacchettamento}
 
 **Forma (di una struttura di dati)**
@@ -535,7 +535,7 @@ Enter a file name: mbox.txt
 zqian@umich.edu 195
 ~~~~
 
-**Esercizio 2:** Questo programma conta la distribuzione delle ore del giorno di ciascuno dei messaggi. Puoi estrarre l'ora dalla riga `"From "` trovando la stringa dell'orario e poi dividendo quella stringa in parti con il carattere dei due punti. Dopo aver accumulato i conteggi per ogni ora, stampa i conteggi, uno per riga, ordinati per ora come mostrato qui sotto.
+**Esercizio 2:** Questo programma conta la distribuzione dei messaggi per ora del giorno. Puoi estrarre l'ora dalla riga `"From "` trovando la stringa dell'orario e poi dividendo quella stringa in parti con il carattere dei due punti. Dopo aver accumulato i conteggi per ogni ora, stampali, uno per riga, ordinati per ora, come mostrato qui sotto.
 
 ~~~~
 python timeofday.py
@@ -556,7 +556,7 @@ Enter a file name: mbox-short.txt
 
 **Esercizio 3:** Scrivi un programma che legga un file e stampi le *lettere* in ordine decrescente di frequenza.
 
-Il tuo programma dovrebbe convertire tutto l'input in minuscolo e contare solo le lettere a-z. Il tuo programma non dovrebbe contare spazi, cifre, segni di punteggiatura o qualsiasi cosa diversa dalle lettere a-z. Trova campioni di testo in diverse lingue e guarda come varia la frequenza delle lettere da una lingua all'altra. Confronta i tuoi risultati con le tabelle su <https://wikipedia.org/wiki/Letter_frequencies>.
+Il programma dovrebbe convertire tutto l'input in minuscolo e contare solo le lettere a-z. Non dovrebbe contare spazi, cifre, segni di punteggiatura o qualsiasi cosa diversa dalle lettere a-z. Trova campioni di testo in diverse lingue e guarda come varia la frequenza delle lettere da una lingua all'altra. Confronta i risultati con le tabelle su <https://wikipedia.org/wiki/Letter_frequencies>.
 
 \index{frequenza delle lettere}
 \index{frequenza!lettera}
