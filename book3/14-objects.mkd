@@ -16,29 +16,29 @@ All'inizio di questo libro abbiamo individuato quattro schemi di base della prog
 
 Nei capitoli successivi abbiamo esplorato le variabili semplici e anche le strutture di dati di tipo collezione, come le liste, le tuple e i dizionari.
 
-Quando costruiamo i programmi, progettiamo strutture di dati e scriviamo il codice che le manipola. Ci sono molti modi di scrivere un programma e a questo punto probabilmente hai scritto alcuni programmi "non così eleganti" e altri "più eleganti". Anche se i tuoi programmi possono essere piccoli, cominci a vedere che nello scrivere codice c'è un po' di arte e di estetica.
+Quando costruiamo i programmi, progettiamo strutture di dati e scriviamo il codice che le manipola. Ci sono molti modi di scrivere un programma e a questo punto probabilmente hai scritto alcuni programmi "non proprio eleganti" e altri "più eleganti". Per quanto piccoli possano essere i tuoi programmi, cominci a vedere che nello scrivere codice c'è un po' di arte e di estetica.
 
-Quando i programmi arrivano a milioni di righe, diventa sempre più importante scrivere codice facile da capire. Se lavori a un programma di un milione di righe, non puoi mai tenerlo tutto a mente nello stesso momento. Ci servono modi per spezzare i programmi grandi in più pezzi più piccoli, così da avere meno cose da esaminare quando risolviamo un problema, correggiamo un bug o aggiungiamo una nuova funzionalità.
+Quando i programmi arrivano a milioni di righe, diventa sempre più importante scrivere codice facile da capire. Se lavori a un programma di un milione di righe, non puoi mai tenerlo tutto a mente nello stesso momento. Ci servono modi per spezzare i programmi grandi in tanti pezzi più piccoli, così da avere meno cose da esaminare quando risolviamo un problema, correggiamo un bug o aggiungiamo una nuova funzionalità.
 
-In un certo senso, la programmazione orientata agli oggetti è un modo di organizzare il codice in cui puoi concentrarti su 50 righe e capirle, ignorando per il momento le altre 999.950.
+In un certo senso, la programmazione orientata agli oggetti è un modo di organizzare il codice così da poterti concentrare su 50 righe e capirle, ignorando per il momento le altre 999.950.
 
 Per cominciare
 ---------------
 
-Come per molti aspetti della programmazione, è necessario imparare i concetti della programmazione orientata agli oggetti prima di poterli usare in modo efficace. Dovresti affrontare questo capitolo come un modo per imparare alcuni termini e concetti e per svolgere qualche esempio semplice, così da gettare le basi per ciò che imparerai in futuro.
+Come per molti aspetti della programmazione, è necessario imparare i concetti della programmazione orientata agli oggetti prima di poterli usare in modo efficace. Dovresti considerare questo capitolo un modo per imparare alcuni termini e concetti e per svolgere qualche esempio semplice, così da gettare le basi per ciò che imparerai in futuro.
 
-Il risultato principale di questo capitolo è una comprensione di base di come si costruiscono gli oggetti, di come funzionano e, soprattutto, di come sfruttiamo le capacità degli oggetti che Python e le librerie Python ci mettono a disposizione.
+Il risultato principale di questo capitolo è capire a grandi linee come si costruiscono gli oggetti, come funzionano e, soprattutto, come sfruttiamo le capacità degli oggetti che Python e le librerie Python ci mettono a disposizione.
 
 Usare gli oggetti
 -------------
 
-In realtà, in questo libro abbiamo sempre usato gli oggetti. Python ci fornisce molti oggetti built-in. Ecco un esempio semplice, in cui le prime righe dovrebbero sembrarti molto facili e naturali.
+In realtà, in questo libro abbiamo sempre usato gli oggetti. Python ci fornisce molti oggetti built-in. Ecco un po' di codice semplice, in cui le prime righe dovrebbero sembrarti molto facili e naturali.
 
 \index{oggetto lista}
 
 \VerbatimInput{../code3/objects.py}
 
-Invece di concentrarci su cosa ottengono queste righe, vediamo cosa succede davvero dal punto di vista della programmazione orientata agli oggetti. Non preoccuparti se alla prima lettura i paragrafi seguenti ti sembrano privi di senso, perché non abbiamo ancora definito tutti questi termini.
+Invece di concentrarci sul risultato di queste righe, vediamo cosa succede davvero dal punto di vista della programmazione orientata agli oggetti. Non preoccuparti se alla prima lettura i paragrafi seguenti ti sembrano privi di senso, perché non abbiamo ancora definito tutti questi termini.
 
 La prima riga *costruisce* un oggetto di tipo `list`, la seconda e la terza riga *chiamano* il *metodo* `append()`, la quarta chiama il metodo `sort()` e la quinta *recupera* l'elemento in posizione 0.
 
@@ -54,7 +54,7 @@ La settima riga è un modo ancora più prolisso di recuperare l'elemento in posi
 print (list.__getitem__(stuff,0))
 ~~~~
 
-In questo codice chiamiamo il metodo `__getitem__` della classe `list` e gli *passiamo* come parametri la lista e l'elemento che vogliamo estrarne.
+In questo codice chiamiamo il metodo `__getitem__` della classe `list` e gli *passiamo* come parametri la lista e l'elemento che vogliamo recuperare dalla lista.
 
 Le ultime tre righe del programma sono equivalenti, ma è più comodo usare semplicemente la sintassi delle parentesi quadre per cercare un elemento in una data posizione di una lista.
 
@@ -103,7 +103,7 @@ Possiamo rappresentare con un disegno questo programma e il modo in cui gli ogge
 
 ![Un programma come rete di oggetti](height=1.50in@../images/program-oo)
 
-Qui l'importante non è capire alla perfezione come funziona questo programma, ma vedere come costruiamo una rete di oggetti che interagiscono e come orchestriamo il movimento delle informazioni tra gli oggetti per creare un programma. È anche importante notare che, quando hai visto quel programma qualche capitolo fa, potevi capire del tutto cosa succedeva senza nemmeno renderti conto che il programma stava "orchestrando il movimento dei dati tra gli oggetti". Erano solo righe di codice che portavano a termine il lavoro.
+Qui l'importante non è capire alla perfezione come funziona questo programma, ma vedere come costruiamo una rete di oggetti che interagiscono e come orchestriamo il movimento delle informazioni tra gli oggetti per creare un programma. È anche importante notare che, quando hai visto quel programma qualche capitolo fa, potevi capire fino in fondo cosa succedeva senza nemmeno renderti conto che il programma stava "orchestrando il movimento dei dati tra gli oggetti". Erano solo righe di codice che portavano a termine il lavoro.
 
 Suddividere un problema
 ---------------------
@@ -112,16 +112,16 @@ Uno dei vantaggi dell'approccio orientato agli oggetti è che può nascondere la
 
 ![Ignorare i dettagli quando si usa un oggetto](height=1.50in@../images/program-oo-code)
 
-Questa capacità di concentrarsi soltanto sulla parte del programma che ci interessa e di ignorare il resto è utile anche agli sviluppatori degli oggetti che usiamo. Ad esempio, i programmatori che sviluppano BeautifulSoup non hanno bisogno di sapere né di preoccuparsi di come recuperiamo la pagina HTML, di quali parti vogliamo leggere o di cosa pensiamo di fare con i dati che estraiamo dalla pagina web.
+Questa possibilità di concentrarsi soltanto sulla parte del programma che ci interessa e di ignorare il resto è utile anche agli sviluppatori degli oggetti che usiamo. Ad esempio, i programmatori che sviluppano BeautifulSoup non hanno bisogno di sapere come recuperiamo la pagina HTML, quali parti vogliamo leggere o cosa pensiamo di fare con i dati che estraiamo dalla pagina web, né di preoccuparsene.
 
 ![Ignorare i dettagli quando si costruisce un oggetto](height=1.50in@../images/program-oo-bs4)
 
 Il nostro primo oggetto Python
 -----------------------
 
-A un livello elementare, un oggetto è semplicemente un insieme di codice e di strutture di dati più piccolo di un programma intero. Definire una funzione ci permette di memorizzare un po' di codice, di dargli un nome e di invocarlo poi con il nome della funzione.
+A livello elementare, un oggetto è semplicemente un insieme di codice e di strutture di dati più piccolo di un programma intero. Definire una funzione ci permette di memorizzare un po' di codice, di dargli un nome e di invocarlo poi con il nome della funzione.
 
-Un oggetto può contenere un certo numero di funzioni (che chiamiamo *metodi*) e anche i dati usati da quelle funzioni. Chiamiamo *attributi* i dati che fanno parte dell'oggetto.
+Un oggetto può contenere diverse funzioni (che chiamiamo *metodi*) e anche i dati usati da quelle funzioni. Chiamiamo *attributi* i dati che fanno parte dell'oggetto.
 
 \index{parola chiave!class}
 
@@ -176,7 +176,7 @@ Quando si chiama il metodo `party`, il primo parametro (che per convenzione chia
 self.x = self.x + 1
 ~~~~
 
-Questa sintassi con l'operatore *punto* significa "la `x` dentro `self`". Ogni volta che viene chiamato `party()`, il valore interno `x` viene incrementato di 1 e poi stampato.
+Questa sintassi con l'operatore *punto* significa "la `x` dentro `self`". Ogni volta che viene chiamato `party()`, il valore interno di `x` viene incrementato di 1 e poi stampato.
 
 La riga seguente è un altro modo di chiamare il metodo `party` dell'oggetto `an`:
 
@@ -184,7 +184,7 @@ La riga seguente è un altro modo di chiamare il metodo `party` dell'oggetto `an
 PartyAnimal.party(an)
 ~~~~
 
-In questa variante accediamo al codice dall'interno della classe e passiamo esplicitamente il puntatore all'oggetto, `an`, come primo parametro (cioè come `self` all'interno del metodo). Puoi pensare ad `an.party()` come a un'abbreviazione della riga precedente.
+In questa variante accediamo al codice che sta all'interno della classe e passiamo esplicitamente il puntatore all'oggetto, `an`, come primo parametro (cioè come `self` all'interno del metodo). Puoi pensare ad `an.party()` come a un'abbreviazione della riga precedente.
 
 Quando viene eseguito, il programma produce l'output seguente:
 
@@ -227,7 +227,7 @@ Ciclo di vita di un oggetto
 \index{distruttore}
 \index{ciclo di vita di un oggetto}
 
-Negli esempi precedenti definiamo una classe (il modello), la usiamo per creare un'istanza della classe (l'oggetto) e poi usiamo l'istanza. Quando il programma finisce, tutte le variabili vengono scartate. Di solito non pensiamo molto alla creazione e alla distruzione delle variabili, ma spesso, quando gli oggetti diventano più complessi, dobbiamo compiere qualche azione all'interno dell'oggetto per preparare le cose quando l'oggetto viene costruito e, magari, per fare pulizia quando viene scartato.
+Negli esempi precedenti definiamo una classe (il modello), la usiamo per creare un'istanza della classe (l'oggetto) e poi usiamo l'istanza. Quando il programma finisce, tutte le variabili vengono scartate. Di solito non pensiamo molto alla creazione e alla distruzione delle variabili, ma spesso, quando gli oggetti diventano più complessi, dobbiamo fare qualcosa all'interno dell'oggetto per preparare tutto quando l'oggetto viene costruito e, magari, per fare pulizia quando viene scartato.
 
 Se vogliamo che l'oggetto si accorga dei momenti della costruzione e della distruzione, gli aggiungiamo dei metodi con un nome speciale:
 
@@ -249,7 +249,7 @@ Mentre costruisce l'oggetto, Python chiama il metodo `__init__` per darci la pos
 an = 42
 ~~~~
 
-In realtà "butta via l'oggetto", così da poter riutilizzare la variabile `an` per memorizzare il valore `42`. Proprio nel momento in cui l'oggetto `an` viene "distrutto", viene chiamato il codice del distruttore (`__del__`). Non possiamo impedire che la variabile venga distrutta, ma possiamo fare tutta la pulizia necessaria subito prima che l'oggetto smetta di esistere.
+in realtà "butta via l'oggetto", così da poter riutilizzare la variabile `an` per memorizzare il valore `42`. Proprio nel momento in cui l'oggetto `an` viene "distrutto", viene chiamato il codice del distruttore (`__del__`). Non possiamo impedire che la variabile venga distrutta, ma possiamo fare tutta la pulizia necessaria subito prima che l'oggetto smetta di esistere.
 
 Quando si sviluppano oggetti, capita molto spesso di aggiungere a un oggetto un costruttore che ne imposti i valori iniziali. È relativamente raro che a un oggetto serva un distruttore.
 
@@ -288,7 +288,7 @@ Ereditarietà
 -----------
 
 \index{oggetto!ereditarietà}
-Un'altra caratteristica potente della programmazione orientata agli oggetti è la possibilità di creare una nuova classe estendendone una esistente. Quando estendiamo una classe, chiamiamo la classe originale *classe genitore* e la nuova classe *classe figlia*.
+Un'altra caratteristica potente della programmazione orientata agli oggetti è la possibilità di creare una nuova classe estendendone una esistente. Quando estendiamo una classe, chiamiamo la classe originale *classe padre* (parent class) e la nuova classe *classe figlia* (child class).
 
 Per questo esempio spostiamo la classe `PartyAnimal` in un file a sé. Poi possiamo "importare" la classe `PartyAnimal` in un nuovo file ed estenderla, come segue:
 
@@ -305,7 +305,7 @@ Nel metodo `__init__()` della classe `CricketFan` usiamo una sintassi speciale p
 ~~~~
 
 \index{superclasse}
-La sintassi `super()` dice a Python di chiamare il metodo `__init__` della classe che estendiamo. `PartyAnimal` è la superclasse (o classe genitore) e `CricketFan` è la sottoclasse (o classe figlia).
+La sintassi `super()` dice a Python di chiamare il metodo `__init__` della classe che estendiamo. `PartyAnimal` è la superclasse (o classe padre) e `CricketFan` è la sottoclasse (o classe figlia).
 
 Durante l'esecuzione del programma creiamo `s` e `j` come istanze indipendenti di `PartyAnimal` e di `CricketFan`. L'oggetto `j` ha delle capacità in più rispetto all'oggetto `s`.
 
@@ -320,16 +320,16 @@ Jim points 6
 'name', 'party', 'points', 'six', 'x']
 ~~~~
 
-Nell'output di `dir` per l'oggetto `j` (istanza della classe `CricketFan`) vediamo che ha gli attributi e i metodi della classe genitore e anche quelli aggiunti quando la classe è stata estesa per creare la classe `CricketFan`.
+Nell'output di `dir` per l'oggetto `j` (istanza della classe `CricketFan`) vediamo che ha gli attributi e i metodi della classe padre e anche quelli aggiunti quando la classe è stata estesa per creare la classe `CricketFan`.
 
 Riepilogo
 -------
 
-Questa è un'introduzione molto rapida alla programmazione orientata agli oggetti, che si concentra soprattutto sulla terminologia e sulla sintassi per definire e usare gli oggetti. Riesaminiamo velocemente il codice che abbiamo visto all'inizio del capitolo. A questo punto dovresti capire del tutto cosa succede.
+Questa è un'introduzione molto rapida alla programmazione orientata agli oggetti, che si concentra soprattutto sulla terminologia e sulla sintassi per definire e usare gli oggetti. Riesaminiamo velocemente il codice che abbiamo visto all'inizio del capitolo. A questo punto dovresti capire fino in fondo cosa succede.
 
 \VerbatimInput{../code3/objects.py}
 
-La prima riga costruisce un *oggetto* `list`. Quando crea l'oggetto `list`, Python chiama il metodo *costruttore* (di nome `__init__`) per impostare gli attributi di dati interni che verranno usati per memorizzare i dati della lista. Non abbiamo passato nessun parametro al *costruttore*. Quando il costruttore termina, usiamo la variabile `stuff` per puntare all'istanza della classe `list` che ci viene restituita.
+La prima riga costruisce un *oggetto* `list`. Quando crea l'oggetto `list`, Python chiama il metodo *costruttore* (di nome `__init__`) per impostare gli attributi dati interni che verranno usati per memorizzare i dati della lista. Non abbiamo passato nessun parametro al *costruttore*. Quando il costruttore termina, usiamo la variabile `stuff` per puntare all'istanza della classe `list` che ci viene restituita.
 
 La seconda e la terza riga chiamano il metodo `append` con un parametro, per aggiungere un nuovo elemento in fondo alla lista aggiornando gli attributi all'interno di `stuff`. Poi, nella quarta riga, chiamiamo il metodo `sort` senza parametri per ordinare i dati all'interno dell'oggetto `stuff`.
 
@@ -351,7 +351,7 @@ Glossario
 \index{classe}
 
 **Classe figlia**
-: Una nuova classe creata quando si estende una classe genitore. La classe figlia eredita tutti gli attributi e i metodi della classe genitore.
+: Una nuova classe creata quando si estende una classe padre. La classe figlia eredita tutti gli attributi e i metodi della classe padre.
 \index{classe figlia}
 
 **Costruttore**
@@ -363,11 +363,11 @@ Glossario
 \index{distruttore}
 
 **Ereditarietà**
-: La creazione di una nuova classe (figlia) che estende una classe esistente (genitore). La classe figlia ha tutti gli attributi e i metodi della classe genitore, più gli altri attributi e metodi definiti dalla classe figlia.
+: La creazione di una nuova classe (figlia) che estende una classe esistente (padre). La classe figlia ha tutti gli attributi e i metodi della classe padre, più gli altri attributi e metodi definiti dalla classe figlia.
 \index{ereditarietà}
 
 **Metodo**
-: Una funzione contenuta in una classe e negli oggetti costruiti dalla classe. Alcuni schemi orientati agli oggetti usano "messaggio" invece di "metodo" per descrivere questo concetto.
+: Una funzione contenuta in una classe e negli oggetti costruiti a partire dalla classe. Alcuni schemi orientati agli oggetti usano "messaggio" invece di "metodo" per descrivere questo concetto.
 \index{metodo}
 \index{messaggio}
 
@@ -375,6 +375,6 @@ Glossario
 : Un'istanza costruita a partire da una classe. Un oggetto contiene tutti gli attributi e i metodi definiti dalla classe. Alcuni documenti sulla programmazione orientata agli oggetti usano il termine "istanza" in modo intercambiabile con "oggetto".
 \index{oggetto}
 
-**Classe genitore**
-: La classe che viene estesa per creare una nuova classe figlia. La classe genitore fornisce tutti i suoi metodi e attributi alla nuova classe figlia.
-\index{classe genitore}
+**Classe padre**
+: La classe che viene estesa per creare una nuova classe figlia. La classe padre fornisce tutti i suoi metodi e attributi alla nuova classe figlia.
+\index{classe padre}
