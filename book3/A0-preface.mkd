@@ -10,21 +10,21 @@ Crediti
 Cronologia di stampa
 ----------------
 
-* 1° gennaio 2024 Esempi aggiornati a Python 3.12, rimossi i riferimenti alle API di Twitter, riscritto il capitolo sui database
-* 29 giugno 2023 Inserite molte correzioni, passaggio dalle API di Google alle API di OpenStreetMap
-* 5 luglio 2016 Prima versione completa per Python 3.0
-* 20 dicembre 2015 Prima conversione approssimativa a Python 3.0
+* 1° gennaio 2024 — Esempi aggiornati a Python 3.12, rimossi i riferimenti alle API di Twitter, riscritto il capitolo sui database
+* 29 giugno 2023 — Inserite molte correzioni, passaggio dalle API di Google alle API di OpenStreetMap
+* 5 luglio 2016 — Prima versione completa per Python 3.0
+* 20 dicembre 2015 — Prima conversione approssimativa a Python 3.0
 
 Dettagli sul copyright
 -----------------
 
 Copyright 2009- Dr. Charles R. Severance.
 
-Quest'opera è rilasciata sotto licenza Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License. La licenza è disponibile all'indirizzo
+Quest'opera è distribuita con licenza Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported. La licenza è disponibile all'indirizzo
 
 http://creativecommons.org/licenses/by-nc-sa/3.0/
 
-Nell'appendice intitolata "Dettagli sul copyright" puoi vedere quali usi di questo materiale l'autore considera commerciali e non commerciali, e quali esenzioni dalla licenza concede.
+Nell'appendice intitolata "Dettagli sul copyright" puoi vedere quali usi di questo materiale l'autore considera commerciali e non commerciali, e quali deroghe alla licenza concede.
 
 \cleardoublepage
 
@@ -34,21 +34,21 @@ Prefazione
 Il remix di un libro aperto
 ---------------------
 
-È abbastanza naturale che gli accademici, che si sentono dire continuamente "pubblica o muori", vogliano sempre creare da zero un'opera nuova e tutta loro. Questo libro è un esperimento: non partire da zero, ma "remixare" il libro intitolato *Think Python: How to Think Like a Computer Scientist*, scritto da Allen B. Downey, Jeff Elkner e altri.
+Per gli accademici, che si sentono ripetere di continuo "pubblica o muori", è abbastanza naturale voler sempre creare da zero un'opera nuova e tutta loro. Questo libro è un esperimento: non partire da zero, ma "remixare" il libro intitolato *Think Python: How to Think Like a Computer Scientist*, scritto da Allen B. Downey, Jeff Elkner e altri.
 
-Nel dicembre del 2009 mi stavo preparando a tenere il corso *SI502 - Networked Programming* all'Università del Michigan per il quinto semestre consecutivo e decisi che era il momento di scrivere un libro di testo su Python che si concentrasse sull'esplorazione dei dati invece che sulla comprensione di algoritmi e astrazioni. Il mio obiettivo in SI502 è insegnare, con Python, competenze di gestione dei dati che servano per tutta la vita. Pochi dei miei studenti pensavano di diventare programmatori professionisti. Pensavano invece di diventare bibliotecari, manager, avvocati, biologi, economisti e così via, e volevano anche usare con abilità la tecnologia nel campo che avevano scelto.
+Nel dicembre del 2009 mi stavo preparando a tenere il corso *SI502 - Networked Programming* all'Università del Michigan per il quinto semestre consecutivo e decisi che era il momento di scrivere un libro di testo su Python che si concentrasse sull'esplorazione dei dati invece che sulla comprensione di algoritmi e astrazioni. Il mio obiettivo in SI502 è insegnare, usando Python, a gestire i dati: competenze che servono per tutta la vita. Pochi dei miei studenti pensavano di diventare programmatori professionisti. Pensavano invece di diventare bibliotecari, manager, avvocati, biologi, economisti e così via: persone che volevano usare con abilità la tecnologia nel campo che avevano scelto.
 
-Non riuscivo mai a trovare il libro su Python perfettamente orientato ai dati che serviva al mio corso, così decisi di scriverne uno. Per fortuna, in una riunione di facoltà, tre settimane prima che cominciassi a scrivere da zero il nuovo libro durante le vacanze, il Dr. Atul Prakash mi mostrò il libro *Think Python*, che quel semestre aveva usato per il suo corso di Python. È un testo di informatica ben scritto, incentrato su spiegazioni brevi e dirette e sulla facilità di apprendimento.
+Non riuscivo mai a trovare il libro su Python orientato ai dati perfetto per il mio corso, così decisi di scriverlo io. Per fortuna, a una riunione dei docenti, tre settimane prima che cominciassi a scrivere da zero il nuovo libro durante le vacanze, il Dr. Atul Prakash mi mostrò il libro *Think Python*, che quel semestre aveva usato per il suo corso di Python. È un testo di informatica ben scritto, incentrato su spiegazioni brevi e dirette e sulla facilità di apprendimento.
 
 La struttura complessiva del libro è stata modificata per arrivare il più presto possibile a risolvere problemi di analisi dei dati e per avere, fin dall'inizio, una serie di esempi ed esercizi ricorrenti sull'analisi dei dati.
 
-I capitoli 2–10 sono simili al libro *Think Python*, ma ci sono stati cambiamenti importanti. Gli esempi e gli esercizi orientati ai numeri sono stati sostituiti da esercizi orientati ai dati. Gli argomenti sono presentati nell'ordine che serve per costruire soluzioni di analisi dei dati via via più sofisticate. Alcuni argomenti, come `try` ed `except`, sono stati anticipati e presentati nel capitolo sull'esecuzione condizionale. Le funzioni sono trattate in modo molto leggero finché non servono a gestire la complessità dei programmi, invece di essere introdotte presto come lezione di astrazione. Quasi tutte le funzioni definite dall'utente sono state tolte dal codice degli esempi e dagli esercizi, tranne che nel Capitolo 4. La parola "ricorsione"^[Tranne, ovviamente, in questa riga.] non compare mai nel libro.
+I capitoli 2–10 sono simili al libro *Think Python*, ma ci sono stati cambiamenti importanti. Gli esempi e gli esercizi orientati ai numeri sono stati sostituiti da esercizi orientati ai dati. Gli argomenti sono presentati nell'ordine che serve per costruire soluzioni di analisi dei dati via via più sofisticate. Alcuni argomenti, come `try` ed `except`, sono stati anticipati e presentati nel capitolo sull'esecuzione condizionale. Le funzioni sono trattate molto brevemente finché non servono a gestire la complessità dei programmi, invece di essere introdotte subito come lezione di astrazione. Quasi tutte le funzioni definite dall'utente sono state tolte dal codice degli esempi e dagli esercizi, tranne che nel Capitolo 4. La parola "ricorsione"^[Tranne, ovviamente, in questa riga.] non compare mai nel libro.
 
 Nei capitoli 1 e 11–16 tutto il materiale è nuovo di zecca e si concentra sugli usi reali di Python per l'analisi dei dati e su esempi semplici: le espressioni regolari per cercare e analizzare, l'automazione di attività sul computer, il recupero di dati attraverso la rete, lo scraping di pagine web per estrarne dati, la programmazione orientata agli oggetti, l'uso dei servizi web, l'analisi di dati XML e JSON, la creazione e l'uso di database con lo Structured Query Language e la visualizzazione dei dati.
 
 L'obiettivo finale di tutti questi cambiamenti è spostare l'attenzione dall'informatica teorica (Computer Science) all'informatica applicata (Informatics) e includere in un primo corso di tecnologia solo argomenti che possano tornare utili anche a chi sceglie di non diventare programmatore professionista.
 
-Gli studenti che trovano interessante questo libro e vogliono approfondire dovrebbero leggere *Think Python* di Allen B. Downey. Poiché i due libri si sovrappongono molto, gli studenti acquisiranno rapidamente le competenze nelle aree in più della programmazione tecnica e del pensiero algoritmico che *Think Python* tratta. E dato che i due libri hanno uno stile di scrittura simile, dovrebbero riuscire a leggere *Think Python* rapidamente e con il minimo sforzo.
+Gli studenti che trovano interessante questo libro e vogliono approfondire dovrebbero dare un'occhiata a *Think Python* di Allen B. Downey. Poiché i due libri si sovrappongono molto, gli studenti acquisiranno rapidamente competenze negli ambiti che *Think Python* tratta in più: la programmazione tecnica e il pensiero algoritmico. E dato che i due libri hanno uno stile di scrittura simile, dovrebbero riuscire a leggere *Think Python* rapidamente e con il minimo sforzo.
 
 \index{licenza Creative Commons}
 \index{CC-BY-SA}
@@ -56,7 +56,7 @@ Gli studenti che trovano interessante questo libro e vogliono approfondire dovre
 
 In quanto detentore del copyright di *Think Python*, Allen mi ha dato il permesso di cambiare la licenza delle parti del suo libro rimaste in questo, dalla GNU Free Documentation License alla più recente licenza Creative Commons Attribution — Share Alike. Questo cambio segue una tendenza generale delle licenze per la documentazione aperta, che si stanno spostando dalla GFDL alla CC-BY-SA (ad esempio Wikipedia). La licenza CC-BY-SA mantiene la solida tradizione copyleft del libro e allo stesso tempo rende ancora più semplice per i nuovi autori riutilizzare questo materiale come meglio credono.
 
-Ritengo che questo libro sia un esempio di quanto i materiali aperti siano importanti per il futuro della formazione e voglio ringraziare Allen B. Downey e la Cambridge University Press per la loro lungimirante decisione di rendere il libro disponibile con un copyright aperto. Spero che siano soddisfatti dei risultati del mio impegno e mi auguro che tu, lettore, sia soddisfatto del *nostro* impegno collettivo.
+Ritengo che questo libro sia un esempio di quanto i materiali aperti siano importanti per il futuro della formazione e voglio ringraziare Allen B. Downey e la Cambridge University Press per la loro lungimirante decisione di rendere il libro disponibile con un copyright aperto. Spero che siano soddisfatti del risultato dei miei sforzi e mi auguro che tu, lettore, sia soddisfatto del *nostro* sforzo collettivo.
 
 Vorrei ringraziare Allen B. Downey e Lauren Cowles per l'aiuto, la pazienza e la guida nell'affrontare e risolvere le questioni di copyright legate a questo libro.
 
@@ -65,4 +65,4 @@ www.dr-chuck.com\
 Ann Arbor, MI, USA\
 9 settembre 2013
 
-Charles Severance è Clinical Associate Professor presso l'Università del Michigan - School of Information.
+Charles Severance è Clinical Associate Professor presso la School of Information dell'Università del Michigan.
