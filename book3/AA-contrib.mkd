@@ -7,15 +7,15 @@ Traduzioni
 
 Questo libro è stato tradotto in diverse lingue: puoi trovare le traduzioni all'indirizzo https://www.py4e.com/book.
 
-* Spagnolo - Python para todos: Explorando la información con Python 3 - Libro tradotto, correttori automatici, risorse e sito web all'indirizzo https://es.py4e.com Collaboratori: Juan Carlos Perez Castellanos, Juan Dougnac, Daniel Merino Echeverría, Jaime Bermeo Ramírez e Fernando Tardío.
+* Spagnolo - Python para todos: Explorando la información con Python 3 - Libro tradotto, correttori automatici, risorse e sito web all'indirizzo https://es.py4e.com - Collaboratori: Juan Carlos Perez Castellanos, Juan Dougnac, Daniel Merino Echeverría, Jaime Bermeo Ramírez e Fernando Tardío
 
-* Italiano - Python per tutti: Esplorare dati con Python3 Collaboratori: Alessandro Rossetti e Vittore Zen
+* Italiano - Python per tutti: Esplorare dati con Python3 - Collaboratori: Alessandro Rossetti e Vittore Zen
 
-* Portoghese - Python Para Todos: Explorando Dados com Python 3 Traduzione: Yuri Loia de Medeiros
+* Portoghese - Python Para Todos: Explorando Dados com Python 3 - Traduzione: Yuri Loia de Medeiros
 
-* Polacco - Python dla wszystkich: Odkrywanie danych z Python 3 Libro tradotto, correttori automatici, risorse e sito web all'indirizzo https://py4e.pl Traduzione: Andrzej Wójtowicz (Adam Mickiewicz University di Poznań, Polonia)
+* Polacco - Python dla wszystkich: Odkrywanie danych z Python 3 - Libro tradotto, correttori automatici, risorse e sito web all'indirizzo https://py4e.pl - Traduzione: Andrzej Wójtowicz (Università Adam Mickiewicz di Poznań, Polonia)
 
-* Greco - Libro tradotto, correttori automatici, risorse e sito web all'indirizzo https://gr.py4e.com Traduzione: Konstantia Kiourtidou
+* Greco - Libro tradotto, correttori automatici, risorse e sito web all'indirizzo https://gr.py4e.com - Traduzione: Konstantia Kiourtidou
 
 * Arabo - Traduzione: Electronics Go
 
@@ -59,30 +59,30 @@ Prefazione di "Think Python"
 
 Nel gennaio 1999 mi stavo preparando a tenere un corso introduttivo di programmazione in Java. Lo avevo già tenuto tre volte e cominciavo a sentirmi frustrato. La percentuale di bocciati era troppo alta e, anche tra gli studenti che lo superavano, il livello complessivo di preparazione era troppo basso.
 
-Uno dei problemi che avevo notato erano i libri. Erano troppo voluminosi, con troppi dettagli inutili su Java e troppo poche indicazioni di alto livello su come programmare. E soffrivano tutti dell'effetto botola: all'inizio erano facili, procedevano gradualmente e poi, più o meno verso il Capitolo 5, si apriva la botola. Gli studenti ricevevano troppo materiale nuovo, troppo in fretta, e io passavo il resto del semestre a raccogliere i cocci.
+Uno dei problemi che avevo notato erano i libri. Erano troppo voluminosi, con troppi dettagli inutili su Java e troppo poche indicazioni di alto livello su come programmare. E soffrivano tutti dell'effetto botola: all'inizio erano facili, procedevano gradualmente e poi, verso il Capitolo 5, si apriva la botola. Gli studenti ricevevano troppo materiale nuovo, troppo in fretta, e io passavo il resto del semestre a raccogliere i cocci.
 
 Due settimane prima del primo giorno di lezione decisi di scrivere un libro mio. I miei obiettivi erano:
 
 -   Essere breve. È meglio che gli studenti leggano 10 pagine piuttosto che non ne leggano 50.
 
--   Prestare attenzione al vocabolario. Ho cercato di ridurre al minimo il gergo e di definire ogni termine al primo uso.
+-   Prestare attenzione al vocabolario. Cercai di ridurre al minimo il gergo e di definire ogni termine al primo uso.
 
--   Procedere per gradi. Per evitare le botole, ho preso gli argomenti più difficili e li ho divisi in una serie di piccoli passi.
+-   Procedere per gradi. Per evitare le botole, presi gli argomenti più difficili e li divisi in una serie di piccoli passi.
 
--   Concentrarsi sulla programmazione, non sul linguaggio di programmazione. Ho incluso il minimo sottoinsieme utile di Java e ho tralasciato il resto.
+-   Concentrarsi sulla programmazione, non sul linguaggio di programmazione. Inclusi il minimo sottoinsieme utile di Java e tralasciai il resto.
 
 Mi serviva un titolo, così d'impulso scelsi *How to Think Like a Computer Scientist*.
 
-La prima versione era grezza, ma funzionava. Gli studenti leggevano e capivano abbastanza da permettermi di dedicare le ore di lezione agli argomenti difficili, a quelli interessanti e (cosa più importante) a far fare pratica agli studenti.
+La prima versione era grezza, ma funzionava. Gli studenti leggevano e capivano abbastanza da permettermi di dedicare le ore di lezione agli argomenti difficili, a quelli interessanti e (cosa più importante) a farli esercitare.
 
-Pubblicai il libro con la GNU Free Documentation License, che permette agli utenti di copiare, modificare e distribuire il libro.
+Pubblicai il libro con la GNU Free Documentation License, che permette agli utenti di copiarlo, modificarlo e distribuirlo.
 
 \index{GNU Free Documentation License}
-\index{Free Documentation License, GNU}
+\index{Free Documentation License!GNU}
 
-Quello che successe dopo fu la parte più bella. Jeff Elkner, un insegnante di scuola superiore in Virginia, adottò il mio libro e lo tradusse in Python. Mi mandò una copia della sua traduzione ed ebbi l'insolita esperienza di imparare Python leggendo il mio stesso libro.
+Quello che successe dopo è la parte più bella. Jeff Elkner, un insegnante di scuola superiore in Virginia, adottò il mio libro e lo tradusse in Python. Mi mandò una copia della sua traduzione ed ebbi l'insolita esperienza di imparare Python leggendo il mio stesso libro.
 
-Jeff e io rivedemmo il libro, vi includemmo un caso di studio di Chris Meyers e nel 2001 pubblicammo *How to Think Like a Computer Scientist: Learning with Python*, anch'esso con la GNU Free Documentation License. Come Green Tea Press, pubblicai il libro e cominciai a venderne copie stampate tramite Amazon.com e le librerie dei college. Altri libri di Green Tea Press sono disponibili su [greenteapress.com](greenteapress.com).
+Jeff e io rivedemmo il libro, vi includemmo un caso di studio di Chris Meyers e nel 2001 pubblicammo *How to Think Like a Computer Scientist: Learning with Python*, anch'esso con la GNU Free Documentation License. Con il marchio Green Tea Press pubblicai il libro e cominciai a venderne copie cartacee tramite Amazon.com e le librerie universitarie. Altri libri di Green Tea Press sono disponibili su [greenteapress.com](https://greenteapress.com).
 
 Nel 2003 cominciai a insegnare all'Olin College e per la prima volta ebbi modo di insegnare Python. Il contrasto con Java era impressionante. Gli studenti avevano meno difficoltà, imparavano di più, lavoravano a progetti più interessanti e, in generale, si divertivano molto di più.
 
@@ -101,7 +101,7 @@ Ringrazio anche Chris Meyers, che ha scritto diverse sezioni di *How to Think Li
 E ringrazio la Free Software Foundation per aver sviluppato la GNU Free Documentation License, che ha contribuito a rendere possibile la mia collaborazione con Jeff e Chris.
 
 \index{GNU Free Documentation License}
-\index{Free Documentation License, GNU}
+\index{Free Documentation License!GNU}
 
 Ringrazio anche i redattori di Lulu che hanno lavorato a *How to Think Like a Computer Scientist*.
 
@@ -121,8 +121,8 @@ Elenco dei collaboratori di "Think Python"
 
 (Allen B. Downey)
 
-Negli ultimi anni più di 100 lettori attenti e riflessivi hanno inviato suggerimenti e correzioni. Il loro contributo e il loro entusiasmo per questo progetto sono stati di grande aiuto.
+Negli ultimi anni più di 100 lettori premurosi e dall'occhio acuto hanno inviato suggerimenti e correzioni. Il loro contributo e il loro entusiasmo per questo progetto sono stati di grande aiuto.
 
 Per i dettagli sul contributo di ciascuna di queste persone, consulta il testo di "Think Python".
 
-Lloyd Hugh Allen, Yvon Boulianne, Fred Bremmer, Jonah Cohen, Michael Conlon, Benoit Girard, Courtney Gleason e Katherine Smith, Lee Harr, James Kaylin, David Kershaw, Eddie Lam, Man-Yong Lee, David Mayo, Chris McAloon, Matthew J. Moelter, Simon Dicon Montford, John Ouzts, Kevin Parks, David Pool, Michael Schmitt, Robin Shaw, Paul Sleigh, Craig T. Snydal, Ian Thomas, Keith Verheyden, Peter Winstanley, Chris Wrobel, Moshe Zadka, Christoph Zwerschke, James Mayer, Hayden McAfee, Angel Arnal, Tauhidul Hoque e Lex Berezhny, Dr. Michele Alzetta, Andy Mitchell, Kalin Harvey, Christopher P. Smith, David Hutchins, Gregor Lingl, Julie Peters, Florin Oprina, D. J. Webre, Ken, Ivo Wever, Curtis Yanko, Ben Logan, Jason Armstrong, Louis Cordier, Brian Cain, Rob Black, Jean-Philippe Rey dell'Ecole Centrale Paris, Jason Mader della George Washington University made a number Jan Gundtofte-Bruun, Abel David e Alexis Dinno, Charles Thayer, Roger Sperberg, Sam Bull, Andrew Cheung, C. Corey Capel, Alessandra, Wim Champagne, Douglas Wright, Jared Spindor, Lin Peiheng, Ray Hagtvedt, Torsten Hübsch, Inga Petuhhov, Arne Babenhauserheide, Mark E. Casida, Scott Tyler, Gordon Shephard, Andrew Turner, Adam Hobart, Daryl Hammond e Sarah Zimmerman, George Sass, Brian Bingham, Leah Engelbert-Fenton, Joe Funke, Chao-chao Chen, Jeff Paine, Lubos Pintes, Gregg Lind e Abigail Heithoff, Max Hailperin, Chotipat Pornavalai, Stanislaw Antol, Eric Pashman, Miguel Azevedo, Jianhua Liu, Nick King, Martin Zuther, Adam Zimmerman, Ratnakar Tiwari, Anurag Goel, Kelli Kratzer, Mark Griffiths, Roydan Ongie, Patryk Wolowiec, Mark Chonofsky, Russell Coleman, Wei Huang, Karen Barber, Nam Nguyen, Stéphane Morin, Fernando Tardio e Paul Stoop.
+Lloyd Hugh Allen, Yvon Boulianne, Fred Bremmer, Jonah Cohen, Michael Conlon, Benoit Girard, Courtney Gleason e Katherine Smith, Lee Harr, James Kaylin, David Kershaw, Eddie Lam, Man-Yong Lee, David Mayo, Chris McAloon, Matthew J. Moelter, Simon Dicon Montford, John Ouzts, Kevin Parks, David Pool, Michael Schmitt, Robin Shaw, Paul Sleigh, Craig T. Snydal, Ian Thomas, Keith Verheyden, Peter Winstanley, Chris Wrobel, Moshe Zadka, Christoph Zwerschke, James Mayer, Hayden McAfee, Angel Arnal, Tauhidul Hoque e Lex Berezhny, Dr. Michele Alzetta, Andy Mitchell, Kalin Harvey, Christopher P. Smith, David Hutchins, Gregor Lingl, Julie Peters, Florin Oprina, D. J. Webre, Ken, Ivo Wever, Curtis Yanko, Ben Logan, Jason Armstrong, Louis Cordier, Brian Cain, Rob Black, Jean-Philippe Rey dell'École Centrale Paris, Jason Mader della George Washington University, Jan Gundtofte-Bruun, Abel David e Alexis Dinno, Charles Thayer, Roger Sperberg, Sam Bull, Andrew Cheung, C. Corey Capel, Alessandra, Wim Champagne, Douglas Wright, Jared Spindor, Lin Peiheng, Ray Hagtvedt, Torsten Hübsch, Inga Petuhhov, Arne Babenhauserheide, Mark E. Casida, Scott Tyler, Gordon Shephard, Andrew Turner, Adam Hobart, Daryl Hammond e Sarah Zimmerman, George Sass, Brian Bingham, Leah Engelbert-Fenton, Joe Funke, Chao-chao Chen, Jeff Paine, Lubos Pintes, Gregg Lind e Abigail Heithoff, Max Hailperin, Chotipat Pornavalai, Stanislaw Antol, Eric Pashman, Miguel Azevedo, Jianhua Liu, Nick King, Martin Zuther, Adam Zimmerman, Ratnakar Tiwari, Anurag Goel, Kelli Kratzer, Mark Griffiths, Roydan Ongie, Patryk Wolowiec, Mark Chonofsky, Russell Coleman, Wei Huang, Karen Barber, Nam Nguyen, Stéphane Morin, Fernando Tardio e Paul Stoop.
