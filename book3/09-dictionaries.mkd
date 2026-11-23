@@ -3,14 +3,13 @@ Dizionari
 ============
 
 \index{dizionario}
-\index{dizionario}
 
 \index{tipo!dict}
 \index{chiave}
 \index{coppia chiave-valore}
 \index{indice}
 
-Un *dizionario* è come una lista, ma più generale. In una lista le posizioni degli indici devono essere numeri interi; in un dizionario gli indici possono essere di (quasi) qualsiasi tipo.
+Un *dizionario* è come una lista, ma più generale. In una lista gli indici devono essere numeri interi; in un dizionario possono essere di (quasi) qualsiasi tipo.
 
 Puoi pensare a un dizionario come a una mappatura tra un insieme di indici (chiamati *chiavi*) e un insieme di valori. Ogni chiave corrisponde a un valore. L'associazione tra una chiave e un valore è chiamata *coppia chiave-valore* o, a volte, *elemento*.
 
@@ -95,7 +94,7 @@ True
 False
 ~~~~
 
-Per vedere se qualcosa compare come valore in un dizionario, puoi usare il metodo `values`, che restituisce i valori in un tipo che si può convertire in una lista, e poi usare l'operatore `in`:
+Per vedere se qualcosa compare come valore in un dizionario, puoi usare il metodo `values`, che restituisce i valori sotto forma di un tipo che si può convertire in una lista, e poi usare l'operatore `in`:
 
 \index{metodo values}
 \index{metodo!values}
@@ -106,7 +105,7 @@ Per vedere se qualcosa compare come valore in un dizionario, puoi usare il metod
 True
 ~~~~
 
-L'operatore `in` usa algoritmi diversi per le liste e per i dizionari. Per le liste usa un algoritmo di ricerca lineare. Man mano che la lista si allunga, il tempo di ricerca si allunga in modo direttamente proporzionale alla lunghezza della lista. Per i dizionari, Python usa un algoritmo chiamato *tabella hash* (hash table), che ha una proprietà notevole: l'operatore `in` impiega circa lo stesso tempo, non importa quanti elementi ci siano in un dizionario. Non spiegherò perché le funzioni hash sono così magiche, ma puoi saperne di più su [wikipedia.org/wiki/Hash\_table](https://wikipedia.org/wiki/Hash_table).^[Se vuoi davvero saperne di più sulle tabelle hash, c'è un corso su https://www.cc4e.com che esamina come il linguaggio di programmazione C implementa un dizionario Python.]
+L'operatore `in` usa algoritmi diversi per le liste e per i dizionari. Per le liste usa un algoritmo di ricerca lineare. Man mano che la lista si allunga, il tempo di ricerca cresce in modo direttamente proporzionale alla lunghezza della lista. Per i dizionari, Python usa un algoritmo chiamato *tabella hash* (hash table), che ha una proprietà notevole: l'operatore `in` impiega circa lo stesso tempo, non importa quanti elementi ci siano in un dizionario. Non spiegherò perché le funzioni hash sono così magiche, ma puoi saperne di più su [wikipedia.org/wiki/Hash\_table](https://wikipedia.org/wiki/Hash_table).^[Se vuoi davvero saperne di più sulle tabelle hash, c'è un corso su https://www.cc4e.com che esamina come il linguaggio di programmazione C implementa un dizionario Python.]
 
 \index{tabella hash}
 \index{appartenenza a un insieme}
@@ -114,7 +113,7 @@ L'operatore `in` usa algoritmi diversi per le liste e per i dizionari. Per le li
 
 **Esercizio 1:** Scarica una copia del file
 
-[www.py4e.com/code3/words.txt](http://www.py4e.com/code3/words.txt)
+[www.py4e.com/code3/words.txt](http://www.py4e.com/code3/words.txt).
 
 Scrivi un programma che legga le parole di `words.txt` e le memorizzi come chiavi in un dizionario. Non importa quali siano i valori. Poi puoi usare l'operatore `in` come modo rapido per controllare se una stringa è nel dizionario.
 
@@ -135,7 +134,7 @@ Ognuna di queste opzioni esegue lo stesso calcolo, ma ognuna lo implementa in mo
 
 \index{implementazione}
 
-Un'*implementazione* è un modo di eseguire un calcolo; alcune implementazioni sono migliori di altre. Ad esempio, un vantaggio dell'implementazione con il dizionario è che non dobbiamo sapere in anticipo quali lettere compaiono nella stringa e dobbiamo fare spazio solo per le lettere che compaiono davvero.
+Un'*implementazione* è un modo di eseguire un calcolo; alcune implementazioni sono migliori di altre. Ad esempio, un vantaggio dell'implementazione con il dizionario è che non abbiamo bisogno di sapere in anticipo quali lettere compaiono nella stringa e dobbiamo fare spazio solo per quelle che compaiono davvero.
 
 Ecco come potrebbe essere il codice:
 
@@ -156,7 +155,7 @@ Di fatto stiamo calcolando un *istogramma*, termine statistico che indica un ins
 \index{frequenza}
 \index{scorrimento}
 
-Il ciclo `for` scorre la stringa. A ogni passaggio del ciclo, se `c` non è nel dizionario, creiamo un nuovo elemento con chiave `c` e valore iniziale 1 (dato che abbiamo visto questa lettera una volta). Se `c` è già nel dizionario, incrementiamo `d[c]`.
+Il ciclo `for` scorre la stringa. A ogni passaggio del ciclo, se `c` non è nel dizionario, creiamo un nuovo elemento con chiave `c` e valore iniziale `1` (dato che abbiamo visto questa lettera una volta). Se `c` è già nel dizionario, incrementiamo `d[c]`.
 
 \index{istogramma}
 
@@ -191,7 +190,7 @@ for c in word:
 print(d)
 ~~~~
 
-L'uso del metodo `get` per semplificare questo ciclo di conteggio finisce per essere un "idioma" molto diffuso in Python, e lo useremo molte volte nel resto del libro. Quindi dovresti prenderti un momento per confrontare il ciclo che usa l'istruzione `if` e l'operatore `in` con il ciclo che usa il metodo `get`. Fanno esattamente la stessa cosa, ma uno dei due è più conciso.
+L'uso del metodo `get` per semplificare questo ciclo di conteggio si rivela un "idioma" molto diffuso in Python, e lo useremo molte volte nel resto del libro. Quindi dovresti fermarti un momento a confrontare il ciclo che usa l'istruzione `if` e l'operatore `in` con il ciclo che usa il metodo `get`. Fanno esattamente la stessa cosa, ma uno dei due è più conciso.
 
 \index{idioma}
 
@@ -222,9 +221,9 @@ La combinazione dei due cicli annidati garantisce che conteremo ogni parola di o
 
 \VerbatimInput{../code3/count1.py}
 
-Nell'istruzione `else` usiamo l'alternativa più compatta per incrementare una variabile. `counts[word] += 1` è equivalente a `counts[word] = counts[word] + 1`. Entrambi i metodi si possono usare per cambiare di una quantità qualsiasi il valore di una variabile. Esistono alternative simili per `-=`, `*=` e `/=`.
+Nell'istruzione `else` usiamo l'alternativa più compatta per incrementare una variabile. `counts[word] += 1` è equivalente a `counts[word] = counts[word] + 1`. Entrambi i modi si possono usare per cambiare di una quantità qualsiasi il valore di una variabile. Esistono alternative simili per `-=`, `*=` e `/=`.
 
-Quando eseguiamo il programma, vediamo una stampa grezza di tutti i conteggi, non ordinati, nell'ordine dell'hash. (Il file `romeo.txt` è disponibile su [www.py4e.com/code3/romeo.txt](http://www.py4e.com/code3/romeo.txt))
+Quando eseguiamo il programma, vediamo una stampa grezza di tutti i conteggi, non ordinati, nell'ordine dell'hash. (Il file `romeo.txt` è disponibile su [www.py4e.com/code3/romeo.txt](http://www.py4e.com/code3/romeo.txt).)
 
 ~~~~
 python count1.py
@@ -241,8 +240,8 @@ Enter the file name: romeo.txt
 Cicli e dizionari
 ------------------------
 
-\index{dizionario!ciclo con}
-\index{ciclo!con i dizionari}
+\index{dizionario!nel ciclo}
+\index{ciclo!su un dizionario}
 \index{scorrimento}
 
 Se usi un dizionario come sequenza in un'istruzione `for`, questa scorre le chiavi del dizionario. Questo ciclo stampa ogni chiave e il valore corrispondente:
@@ -315,7 +314,7 @@ Analisi avanzata del testo
 
 \index{Romeo e Giulietta}
 
-Nell'esempio qui sopra, che usa il file `romeo.txt`, abbiamo reso il file il più semplice possibile togliendo a mano tutta la punteggiatura. Il testo vero ha molta punteggiatura, come mostrato qui sotto.
+Nell'esempio qui sopra, che usa il file `romeo.txt`, abbiamo reso il file il più semplice possibile togliendo a mano tutta la punteggiatura. Il testo vero ha molta punteggiatura, come si vede qui sotto.
 
 ~~~~
 But, soft! what light through yonder window breaks?
@@ -334,7 +333,7 @@ Possiamo risolvere entrambi i problemi usando i metodi delle stringhe `lower`, `
 
 *Sostituisce i caratteri di `fromstr` con il carattere nella stessa posizione in `tostr` ed elimina tutti i caratteri che sono in `deletestr`. `fromstr` e `tostr` possono essere stringhe vuote e il parametro `deletestr` può essere omesso.*
 
-Non specificheremo `tostr`, ma useremo il parametro `deletestr` per eliminare tutta la punteggiatura. Lasceremo perfino che sia Python a dirci la lista dei caratteri che considera "punteggiatura":
+Non specificheremo `tostr`, ma useremo il parametro `deletestr` per eliminare tutta la punteggiatura. Lasceremo perfino che sia Python a dirci l'elenco dei caratteri che considera "punteggiatura":
 
 ~~~~ {.python}
 >>> import string
@@ -362,7 +361,7 @@ Enter the file name: romeo-full.txt
 'breaks': 1, ...}
 ~~~~
 
-Esaminare questo output è ancora poco pratico e possiamo usare Python per farci dare esattamente ciò che stiamo cercando, ma per farlo dobbiamo conoscere le *tuple* di Python. Riprenderemo questo esempio quando conosceremo le tuple.
+Esaminare questo output è ancora poco pratico e possiamo usare Python per ottenere esattamente ciò che stiamo cercando, ma per farlo dobbiamo conoscere le *tuple* di Python. Riprenderemo questo esempio quando conosceremo le tuple.
 
 Debug
 ---------
@@ -382,11 +381,11 @@ Controlla i riepiloghi e i tipi
     Una causa comune di errori di runtime è un valore che non è del tipo giusto. Per il debug di questo genere di errore, spesso basta stampare il tipo di un valore.
 
 Scrivi controlli automatici
-:   A volte puoi scrivere del codice che controlla in modo automatico se ci sono errori. Ad esempio, se calcoli la media di una lista di numeri, potresti controllare che il risultato non sia maggiore dell'elemento più grande della lista né minore del più piccolo. Questo si chiama "controllo di plausibilità" (sanity check) perché rileva i risultati "completamente illogici".
+:   A volte puoi scrivere del codice che controlla in modo automatico se ci sono errori. Ad esempio, se calcoli la media di una lista di numeri, potresti controllare che il risultato non sia maggiore dell'elemento più grande della lista né minore del più piccolo. Questo si chiama *controllo di plausibilità* (sanity check) perché rileva i risultati "completamente illogici".
 \index{controllo di plausibilità}
 \index{controllo di coerenza}
 
-    Un altro tipo di controllo confronta i risultati di due calcoli diversi per vedere se sono coerenti. Questo si chiama "controllo di coerenza" (consistency check).
+    Un altro tipo di controllo confronta i risultati di due calcoli diversi per vedere se sono coerenti. Questo si chiama *controllo di coerenza* (consistency check).
 
 Formatta bene l'output
 :   Formattare l'output di debug può rendere più facile individuare un errore.
@@ -397,46 +396,46 @@ Ancora una volta, il tempo che dedichi a costruire impalcature può ridurre il t
 Glossario
 --------
 
-**Dizionario**
-: Una mappatura da un insieme di chiavi ai valori corrispondenti.
-\index{dizionario}
-
-**Tabella hash**
-: L'algoritmo usato per implementare i dizionari di Python.
-\index{tabella hash}
-
-**Funzione hash**
-: Una funzione usata da una tabella hash per calcolare la posizione di una chiave.
-\index{funzione hash}
-
-**Istogramma**
-: Un insieme di contatori.
-\index{istogramma}
-
-**Implementazione**
-: Un modo di eseguire un calcolo.
-\index{implementazione}
-
-**Elemento**
-: Un altro nome della coppia chiave-valore.
-\index{elemento!dizionario}
-
 **Chiave**
 : Un oggetto che compare in un dizionario come prima parte di una coppia chiave-valore.
 \index{chiave}
-
-**Coppia chiave-valore**
-: La rappresentazione della mappatura da una chiave a un valore.
-\index{coppia chiave-valore}
-
-**Ricerca**
-: Un'operazione sul dizionario che accetta una chiave e trova il valore corrispondente.
-\index{ricerca}
 
 **Cicli annidati**
 : Uno o più cicli che stanno "dentro" un altro ciclo. Il ciclo interno viene eseguito fino alla fine ogni volta che il ciclo esterno viene eseguito una volta.
 \index{ciclo annidato}
 \index{ciclo!annidato}
+
+**Coppia chiave-valore**
+: La rappresentazione della mappatura da una chiave a un valore.
+\index{coppia chiave-valore}
+
+**Dizionario**
+: Una mappatura da un insieme di chiavi ai valori corrispondenti.
+\index{dizionario}
+
+**Elemento**
+: Un altro nome della coppia chiave-valore.
+\index{elemento!dizionario}
+
+**Funzione hash**
+: Una funzione usata da una tabella hash per calcolare la posizione di una chiave.
+\index{funzione hash}
+
+**Implementazione**
+: Un modo di eseguire un calcolo.
+\index{implementazione}
+
+**Istogramma**
+: Un insieme di contatori.
+\index{istogramma}
+
+**Ricerca**
+: Un'operazione sul dizionario che accetta una chiave e trova il valore corrispondente.
+\index{ricerca}
+
+**Tabella hash**
+: L'algoritmo usato per implementare i dizionari di Python.
+\index{tabella hash}
 
 **Valore**
 : Un oggetto che compare in un dizionario come seconda parte di una coppia chiave-valore. È un uso della parola "valore" più specifico di quello precedente.
@@ -473,7 +472,7 @@ Enter file name: mbox-short.txt
 'ray@media.berkeley.edu': 1}
 ~~~~
 
-**Esercizio 4:** Aggiungi al programma qui sopra del codice per scoprire chi ha inviato più messaggi nel file. Una volta letti tutti i dati e creato il dizionario, scorri il dizionario usando un ciclo di massimo (vedi Capitolo 5: Cicli di massimo e minimo) per trovare chi ha più messaggi e stampa quanti messaggi ha quella persona.
+**Esercizio 4:** Aggiungi al programma qui sopra del codice per scoprire chi ha inviato più messaggi nel file. Una volta letti tutti i dati e creato il dizionario, scorri il dizionario usando un ciclo per il massimo (vedi Capitolo 5: Cicli per il massimo e il minimo) per trovare chi ha più messaggi e stampa quanti messaggi ha quella persona.
 
 ~~~~
 Enter a file name: mbox-short.txt
@@ -483,7 +482,7 @@ Enter a file name: mbox.txt
 zqian@umich.edu 195
 ~~~~
 
-**Esercizio 5:** Questo programma registra il nome di dominio (invece dell'indirizzo) da cui è stato inviato il messaggio, invece di chi ha inviato la posta (cioè l'intero indirizzo email). Alla fine del programma stampa il contenuto del dizionario.
+**Esercizio 5:** Questo programma registra il nome di dominio (invece dell'indirizzo) da cui è stato inviato il messaggio, e non chi ha inviato la posta (cioè l'intero indirizzo email). Alla fine del programma stampa il contenuto del dizionario.
 
 ~~~~
 python schoolcount.py
