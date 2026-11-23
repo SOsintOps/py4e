@@ -2,19 +2,19 @@
 Dettagli sul copyright
 ================
 
-Quest'opera è rilasciata sotto licenza Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License. La licenza è disponibile all'indirizzo
+Quest'opera è distribuita con licenza Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported. La licenza è disponibile all'indirizzo
 
-[creativecommons.org/licenses/by-nc-sa/3.0/](creativecommons.org/licenses/by-nc-sa/3.0/).
+[creativecommons.org/licenses/by-nc-sa/3.0/](https://creativecommons.org/licenses/by-nc-sa/3.0/).
 
-Avrei preferito pubblicare il libro con la meno restrittiva licenza CC-BY-SA. Purtroppo, però, ci sono alcune organizzazioni senza scrupoli che cercano e trovano libri con licenza libera e poi pubblicano e vendono copie praticamente identiche di quei libri su un servizio di stampa su richiesta come LuLu o KDP. KDP ha (per fortuna) aggiunto una politica che dà la precedenza alla volontà del vero detentore del copyright rispetto a chi, senza detenerlo, tenta di pubblicare un'opera con licenza libera. Purtroppo ci sono molti servizi di stampa su richiesta e pochissimi hanno una politica ben ponderata come quella di KDP.
+Avrei preferito pubblicare il libro con la meno restrittiva licenza CC-BY-SA. Purtroppo, però, ci sono alcune organizzazioni senza scrupoli che cercano e trovano libri con licenza libera e poi ne pubblicano e vendono copie praticamente identiche su un servizio di stampa su richiesta come LuLu o KDP. KDP ha (per fortuna) introdotto una politica che dà la precedenza alla volontà del vero detentore del copyright rispetto a quella di chi, senza detenerlo, tenta di pubblicare un'opera con licenza libera. Sfortunatamente ci sono molti servizi di stampa su richiesta e pochissimi hanno una politica ben ponderata come quella di KDP.
 
-Con rammarico, ho aggiunto l'elemento NC alla licenza di questo libro per poter fare ricorso nel caso qualcuno cerchi di clonarlo e venderlo commercialmente. Purtroppo, l'aggiunta di NC limita alcuni usi di questo materiale che vorrei permettere. Ho quindi aggiunto questa sezione del documento per descrivere i casi specifici in cui do in anticipo il permesso di usare il materiale di questo libro in situazioni che alcuni potrebbero considerare commerciali.
+A malincuore ho aggiunto l'elemento NC alla licenza di questo libro per potermi tutelare nel caso qualcuno cerchi di clonarlo e di venderlo a fini commerciali. Purtroppo, l'aggiunta di NC limita alcuni usi di questo materiale che vorrei permettere. Ho quindi aggiunto questa sezione del documento per descrivere i casi specifici in cui do in anticipo il permesso di usare il materiale di questo libro in situazioni che alcuni potrebbero considerare commerciali.
 
 -   Se stampi un numero limitato di copie di tutto il libro o di una sua parte per usarle in un corso (ad esempio, come dispensa), ti viene concessa per questo scopo la licenza CC-BY su questi materiali.
 
--   Se sei un docente universitario, traduci questo libro in una lingua diversa dall'inglese e lo usi tradotto nelle tue lezioni, puoi contattarmi e ti concederò una licenza CC-BY-SA su questi materiali per la pubblicazione della tua traduzione. In particolare, potrai vendere commercialmente il libro tradotto che ne risulta.
+-   Se sei un docente universitario, traduci questo libro in una lingua diversa dall'inglese e lo usi tradotto nelle tue lezioni, puoi contattarmi e ti concederò una licenza CC-BY-SA su questi materiali per la pubblicazione della tua traduzione. In particolare, potrai vendere a fini commerciali il libro tradotto così ottenuto.
 
-Se intendi tradurre il libro, ti conviene contattarmi, così possiamo assicurarci che tu abbia tutti i relativi materiali del corso e possa tradurre anche quelli.
+Se intendi tradurre il libro, ti conviene contattarmi, così possiamo assicurarci che tu abbia tutti i materiali del corso collegati al libro e possa tradurre anche quelli.
 
 Naturalmente, puoi contattarmi e chiedere il permesso se queste clausole non sono sufficienti. In ogni caso, il permesso di riutilizzare e remixare questo materiale sarà concesso purché dal nuovo lavoro derivi un chiaro valore aggiunto o un beneficio per studenti o insegnanti.
 
