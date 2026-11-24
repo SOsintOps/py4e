@@ -93,8 +93,7 @@ In cambio ricevi sul tuo profilo lo stato di sostenitore per <?= htmlspecialchar
 <h2><?= $extending ? 'Prolunga il tuo sostegno' : 'Diventa un sostenitore' ?></h2>
 <?php if ($extending) { ?>
 <p>
-Hai già lo stato di <?= htmlspecialchars($supporter_label) ?><?php if ($until_label !== '') { ?>
-, con scadenza <strong><?= htmlspecialchars($until_label) ?></strong><?php } ?>.
+Hai già lo stato di <?= htmlspecialchars($supporter_label) ?><?php if ($until_label !== '') { ?>, con scadenza <strong><?= htmlspecialchars($until_label) ?></strong><?php } ?>.
 Un altro contributo aggiunge <?= htmlspecialchars($premium_period) ?> a quella data.
 </p>
 <?php } ?>

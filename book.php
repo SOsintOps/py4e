@@ -10,7 +10,7 @@
 <p>
         Il codice di esempio e i file di dati del libro si trovano qui: <a href="http://www.py4e.com/code3/" target="_blank" rel="noopener noreferrer">Esempi di codice</a>.
 </p>
-<p><b><a href="courses">Altri corsi e siti web che usano questo libro</a></b>
+<p><b><a href="others">Altri corsi e siti web che usano questo libro</a></b>
 </p>
 <p>
 Traduzioni del libro:
@@ -28,7 +28,7 @@ Traduzioni del libro:
 </li>
        <li class="menu-text"><a href="http://amzn.to/29LrtC0" target="_blank" rel="noopener noreferrer">Edizione Kindle</a> del libro</li>
        <li class="menu-text">Gratuito: <a href="http://do1.dr-chuck.com/pythonlearn/EN_us/pythonlearn.pdf" target="_blank" rel="noopener noreferrer">PDF</a>,
-       <a href="../html3">HTML</a>,
+       <a href="https://www.py4e.com/html3" target="_blank" rel="noopener noreferrer">HTML</a>,
        <a href="http://do1.dr-chuck.com/pythonlearn/EN_us/pythonlearn.epub" target="_blank" rel="noopener noreferrer">EPUB</a></li>
        <li class="menu-text"><a href="https://eng.libretexts.org/Textbook_Maps/Computer_Science/Map%3A_Python_for_Everybody_(Severance)" target="_blank" rel="noopener noreferrer">HTML con esempi in Jupyter Notebook su LibreTexts.org</a></li>
 <!--
@@ -226,7 +226,7 @@ Se ti interessa avviare una traduzione del libro, trovi alcune istruzioni per
 iniziare</a>.
 </p>
         <p>
-            I capitoli 2–10 sono fortemente adattati dal libro aperto intitolato "<a href="http://www.greenteapress.com/thinkpython/thinkCSpy/" target="_blank" rel="noopener noreferrer">Think Python: How to Think like a Computer Scientist</a>" di <a href="http://allendowney.com/" target="_blank" rel="noopener noreferrer">Allen B. Downey</a>
+            I capitoli 2–10 sono in gran parte adattati dal libro aperto intitolato "<a href="http://www.greenteapress.com/thinkpython/thinkCSpy/" target="_blank" rel="noopener noreferrer">Think Python: How to Think like a Computer Scientist</a>" di <a href="http://allendowney.com/" target="_blank" rel="noopener noreferrer">Allen B. Downey</a>
 e <a href="http://www.elkner.net/" target="_blank" rel="noopener noreferrer">Jeff Elkner</a>.
 </p>
 <?php

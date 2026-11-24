@@ -138,7 +138,7 @@ Per approfondire le idee alla base del nostro approccio alla privacy, puoi guard
 <p><strong>Notifiche</strong></p>
 <p>
 In caso di violazione dei dati che coinvolga le tue informazioni personali, avviseremo gli utenti interessati
-via email (quando dispongono di un recapito), descrivendo in modo ragionevolmente dettagliato cosa è successo
+via email (quando è disponibile un recapito), descrivendo in modo ragionevolmente dettagliato cosa è successo
 e spiegando le misure che stiamo adottando in risposta.
 </p>
 <p>

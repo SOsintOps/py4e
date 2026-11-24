@@ -53,7 +53,7 @@ per avviare i correttori automatici dal tuo LMS.
 Questo sito web raccoglie un insieme gratuito di
 <a href="lessons">materiali</a>,
 <a href="https://www.youtube.com/watch?v=UjeNA_JtXME&list=PLlRFEj9H3Oj7Bp8-DfGpfAfDBiblRfl5p&index=1" target="_blank" rel="noopener noreferrer">videolezioni</a>,
-<a href="book.php">libro di testo</a>
+un <a href="book.php">libro di testo</a>
 ed esercizi per aiutare gli studenti a imparare a programmare in Python.
 Puoi seguire questo corso anche su:
 </p>

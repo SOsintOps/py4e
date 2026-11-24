@@ -24,7 +24,7 @@ editor di testo gratuiti per lo sviluppo software:</p>
 <li><a href="https://code.visualstudio.com/" target="_blank" rel="noopener noreferrer">VS Code</a> – Gratuito, ricco di funzionalità, include assistenza IA</li>
 </ul>
 <p>
-Per questo corso puoi usare qualsiasi editor per programmatori preferisci.
+Per questo corso puoi usare l'editor per programmatori che preferisci.
 </p>
     </div>
 </div>

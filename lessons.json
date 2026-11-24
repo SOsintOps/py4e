@@ -37,7 +37,7 @@
             ]
         },
         {
-            "title": "Strutture di dati in Python",
+            "title": "Strutture dati in Python",
             "threshold": "1.0",
             "image": "badge_02_data.png",
             "assignments": [
@@ -190,7 +190,7 @@
                             "key": "config",
                             "json": {
                                 "title": "Revisione tra pari: schermate dell'installazione e dell'esecuzione di Python",
-                                "description": "Installa Python e un editor di testo per la programmazione, scrivi un programma che stampi una riga diversa da 'hello world', poi scatta due schermate e caricale qui sotto. Devi usare la riga di comando per eseguire il programma Python che hai scritto nell'editor di testo. *Non* usare la shell IDLE di Python, l'interprete interattivo (>>>) o una scorciatoia dell'editor di testo per eseguire il codice. Più avanti nel corso, quando inizieremo a leggere i file, dovremo saper eseguire programmi Python da directory specifiche. Guarda i video per i dettagli.",
+                                "description": "Installa Python e un editor di testo per la programmazione, scrivi un programma che stampi una riga diversa da 'hello world', poi acquisisci due schermate e caricale qui sotto. Devi usare la riga di comando per eseguire il programma Python che hai scritto nell'editor di testo. *Non* usare la shell IDLE di Python, l'interprete interattivo (>>>) o una scorciatoia dell'editor di testo per eseguire il codice. Più avanti nel corso, quando inizieremo a leggere i file, dovremo saper eseguire programmi Python da directory specifiche. Guarda i video per i dettagli.",
                                 "grading": "Questo è un compito relativamente semplice: l'obiettivo è solo dimostrare che ogni studente ha installato Python sul proprio computer e sa acquisire schermate. Scrivi i tuoi commenti in modo da aiutare lo studente che stai valutando.",
                                 "assignment": "https://www.py4e.com/install",
                                 "parts": [
@@ -936,7 +936,7 @@
             "title": "Liste",
             "anchor": "lists",
             "icon": "fa-list-ol",
-            "description": "Esaminiamo la struttura di dati più semplice di Python: la lista. Le liste possono memorizzare più elementi in una sola variabile.",
+            "description": "Esaminiamo la struttura dati più semplice di Python: la lista. Le liste possono contenere più elementi in una sola variabile.",
             "items": [
                 {
                     "type": "header",
@@ -1046,7 +1046,7 @@
             "title": "Dizionari",
             "anchor": "dictionary",
             "icon": "fa-key",
-            "description": "La struttura di dati del dizionario permette di memorizzare più valori in un oggetto e di cercarli tramite la loro chiave.",
+            "description": "La struttura dati del dizionario permette di memorizzare più valori in un oggetto e di cercarli tramite la loro chiave.",
             "items": [
                 {
                     "type": "header",
@@ -1151,7 +1151,7 @@
             "title": "Tuple",
             "anchor": "tuples",
             "icon": "fa-inbox",
-            "description": "La tupla è una struttura di dati di Python simile a una lista semplice ed efficiente.",
+            "description": "La tupla è una struttura dati di Python simile a una lista semplice ed efficiente.",
             "items": [
                 {
                     "type": "header",

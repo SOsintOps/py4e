@@ -54,11 +54,11 @@ pensata apposta per rendere questa operazione il più semplice possibile.
 </p>
 </li>
 </ul>
-<p><b><a href="courses">Corsi e siti web che usano questo materiale</a></b>
+<p><b><a href="others">Corsi e siti web che usano questo materiale</a></b>
 </p>
 <p>Questo sito web usa il software <a href="http://www.tsugi.org/" target="_blank" rel="noopener noreferrer">Tsugi</a>
 sia per ospitare i correttori automatici sia per rendere disponibili questi materiali in modo che possano essere
-integrati facilmente in un Learning Management System come
+integrati facilmente in un sistema di gestione dell'apprendimento (LMS) come
 <a href="http://www.sakaiproject.org/" target="_blank" rel="noopener noreferrer">Sakai</a>, Moodle, Canvas, Desire2Learn, Blackboard
 o simili.
 </p>
