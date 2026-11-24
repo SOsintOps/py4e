@@ -22,7 +22,7 @@ SQLite si presta bene ad alcuni dei problemi di manipolazione dei dati che incon
 Concetti dei database
 -----------------
 
-Quando guardi un database per la prima volta, sembra un foglio di calcolo con più fogli. Le strutture di dati principali di un database sono: *tabelle*, *righe* e *colonne*.
+Quando guardi un database per la prima volta, sembra un foglio di calcolo con più fogli. Le strutture dati principali di un database sono: *tabelle*, *righe* e *colonne*.
 
 ![Database relazionali](height=2.0in@../images/relational)
 
@@ -66,7 +66,7 @@ Il codice per creare un file di database e, al suo interno, una tabella chiamata
 
 L'operazione `connect` crea una "connessione" con il database memorizzato nel file `music.sqlite` nella directory corrente. Se il file non esiste, verrà creato. Si parla di "connessione" perché a volte il database è memorizzato su un "server di database" separato dal server su cui eseguiamo l'applicazione. Nei nostri semplici esempi il database sarà solo un file locale nella stessa directory del codice Python che stiamo eseguendo.
 
-Un *cursore* è come un *handle del file* (file handle) che possiamo usare per eseguire operazioni sui dati memorizzati nel database. Concettualmente, chiamare `cursor()` è molto simile a chiamare `open()` quando si lavora con i file di testo.
+Un *cursore* è come un handle del file che possiamo usare per eseguire operazioni sui dati memorizzati nel database. Concettualmente, chiamare `cursor()` è molto simile a chiamare `open()` quando si lavora con i file di testo.
 
 ![Un cursore di database](height=2.0in@../images/cursor)
 
@@ -92,7 +92,7 @@ cur.execute('CREATE TABLE Track (title TEXT, plays INTEGER)')
 
 Ora che abbiamo creato una tabella chiamata `Track`, possiamo inserirvi alcuni dati con l'operazione SQL `INSERT`. Anche qui cominciamo creando una connessione con il database e ottenendo il `cursor`. Poi possiamo eseguire comandi SQL con il cursore.
 
-Il comando SQL `INSERT` indica quale tabella usiamo e poi definisce una nuova riga elencando i campi che vogliamo includere `(title, plays)`, seguiti dai `VALUES` che vogliamo mettere nella nuova riga. Indichiamo i valori con dei punti interrogativi `(?, ?)` per dire che i valori veri e propri vengono passati nella tupla `( 'My Way', 15 ) `, secondo parametro della chiamata `execute()`.
+Il comando SQL `INSERT` indica quale tabella usiamo e poi definisce una nuova riga elencando i campi che vogliamo includere `(title, plays)`, seguiti da `VALUES` e dai valori che vogliamo mettere nella nuova riga. Indichiamo i valori con dei punti interrogativi `(?, ?)` per dire che i valori veri e propri vengono passati nella tupla `( 'My Way', 15 ) `, secondo parametro della chiamata `execute()`.
 
 \VerbatimInput{../code3/db2.py}
 
@@ -185,7 +185,7 @@ La modellazione dei dati è un'abilità piuttosto sofisticata, e in questa sezio
 <http://en.wikipedia.org/wiki/Relational_model>
 
 \index{SQL!CREATE}
-Supponiamo che nel database dei brani, oltre al `title` e al numero di riproduzioni di ogni brano, volessimo tenere traccia anche del nome dell'`artist` di ogni brano. Un approccio semplice potrebbe essere aggiungere al database un'altra colonna chiamata `artist` e metterci il nome dell'artista, in questo modo:
+Supponiamo che nel database dei brani, oltre al `title` e al numero di riproduzioni, volessimo tenere traccia anche del nome dell'`artist` di ogni brano. Un approccio semplice potrebbe essere aggiungere al database un'altra colonna chiamata `artist` e metterci il nome dell'artista, in questo modo:
 
 ~~~~ {.python}
 DROP TABLE IF EXISTS Track;
@@ -201,7 +201,7 @@ INSERT INTO Track (title, plays, artist)
     VALUES ('New York', 25, 'Frank Sinatra');
 ~~~~
 
-Se guardassimo i dati con un'istruzione `SELECT * FROM Track`, sembrerebbe che abbiamo fatto un ottimo lavoro.
+Se guardassimo i dati con un'istruzione `SELECT * FROM Track`, ci sembrerebbe di aver fatto un ottimo lavoro.
 
 ~~~~
 sqlite> SELECT * FROM Track;
@@ -302,7 +302,7 @@ Il progetto di database con `Track` e `Artist` è semplice, con due sole tabelle
 ![Un modello dei dati uno-a-molti in forma estesa\label{figvrbo2m}](height=1.5in@../images/one-to-many-verbose)
 
 \index{diagramma a zampa di gallina}
-Esistono molte rappresentazioni grafiche dei modelli dei dati; noi useremo uno degli approcci "classici", chiamato *diagrammi a zampa di gallina* (crow's foot diagrams), come si vede nella Figura \ref{figvrbo2m}. Ogni tabella è rappresentata da un riquadro con il nome della tabella e le sue colonne. Poi, dove c'è una relazione tra due tabelle, si traccia una linea che collega le tabelle, con un simbolo a ciascuna estremità della linea che indica la natura della relazione.
+Esistono molte rappresentazioni grafiche dei modelli dei dati; noi useremo uno degli approcci "classici", quello dei *diagrammi a zampa di gallina* (crow's foot diagrams), come si vede nella Figura \ref{figvrbo2m}. Ogni tabella è rappresentata da un riquadro con il nome della tabella e le sue colonne. Poi, dove c'è una relazione tra due tabelle, si traccia una linea che collega le tabelle, con un simbolo a ciascuna estremità della linea che indica la natura della relazione.
 
 <https://en.wikipedia.org/wiki/Entity-relationship_model>
 
@@ -385,7 +385,7 @@ ON Track.artist_id = Artist.id
 WHERE Artist.name = 'Frank Sinatra';
 ~~~~
 
-Poiché abbiamo due tabelle e una chiave esterna tra le due, i dati sono ben modellati; ma se nella tabella `Artist` avremo milioni di record e faremo molte ricerche per nome dell'artista, ci converrebbe dare al database un suggerimento sull'uso che intendiamo fare della colonna `name`.
+Poiché abbiamo due tabelle e una chiave esterna tra le due, i dati sono ben modellati; ma se nella tabella `Artist` avremo milioni di record e faremo molte ricerche per nome dell'artista, ci converrà dare al database un suggerimento sull'uso che intendiamo fare della colonna `name`.
 
 \index{CREATE INDEX}
 Lo facciamo aggiungendo un "indice" a una colonna di testo che intendiamo usare nelle clausole `WHERE`:
@@ -556,7 +556,7 @@ id  artist_id  title
 
 \index{SQL!JOIN}
 \index{SQL!ON}
-Possiamo ricostruire tutti i dati di `Track` seguendo tutte le relazioni con le clausole `JOIN / ON`. Nell'output qui sotto puoi vedere, in ogni riga, entrambe le estremità di ognuno dei (2) collegamenti relazionali:
+Possiamo ricostruire tutti i dati di `Track` seguendo tutte le relazioni con le clausole `JOIN / ON`. Nell'output qui sotto puoi vedere, in ogni riga, le due estremità di ciascuno dei due collegamenti relazionali:
 
 ~~~~
 sqlite> .mode line
@@ -619,7 +619,7 @@ CREATE TABLE Course (
 );
 ~~~~
 
-Purtroppo, per quanto l'idea sia allettante, SQL non supporta gli array.^[Alcuni dialetti SQL supportano gli array, ma gli array non scalano bene. I database NoSQL usano gli array e la replica dei dati, ma a scapito dell'integrità del database. NoSQL è una storia per un altro corso https://www.pg4e.com/ ]
+Purtroppo, per quanto l'idea sia allettante, SQL non supporta gli array.^[Alcuni dialetti SQL supportano gli array, ma gli array non scalano bene. I database NoSQL usano gli array e la replica dei dati, ma a scapito dell'integrità del database. NoSQL è una storia per un altro corso: https://www.pg4e.com/.]
 
 Oppure potremmo semplicemente creare una stringa lunga e concatenarvi tutte le chiavi primarie di `User`, separate da virgole.
 
@@ -766,7 +766,7 @@ Abbiamo presentato la "tabella di join" come una tabella con due chiavi esterne 
 
 Continuando con l'esempio di utenti, corsi ed elenchi degli iscritti per modellare un semplice sistema di gestione dell'apprendimento, dovremo anche conoscere il *ruolo* assegnato a ogni utente in ogni corso.
 
-Se proviamo prima a risolvere il problema aggiungendo alla tabella `User` un flag "docente", scopriremo che non funziona, perché un utente può essere docente in un corso e studente in un altro. Se aggiungiamo un `instructor_id` alla tabella `Course`, non funzionerà, perché un corso può avere più docenti. E non c'è nessun trucco uno-a-molti che possa gestire il fatto che il numero dei ruoli crescerà, fino a comprendere ruoli come assistente alla didattica o genitore.
+Se proviamo prima a risolvere il problema aggiungendo alla tabella `User` un flag "docente", scopriremo che non funziona, perché un utente può essere docente in un corso e studente in un altro. Se aggiungiamo un `instructor_id` alla tabella `Course`, non funzionerà, perché un corso può avere più docenti. E non c'è trucco uno-a-molti che regga quando il numero dei ruoli crescerà, fino a comprendere ruoli come assistente alla didattica o genitore.
 
 Ma se aggiungiamo semplicemente una colonna `role` alla tabella `Member`, possiamo rappresentare un'ampia gamma di ruoli, di combinazioni di ruoli e così via.
 
@@ -783,7 +783,7 @@ CREATE TABLE Member (
 );
 ~~~~
 
-Per semplicità, stabiliamo che zero nel ruolo significa "studente" e uno in `role` significa docente. Supponiamo che i dati JSON siano arricchiti con il ruolo, in questo modo:
+Per semplicità, stabiliamo che `0` in `role` significa "studente" e `1` significa "docente". Supponiamo che i dati JSON siano arricchiti con il ruolo, in questo modo:
 
 ~~~~
 [
@@ -843,7 +843,7 @@ Nota che, poiché abbiamo dichiarato la colonna `id` della tabella `Role` come `
 Riepilogo
 -------
 
-Questo capitolo ha fatto un bel po' di strada per darti una panoramica sulle basi dell'uso di un database in Python. Scrivere il codice che usa un database per memorizzare i dati è più complicato che usare i dizionari Python o i semplici file, quindi ci sono pochi motivi per usare un database, a meno che l'applicazione non abbia davvero bisogno delle sue capacità. Le situazioni in cui un database può essere molto utile sono: (1) quando l'applicazione deve fare molti piccoli aggiornamenti casuali all'interno di un grande insieme di dati, (2) quando i dati sono così tanti che non entrano in un dizionario e devi cercare informazioni ripetutamente, o (3) quando hai un processo di lunga durata che vuoi poter fermare e riavviare, conservando i dati da un'esecuzione all'altra.
+Questo capitolo ha toccato molti argomenti per darti una panoramica sulle basi dell'uso di un database in Python. Scrivere il codice che usa un database per memorizzare i dati è più complicato che usare i dizionari Python o i semplici file, quindi ci sono pochi motivi per usare un database, a meno che l'applicazione non abbia davvero bisogno delle sue capacità. Le situazioni in cui un database può essere molto utile sono: (1) quando l'applicazione deve fare molti piccoli aggiornamenti sparsi all'interno di un grande insieme di dati, (2) quando i dati sono così tanti che non entrano in un dizionario e devi cercare informazioni ripetutamente, o (3) quando hai un processo di lunga durata che vuoi poter fermare e riavviare, conservando i dati da un'esecuzione all'altra.
 
 Puoi costruire un semplice database con una sola tabella per soddisfare le esigenze di molte applicazioni, ma la maggior parte dei problemi richiede più tabelle e collegamenti/relazioni tra righe di tabelle diverse. Quando cominci a creare collegamenti tra le tabelle, è importante progettare con attenzione e seguire le regole della normalizzazione del database per sfruttare al meglio le sue capacità. Poiché il motivo principale per usare un database è che hai una grande quantità di dati da gestire, è importante modellare i dati in modo efficiente, perché i programmi siano il più veloci possibile.
 
@@ -863,14 +863,6 @@ Glossario
 : Uno dei valori all'interno di una tupla. Più comunemente chiamato "colonna" o "campo".
 \index{attributo}
 
-**Vincolo**
-: Una regola che chiediamo al database di far rispettare su un campo o su una riga di una tabella. Un vincolo comune è richiedere che in un campo non ci possano essere valori duplicati (cioè che tutti i valori siano univoci).
-\index{vincolo}
-
-**Cursore**
-: Un cursore ti permette di eseguire comandi SQL in un database e di recuperare dati dal database. Un cursore è simile a un socket o a un handle del file, rispettivamente per le connessioni di rete e per i file.
-\index{cursore}
-
 **Browser di database**
 : Un software che ti permette di connetterti direttamente a un database e di manipolarlo senza scrivere un programma.
 \index{browser di database}
@@ -879,22 +871,26 @@ Glossario
 : Una chiave numerica che punta alla chiave primaria di una riga in un'altra tabella. Le chiavi esterne stabiliscono relazioni tra righe memorizzate in tabelle diverse.
 \index{chiave esterna}
 
-**Indice**
-: I dati aggiuntivi che il software di database mantiene man mano che le righe vengono inserite in una tabella, per rendere le ricerche molto veloci.
-\index{indice}
-
 **Chiave logica**
 : Una chiave che il "mondo esterno" usa per cercare una determinata riga. Ad esempio, in una tabella di account utente, l'indirizzo email di una persona potrebbe essere un buon candidato come chiave logica per i dati dell'utente.
 \index{chiave logica}
+
+**Chiave primaria**
+: Una chiave numerica assegnata a ogni riga, usata per fare riferimento a una riga di una tabella da un'altra tabella. Spesso il database è configurato per assegnare automaticamente le chiavi primarie man mano che le righe vengono inserite.
+\index{chiave primaria}
+
+**Cursore**
+: Un cursore ti permette di eseguire comandi SQL in un database e di recuperare dati dal database. Un cursore è simile a un socket o a un handle del file, rispettivamente per le connessioni di rete e per i file.
+\index{cursore}
+
+**Indice**
+: I dati aggiuntivi che il software di database mantiene man mano che le righe vengono inserite in una tabella, per rendere le ricerche molto veloci.
+\index{indice}
 
 **Normalizzazione**
 : La progettazione di un modello dei dati in cui nessun dato è replicato. Memorizziamo ogni dato in un solo punto del database e vi facciamo riferimento altrove con una chiave esterna.
 \index{normalizzazione}
 \index{normalizzazione del database}
-
-**Chiave primaria**
-: Una chiave numerica assegnata a ogni riga, usata per fare riferimento a una riga di una tabella da un'altra tabella. Spesso il database è configurato per assegnare automaticamente le chiavi primarie man mano che le righe vengono inserite.
-\index{chiave primaria}
 
 **Relazione**
 : Un'area all'interno di un database che contiene tuple e attributi. Di solito chiamata "tabella".
@@ -904,3 +900,7 @@ Glossario
 : Una singola voce di una tabella di database, formata da un insieme di attributi. Di solito chiamata "riga".
 
 \index{tupla}
+
+**Vincolo**
+: Una regola che chiediamo al database di far rispettare su un campo o su una riga di una tabella. Un vincolo comune è richiedere che in un campo non ci possano essere valori duplicati (cioè che tutti i valori siano univoci).
+\index{vincolo}
