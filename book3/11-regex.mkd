@@ -268,7 +268,7 @@ Possiamo farlo in modo molto più semplice con la seguente espressione regolare:
 ^From .* [0-9][0-9]:
 ~~~~
 
-Tradotta, questa espressione regolare dice che cerchiamo le righe che iniziano con `From ` (nota lo spazio), seguito da un numero qualsiasi di caratteri (`.*`), seguiti da uno spazio, seguito da due cifre `[0-9][0-9]`, seguite da un carattere dei due punti. Questa è la definizione del tipo di righe che cerchiamo.
+Tradotta, questa espressione regolare dice che cerchiamo le righe che iniziano con `"From "` (nota lo spazio), seguito da un numero qualsiasi di caratteri (`.*`), seguiti da uno spazio, seguito da due cifre `[0-9][0-9]`, seguite da un carattere dei due punti. Questa è la definizione del tipo di righe che cerchiamo.
 
 Per estrarre solo l'ora con `findall()`, aggiungiamo le parentesi tonde intorno alle due cifre, come segue:
 
