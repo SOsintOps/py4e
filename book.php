@@ -5,7 +5,7 @@
 </div>
 <h1>Python per tutti</h1>
 <p>
-        L'obiettivo di questo libro è offrire un'introduzione alla programmazione orientata all'informatica applicata (Informatics). La differenza principale tra un approccio di informatica teorica (Computer Science) e quello adottato in questo libro è la maggiore attenzione all'uso di Python per risolvere problemi di analisi dei dati comuni nel mondo reale.
+        L'obiettivo di questo libro è offrire un'introduzione alla programmazione orientata all'informatica applicata (Informatics). La differenza principale tra un approccio di informatica teorica (Computer Science) e quello adottato in questo libro è la maggiore attenzione all'uso di Python per risolvere problemi di analisi dei dati comuni nel mondo dell'informatica applicata.
 </p>
 <p>
         Il codice di esempio e i file di dati del libro si trovano qui: <a href="http://www.py4e.com/code3/" target="_blank" rel="noopener noreferrer">Esempi di codice</a>.
@@ -60,6 +60,7 @@ Libro tradotto, correttori automatici, risorse e sito web su
      <ul class="menu vertical nested is-active">
 <li>
        Gratuito: <a href="http://do1.dr-chuck.com/pythonlearn/IT_it/pythonlearn.pdf" target="_blank" rel="noopener noreferrer">PDF</a>,
+       <a href="../html3">HTML</a>,
        <a href="http://do1.dr-chuck.com/pythonlearn/IT_it/pythonlearn.epub" target="_blank" rel="noopener noreferrer">EPUB</a>
 </li>
 <li>
