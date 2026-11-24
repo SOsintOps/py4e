@@ -422,7 +422,7 @@ sqlite>
 ~~~~
 
 \index{SQL!IGNORE}
-Possiamo dire al database di ignorare gli errori di chiave duplicata aggiungendo la parola chiave `IGNORE` all'istruzione `INSERT`, in questo modo:
+Possiamo dire al database di ignorare gli errori di chiave duplicata aggiungendo le parole chiave `OR IGNORE` all'istruzione `INSERT`, in questo modo:
 
 ~~~~
 sqlite> INSERT OR IGNORE INTO Artist (name, eyes)
@@ -690,7 +690,7 @@ Ora supponiamo di dover inserire vari studenti negli elenchi degli iscritti di v
 ~~~~
 
 \index{JSON!analisi}
-Potremmo scrivere il codice seguente per leggere il file JSON e inserire nel database gli iscritti di ogni corso:
+Potremmo scrivere il codice seguente, `roster.py`, per leggere il file JSON e inserire nel database gli iscritti di ogni corso:
 
 ~~~~ {.python}
 import json
@@ -817,7 +817,7 @@ for entry in json_data:
         ( user_id, course_id, role ) )
 ~~~~
 
-In un sistema reale probabilmente costruiremmo una tabella `Role` e faremmo della colonna `role` di `Member` una chiave esterna verso la tabella `Role`, in questo modo:
+In un sistema reale probabilmente costruiremmo una tabella `Role` e faremmo della colonna `role` di `Member` una chiave esterna, `role_id`, verso la tabella `Role`, in questo modo:
 
 ~~~~ {.sql}
 DROP TABLE Member;
