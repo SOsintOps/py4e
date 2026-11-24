@@ -99,7 +99,7 @@ lst2 = stuff.findall('user')
 print('User count:', len(lst2))
 ~~~~
 
-`lst` contiene tutti gli elementi `user` annidati nel loro padre `users`. `lst2` cerca nell'elemento di primo livello `stuff` gli elementi `user` che non sono annidati, e lì non ce n'è nessuno.
+`lst` contiene tutti gli elementi `user` annidati nel loro padre `users`. `lst2` cerca gli elementi `user` che stanno direttamente nell'elemento di primo livello `stuff`, senza essere annidati in un altro elemento, e lì non ce n'è nessuno.
 
 ~~~~
 User count: 2
