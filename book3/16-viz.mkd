@@ -27,9 +27,9 @@ Il primo problema da risolvere è che queste API di geocodifica hanno un *limite
 
 \index{cache}
 
-Nella prima fase prendiamo i dati di input del "sondaggio", nel file `where.data`, li leggiamo una riga alla volta, recuperiamo da Google le informazioni geocodificate e le memorizziamo in un database, `geodata.sqlite`. Per ogni località inserita da un utente, prima di usare l'API di geocodifica controlliamo semplicemente se abbiamo già i dati di quella riga di input. Il database funziona da "cache" locale dei dati di geocodifica, per essere sicuri di non chiedere mai a Google due volte gli stessi dati.
+Nella prima fase prendiamo i dati di input del "sondaggio", nel file `where.data`, li leggiamo una riga alla volta, recuperiamo da OpenStreetMap le informazioni geocodificate e le memorizziamo in un database, `opengeo.sqlite`. Per ogni località inserita da un utente, prima di usare l'API di geocodifica controlliamo semplicemente se abbiamo già i dati di quella riga di input. Il database funziona da "cache" locale dei dati di geocodifica, per essere sicuri di non chiedere mai a OpenStreetMap due volte gli stessi dati.
 
-Puoi riavviare da zero il processo in qualsiasi momento eliminando il file `geodata.sqlite`.
+Puoi riavviare da zero il processo in qualsiasi momento eliminando il file `opengeo.sqlite`.
 
 Esegui il programma `geoload.py`. Il programma leggerà le righe di input di `where.data` e per ognuna controllerà se è già nel database. Se non abbiamo i dati della località, chiamerà l'API di geocodifica per recuperarli e memorizzarli nel database.
 
@@ -64,7 +64,7 @@ Le prime cinque località sono già nel database, quindi vengono saltate. Il pro
 
 Il programma `geoload.py` si può fermare in qualsiasi momento, e c'è un contatore che puoi usare per limitare il numero di chiamate all'API di geocodifica a ogni esecuzione. Dato che `where.data` contiene solo qualche centinaio di elementi, non dovresti raggiungere il limite giornaliero delle richieste; ma se avessi più dati, potrebbero servire diverse esecuzioni in più giorni perché il database contenga tutti i dati geocodificati dell'input.
 
-Una volta caricati alcuni dati in `geodata.sqlite`, puoi visualizzarli con il programma `geodump.py`. Il programma legge il database e scrive il file `where.js` con la località, la latitudine e la longitudine, in forma di codice JavaScript eseguibile.
+Una volta caricati alcuni dati in `opengeo.sqlite`, puoi visualizzarli con il programma `geodump.py`. Il programma legge il database e scrive il file `where.js` con la località, la latitudine e la longitudine, in forma di codice JavaScript eseguibile.
 
 Ecco un'esecuzione del programma `geodump.py`:
 
@@ -81,7 +81,7 @@ Voivodeship, 00-046, Poland 52.239 21.0155
 Open the where.html file in a web browser to view the data.
 ~~~~
 
-Il file `where.html` contiene HTML e JavaScript per visualizzare una mappa di Google. Per sapere cosa visualizzare, legge i dati più recenti in `where.js`. Ecco il formato del file `where.js`:
+Il file `where.html` contiene HTML e JavaScript per visualizzare una mappa OpenStreetMap. Per sapere cosa visualizzare, legge i dati più recenti in `where.js`. Ecco il formato del file `where.js`:
 
 ~~~~ {.js}
 myData = [
@@ -99,7 +99,7 @@ Masovian Voivodeship, 00-046, Poland'],
 
 Si tratta di una variabile JavaScript che contiene una lista di liste. La sintassi delle costanti di tipo lista in JavaScript è molto simile a quella di Python, quindi dovrebbe esserti familiare.
 
-Per vedere le località ti basta aprire `where.html` in un browser. Puoi passare con il mouse su ogni segnaposto della mappa per scoprire la località che l'API di geocodifica ha restituito per l'input inserito dall'utente. Se aprendo il file `where.html` non vedi nessun dato, ti conviene controllare la console JavaScript (o console per sviluppatori) del browser.
+Per vedere le località ti basta aprire `where.html` in un browser. Puoi fare clic su ogni segnaposto della mappa per scoprire la località che l'API di geocodifica ha restituito per l'input inserito dall'utente. Se aprendo il file `where.html` non vedi nessun dato, ti conviene controllare la console JavaScript (o console per sviluppatori) del browser.
 
 Visualizzare reti e interconnessioni
 -----------------------------------------
@@ -209,7 +209,7 @@ Open force.html in a browser to view the visualization
 
 Puoi vedere questi dati aprendo il file `force.html` nel browser web. La pagina mostra i nodi e i link disposti automaticamente. Puoi fare clic su qualsiasi nodo e trascinarlo, e puoi anche fare doppio clic su un nodo per sapere quale URL rappresenta.
 
-Se riesegui gli altri programmi, riesegui anche `spjson.py` e aggiorna la pagina nel browser per caricare i nuovi dati da `spider.json`.
+Se riesegui gli altri programmi, riesegui anche `spjson.py` e aggiorna la pagina nel browser per caricare i nuovi dati da `spider.js`.
 
 Visualizzare i dati della posta
 ---------------------
@@ -263,7 +263,7 @@ I dati di `content.sqlite` sono piuttosto grezzi, hanno un modello dei dati inef
 
 Il secondo processo consiste nell'eseguire il programma `gmodel.py`. Il programma legge i dati grezzi da `content.sqlite` e produce nel file `index.sqlite` una versione dei dati ripulita e ben modellata. Il file `index.sqlite` sarà molto più piccolo di `content.sqlite` (spesso 10 volte più piccolo), perché il programma comprime anche il testo delle intestazioni e del corpo.
 
-Ogni volta che viene eseguito, `gmodel.py` cancella e ricostruisce `index.sqlite`; così puoi regolare i parametri del programma e modificare le tabelle di mappatura in `content.sqlite` per mettere a punto la pulizia dei dati. Ecco un esempio di esecuzione di `gmodel.py`. Il programma stampa una riga ogni 250 messaggi di posta elaborati, così puoi vedere che il lavoro va avanti: l'esecuzione può durare un bel po', perché c'è quasi un gigabyte di dati di posta da elaborare.
+Ogni volta che viene eseguito, `gmodel.py` cancella e ricostruisce `index.sqlite`; così puoi regolare i parametri del programma e modificare le tabelle di mappatura in `mapping.sqlite` per mettere a punto la pulizia dei dati. Ecco un esempio di esecuzione di `gmodel.py`. Il programma stampa una riga ogni 250 messaggi di posta elaborati, così puoi vedere che il lavoro va avanti: l'esecuzione può durare un bel po', perché c'è quasi un gigabyte di dati di posta da elaborare.
 
 ~~~~
 Loaded allsenders 1588 and mapping 28 dns mapping 1
