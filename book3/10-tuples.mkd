@@ -505,17 +505,9 @@ Glossario
 : Relativo a un tipo che ha una funzione hash. I tipi immutabili come gli interi, i numeri in virgola mobile e le stringhe sono hashable; i tipi mutabili come le liste e i dizionari non lo sono.
 \index{hashable}
 
-**Raccolta (gather)**
-: L'operazione che assembla una tupla di argomenti di lunghezza variabile.
-\index{raccolta}
-
 **Singleton**
 : Una lista (o un'altra sequenza) con un solo elemento.
 \index{singleton}
-
-**Spacchettamento (scatter)**
-: L'operazione che tratta una sequenza come un elenco di argomenti.
-\index{spacchettamento}
 
 **Struttura dati**
 : Una collezione di valori correlati, spesso organizzati in liste, dizionari, tuple, ecc.
