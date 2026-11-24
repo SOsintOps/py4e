@@ -40,7 +40,7 @@ Ecco una semplice applicazione che analizza un po' di XML e ne estrae alcuni dat
 
 Le triple virgolette singole (`'''`), così come le triple virgolette doppie (`"""`), permettono di creare stringhe che si estendono su più righe.
 
-La chiamata a `fromstring` converte la stringa che rappresenta l'XML in un "albero" di elementi XML. Una volta che l'XML è in forma di albero, abbiamo una serie di metodi che possiamo chiamare per estrarre parti dei dati dalla stringa XML. La funzione `find` cerca nell'albero XML e recupera l'elemento che corrisponde al tag indicato.
+La chiamata a `fromstring` converte la stringa che rappresenta l'XML in un "albero" di elementi XML. Una volta che l'XML è in forma di albero, abbiamo una serie di metodi che possiamo chiamare per estrarre parti dei dati dalla stringa XML. Il metodo `find` cerca nell'albero XML e recupera l'elemento che corrisponde al tag indicato.
 
 ~~~~
 Name: Chuck
@@ -71,7 +71,7 @@ Id 009
 Attribute 7
 ~~~~
 
-È importante includere nell'istruzione `findall` tutti gli elementi padre, tranne quello di primo livello (ad esempio `users/user`). Altrimenti Python non troverà i nodi desiderati.
+È importante includere nella chiamata al metodo `findall` tutti gli elementi padre, tranne quello di primo livello (ad esempio `users/user`). Altrimenti Python non troverà i nodi desiderati.
 
 ~~~~ {.python}
 import xml.etree.ElementTree as ET
