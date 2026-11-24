@@ -337,7 +337,7 @@ Poi stampiamo il primo elemento della lista con le parentesi quadre, che sono un
 
 Alla fine del programma l'oggetto `stuff` viene scartato, ma non prima che sia stato chiamato il *distruttore* (di nome `__del__`), in modo che l'oggetto possa sistemare, se serve, le questioni rimaste in sospeso.
 
-Queste sono le basi della programmazione orientata agli oggetti. Ci sono molti altri dettagli su come usare al meglio gli approcci orientati agli oggetti quando si sviluppano grandi applicazioni e librerie, ma vanno oltre l'ambito di questo capitolo.^[Se sei curioso di sapere dove è definita la classe `list`, dai un'occhiata (speriamo che l'URL non cambi) a https://github.com/python/cpython/blob/master/Objects/listobject.c - la classe `list` è scritta in un linguaggio chiamato "C". Se guardi quel codice sorgente e ti incuriosisce, potresti esplorare la programmazione in C, con un occhio alla costruzione di oggetti, su https://www.cc4e.com/.]
+Queste sono le basi della programmazione orientata agli oggetti. Ci sono molti altri dettagli su come usare al meglio gli approcci orientati agli oggetti quando si sviluppano grandi applicazioni e librerie, ma vanno oltre l'ambito di questo capitolo.^[Se sei curioso di sapere dove è definita la classe `list`, dai un'occhiata (speriamo che l'URL non cambi) a https://github.com/python/cpython/blob/main/Objects/listobject.c - la classe `list` è scritta in un linguaggio chiamato "C". Se guardi quel codice sorgente e ti incuriosisce, potresti esplorare la programmazione in C, con un occhio alla costruzione di oggetti, su https://www.cc4e.com/.]
 
 Glossario
 --------
