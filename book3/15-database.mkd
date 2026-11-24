@@ -445,7 +445,7 @@ sqlite> SELECT * FROM Artist;
 sqlite>
 ~~~~
 
-Poiché non abbiamo aggiunto un vincolo di unicità alla colonna del colore degli occhi, non è un problema avere più valori `'Blue'` nella colonna `eye`.
+Poiché non abbiamo aggiunto un vincolo di unicità alla colonna del colore degli occhi, non è un problema avere più valori `'blue'` nella colonna `eyes`.
 
 ![Brani, album e artisti\label{figtaa}](height=1.5in@../images/tracks-albums-artists)
 
@@ -492,7 +492,7 @@ CREATE TABLE Track (
 );
 ~~~~
 
-Aggiungiamo la parola chiave `UNIQUE` alle colonne `TEXT` su cui vogliamo un vincolo di unicità, che useremo nelle istruzioni `INSERT IGNORE`. Questa forma è più concisa di istruzioni `CREATE INDEX` separate, ma ha lo stesso effetto.
+Aggiungiamo la parola chiave `UNIQUE` alle colonne `TEXT` su cui vogliamo un vincolo di unicità, che useremo nelle istruzioni `INSERT OR IGNORE`. Questa forma è più concisa di istruzioni `CREATE INDEX` separate, ma ha lo stesso effetto.
 
 Con queste tabelle pronte, scriviamo il codice seguente, `tracks_csv.py`, per analizzare i dati e inserirli nelle tabelle:
 
@@ -898,7 +898,6 @@ Glossario
 
 **Tupla**
 : Una singola voce di una tabella di database, formata da un insieme di attributi. Di solito chiamata "riga".
-
 \index{tupla}
 
 **Vincolo**
