@@ -97,7 +97,7 @@ Se torniamo all'applicazione che estraeva i link, in cui abbiamo usato la librer
 
 \VerbatimInput{../code3/urllinks.py}
 
-Leggiamo l'URL in una stringa e poi la passiamo a `urllib` per recuperare i dati dal web. La libreria `urllib` usa la libreria `socket` per aprire la connessione di rete vera e propria con cui recupera i dati. Prendiamo la stringa che `urllib` restituisce e la consegniamo a BeautifulSoup perché la analizzi. BeautifulSoup si serve dell'oggetto `html.parser`^[https://docs.python.org/3/library/html.parser.html] e restituisce un oggetto. Sull'oggetto restituito chiamiamo il metodo `tags()`, che restituisce un dizionario di oggetti tag. Scorriamo i tag e su ciascuno chiamiamo il metodo `get()` per stampare l'attributo `href`.
+Leggiamo l'URL in una stringa e poi la passiamo a `urllib` per recuperare i dati dal web. La libreria `urllib` usa la libreria `socket` per aprire la connessione di rete vera e propria con cui recupera i dati. Prendiamo la stringa che `urllib` restituisce e la consegniamo a BeautifulSoup perché la analizzi. BeautifulSoup si serve dell'oggetto `html.parser`^[https://docs.python.org/3/library/html.parser.html] e restituisce un oggetto. Chiamiamo l'oggetto restituito come se fosse una funzione, `soup('a')`, e otteniamo una lista di oggetti tag. Scorriamo i tag e su ciascuno chiamiamo il metodo `get()` per stampare l'attributo `href`.
 
 Possiamo rappresentare con un disegno questo programma e il modo in cui gli oggetti collaborano.
 
@@ -195,7 +195,7 @@ So far 3
 So far 4
 ~~~~
 
-L'oggetto viene costruito e il metodo `party` viene chiamato quattro volte; ogni chiamata incrementa e stampa il valore di `x` all'interno dell'oggetto `an`.
+L'oggetto viene costruito e il metodo `party` viene chiamato tre volte; ogni chiamata incrementa e stampa il valore di `x` all'interno dell'oggetto `an`.
 
 Le classi come tipi
 ----------------
@@ -274,7 +274,7 @@ All'interno del costruttore, la seconda riga copia il parametro passato (`nam`) 
 self.name = nam
 ~~~~
 
-L'output del programma mostra che gli oggetti (`s` e `j`) contengono ciascuno le proprie copie indipendenti di `x` e di `nam`:
+L'output del programma mostra che gli oggetti (`s` e `j`) contengono ciascuno le proprie copie indipendenti di `x` e di `name`:
 
 ~~~~
 Sally constructed
