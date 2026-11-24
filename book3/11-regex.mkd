@@ -36,7 +36,7 @@ Ad esempio, nelle espressioni regolari l'accento circonflesso corrisponde all'"i
 
 \VerbatimInput{../code3/re02.py}
 
-Ora troveremo corrispondenze solo nelle righe che *iniziano con* la stringa `From:`. È ancora un esempio molto semplice, che avremmo potuto realizzare in modo equivalente con il metodo `startswith()` del modulo delle stringhe. Ma serve a introdurre l'idea che le espressioni regolari contengono caratteri speciali che compiono un'azione e ci danno più controllo su ciò che corrisponderà all'espressione regolare.
+Ora troveremo corrispondenze solo nelle righe che *iniziano con* la stringa `From:`. È ancora un esempio molto semplice, che avremmo potuto realizzare in modo equivalente con il metodo `startswith()` delle stringhe. Ma serve a introdurre l'idea che le espressioni regolari contengono caratteri speciali che compiono un'azione e ci danno più controllo su ciò che corrisponderà all'espressione regolare.
 
 \index{stringa!startswith}
 
@@ -83,7 +83,7 @@ From: stephen.marquard@uct.ac.za, csev@umich.edu, and cwen@iupui.edu
 Estrarre dati con le espressioni regolari
 -----------------------------------------
 
-Se vogliamo estrarre dati da una stringa in Python, possiamo usare il metodo `findall()` per estrarre tutte le sottostringhe che corrispondono a un'espressione regolare. Supponiamo di voler estrarre da qualsiasi riga tutto ciò che somiglia a un indirizzo email, indipendentemente dal formato. Ad esempio, vogliamo ricavare gli indirizzi email da ognuna delle righe seguenti:
+Se vogliamo estrarre dati da una stringa in Python, possiamo usare la funzione `findall()` per estrarre tutte le sottostringhe che corrispondono a un'espressione regolare. Supponiamo di voler estrarre da qualsiasi riga tutto ciò che somiglia a un indirizzo email, indipendentemente dal formato. Ad esempio, vogliamo ricavare gli indirizzi email da ognuna delle righe seguenti:
 
 ~~~~
 From stephen.marquard@uct.ac.za Sat Jan  5 09:14:16 2008
@@ -100,7 +100,7 @@ Non vogliamo scrivere codice per ciascun tipo di riga, con divisioni e slice div
 
 \VerbatimInput{../code3/re05.py}
 
-Il metodo `findall()` cerca nella stringa del secondo argomento e restituisce una lista di tutte le stringhe che sembrano indirizzi email. Usiamo una sequenza di due caratteri che corrisponde a un carattere diverso dallo spazio bianco (`\S`). Noterai che abbiamo anche aggiunto la lettera `r` subito prima dell'espressione regolare; così diciamo a Python di interpretarla come una *stringa raw* (raw string) e di non trattare i backslash come caratteri di escape (come quello che usiamo in `\n`).
+La funzione `findall()` cerca nella stringa del secondo argomento e restituisce una lista di tutte le stringhe che sembrano indirizzi email. Usiamo una sequenza di due caratteri che corrisponde a un carattere diverso dallo spazio bianco (`\S`). Noterai che abbiamo anche aggiunto la lettera `r` subito prima dell'espressione regolare; così diciamo a Python di interpretarla come una *stringa raw* (raw string) e di non trattare i backslash come caratteri di escape (come quello che usiamo in `\n`).
 
 L'output del programma sarebbe:
 
@@ -258,7 +258,7 @@ Ora possiamo usare le espressioni regolari per rifare un esercizio che abbiamo v
 From stephen.marquard@uct.ac.za Sat Jan  5 09:14:16 2008
 ~~~~
 
-e volevamo estrarre l'ora del giorno da ogni riga. In precedenza l'abbiamo fatto con due chiamate a `split`. Prima la riga è stata divisa in parole, poi abbiamo estratto la quinta parola e l'abbiamo divisa di nuovo con il carattere dei due punti, per estrarre i due caratteri che ci interessavano.
+e volevamo estrarre l'ora del giorno da ogni riga. In precedenza l'abbiamo fatto con due chiamate a `split`. Prima la riga è stata divisa in parole, poi abbiamo estratto la sesta parola e l'abbiamo divisa di nuovo con il carattere dei due punti, per estrarre i due caratteri che ci interessavano.
 
 Anche se ha funzionato, in realtà il risultato è un codice piuttosto fragile, che presuppone che le righe siano ben formattate. Se dovessi aggiungere abbastanza controlli degli errori (o un grande blocco `try`/`except`) per garantire che il programma non fallisse mai davanti a righe formattate in modo sbagliato, il codice si gonfierebbe fino a 10-15 righe piuttosto difficili da leggere.
 
@@ -380,7 +380,7 @@ Puoi aprire un sistema di aiuto interattivo con `help()`.
 help> modules
 ~~~~
 
-Se sai quale modulo vuoi usare, puoi usare il comando `dir()` per trovare i metodi del modulo, come segue:
+Se sai quale modulo vuoi usare, puoi usare il comando `dir()` per trovare le funzioni del modulo, come segue:
 
 ~~~~ {.python}
 >>> import re
@@ -451,7 +451,7 @@ mbox.txt had 4175 lines that matched java$
 New Revision: 39772
 ~~~~
 
-**Estrai il numero da ciascuna riga usando un'espressione regolare e il metodo `findall()`. Calcola la media dei numeri e stampa la media come intero.**
+**Estrai il numero da ciascuna riga usando un'espressione regolare e la funzione `findall()`. Calcola la media dei numeri e stampa la media come intero.**
 
 ~~~~
 Enter file:mbox.txt
