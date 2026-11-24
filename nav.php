@@ -53,7 +53,7 @@ if ( isset($_SESSION['id']) ) {
 $imenu = new \Tsugi\UI\Menu();
 
 $imenu->addLink('Insegnante', 'http://www.dr-chuck.com');
-$imenu->addLink('Office Hours', 'http://www.dr-chuck.com/office/');
+$imenu->addLink('Orario di ricevimento', 'http://www.dr-chuck.com/office/');
 $set->addRight('Libro', $R . 'book');
 $set->addRight('Insegnante', $imenu);
 

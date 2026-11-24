@@ -1,120 +1,111 @@
 <?php include("top.php");?>
 <?php include("nav.php");?>
-<div id="iframe-dialog" title="Read Only Dialog" style="display: none;">
-   <iframe name="iframe-frame" style="height:600px" id="iframe-frame" 
-    src="<?= $OUTPUT->getSpinnerUrl() ?>"></iframe>
+<div id="iframe-dialog" title="Finestra di sola lettura" style="display: none;">
+   <iframe name="iframe-frame" style="height:600px" id="iframe-frame"
+    src="<?= $OUTPUT->getSpinnerUrl() ?>" title="Scarica i materiali del corso"></iframe>
 </div>
-<div style="float: right;"/><iframe style="width:120px;height:240px;" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" src="//ws-na.amazon-adsystem.com/widgets/q?ServiceVersion=20070822&OneJS=1&Operation=GetAdHtml&MarketPlace=US&source=ss&ref=as_ss_li_til&ad_type=product_link&tracking_id=drchu02-20&marketplace=amazon&region=US&placement=1530051126&asins=1530051126&linkId=2ea6c883c6cf11f29568856139bad34b&show_border=true&link_opens_in_new_window=true"></iframe></div>
-        <h2>Free/Open Course Materials</h2>
-        <p>
-            You are welcome to use/reuse/remix/retain the materials from this site in your own courses.
-            Nearly all the material in this web site is Copyright Creative Commons Attribution.  These are 
-            links to downloadable content as well as links to other sources of this course material.
-        </p>
-        <ul>
-            <li>Video Lectures
-            <ul>
-            <li><a href="https://www.youtube.com/playlist?list=PLlRFEj9H3Oj7Bp8-DfGpfAfDBiblRfl5p" target="_blank">YouTube Playlist</a></li>
-            <li><a href="https://itunes.apple.com/us/podcast/python-for-everybody-video/id1214664324" target="_blank">iTunes Video</a></li>
-            <li><a href="http://amzn.to/2mFrCuh" target="_blank">Amazon Prime Video</a></li>
-            </ul>
-            </li>
-            <li>Audio Lectures
-            <ul>
-            <li><a href="https://itunes.apple.com/us/podcast/python-for-everybody-audio-py4e/id1214665693" target="_blank">iTunes Audio</a></li>
-            <li><a href="https://play.google.com/music/listen?u=0#/ps/Ijgj3aofh6m73rps4wtdk6djhv4" target="_blank">Google Play Audio</a></li>
-            </ul>
-            </li>
-            <li>
-                <a href="lectures3/" target="_blank">Lecture Slides and Handouts</a>
-            </li>
-            <li>
-                <a href="code3.zip" target="_blank">Sample Code ZIP</a>
-                (<a href="code3/" target="_blank">Individual Files</a>)
-            </li>
-            <li>
-                <a href="book.php">Free Textbook</a>
-            </li>
-            <li>
-                All the course content and autograder software is available on 
-                <a href="https://github.com/csev/py4e" target="_blank">
-                Github</a> under a Creative Commons or Apache 2.0 license.  
-            </li>
-</ul>
-        <p>
-        If you are interested in translating the book or other online materials into another 
-        language, I have provided
-some <a href="https://github.com/csev/py4e/blob/master/TRANSLATION.md" target="_new">
-instructions on how to translate this course</a> in my GitHub repository.
-If you are starting a translation, please contact me so we can coordinate our activities.
-        </p>
-<h2>Using this Course in Your Local LMS</h2>
-<p>This web site uses the <a href="http://www.tsugi.org/" target="_blank">Tsugi</a> software
-to both host the software-based autograders and provide this material so it can easily be
-integrated into a Learning Management System like 
-<a href="http://www.sakaiproject.org/" target=_blank">Sakai</a>, Moodle, Canvas, Desire2Learn, Blackboard
-or similar.
-</p>
+<h1>Usare questo corso nel tuo LMS locale</h1>
+<p>
+Puoi usare, riutilizzare, rielaborare e conservare liberamente i materiali di questo sito nei tuoi corsi.
+Quasi tutto il materiale di questo sito web è rilasciato con licenza Creative Commons Attribution. Qui sotto trovi
+i collegamenti ai contenuti scaricabili e ad altre fonti dei materiali del corso.</p>
 <ul>
 <li>
 <p>
-If your LMS supports
-<a href="https://www.imsglobal.org/activity/learning-tools-interoperability" target="_blank">
-IMS Learning Tools Interoperabilty®</a> version 1.x or 2.x, you can login, and request access
-to the tools on this site.  Make sure you indicate whether you need an LTI 1.x
-key (most common) or LTI 2.x key.   You will be given instructions on how to use
-your credentials once you get your key.
+Se il tuo LMS supporta
+<a href="https://www.imsglobal.org/activity/learning-tools-interoperability" target="_blank" rel="noopener noreferrer">
+IMS Learning Tools Interoperability®</a> versione 1.x, puoi accedere e richiedere l'accesso
+agli strumenti di questo sito. Assicurati di indicare se ti serve una chiave LTI 1.x.
+Quando riceverai la chiave, ti verranno fornite anche le istruzioni su come usare
+le tue credenziali.
 </p>
 </li>
 <li>
 <p>
-<a href="#" title="Download course material"
+<a href="#" title="Scarica i materiali del corso"
   onclick="showModalIframeUrl(this.title, 'iframe-dialog', 'iframe-frame', 'tsugi/cc/select', _TSUGI.spinnerUrl, true); return false;" >
-  Download course material
-  </a> as an 
-<a href="https://www.imsglobal.org/cc/index.html" target="_blank">
-IMS Common Cartridge®</a>, to import into an LMS like Sakai, Moodle, Canvas,
-Desire2Learn, Blackboard, or similar.
-After loading the Cartridge, you will need an LTI key and secret to provision the
-LTI-based tools provided in that cartridge.
+  Scarica i materiali del corso
+  </a> in formato
+<a href="https://www.imsglobal.org/cc/index.html" target="_blank" rel="noopener noreferrer">
+IMS Common Cartridge®</a>, da importare in un LMS come Sakai, Moodle, Canvas,
+Desire2Learn, Blackboard o simili.
+Dopo aver caricato il pacchetto Cartridge, ti serviranno una chiave e un secret LTI per attivare gli
+strumenti LTI inclusi nel pacchetto.
 </p>
 </li>
 <li>
 <p>
-If your LMS supports 
-<a href="https://www.imsglobal.org/specs/lticiv1p0" target="_blank">
-Learning Tools Interoperability® Content-Item Message</a> you can
-login and apply for an LTI 1.x key and secret and install this web site
-into your LMS as an App Store / Learning Object Repository that allows
-you to author you class in your LMS while selecting tools and content
-from this site one item at a time.  You will be given instructions
-on how to set up the "app store" in your LMS when you receive 
-your key and secret.
+Se il tuo LMS supporta
+<a href="https://www.imsglobal.org/specs/lticiv1p0" target="_blank" rel="noopener noreferrer">
+Learning Tools Interoperability® Content-Item Message</a>, puoi accedere,
+richiedere una chiave e un secret LTI 1.x e installare questo sito web
+nel tuo LMS come App Store / Learning Object Repository: in questo modo puoi
+costruire il tuo corso dentro l'LMS scegliendo strumenti e contenuti di questo sito
+uno alla volta. Quando riceverai chiave e secret, ti verranno fornite anche le
+istruzioni per configurare l'"app store" nel tuo LMS.
 </p>
 </li>
-<li><p>
-If you are using 
-<a href="https://classroom.google.com" target="_blank">Google Classroom</a>,
-you can automatically link the resources in this site
-into your classroom in the
-<a href="<?= $CFG->apphome ?>/lessons/intro?nostyle=yes">low-style view of the lessons</a>. (must be logged in)
-</p></li>
 <li>
 <p>
-If your LMS supports neither Content Item, nor Common Cartridge, but does support LTI, 
-you can hand-copy the links from this course material into your LMS one-by-one.  We have
-a <a href="<?= $CFG->apphome ?>/lessons/intro?nostyle=yes">special low-style view of the lessons</a>
-to make this hand-copying as easy as it can be.
+Se il tuo LMS non supporta né Content-Item né Common Cartridge, ma supporta LTI,
+puoi copiare a mano i collegamenti di questi materiali nel tuo LMS uno per uno. Abbiamo
+una <a href="<?= $CFG->apphome ?>/lessons/intro?nostyle=yes">vista essenziale delle lezioni</a>
+pensata apposta per rendere questa operazione il più semplice possibile.
 </p>
 </li>
-        </ul>
-<h2>Audio Archive</h2>
+</ul>
+<p><b><a href="courses">Corsi e siti web che usano questo materiale</a></b>
+</p>
+<p>Questo sito web usa il software <a href="http://www.tsugi.org/" target="_blank" rel="noopener noreferrer">Tsugi</a>
+sia per ospitare i correttori automatici sia per rendere disponibili questi materiali in modo che possano essere
+integrati facilmente in un Learning Management System come
+<a href="http://www.sakaiproject.org/" target="_blank" rel="noopener noreferrer">Sakai</a>, Moodle, Canvas, Desire2Learn, Blackboard
+o simili.
+</p>
+
+<h1>Collegamenti ai materiali del corso</h1>
+<ul>
+    <li>Videolezioni
+    <ul>
+    <li><a href="https://www.youtube.com/playlist?list=PLlRFEj9H3Oj7Bp8-DfGpfAfDBiblRfl5p" target="_blank" rel="noopener noreferrer">Playlist su YouTube</a></li>
+    <li><a href="https://itunes.apple.com/us/podcast/python-for-everybody-video/id1214664324" target="_blank" rel="noopener noreferrer">Video su iTunes</a></li>
+    <li><a href="http://amzn.to/2mFrCuh" target="_blank" rel="noopener noreferrer">Amazon Prime Video</a></li>
+    </ul>
+    </li>
+    <li>Lezioni audio
+    <ul>
+    <li><a href="https://itunes.apple.com/us/podcast/python-for-everybody-audio-py4e/id1214665693" target="_blank" rel="noopener noreferrer">Audio su iTunes</a></li>
+    <li><a href="https://play.google.com/music/listen?u=0#/ps/Ijgj3aofh6m73rps4wtdk6djhv4" target="_blank" rel="noopener noreferrer">Audio su Google Play</a></li>
+    </ul>
+    </li>
+    <li>
+        <a href="lectures3/" target="_blank" rel="noopener noreferrer">Slide delle lezioni e dispense</a>
+    </li>
+    <li>
+        <a href="code3.zip" target="_blank" rel="noopener noreferrer">Codice di esempio (ZIP)</a>
+        (<a href="code3/" target="_blank" rel="noopener noreferrer">singoli file</a>)
+    </li>
+    <li>
+        <a href="book.php">Libro di testo gratuito</a>
+    </li>
+    <li>
+        Tutti i contenuti del corso e il software dei correttori automatici sono disponibili su
+        <a href="https://github.com/csev/py4e" target="_blank" rel="noopener noreferrer">
+        GitHub</a> con licenza Creative Commons o Apache 2.0.
+    </li>
+</ul>
 <p>
-Here is an archive of the
-<a href="https://archive.org/details/201509UMSI502Podcasts_201601" target="_blank">live lecture recordings</a>
-from SI502 as taught on campus at the UM School of Information Fall 2015.
+Se ti interessa tradurre il libro o altri materiali online in un'altra lingua, trovi alcune
+<a href="https://github.com/csev/py4e/blob/master/TRANSLATION.md" target="_blank" rel="noopener noreferrer">
+istruzioni su come tradurre questo corso</a> nel repository GitHub.
+Se stai iniziando una traduzione, contattami così possiamo coordinarci.
+</p>
+<h1>Archivio audio</h1>
+<p>
+Qui trovi un archivio delle
+<a href="https://archive.org/details/201509UMSI502Podcasts_201601" target="_blank" rel="noopener noreferrer">registrazioni delle lezioni dal vivo</a>
+del corso SI502 tenuto in presenza alla School of Information dell'Università del Michigan nell'autunno 2015.
 </p>
 
 
-<?php include("footer.php"); ?>
-
+<?php include("footer.php");

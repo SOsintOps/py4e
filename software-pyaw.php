@@ -1,64 +1,70 @@
 <?php include("top.php"); ?>
 <?php include("nav.php"); ?>
 <h1>
-Using Python on PythonAnywhere
+Usare Python su PythonAnywhere
 </h1>
 <p>
-PythonAnywhere</a>
-(<a href="https://www.pythonanywhere.com" target="_blank">www.pythonanywhere.com</a>)
-is a free online service that gives you a way to develop and run Python programs
-inside a browser.   This is a full-featured Linux environment with a browser-based text
-editor with syntax highlighting.  To use Pythonanywhere for this class - all you need
-to write and run Python code is a web browser. There is nothing to install at all.
+PythonAnywhere
+(<a href="https://www.pythonanywhere.com" target="_blank" rel="noopener noreferrer">www.pythonanywhere.com</a>)
+è un servizio online gratuito che ti permette di sviluppare ed eseguire programmi Python
+direttamente nel browser. È un ambiente Linux completo, dotato di un editor di testo nel browser
+con evidenziazione della sintassi. Per usare PythonAnywhere in questo corso ti basta un browser web:
+non devi installare nulla.
 </p>
 <p>
-This means that you can do this course on a "locked-down" environment on systems
-like Apple's iPad, iPhone, Android, ChromeBooks, or Windows 10 Home S.  You can
-also use PythonAnywhere if you are using a work or school computer that does not
-allow any software into be installed.
+Questo significa che puoi seguire il corso anche su dispositivi con restrizioni di sistema,
+come iPad, iPhone, Android, Chromebook o Windows in modalità S. Puoi
+usare PythonAnywhere anche se lavori su un computer aziendale o scolastico che non
+consente di installare software.
 </p>
-<h2>Sign up for an account</h2>
+<h2>Creare un account</h2>
 <p>
-You will need to sign up for an account to use PythonAnywhere.   They have a free
-level that will cover all of your needs for this course through Chapter 15.
+Per usare PythonAnywhere devi creare un account. Esiste un piano gratuito
+che copre tutte le esigenze di questo corso fino al Capitolo 15.
 </p>
 <p>
-PythonAnywhere is committed to letting you have a free account forever as long as you
-keep logging in and extending it.  They have low cost paid plans if you want more disk
-space or compute power for your own projects or more flexibility or features.  But
-rest assured that their free plan is sufficient for this course.
+PythonAnywhere consente di mantenere un account gratuito a tempo indeterminato, purché tu
+continui ad accedere e a rinnovarlo. Esistono anche piani a pagamento economici se vuoi più spazio
+su disco, maggiore potenza di calcolo o funzionalità aggiuntive per i tuoi progetti personali, ma
+il piano gratuito è del tutto sufficiente per questo corso.
 </p>
-<h2>Writing Your First Program on PythonAnywhere</h2>
+<h2>Scrivere il tuo primo programma su PythonAnywhere</h2>
 <p>
-Once you can log in to PythonAnywhere, go into the files tab and create a new file called <b>hello.py</b>
-in your home folder (should be something like <b>/home/drchuck</b>.  Put the following line in the file:
+Una volta effettuato l'accesso a PythonAnywhere, vai nella scheda <b>Files</b> e crea un nuovo file chiamato <b>hello.py</b>
+nella tua cartella home (qualcosa di simile a <b>/home/drchuck</b>). Inserisci nel file la riga seguente:
+</p>
 <pre>
 print('Hello world')
 </pre>
-Save the file and press <b>Run</b> and you should see:
+<p>
+Salva il file e premi <b>Run</b>; dovresti vedere:
+</p>
 <pre>
 Hello world
 &gt;&gt;&gt;
 </pre>
-Then change the text to 'Hello PY4E world', press <b>Save</b> and press <b>Run</b> and it should run your modified
-program.
-</pre>
+<p>
+Poi cambia il testo in <code>'Hello PY4E world'</code>, premi <b>Save</b> e poi <b>Run</b>: dovrebbe eseguire il programma
+modificato.
 </p>
 <p>
-While the <b>Run</b> button works for programs that are a few lines, once you start working on more complex
-programs you will need to use a Linux shell (command line).  It might feel a little strange at the beginning
-but learning a little bit of Linux is a great idea as it is the dominant system that is used for servers.
+Il pulsante <b>Run</b> va bene per programmi di poche righe, ma quando cominci a lavorare su programmi più complessi
+ti servirà usare una shell Linux (riga di comando). All'inizio può sembrare un po' insolito,
+ma imparare un po' di Linux è un'ottima idea perché è il sistema dominante sui server.
 </p>
-<h2>Using the Linux Shell on PythonAnywhere</h2>
+<h2>Usare la shell Linux su PythonAnywhere</h2>
 <p>
-This works best if you can have two tabs open at the same time in the browser.  One tab should be navigated to
-the <b>Files</b> screen and another should be nagivated to the <b>Consoles</b> screen.  If you already have a 
-bash console running you can go back to it - otherwise start a new <b>Bash</b> console.  After it starts up, 
-you should see something like:
+Il modo più comodo è tenere aperte contemporaneamente due schede del browser: una sulla
+schermata <b>Files</b> e l'altra sulla schermata <b>Consoles</b>. Se hai già una
+console bash aperta puoi tornarci, altrimenti avvia una nuova console <b>Bash</b>. Dopo l'avvio
+dovresti vedere qualcosa del genere:
+</p>
 <pre>
 14:12 ~ $
 </pre>
-This is the Linux command prompt.  Lets run your 'hello.py' program from the command line:
+<p>
+Questo è il prompt dei comandi di Linux. Eseguiamo il tuo programma <b>hello.py</b> dalla riga di comando:
+</p>
 <pre>
 14:12 ~ $ cd
 14:14 ~ $ pwd
@@ -69,59 +75,61 @@ This is the Linux command prompt.  Lets run your 'hello.py' program from the com
 Hello PY4E world
 14:16 ~ $
 </pre>
-Here is what the commands are doing:
-<ul>
-<li><b>cd</b> - Change directory into my home folder - we do this just to make sure we are starting in the 
-right place in the folder hierarchy.</li>
-<li><b>pwd</b> - Print Working Directory - this command tells you where you are at in the folder
-hierarchy.  We are in our home folder.  Linux is a multi-user system and each user has their own 'home'
-directory.  You can build a folder hirearchy from your home folder on down.</li>
-<li><b>ls -l</b> list the files and subfolders in the current folder.  The <b>-l</b> option
-shows details like permissions, modification date and file size.</li>
-<li><b>python3 hello.py</b> runs Python on your file</li>
-</ul>
-We recommend that you start using the Linux bash shell to run your code from the very beginning
-because eventually you will need to use bash to run more complex programs.
+<p>
+Ecco cosa fanno questi comandi:
 </p>
+<ul>
+<li><b>cd</b> – Cambia directory spostandosi nella cartella home: lo facciamo per essere sicuri di partire dal
+punto giusto nella gerarchia delle cartelle.</li>
+<li><b>pwd</b> – <em>Print Working Directory</em>: questo comando ti dice dove ti trovi nella gerarchia
+delle cartelle. Siamo nella nostra cartella home. Linux è un sistema multiutente e ogni utente ha la propria
+directory "home", sotto la quale puoi organizzare le tue cartelle.</li>
+<li><b>ls -l</b> – Elenca i file e le sottocartelle nella cartella corrente. L'opzione <b>-l</b>
+mostra dettagli come permessi, data di modifica e dimensione dei file.</li>
+<li><b>python3 hello.py</b> – Esegue Python sul tuo file.</li>
+</ul>
 <p>
-<h2>Some Cool Hints on the bash console</h2>
+Ti consigliamo di iniziare a usare la shell bash di Linux per eseguire il codice fin dall'inizio,
+perché più avanti ti servirà per eseguire programmi più complessi.
+</p>
+<h2>Alcuni suggerimenti utili sulla console bash</h2>
 <p>
-You can scroll back through previous commands by pressing the up and down arrows and re-execute 
-commands using the enter key.  This can save a lot of typing.
-If you like keeping your screen uncluttered, you can clear the scroll 
-back buffer by pressing the <b>Command key</b> and the <b>K</b> key at the same time.
+Puoi scorrere i comandi precedenti premendo i tasti freccia su e freccia giù ed eseguirli di nuovo
+premendo Invio: ti farà risparmiare molta digitazione.
+Se preferisci tenere lo schermo ordinato, puoi pulire il buffer di scorrimento
+premendo contemporaneamente il tasto <b>Command</b> e il tasto <b>K</b> (o digitando <b>clear</b>).</p>
 
-<h2>Editing Files on PythonAnywhere</h2>
+<h2>Modificare i file su PythonAnywhere</h2>
 <p>
-There are three ways to edit files in your PythonAnywhere environment, ranging from the easiest
-to the coolest.  You only have to edit the file one of these ways.
+Ci sono tre modi per modificare i file nel tuo ambiente PythonAnywhere, dal più semplice
+al più "da esperti". Ti basta sceglierne uno:</p>
 <ol>
 <li>
-Go to the main PythonAnywhere dashboard, browse files, navigate to the correct folder and edit the file.
+Vai nella dashboard principale di PythonAnywhere, sfoglia i file, apri la cartella giusta e modifica il file dal browser.
 </li><li>
-Or in the command line:
+<p>Oppure dalla riga di comando:</p>
 <pre>
 cd ~
 nano hello.py
 </pre>
-Save the File by pressing <b>CTRL-X</b>, <b>Y</b>, and Enter.
+<p>Salva il file premendo <b>CTRL-X</b>, poi <b>Y</b> e Invio.</p>
 </li><li>
-Don't try this most difficult and most cool way to edit files on Linux without a helper
-if it is your first time with the <b>vi</b> text editor.
+Non provare questo terzo modo — il più difficile e il più apprezzato dagli esperti Linux — senza un aiuto
+se è la prima volta che usi l'editor di testo <b>vi</b>.
 <pre>
 cd ~
 vi hello.py
 </pre>
-Once you have opened <b>vi</b>, cursor down where you want to make a change, and press the
-<b>i</b> key to go into 'INSERT' mode, then type your new text and press
-the <b>esc</b> key when you are done.  To save the file, you type <b>:wq</b>
-followed by <b>enter</b>.  If you get lost press <b>esc</b> <b>:q!</b>
-<b>enter</b> to get out of the file without saving.
+Una volta aperto <b>vi</b>, sposta il cursore nel punto da modificare e premi il tasto
+<b>i</b> per entrare in modalità inserimento (INSERT); digita il nuovo testo e premi
+il tasto <b>Esc</b> quando hai finito. Per salvare e uscire digita <b>:wq</b>
+seguito da <b>Invio</b>. Se ti perdi, premi <b>Esc</b>, digita <b>:q!</b>
+e premi <b>Invio</b> per uscire senza salvare.
 </li>
 </ol>
-If you aleady know some _other_ command line text editor in Linux, you can use it to edit files.  In general,
-you will find that it often quicker and easier to make small edits to files in the command line
-rather than a full screen UI.  And once you start deploying real applications in production
-environments like Google, Amazon, Microsoft, etc.. all you will have is command line.
+<p>Se conosci già un altro editor da riga di comando su Linux, puoi usare quello per modificare i file. In generale,
+scoprirai che spesso è più rapido e semplice fare piccole modifiche ai file da riga di comando
+piuttosto che con un'interfaccia grafica completa. Inoltre, quando inizierai a distribuire vere applicazioni in ambienti di produzione
+come Google, Amazon o Microsoft, spesso avrai a disposizione solo la riga di comando.</p>
 
 <?php include('footer.php');?>
