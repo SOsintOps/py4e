@@ -50,7 +50,7 @@ Questo formato di output è anche un formato di input. Ad esempio, puoi creare u
 {'one': 'uno', 'two': 'dos', 'three': 'tres'}
 ~~~~
 
-Da Python 3.7x l'ordine delle coppie chiave-valore è quello in cui sono state inserite, cioè i dizionari ora sono strutture ordinate.
+Da Python 3.7 l'ordine delle coppie chiave-valore è quello in cui sono state inserite, cioè i dizionari ora sono strutture ordinate.
 
 Ma questo non conta poi molto, perché gli elementi di un dizionario non sono mai indicizzati con indici interi. Usi invece le chiavi per cercare i valori corrispondenti:
 
@@ -223,7 +223,7 @@ La combinazione dei due cicli annidati garantisce che conteremo ogni parola di o
 
 Nell'istruzione `else` usiamo l'alternativa più compatta per incrementare una variabile. `counts[word] += 1` è equivalente a `counts[word] = counts[word] + 1`. Entrambi i modi si possono usare per cambiare di una quantità qualsiasi il valore di una variabile. Esistono alternative simili per `-=`, `*=` e `/=`.
 
-Quando eseguiamo il programma, vediamo una stampa grezza di tutti i conteggi, non ordinati, nell'ordine dell'hash. (Il file `romeo.txt` è disponibile su [www.py4e.com/code3/romeo.txt](http://www.py4e.com/code3/romeo.txt).)
+Quando eseguiamo il programma, vediamo una stampa grezza di tutti i conteggi, non in ordine alfabetico ma nell'ordine in cui le parole sono state inserite nel dizionario. (Il file `romeo.txt` è disponibile su [www.py4e.com/code3/romeo.txt](http://www.py4e.com/code3/romeo.txt).)
 
 ~~~~
 python count1.py
@@ -323,11 +323,11 @@ Arise, fair sun, and kill the envious moon,
 Who is already sick and pale with grief,
 ~~~~
 
-Poiché la funzione `split` di Python cerca gli spazi e tratta le parole come token separati da spazi, tratteremmo `soft!` e `soft` come parole *diverse* e creeremmo nel dizionario una voce separata per ciascuna.
+Poiché il metodo `split` di Python cerca gli spazi e tratta le parole come token separati da spazi, tratteremmo `soft!` e `soft` come parole *diverse* e creeremmo nel dizionario una voce separata per ciascuna.
 
 Inoltre, poiché nel file ci sono le maiuscole, tratteremmo `who` e `Who` come parole diverse con conteggi diversi.
 
-Possiamo risolvere entrambi i problemi usando i metodi delle stringhe `lower`, `punctuation` e `translate`. Il meno intuitivo dei metodi è `translate`. Ecco la documentazione di `translate`:
+Possiamo risolvere entrambi i problemi usando i metodi delle stringhe `lower` e `translate` e la stringa `punctuation` del modulo `string`. Il meno intuitivo dei metodi è `translate`. Ecco la documentazione di `translate`:
 
 `line.translate(str.maketrans(fromstr, tostr, deletestr))`
 
