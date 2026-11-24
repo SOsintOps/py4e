@@ -327,7 +327,7 @@ Poiché la funzione `split` di Python cerca gli spazi e tratta le parole come to
 
 Inoltre, poiché nel file ci sono le maiuscole, tratteremmo `who` e `Who` come parole diverse con conteggi diversi.
 
-Possiamo risolvere entrambi i problemi usando i metodi delle stringhe `lower`, `punctuation` e `translate`. Il più sottile dei metodi è `translate`. Ecco la documentazione di `translate`:
+Possiamo risolvere entrambi i problemi usando i metodi delle stringhe `lower`, `punctuation` e `translate`. Il meno intuitivo dei metodi è `translate`. Ecco la documentazione di `translate`:
 
 `line.translate(str.maketrans(fromstr, tostr, deletestr))`
 
