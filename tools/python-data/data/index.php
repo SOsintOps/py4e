@@ -1,9 +1,9 @@
 <?php
-if ( file_exists('../config.php') ) {
-    require_once("../config.php");
-} else {
-    require_once("../../config.php");
+$config_php = __DIR__ . '/../config.php';
+if ( ! is_file($config_php) ) {
+    $config_php = __DIR__ . '/../../config.php';
 }
+require_once $config_php;
 
 require_once("names.php");
 require_once("data_util.php");
@@ -24,11 +24,7 @@ $local_path = get_request_document();
 $pos = strpos($local_path,'?');
 if ( $pos > 0 ) $local_path = substr($local_path,0,$pos);
 
-if ( strpos($local_path,"geojson") === 0 ) {
-    require_once("geojson.php");
-    return;
-
-} else if ( strpos($local_path,"xml") === 0 ) {
+if ( strpos($local_path,"xml") === 0 ) {
     require_once("geocode.php");
     return;
 
@@ -36,13 +32,18 @@ if ( strpos($local_path,"geojson") === 0 ) {
     require_once("geocode.php");
     return;
 
+} else if ( strpos($local_path,"opengeo") === 0 ) {
+    require_once("opengeo.php");
+    return;
+
+
 // New
 } else if ( strpos($local_path, "regex_sum_") === 0 && strpos($local_path, ".txt") !== false ) {
     header('Content-Type: text/plain');
     $code = 42;
     $pieces = preg_split('/[_.]/',$local_path);
-    if ( count($pieces) == 4 && $pieces[2]+0 > 0 ) {
-        $code = $pieces[2]+0;
+    if ( count($pieces) == 4 && ctype_digit($pieces[2]) && (int) $pieces[2] > 0 ) {
+        $code = (int) $pieces[2];
     }
     if ( $code == 42 ) {
         echo("This file contains the sample data\n\n");
@@ -104,8 +105,8 @@ if ( strpos($local_path,"geojson") === 0 ) {
 <?php
     $code = 42;
     $pieces = preg_split('/[_.]/',$local_path);
-    if ( count($pieces) == 3 && $pieces[1]+0 > 0 ) {
-        $code = $pieces[1]+0;
+    if ( count($pieces) == 3 && ctype_digit($pieces[1]) && (int) $pieces[1] > 0 ) {
+        $code = (int) $pieces[1];
     }
     
     if ( $code == 42 ) {
@@ -139,8 +140,8 @@ if ( strpos($local_path,"geojson") === 0 ) {
     echo("<commentinfo>\n");
     $code = 42;
     $pieces = preg_split('/[_.]/',$local_path);
-    if ( count($pieces) == 3 && $pieces[1]+0 > 0 ) {
-        $code = $pieces[1]+0;
+    if ( count($pieces) == 3 && ctype_digit($pieces[1]) && (int) $pieces[1] > 0 ) {
+        $code = (int) $pieces[1];
     }
     
     if ( $code == 42 ) {
@@ -171,8 +172,8 @@ if ( strpos($local_path,"geojson") === 0 ) {
     header('Content-Type: application/json; charset=utf-8');
     $code = 42;
     $pieces = preg_split('/[_.]/',$local_path);
-    if ( count($pieces) == 3 && $pieces[1]+0 > 0 ) {
-        $code = $pieces[1]+0;
+    if ( count($pieces) == 3 && ctype_digit($pieces[1]) && (int) $pieces[1] > 0 ) {
+        $code = (int) $pieces[1];
     }
     
     $arr = array();
@@ -298,12 +299,12 @@ Python for Informatics: Exploring Information</a> written by
 <a href="http://www.twitter.com/drchuck" target="_blank">@DrChuck</a> / 
 <a href="http://www.dr-chuck.com/" target="_blank">www.dr-chuck.com</a>.
 <ul>
-<li><a href="geojson" target="_blank">A subset of data from the Google Geo Coding API</a></li>
 <li><a href="regex_sum_42.txt" target=_"blank">Some data in a text file to be summed</a></li>
 <li><a href="comments_42.html" target=_"blank">Some data in an html file to be summed</a></li>
 <li><a href="comments_42.xml" target=_"blank">Some data in an xml file to be summed</a></li>
 <li><a href="comments_42.json" target=_"blank">Some data in an json file to be summed</a></li>
 <li><a href="known_by_42.html" target=_"blank">A set of friend lists</a></li>
+<li><a href="opengeo" target=_"blank">A proxy for the OpenStreetMap API</a></li>
 </ul>
 </p>
 <p>

@@ -1,12 +1,11 @@
-Options +Indexes
+<IfModule mod_rewrite.c>
+    RewriteEngine on
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_URI} !=/favicon.ico
+    RewriteRule ^ index.php [L]
+</IfModule>
 
-# https://perishablepress.com/better-default-directory-views-with-htaccess/
-# IndexOptions IgnoreCase FancyIndexing FoldersFirst NameWidth=* DescriptionWidth=* SuppressHTMLPreamble
-
-<IfModule headers_module>
-Header set Cache-Control "max-age=604800, public"
-
-Header add Access-Control-Allow-Origin "*"
-Header add Access-Control-Allow-Headers "origin, x-requested-with, content-type"
-Header add Access-Control-Allow-Methods "GET"
+<IfModule !mod_rewrite.c>
+    FallbackResource index.php
 </IfModule>

@@ -11,12 +11,12 @@ DROP TABLE IF EXISTS Member;
 DROP TABLE IF EXISTS Course;
 
 CREATE TABLE User (
-    id     INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
+    id     INTEGER PRIMARY KEY,
     name   TEXT UNIQUE
 );
 
 CREATE TABLE Course (
-    id     INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
+    id     INTEGER PRIMARY KEY,
     title  TEXT UNIQUE
 );
 
@@ -32,7 +32,6 @@ fname = input('Enter file name: ')
 if len(fname) < 1:
     fname = 'roster_data_sample.json'
 
-# [
 #   [ "Charley", "si110", 1 ],
 #   [ "Mea", "si110", 0 ],
 
@@ -41,8 +40,8 @@ json_data = json.loads(str_data)
 
 for entry in json_data:
 
-    name = entry[0];
-    title = entry[1];
+    name = entry[0]
+    title = entry[1]
 
     print((name, title))
 

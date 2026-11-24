@@ -21,8 +21,6 @@ To produce the book run
 
 The output `bash book.sh` is in the file `x.pdf` and `x.epub`.
 
-*Note that the build scripts require Python 2*
-
 ## Build Server
 
 There is a continuous build server that I have on Digital Ocean that builds
@@ -44,20 +42,8 @@ should run all these scripts and check it all into github so it ends up online.
 * `phpbook.sh` will make an html/php verion of the book that is an extension
 of this site in `../html3` - this is then checked into github.
 
-* `htmlbook.sh` will make an html verion of the book, with interactive examples
-embedded in trinkets. These files are in `books/html` if you want to download
-or view them.
-
-* `zipbook.sh` will make two html versions of the book with Trinket branding,
-one with interactive examples (that require an internet connection to work) and one with 
-syntax highlighted code blocks for completely offline viewing.  A zip containing 
-these is at `/book/zips/pfe.zip` if you'd just like to download it.
-
-* `trinketbook.sh` will make the nunjucks template that we use to host the book
-at [books.trinket.io](https://books.trinket.io).  This is likely not of use to you
-unless you're looking for an example of how to get the book source into your own
-templating language.  If you'd like to see the output of this script it's in
-`books/trinket/pfe`.   Also updates `../trinket3`.
+* `htmlbook.sh` will make an html verion of the book and then make a zip file.
+* `make-zips.sh` rebuilds that HTML zip plus the sample-code zips (`code.zip` and `code3.zip`, both a zip of `code3/`, and the assignment zips under `code3/`). Those zips are checked in. The `.githooks/pre-commit` hook runs `make-zips.sh` when the book or sample code is committed, then stages the new zips. Git does not install that hook on checkout. Run `bash qa/install-git-hooks.sh` once per clone.
 
 If you'd like to make your own build script, you can use these as examples. If
 your build script might have use to others, consider contributing it in a pull request.
@@ -67,7 +53,7 @@ script if you intend on contributing a new script.
 
 ## KindleGen
 
-The `book.sh` script will generate the `x.mobi` file is KindleGen is in the path:
+The `book.sh` script will generate the `x.mobi` file if KindleGen is in the path:
 
     https://www.amazon.com/gp/feature.html?docId=1000765211
 
@@ -76,6 +62,11 @@ For Linux:
     curl -O http://kindlegen.s3.amazonaws.com/kindlegen_linux_2.6_i386_v2_9.tar.gz
     tar xfv kindlegen_linux_2.6_i386_v2_9.tar.gz 
     cp kindlegen /usr/local/bin
+
+For MacOS you need to download from here:
+
+    https://github.com/andyljones/kindlegen-64
+    https://github.com/andyljones/kindlegen-64/raw/master/kindlegen
 
 ## Createspace
 
@@ -121,7 +112,7 @@ Ref: https://tex.stackexchange.com/questions/16801/xelatex-i-cant-write-on-file-
 
 ## Contributing
 
-If you want to contribute, feel free to fork the pythonlearn
+If you want to contribute, feel free to fork the py4e
 repository and send me pull requests.   
 
 https://github.com/csev/py4e

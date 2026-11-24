@@ -27,21 +27,21 @@
 
 <IfModule mod_rewrite.c>
     RewriteEngine on
+    # Old interactive-book URLs go to the book page.
+    RewriteRule ^trinket3?(/.*)?$ /book.php [R=301,L,NC]
+    # config.php stubs / secrets; FileRouter also maps /config and /config-dist
+    RewriteRule ^config(-dist)?(\.php)?(/.*)?$ - [R=404,L,NS]
     # Include-only fragments (need Tsugi $OUTPUT / $CFG; not standalone pages)
-    RewriteRule ^(nav|top|footer|header)\.php$ - [R=404,L,NS]
-    RewriteRule ^ - [E=protossl]
-    RewriteCond %{HTTPS} on
-    RewriteRule ^ - [E=protossl:s]
-    RewriteCond %{REQUEST_URI} !^/\.well-known/
-    RewriteRule "(^|/)\." - [F]
+    RewriteRule ^(nav|top|footer|buildmenu|sanity|tsugi_settings)\.php$ - [R=404,L,NS]
+    # Route /labs to Tsugi (must precede the !-d rule)
+    RewriteRule ^labs/?$ tsugi.php [L,QSA]
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_URI} !=/favicon.ico
-    RewriteRule ^ koseu.php [L]
+    RewriteRule ^ tsugi.php [L]
     RedirectMatch 404 /\.git
 </IfModule>
 
 <IfModule !mod_rewrite.c>
-    FallbackResource koseu.php
+    FallbackResource tsugi.php
 </IfModule>
-

@@ -3,14 +3,15 @@
 $EXERCISES =
 Array(
 "hello" => Array (
-"qtext" => "Write a program that uses a <b>print</b> statement to say 'hello world'
+"qtext" => "Write a program that uses a <b>print</b> function to say 'hello world'
 as shown in 'Desired Output'.",
 "desired" => "hello world",
 "code" => '# the code below almost works
 prinq("hello world")',
 "checks" => Array(
-"print" => "You must use a print statement within the loop."
-)),
+"print" => "You must use a print function within the loop."
+),
+"xcode" => 'print("hello world")'),
 
 "loop" => Array (
 "qtext" => "Write a program that uses a <b>for</b> loop and the built-in function
@@ -21,10 +22,12 @@ prinq("hello world")',
 "code" => 'print(range(3))',
 "checks" => Array(
 "for" => "You must produce the numbers using a for loop.",
-"print" => "You must use a print statement within the loop.",
+"print" => "You must use a print function within the loop.",
 "range" => "You should use the range function to generate the list of numbers on the for statement.",
 ":" => "Your for statement should end with a colon (:) and the following line should be indented"
-)),
+),
+"xcode" => 'for i in range(3):
+    print(i)'),
 
 "2.2" => Array (
 "qtext" => "<b>2.2</b> Write a program that uses <b>input</b>
@@ -40,8 +43,10 @@ print("Howdy")',
 "checks" => Array(
 "input" => "You must prompt for the user's name using the input() function.",
 "!Sarah" => "You must actually prompt for the user's name",
-"print" => "You must use the print statement to print the line of output."
-)),
+"print" => "You must use the print function to print the line of output."
+),
+"xcode" => 'name = input("Enter your name: ")
+print("Hello", name)'),
 
 "2.3" => Array(
 "qtext" => "<b>2.3</b> Write a program to prompt the user for
@@ -56,12 +61,17 @@ Do not worry about error checking or bad user data.",
 hrs = input("Enter Hours:")',
 "checks" => Array(
 "input" => "You must prompt the pay and rate using the input() function.",
-"print" => "You must use the print statement to print the output.",
+"print" => "You must use the print function to print the output.",
 "float" => "You should use the built-in float() function to convert from a string to a float.",
 "*" => "To multiply the pay and rate after you read them use the '*' operator.",
 "!35" => "You should not include the input data in your source code. You must read the values for the rate and pay using input().",
 "!2.75" => "You should not include the input data in your source code. You must read the values for the rate and pay using input().",
-"!96.25" => "You must actually calculate the pay.")),
+"!96.25" => "You must actually calculate the pay."
+),
+"xcode" => 'hrs = input("Enter Hours:")
+rate = input("Enter Rate:")
+pay = float(hrs) * float(rate)
+print("Pay:", pay)'),
 
 
 "3.1" => Array(
@@ -79,12 +89,22 @@ Do not worry about error checking the user input - assume the user types numbers
 h = float(hrs)',
 "checks" => Array(
 "input" => "You must prompt the pay and rate using the input() function.",
-"print" => "You must use the print statement to print the output.",
+"print" => "You must use the print function to print the output.",
 "if" => "You should use an if statement to decide to to the overtime computation or not.",
 "float" => "You should use the built-in float() function to convert from a string to a float.",
-"!45" => "You must read the data using input() and then convert it. The number '45' should not appear in your program.",
-"!10.5" => "You must read the data using input() and then convert it.",
-"!498" => "You must actually calculate the pay.")),
+"!45" => "You must read the hours using input() and then convert it. The number '45' should not appear in your program.",
+"!10.5" => "You must read the rate using input() and then convert it.",
+"!498" => "You must actually calculate the pay."
+),
+"xcode" => 'hrs = input("Enter Hours:")
+rate = input("Enter Rate:")
+h = float(hrs)
+r = float(rate)
+if h <= 40:
+    pay = h * r
+else:
+    pay = 40 * r + (h - 40) * r * 1.5
+print(pay)'),
 
 "3.3" => Array(
 "qtext" => "<b>3.3</b> Write a program to prompt for a score between 0.0 and 1.0.
@@ -104,10 +124,29 @@ For the test, enter a score of 0.85.
 "checks" => Array(
 "input" => "You must prompt for the score using the input() function.",
 "float" => "You should use the built-in float() function to convert from a string to a float.",
-"print" => "You must use the print statement to print the output.",
+"print" => "You must use the print function to print the output.",
 "if" => "You should use an if statement to check the value of the score.",
-"elif" => "One of the learning objectives of this assignment is to use an elif statement when checking the value of the score.")
+"elif" => "One of the learning objectives of this assignment is to use an elif statement when checking the value of the score."
 ),
+"xcode" => 'score = input("Enter Score: ")
+try:
+    score = float(score)
+except:
+    print("Bad score")
+    quit()
+if score < 0.0 or score > 1.0:
+    print("Bad score")
+    quit()
+if score >= 0.9:
+    print("A")
+elif score >= 0.8:
+    print("B")
+elif score >= 0.7:
+    print("C")
+elif score >= 0.6:
+    print("D")
+else:
+    print("F")'),
 
 "4.6" => Array(
 "qtext" => "<b>4.6</b> Write a program to prompt the user for hours
@@ -126,25 +165,36 @@ you can assume the user types numbers properly.  Do not name your variable
 sum or use the sum() function.
 ",
 "desired" => "Pay 498.75",
-"code" => 'def computepay(h,r):
+"code" => 'def computepay(h, r):
     return 42.37
 
 hrs = input("Enter Hours:")
-p = computepay(10,20)
-print("Pay",p)',
+p = computepay(10, 20)
+print("Pay", p)',
 "checks" => Array(
-"input" => "You must prompt the pay and rate using the input() function.",
-"print" => "You must use the print statement to print the output.",
+"input" => "You must prompt the hours and rate using the input() function.",
+"print" => "You must use the print function to print the output.",
 "!45" => "You must prompt for the data.",
 "!10.5" => "You must prompt for the data.",
-"if" => "You should use an if statement to decide to to the overtime computation or not.",
+"if" => "You should use an if statement to decide the overtime computation or not.",
 "float" => "You should use the built-in float() function to convert from a string to a float.",
 "def" => "You must use a function called computepay to do the computation.",
 "!sum(" => "Do not use a variable named sum or a function named sum()",
 "return" => "You must use a return statement to pass the computed pay back to the main code.",
 "computepay" => "You must use a function called computepay to do the computation.",
-"!475" => "You must actually calculate the pay.")
+"!475" => "You must actually calculate the pay."
 ),
+"xcode" => 'def computepay(h, r):
+    if h <= 40:
+        return h * r
+    return 40 * r + (h - 40) * r * 1.5
+
+hrs = input("Enter Hours:")
+rate = input("Enter Rate:")
+h = float(hrs)
+r = float(rate)
+p = computepay(h, r)
+print("Pay", p)'),
 
 "5.2" => Array(
 "qtext" => "<b>5.2</b> Write a program that repeatedly prompts a user for integer numbers
@@ -160,13 +210,14 @@ Minimum is 2",
 smallest = None
 while True:
     num = input("Enter a number: ")
-    if num == "done" : break
+    if num == "done":
+        break
     print(num)
 
 print("Maximum", largest)',
 "checks" => Array(
 "input" => "You must prompt for the numbers using the input() function.",
-"print" => "You must use the print statement to print the output.",
+"print" => "You must use the print function to print the output.",
 "while" => "You should use a while statement to read the numbers.",
 "int" => "You should use the int() function to convert from a string to an integer.",
 "! 2" => "You should actually compute the maximum and minimum.",
@@ -174,21 +225,45 @@ print("Maximum", largest)',
 "! 10" => "You should actually compute the maximum and minimum.",
 "!=10" => "You should actually compute the maximum and minimum.",
 "try" => "You should handle bad numbers using a try/except structure.",
-"except" => "You should handle bad numbers using a try/except structure.")
+"except" => "You should handle bad numbers using a try/except structure."
 ),
+"xcode" => 'largest = None
+smallest = None
+while True:
+    num = input("Enter a number: ")
+    if num == "done":
+        break
+    try:
+        num = int(num)
+    except:
+        print("Invalid input")
+        continue
+    if largest is None or num > largest:
+        largest = num
+    if smallest is None or num < smallest:
+        smallest = num
+
+print("Maximum is", largest)
+print("Minimum is", smallest)'),
 
 "6.5" => Array(
 "qtext" => "<b>6.5</b> Write code using find() and string slicing (see section 6.10) to extract
 the number at the end of the line below.   Convert the extracted value to a floating point
 number and print it out.",
 "desired" => "0.8475",
-"code" => 'text = "X-DSPAM-Confidence:    0.8475";',
+"code" => 'text = "X-DSPAM-Confidence:    0.8475"',
 "checks" => Array(
 "find" => "You should use the find function to get the position of the colon in the string.",
 ":" => "You should use string slicing [n:m] to extract data from the string.",
-"float" => "You should use the float() function to convert from a string to an integer.",
-'!"0.8475"' =>  "You must actually pull the data from the string.")
+"float" => "You should use the float() function to convert from a string to a float.",
+'!"0.8475"' =>  "You must actually pull the data from the string."
 ),
+"xcode" => 'text = "X-DSPAM-Confidence:    0.8475"
+atpos = text.find(":")
+piece = text[atpos+1:]
+stripped = piece.strip()
+flt = float(stripped)
+print(flt)'),
 
 "fopen" => Array(
 "qtext" => 'This Python program opens the file
@@ -201,7 +276,14 @@ for line in fh:
    count = count + 1
 
 print(count,"Lines")
-'
+',
+"xcode" => 'fh = open("mbox-short.txt", "r")
+
+count = 0
+for line in fh:
+   count = count + 1
+
+print(count,"Lines")'
 ),
 
 "7.1" => Array(
@@ -249,8 +331,8 @@ print(text.upper())
 "checks" => Array(
 "input" => "You must prompt for the file name using the input() function.",
 "open" => "You need to use open() to open the file.",
-"print" => "You must use the print statement to print the lines.",
-"strip" => "You should use strip() or rstrip() to avoid double newlines.  You may need to scroll down to see a mis-match of the output.",
+"print" => "You must use the print function to print the lines.",
+"strip" => "You should use strip() or rstrip() to avoid double newlines. You may need to scroll down to see a mis-match of the output.",
 "upper" => "You should use the upper() function to convert the lines to upper case.")
 ),
 
@@ -268,12 +350,13 @@ You can download the sample data at
 <a href="http://www.py4e.com/code3/mbox-short.txt" target="_blank">
 http://www.py4e.com/code3/mbox-short.txt</a> when you are testing
 below enter <b>mbox-short.txt</b> as the file name.',
-"desired" => "Average spam confidence: 0.750718518519",
+"desired" => "Average spam confidence: 0.7507185185185187",
 "code" => '# Use the file name mbox-short.txt as the file name
 fname = input("Enter file name: ")
 fh = open(fname)
 for line in fh:
-    if not line.startswith("X-DSPAM-Confidence:") : continue
+    if not line.startswith("X-DSPAM-Confidence:"):
+        continue
     print(line)
 print("Done")
 ',
@@ -293,17 +376,18 @@ print("Average spam confidence:", tot/count)
 "input" => "You must prompt for the file name using the input() function.",
 "open" => "You need to use open() to open the file.",
 "!sum" => "You should not use the sum() function and avoid using sum as a variable.",
-"float" => "You should use the float() function to convert from a string to an integer.",
+"float" => "You should use the float() function to convert from a string to a float.",
 '!18518' =>  "You must actually pull the data from the strings and convert it.",
 "/" => "Average is usually a total / count.")
 ),
 
 "8.4" => Array(
 "qtext" => '<b>8.4</b> Open the file <b>romeo.txt</b> and read it line by
-line.  For each line, split the line into a list of words using the <b>split()</b>
-method.   The program should build a list of words.  For each word on each line
+line. For each line, split the line into a list of words using the <b>split()</b>
+method. The program should build a list of words. For each word on each line
 check to see if the word is already in the list and if not append it to the list.
-When the program completes, sort and print the resulting words in alphabetical order.
+When the program completes, sort and print the resulting words in python
+sort() order as shown in the desired output.
 <p>
 You can download the sample data at
 <a href="http://www.py4e.com/code3/romeo.txt" target="_blank">
@@ -333,12 +417,14 @@ print(lst)
 "open" => "You need to use open() to open the file.",
 "sort" => "You need to use sort() to sort the list before you print it out.",
 "!'yonder'" => "You should not put the output data in strings",
+"!.remove(" => "You should not need to use the remove() method",
+"!.set(" => "You should not need to use the set() method",
 "for" => "You need two for loops. One for the lines and one for the words on each line.")
 ),
 
 "8.5" => Array(
 "qtext" => "<b>8.5</b> Open the file <b>mbox-short.txt</b> and read it line by
-line.  When you find a line that starts with 'From ' like the following line:
+line. When you find a line that starts with 'From ' like the following line:
 <pre>
 From stephen.marquard@uct.ac.za Sat Jan  5 09:14:16 2008
 </pre>
@@ -346,7 +432,7 @@ You will parse the From line using split() and print out the second word in the 
 (i.e. the entire address of the person who sent the message).  Then print out
 a count at the end.
 <p>
-<b>Hint:</b> make sure not to include the lines that start with 'From:'.".
+<b>Hint:</b> make sure not to include the lines that start with 'From:'. Also look at the last line of the sample output to see how to print the count.".
 '<p>
 You can download the sample data at
 <a href="http://www.py4e.com/code3/mbox-short.txt" target="_blank">
@@ -380,7 +466,8 @@ cwen@iupui.edu
 cwen@iupui.edu
 There were 27 lines in the file with From as the first word",
 "code" => 'fname = input("Enter file name: ")
-if len(fname) < 1 : fname = "mbox-short.txt"
+if len(fname) < 1:
+    fname = "mbox-short.txt"
 
 fh = open(fname)
 count = 0
@@ -417,7 +504,8 @@ they appear in the file.  After the dictionary is produced, the program reads th
 the dictionary using a maximum loop to find the most prolific committer.",
 "desired" => "cwen@iupui.edu 5",
 "code" => 'name = input("Enter file:")
-if len(name) < 1 : name = "mbox-short.txt"
+if len(name) < 1:
+    name = "mbox-short.txt"
 handle = open(name)
 ',
 "xcode" => 'name = input("Enter file:")
@@ -471,7 +559,8 @@ as shown below.",
 18 1
 19 1",
 "code" => 'name = input("Enter file:")
-if len(name) < 1 : name = "mbox-short.txt"
+if len(name) < 1:
+    name = "mbox-short.txt"
 handle = open(name)
 ',
 "xcode" => 'name = input("Enter file:")
@@ -508,9 +597,10 @@ Sample output is below.',
 "desired" => "42",
 "code" => '',
 "checks" => Array(
-"print" => "By now you should know that a print statement would be helpful here.",
+"print" => "By now you should know that a print function would be helpful here.",
 "*" => "I think that multiplication is involved..."
-)),
+),
+"xcode" => 'print(6 * 7)'),
 
 "11.9" => Array(
 "qtext" => "<b>11.9</b> Write a program to prompt the user for a regular expression
@@ -529,29 +619,23 @@ for line in handle:
 print("mbox-short.txt had ", count, "lines that matched", string)
 
 ',
-"xcode" => 'name = input("Enter file:")
-if len(name) < 1 : name = "mbox-short.txt"
-handle = open(name)
-counts = dict()
+"xcode" => 'import re
+
+string = input("Enter a regular expression:")
+if len(string) < 1:
+    string = "^From "
+handle = open("mbox-short.txt")
+count = 0
 for line in handle:
-    wds = line.split()
-    if len(wds) < 5 : continue
-    if wds[0] != "From" : continue
-    when = wds[5]
-    tics = when.split(":")
-    if len(tics) != 3 : continue
-    hour = tics[0]
-    counts[hour] = counts.get(hour,0) + 1
-
-lst = counts.items()
-lst.sort()
-
-for key, val in lst :
-    print(key, val)
+    line = line.rstrip()
+    if re.search(string, line):
+        count = count + 1
+print("mbox-short.txt had", count, "lines that matched", string)
 ',
 "checks" => Array(
 "for" => "You need a for loop to read the lines in the file.",
-"sort" => "You need to use list sort() method to sort the list of times.")
+"re.search" => "You need to use re.search() to match the regular expression.",
+"import re" => "You need to import the re module.")
 )
 
 

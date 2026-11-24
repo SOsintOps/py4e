@@ -12,14 +12,12 @@ $roster = makeRoster($code);
 $shas = array();
 foreach($roster as $i => $student) {
     $row = $student[0].$student[1].$student[2];
-    $sha = strtoupper(bin2hex($row));
-    // Dang SHAs that have only numbers
-    $shas[] = $sha.'!';
+    $sha = 'XYZZY'.strtoupper(bin2hex($row));
+    $shas[] = $sha;
 }
 $sorted = $shas;
 sort($sorted);
 $goodsha = $sorted[0];
-$goodsha = str_replace('!','',$goodsha);
 
 $oldgrade = $RESULT->grade;
 
@@ -81,7 +79,7 @@ enter the code you get here: <br/>
 <input type="text" size="80" name="sha1">
 <input type="submit">
 </form>
-(Hint: starts with <?= substr($goodsha,0,3) ?>)<br/>
+(Hint: starts with <?= substr($goodsha,0,10) ?>)<br/>
 </p>
 <h1>Instructions</h1>
 <p>
@@ -97,9 +95,13 @@ as you need to modify the program to store the <b>role</b> column
 in the <b>Member</b> table to complete the assignment.
 </p>
 <p>
-Each student gets their own file for the assignment.  Download 
-<a href="roster_data.php" target="_blank">this file</a> and save it
-as <code>roster_data.json</code>.  Move the downloaded file into the same
+Each student gets their own file for the assignment.  Download this file:
+<p>
+<ul>
+<li><a href="roster_data.php" target="_blank">Dowload your roster.json data</a></li>
+</ul>
+</p>
+And save it as <code>roster_data.json</code>.  Move the downloaded file into the same
 folder as your <code>roster.py</code> program.
 </p>
 <p>
@@ -107,11 +109,30 @@ Once you have made the necessary changes to the program
 and it has been run successfully reading the above JSON data, 
 run the following SQL command:
 <pre>
-SELECT hex(User.name || Course.title || Member.role ) AS X FROM 
+SELECT User.name,Course.title, Member.role FROM 
     User JOIN Member JOIN Course 
     ON User.id = Member.user_id AND Member.course_id = Course.id
-    ORDER BY X
+    ORDER BY User.name DESC, Course.title DESC, Member.role DESC LIMIT 2;
 </pre>
-Find the <b>first</b> row in the resulting record set and enter the long string that looks like 
-<b>53656C696E613333</b>.
+The output should look as follows:
+<pre>
+<?php
+$desc = $roster;
+rsort($desc);
+$count = 0;
+foreach ($desc as $row) {
+    echo(htmlentities("$row[0]|$row[1]|$row[2]")."\n");
+    $count++;
+    if ( $count >= 2 ) break;
+}
+?>
+</pre>
+Once that query gives the correct data, run this query:
+<pre>
+SELECT 'XYZZY' || hex(User.name || Course.title || Member.role ) AS X FROM 
+    User JOIN Member JOIN Course 
+    ON User.id = Member.user_id AND Member.course_id = Course.id
+    ORDER BY X LIMIT 1;
+</pre>
+You should get one row with a string that looks like <b>XYZZY53656C696E613333</b>.
 </p>
