@@ -38,7 +38,7 @@ Per creare una tupla con un solo elemento, devi includere la virgola finale:
 ~~~~ {.python}
 >>> t1 = ('a',)
 >>> type(t1)
-<type 'tuple'>
+<class 'tuple'>
 ~~~~
 
 Senza la virgola Python tratta `('a')` come un'espressione con una stringa tra parentesi tonde, che viene valutata come una stringa:
@@ -46,7 +46,7 @@ Senza la virgola Python tratta `('a')` come un'espressione con una stringa tra p
 ~~~~ {.python}
 >>> t2 = ('a')
 >>> type(t2)
-<type 'str'>
+<class 'str'>
 ~~~~
 
 Un altro modo per costruire una tupla è la funzione built-in `tuple`. Senza argomenti, crea una tupla vuota:
@@ -78,7 +78,7 @@ La maggior parte degli operatori delle liste funziona anche sulle tuple. L'opera
 ~~~~ {.python}
 >>> t = ('a', 'b', 'c', 'd', 'e')
 >>> print(t[0])
-'a'
+a
 ~~~~
 
 E l'operatore slice seleziona un intervallo di elementi.
@@ -102,7 +102,11 @@ Ma se provi a modificare uno degli elementi della tupla, ottieni un errore:
 
 ~~~~ {.python}
 >>> t[0] = 'A'
-TypeError: object doesn't support item assignment
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+    t[0] = 'A'
+    ~^^^
+TypeError: 'tuple' object does not support item assignment
 ~~~~
 
 Non puoi modificare gli elementi di una tupla, ma puoi sostituire una tupla con un'altra:
@@ -246,7 +250,11 @@ Il numero delle variabili a sinistra e il numero dei valori a destra devono esse
 
 ~~~~ {.python}
 >>> a, b = 1, 2, 3
-ValueError: too many values to unpack
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+    a, b = 1, 2, 3
+    ^^^^
+ValueError: too many values to unpack (expected 2, got 3)
 ~~~~
 
 Più in generale, il lato destro può essere qualsiasi tipo di sequenza (stringa, lista o tupla). Ad esempio, per dividere un indirizzo email in nome utente e dominio, potresti scrivere:
@@ -286,7 +294,7 @@ I dizionari hanno un metodo chiamato `items` che restituisce le coppie chiave-va
 [('b', 1), ('a', 10), ('c', 22)]
 ~~~~
 
-Come dovresti aspettarti da un dizionario, gli elementi non sono in ordine alfabetico.
+Gli elementi sono nell'ordine di inserimento, che qui non è alfabetico.
 
 Però, dato che la lista di tuple è una lista e le tuple sono confrontabili, ora possiamo ordinarla. Convertire un dizionario in una lista di tuple è un modo per ottenere in output il contenuto di un dizionario ordinato per chiave:
 
