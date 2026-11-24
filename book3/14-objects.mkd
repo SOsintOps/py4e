@@ -139,7 +139,7 @@ Il primo è un metodo con un nome speciale, `__init__()`. Questo metodo viene ch
 
 L'altro metodo si chiama `party`. Tutti i metodi hanno un primo parametro speciale, che per convenzione chiamiamo `self`. Questo parametro ci dà accesso all'istanza dell'oggetto, così possiamo impostare gli attributi e chiamare i metodi con la notazione puntata.
 
-Come la parola chiave `def` non fa eseguire il codice della funzione, così la parola chiave `class` non crea un oggetto. La parola chiave `class` definisce invece un modello, che indica quali dati e quale codice saranno contenuti in ogni oggetto di tipo `PartyAnimal`. La classe è come uno stampino per biscotti e gli oggetti creati con la classe sono i biscotti^[Immagine dei biscotti: copyright CC-BY https://www.flickr.com/photos/dinnerseries/23570475099]. Non metti la glassa sullo stampino; la metti sui biscotti, e su ogni biscotto puoi metterne una diversa.
+Come la parola chiave `def` non fa eseguire il codice della funzione, così la parola chiave `class` non crea un oggetto. La parola chiave `class` definisce invece un modello, che indica quali dati e quale codice saranno contenuti in ogni oggetto di tipo `PartyAnimal`. La classe è come uno stampino per biscotti e gli oggetti creati con la classe sono i biscotti^[Immagine dei biscotti: copyright CC-BY https://www.flickr.com/photos/dinnerseries/23570475099.]. Non metti la glassa sullo stampino; la metti sui biscotti, e su ogni biscotto puoi metterne una diversa.
 
 ![Una classe e due oggetti](height=2.0in@../photos/cookie_cutter_flickr_Didriks)
 
