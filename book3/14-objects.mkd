@@ -123,7 +123,7 @@ A livello elementare, un oggetto è semplicemente un insieme di codice e di stru
 
 Un oggetto può contenere diverse funzioni (che chiamiamo *metodi*) e anche i dati usati da quelle funzioni. Chiamiamo *attributi* i dati che fanno parte dell'oggetto.
 
-\index{parola chiave!class}
+\index{parola chiave class}
 
 Usiamo la parola chiave `class` per definire i dati e il codice che costituiranno ogni oggetto. La parola chiave `class` è seguita dal nome della classe e apre un blocco di codice indentato, in cui inseriamo gli attributi (dati) e i metodi (codice).
 
