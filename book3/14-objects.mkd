@@ -14,9 +14,9 @@ All'inizio di questo libro abbiamo individuato quattro schemi di base della prog
 * codice ripetitivo (cicli);
 * memorizzare e riutilizzare (funzioni).
 
-Nei capitoli successivi abbiamo esplorato le variabili semplici e anche le strutture di dati di tipo collezione, come le liste, le tuple e i dizionari.
+Nei capitoli successivi abbiamo esplorato le variabili semplici e anche le strutture dati di tipo collezione, come le liste, le tuple e i dizionari.
 
-Quando costruiamo i programmi, progettiamo strutture di dati e scriviamo il codice che le manipola. Ci sono molti modi di scrivere un programma e a questo punto probabilmente hai scritto alcuni programmi "non proprio eleganti" e altri "più eleganti". Per quanto piccoli possano essere i tuoi programmi, cominci a vedere che nello scrivere codice c'è un po' di arte e di estetica.
+Quando costruiamo i programmi, progettiamo strutture dati e scriviamo il codice che le manipola. Ci sono molti modi di scrivere un programma e a questo punto probabilmente hai scritto alcuni programmi "non proprio eleganti" e altri "più eleganti". Per quanto piccoli possano essere i tuoi programmi, cominci a vedere che nello scrivere codice c'è un po' di arte e di estetica.
 
 Quando i programmi arrivano a milioni di righe, diventa sempre più importante scrivere codice facile da capire. Se lavori a un programma di un milione di righe, non puoi mai tenerlo tutto a mente nello stesso momento. Ci servono modi per spezzare i programmi grandi in tanti pezzi più piccoli, così da avere meno cose da esaminare quando risolviamo un problema, correggiamo un bug o aggiungiamo una nuova funzionalità.
 
@@ -25,9 +25,9 @@ In un certo senso, la programmazione orientata agli oggetti è un modo di organi
 Per cominciare
 ---------------
 
-Come per molti aspetti della programmazione, è necessario imparare i concetti della programmazione orientata agli oggetti prima di poterli usare in modo efficace. Dovresti considerare questo capitolo un modo per imparare alcuni termini e concetti e per svolgere qualche esempio semplice, così da gettare le basi per ciò che imparerai in futuro.
+Come per molti aspetti della programmazione, è necessario imparare i concetti della programmazione orientata agli oggetti prima di poterli usare in modo efficace. Dovresti considerare questo capitolo un modo per imparare alcuni termini e concetti e per provare qualche esempio semplice, così da gettare le basi per ciò che imparerai in futuro.
 
-Il risultato principale di questo capitolo è capire a grandi linee come si costruiscono gli oggetti, come funzionano e, soprattutto, come sfruttiamo le capacità degli oggetti che Python e le librerie Python ci mettono a disposizione.
+L'obiettivo principale di questo capitolo è capire a grandi linee come si costruiscono gli oggetti, come funzionano e, soprattutto, come sfruttiamo le capacità degli oggetti che Python e le librerie Python ci mettono a disposizione.
 
 Usare gli oggetti
 -------------
@@ -79,7 +79,7 @@ Il resto del capitolo definirà tutti i termini usati qui sopra, quindi, quando 
 Partire dai programmi
 ----------------------
 
-Nella sua forma più elementare, un programma prende un input, svolge un'elaborazione e produce un output. Il programma che converte i piani dell'ascensore è un esempio molto breve, ma completo, che mostra tutti e tre questi passaggi.
+Nella sua forma più elementare, un programma accetta un input, svolge un'elaborazione e produce un output. Il programma che converte i piani dell'ascensore è un esempio molto breve, ma completo, che mostra tutti e tre questi passaggi.
 
 \VerbatimInput{../code3/elev.py}
 
@@ -97,7 +97,7 @@ Se torniamo all'applicazione che estraeva i link, in cui abbiamo usato la librer
 
 \VerbatimInput{../code3/urllinks.py}
 
-Leggiamo l'URL come stringa e poi la passiamo a `urllib` per recuperare i dati dal web. La libreria `urllib` usa la libreria `socket` per aprire la connessione di rete vera e propria con cui recupera i dati. Prendiamo la stringa che `urllib` restituisce e la consegniamo a BeautifulSoup perché la analizzi. BeautifulSoup si serve dell'oggetto `html.parser`^[https://docs.python.org/3/library/html.parser.html] e restituisce un oggetto. Sull'oggetto restituito chiamiamo il metodo `tags()`, che restituisce un dizionario di oggetti tag. Scorriamo i tag e su ciascuno chiamiamo il metodo `get()` per stampare l'attributo `href`.
+Leggiamo l'URL in una stringa e poi la passiamo a `urllib` per recuperare i dati dal web. La libreria `urllib` usa la libreria `socket` per aprire la connessione di rete vera e propria con cui recupera i dati. Prendiamo la stringa che `urllib` restituisce e la consegniamo a BeautifulSoup perché la analizzi. BeautifulSoup si serve dell'oggetto `html.parser`^[https://docs.python.org/3/library/html.parser.html] e restituisce un oggetto. Sull'oggetto restituito chiamiamo il metodo `tags()`, che restituisce un dizionario di oggetti tag. Scorriamo i tag e su ciascuno chiamiamo il metodo `get()` per stampare l'attributo `href`.
 
 Possiamo rappresentare con un disegno questo programma e il modo in cui gli oggetti collaborano.
 
@@ -112,14 +112,14 @@ Uno dei vantaggi dell'approccio orientato agli oggetti è che può nascondere la
 
 ![Ignorare i dettagli quando si usa un oggetto](height=1.50in@../images/program-oo-code)
 
-Questa possibilità di concentrarsi soltanto sulla parte del programma che ci interessa e di ignorare il resto è utile anche agli sviluppatori degli oggetti che usiamo. Ad esempio, i programmatori che sviluppano BeautifulSoup non hanno bisogno di sapere come recuperiamo la pagina HTML, quali parti vogliamo leggere o cosa pensiamo di fare con i dati che estraiamo dalla pagina web, né di preoccuparsene.
+Questa possibilità di concentrarsi soltanto sulla parte del programma che ci interessa e di ignorare il resto è utile anche agli sviluppatori degli oggetti che usiamo. Ad esempio, i programmatori che sviluppano BeautifulSoup non hanno bisogno di sapere né di chiedersi come recuperiamo la pagina HTML, quali parti vogliamo leggere o cosa pensiamo di fare con i dati che estraiamo dalla pagina web.
 
 ![Ignorare i dettagli quando si costruisce un oggetto](height=1.50in@../images/program-oo-bs4)
 
 Il nostro primo oggetto Python
 -----------------------
 
-A livello elementare, un oggetto è semplicemente un insieme di codice e di strutture di dati più piccolo di un programma intero. Definire una funzione ci permette di memorizzare un po' di codice, di dargli un nome e di invocarlo poi con il nome della funzione.
+A livello elementare, un oggetto è semplicemente un insieme di codice e di strutture dati più piccolo di un programma intero. Definire una funzione ci permette di memorizzare un po' di codice, di dargli un nome e di invocarlo poi con il nome della funzione.
 
 Un oggetto può contenere diverse funzioni (che chiamiamo *metodi*) e anche i dati usati da quelle funzioni. Chiamiamo *attributi* i dati che fanno parte dell'oggetto.
 
@@ -131,7 +131,7 @@ Usiamo la parola chiave `class` per definire i dati e il codice che costituirann
 
 Ogni metodo ha l'aspetto di una funzione: inizia con la parola chiave `def` ed è formato da un blocco di codice indentato.
 
-Il primo è un metodo con un nome speciale, `__init__()`. Questo metodo viene chiamato per impostare all'inizio i dati che vogliamo memorizzare nell'oggetto. In questa classe allochiamo l'attributo `x` con la notazione puntata e lo inizializziamo a zero.
+Il primo è un metodo con un nome speciale, `__init__()`. Questo metodo viene chiamato per impostare i valori iniziali dei dati che vogliamo memorizzare nell'oggetto. In questa classe allochiamo l'attributo `x` con la notazione puntata e lo inizializziamo a zero.
 
 ~~~~ {.python}
     self.x = 0
@@ -296,7 +296,7 @@ Per questo esempio spostiamo la classe `PartyAnimal` in un file a sé. Poi possi
 
 Quando definiamo la classe `CricketFan`, indichiamo che estende la classe `PartyAnimal`. Ciò significa che la classe `CricketFan` *eredita* tutte le variabili (`x`) e i metodi (`party`) della classe `PartyAnimal`. Ad esempio, all'interno del metodo `six` della classe `CricketFan` chiamiamo il metodo `party` della classe `PartyAnimal`.
 
-Nel metodo `__init__()` della classe `CricketFan` usiamo una sintassi speciale per essere sicuri di chiamare il metodo `__init__()` di `PartyAnimal`, così che venga fatta tutta la preparazione che serve a `PartyAnimal`, oltre a quella che serve per le estensioni di `CricketFan`.
+Nel metodo `__init__()` della classe `CricketFan` usiamo una sintassi speciale per essere sicuri di chiamare il metodo `__init__()` di `PartyAnimal`, così che venga fatta tutta la preparazione che serve a `PartyAnimal`, oltre a quella necessaria per le estensioni di `CricketFan`.
 
 ~~~~ {.python}
    def __init__(self, nam) :
@@ -354,6 +354,10 @@ Glossario
 : Una nuova classe creata quando si estende una classe padre. La classe figlia eredita tutti gli attributi e i metodi della classe padre.
 \index{classe figlia}
 
+**Classe padre**
+: La classe che viene estesa per creare una nuova classe figlia. La classe padre fornisce tutti i suoi metodi e attributi alla nuova classe figlia.
+\index{classe padre}
+
 **Costruttore**
 : Un metodo facoltativo con un nome speciale (`__init__`), che viene chiamato nel momento in cui una classe viene usata per costruire un oggetto. Di solito serve a impostare i valori iniziali dell'oggetto.
 \index{costruttore}
@@ -372,9 +376,5 @@ Glossario
 \index{messaggio}
 
 **Oggetto**
-: Un'istanza costruita a partire da una classe. Un oggetto contiene tutti gli attributi e i metodi definiti dalla classe. Alcuni documenti sulla programmazione orientata agli oggetti usano il termine "istanza" in modo intercambiabile con "oggetto".
+: Un'istanza costruita a partire da una classe. Un oggetto contiene tutti gli attributi e i metodi definiti dalla classe. Parte della documentazione sulla programmazione orientata agli oggetti usa il termine "istanza" in modo intercambiabile con "oggetto".
 \index{oggetto}
-
-**Classe padre**
-: La classe che viene estesa per creare una nuova classe figlia. La classe padre fornisce tutti i suoi metodi e attributi alla nuova classe figlia.
-\index{classe padre}
