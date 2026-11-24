@@ -60,7 +60,7 @@ Termini che ricorrono nel testo di più capitoli.
 | list comprehension | comprensione di lista | tutorial ufficiale: «comprensione» in 9 coppie su 10 |
 | composite key | chiave composta |  |
 | swap | scambiare | tutorial ufficiale: «scambiare» |
-| collection | collezione | tutorial ufficiale: «collezione» 5 volte, «raccolta» 1; «raccolta» resta per «gather» |
+| collection | collezione | tutorial ufficiale: «collezione» 5 volte, «raccolta» 1 |
 | list (parola comune, non il tipo di dato) | elenco | «a comma-separated list of values» = «un elenco di valori separati da virgole»; «lista» solo per il tipo di dato |
 | hash order | ordine di inserimento | deciso il 24 novembre 2026: da Python 3.7 i dizionari conservano l'ordine in cui le chiavi sono inserite; l'inglese dice ancora «hash order», che per Python di oggi è inesatto (capitoli 9 e 10) |
 | match (verbo), match (nome) | corrispondere a, corrispondenza | soggetto del verbo è l'espressione, non chi programma: «vogliamo la corrispondenza con…» |
@@ -302,9 +302,9 @@ La colonna «Voce attuale» riporta la voce com'era prima della revisione. La co
 | comparable | Comparabile | confrontabile | «compare» è «confrontare», mai «comparare» |
 | data structure | Struttura di dati | struttura dati | deciso il 23 novembre 2026 |
 | DSU | DSU | DSU | la sigla e «decorate-sort-undecorate» restano in inglese, con «decorare, ordinare, togliere la decorazione» come spiegazione |
-| gather | Gather | raccolta (gather) |  |
+| gather | Gather | voce tolta dal glossario del capitolo 10 | il capitolo non la usa (issue 49, decisione dell'utente del 24 novembre 2026) |
 | hashable | Hashabile | hashable | deciso il 22 novembre 2026: resta in inglese |
-| scatter | Scatter | spacchettamento (scatter) |  |
+| scatter | Scatter | voce tolta dal glossario del capitolo 10 | il capitolo non la usa (issue 49, decisione dell'utente del 24 novembre 2026) |
 | shape (of a data structure) | Formato (di una struttura dati) | forma (di una struttura dati) | «shape error» = «*errori di forma* (shape error)» |
 | singleton | Singleton | singleton | resta in inglese |
 | tuple | Tupla | tupla |  |
