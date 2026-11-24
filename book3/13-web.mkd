@@ -187,7 +187,7 @@ Capita spesso che ti serva una chiave API per usare l'API di un fornitore. L'ide
 
 A volte, dopo aver ottenuto la chiave API, ti basta includerla tra i dati `POST`, o magari come parametro dell'URL, quando chiami l'API.
 
-Altre volte il fornitore vuole più garanzie sulla provenienza delle richieste: per questo si aspetta che tu invii messaggi firmati crittograficamente con chiavi e segreti condivisi. Una tecnologia molto diffusa per firmare le richieste su Internet si chiama *OAuth*. Puoi saperne di più sul protocollo OAuth all'indirizzo [www.oauth.net](http://www.oauth.net).
+Altre volte il fornitore vuole più garanzie sulla provenienza delle richieste: per questo si aspetta che tu invii messaggi firmati crittograficamente con chiavi e segreti condivisi. Una tecnologia molto diffusa per firmare le richieste su Internet si chiama *OAuth*. Puoi saperne di più sul protocollo OAuth all'indirizzo [oauth.net](https://oauth.net).
 
 Per fortuna esistono diverse librerie OAuth comode e gratuite, così puoi evitare di scrivere da zero un'implementazione di OAuth partendo dalla specifica. Queste librerie sono di complessità diversa e offrono funzionalità più o meno ricche. Il sito web di OAuth contiene informazioni su varie librerie OAuth.
 
