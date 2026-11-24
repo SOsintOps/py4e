@@ -11,7 +11,7 @@ Ogni applicazione è un file ZIP che puoi scaricare, estrarre sul computer ed es
 Costruire una mappa OpenStreetMap con dati geocodificati
 -------------------------------------------
 
-\index{Google!mappa}
+\index{mappa!OpenStreetMap}
 \index{OpenStreetMap}
 \index{visualizzazione!mappa}
 
@@ -232,7 +232,7 @@ La scansione dei dati della posta di Sakai con questo software ha prodotto quasi
 
 Il primo passo è scansionare il repository. L'URL di base è scritto direttamente nel codice di `gmane.py` e punta alla mailing list degli sviluppatori di Sakai. Puoi scansionare un altro repository cambiando quell'URL di base. Se cambi l'URL di base, assicurati di eliminare il file `content.sqlite`.
 
-Il file `gmane.py` funziona come uno spider responsabile dotato di cache: procede lentamente e recupera un messaggio di posta al secondo, per non subire limitazioni. Memorizza tutti i dati in un database e si può interrompere e riavviare tutte le volte che serve. Per scaricare tutti i dati possono volerci molte ore, quindi potresti doverlo riavviare più volte.
+Il file `gmane.py` funziona come uno spider responsabile dotato di cache: procede lentamente e fa una pausa di un secondo ogni 100 messaggi, per non subire limitazioni. Memorizza tutti i dati in un database e si può interrompere e riavviare tutte le volte che serve. Per scaricare tutti i dati possono volerci molte ore, quindi potresti doverlo riavviare più volte.
 
 Ecco un'esecuzione di `gmane.py` che recupera gli ultimi cinque messaggi della mailing list degli sviluppatori di Sakai:
 
@@ -255,11 +255,11 @@ Does not start with From
 
 Il programma scorre `content.sqlite` dal messaggio numero uno fino al primo numero di messaggio non ancora scansionato e comincia la scansione da quel messaggio. Continua finché non ha scansionato il numero di messaggi richiesto o finché non arriva a una pagina che non sembra un messaggio formattato correttamente.
 
-A volte nel repository manca un messaggio. Forse gli amministratori possono cancellare i messaggi, o forse alcuni vanno persi. Se lo spider si ferma e sembra che abbia incontrato un messaggio mancante, apri SQLite Manager, aggiungi una riga con l'`id` mancante lasciando vuoti tutti gli altri campi e riavvia `gmane.py`. La riga aggiunta sbloccherà la scansione e le permetterà di continuare. Questi messaggi vuoti verranno ignorati nella fase successiva del processo.
+A volte nel repository manca un messaggio. Forse gli amministratori possono cancellare i messaggi, o forse alcuni vanno persi. Se lo spider si ferma e sembra che abbia incontrato un messaggio mancante, apri il Database Browser for SQLite, aggiungi una riga con l'`id` mancante lasciando vuoti tutti gli altri campi e riavvia `gmane.py`. La riga aggiunta sbloccherà la scansione e le permetterà di continuare. Questi messaggi vuoti verranno ignorati nella fase successiva del processo.
 
 Il bello è che, una volta scansionati tutti i messaggi e messi in `content.sqlite`, puoi eseguire di nuovo `gmane.py` per ottenere i nuovi messaggi man mano che vengono inviati alla mailing list.
 
-I dati di `content.sqlite` sono piuttosto grezzi, hanno un modello dei dati inefficiente e non sono compressi. La scelta è voluta: così puoi esaminare `content.sqlite` con SQLite Manager per fare il debug dei problemi della scansione. Eseguire query su questo database sarebbe una cattiva idea, perché sarebbero piuttosto lente.
+I dati di `content.sqlite` sono piuttosto grezzi, hanno un modello dei dati inefficiente e non sono compressi. La scelta è voluta: così puoi esaminare `content.sqlite` con il Database Browser for SQLite per fare il debug dei problemi della scansione. Eseguire query su questo database sarebbe una cattiva idea, perché sarebbero piuttosto lente.
 
 Il secondo processo consiste nell'eseguire il programma `gmodel.py`. Il programma legge i dati grezzi da `content.sqlite` e produce nel file `index.sqlite` una versione dei dati ripulita e ben modellata. Il file `index.sqlite` sarà molto più piccolo di `content.sqlite` (spesso 10 volte più piccolo), perché il programma comprime anche il testo delle intestazioni e del corpo.
 
