@@ -3,16 +3,22 @@
   ob_start();
 }?>
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="pandoc" />
+  <meta name="generator" content="pandoc 3.14" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>Contributions</title>
+  <title>Contributi</title>
   <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
     html {
       color: #1a1a1a;
+      color: light-dark(#1a1a1a, #fdfdfd);
       background-color: #fdfdfd;
+      background-color: light-dark(#fdfdfd, #1a1a1a);
+      color-scheme: light dark;
     }
     body {
       margin: 0 auto;
@@ -35,31 +41,11 @@
         font-size: 1.8em;
       }
     }
-    @media print {
-      html {
-        background-color: white;
-      }
-      body {
-        background-color: transparent;
-        color: black;
-        font-size: 12pt;
-      }
-      p, h2, h3 {
-        orphans: 3;
-        widows: 3;
-      }
-      h2, h3, h4 {
-        page-break-after: avoid;
-      }
-    }
     p {
       margin: 1em 0;
     }
-    a {
-      color: #1a1a1a;
-    }
-    a:visited {
-      color: #1a1a1a;
+    a, a:visited {
+      color: inherit;
     }
     img {
       max-width: 100%;
@@ -88,10 +74,14 @@
     blockquote {
       margin: 1em 0 1em 1.7em;
       padding-left: 1em;
-      border-left: 2px solid #e6e6e6;
+      border-left: 2px solid;
+      border-color: #e6e6e6;
+      border-color: light-dark(#e6e6e6, #4c4c4c);
       color: #606060;
+      color: light-dark(#606060, #b6b6b6);
     }
     code {
+      white-space: pre-wrap;
       font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
       font-size: 85%;
       margin: 0;
@@ -112,7 +102,7 @@
     }
     hr {
       border: none;
-      border-top: 1px solid #1a1a1a;
+      border-top: 1px solid currentColor;
       height: 1px;
       margin: 1em 0;
     }
@@ -129,11 +119,11 @@
     }
     tbody {
       margin-top: 0.5em;
-      border-top: 1px solid #1a1a1a;
-      border-bottom: 1px solid #1a1a1a;
+      border-top: 1px solid currentColor;
+      border-bottom: 1px solid currentColor;
     }
     th {
-      border-top: 1px solid #1a1a1a;
+      border-top: 1px solid currentColor;
       padding: 0.25em 0.5em 0.25em 0.5em;
     }
     td {
@@ -155,10 +145,19 @@
     #TOC a:not(:hover) {
       text-decoration: none;
     }
-    code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
-    div.columns{display: flex; gap: min(4vw, 1.5em);}
-    div.column{flex: auto; overflow-x: auto;}
+    em, em em em, em em em em em {
+      font-style: italic;
+    }
+    em em, em em em em {
+      font-style: normal;
+    }
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     /* The extra [class] is a hack that increases specificity enough to
        override a similar rule in reveal.js */
@@ -169,43 +168,64 @@
       margin: 0 0.8em 0.2em -1.6em;
       vertical-align: middle;
     }
-    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
-  </style>
+    @media print {
+      html {
+        color-scheme: light only;
+      }
+      html, body, pre, code {
+        background-color: transparent;
+      }
+      body, a, a:visited, blockquote {
+        color: black;
+      }
+      pre, code {
+        padding: 0;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }  </style>
 </head>
 <body>
-<h1 id="contributions">Contributions</h1>
-<h2 id="translations">Translations</h2>
-<p>This book has been translated into a number of languages which can be
-found at https://www.py4e.com/book.</p>
+<h1 id="contributi">Contributi</h1>
+<h2 id="traduzioni">Traduzioni</h2>
+<p>Questo libro è stato tradotto in diverse lingue: puoi trovare le
+traduzioni all’indirizzo https://www.py4e.com/book.</p>
 <ul>
-<li><p>Spanish - Python para todos: Explorando la información con Python
-3 - Translated book, autograders, resources, and web site at
-https://es.py4e.com Contributors: Juan Carlos Perez Castellanos, Juan
-Dougnac, Daniel Merino Echeverría, Jaime Bermeo Ramírez and Fernando
-Tardío.</p></li>
-<li><p>Italian Python per tutti: Esplorare dati con Python3
-Contributors: Alessandro Rossetti and Vittore Zen</p></li>
-<li><p>Portuguese - Python Para Todos: Explorando Dados com Python 3
-Translation: Yuri Loia de Medeiros</p></li>
-<li><p>Polish - Python dla wszystkich: Odkrywanie danych z Python 3
-Translated book, autograders, resources, and web site at https://py4e.pl
-Translation: Andrzej Wójtowicz (Adam Mickiewicz University in Poznań,
-Poland)</p></li>
-<li><p>Greek - Translated book, autograders, resources, and web site at
-https://gr.py4e.com Translation: Konstantia Kiourtidou</p></li>
-<li><p>Arabic - Translation: Electronics Go</p></li>
+<li><p>Spagnolo - Python para todos: Explorando la información con
+Python 3 - Libro tradotto, correttori automatici, risorse e sito web
+all’indirizzo https://es.py4e.com - Collaboratori: Juan Carlos Perez
+Castellanos, Juan Dougnac, Daniel Merino Echeverría, Jaime Bermeo
+Ramírez e Fernando Tardío</p></li>
+<li><p>Italiano - Python per tutti: Esplorare dati con Python3 -
+Collaboratori: Alessandro Rossetti e Vittore Zen</p></li>
+<li><p>Portoghese - Python Para Todos: Explorando Dados com Python 3 -
+Traduzione: Yuri Loia de Medeiros</p></li>
+<li><p>Polacco - Python dla wszystkich: Odkrywanie danych z Python 3 -
+Libro tradotto, correttori automatici, risorse e sito web all’indirizzo
+https://py4e.pl - Traduzione: Andrzej Wójtowicz (Università Adam
+Mickiewicz di Poznań, Polonia)</p></li>
+<li><p>Greco - Libro tradotto, correttori automatici, risorse e sito web
+all’indirizzo https://gr.py4e.com - Traduzione: Konstantia
+Kiourtidou</p></li>
+<li><p>Arabo - Traduzione: Electronics Go</p></li>
 </ul>
-<p>Anyone who is given permission to translate the book agrees to
-provide a free copy of the book online. Some of the translations are
-available in print and avalailable for purchase.</p>
-<h2 id="contributor-list-for-python-for-everybody">Contributor List for
-Python for Everybody</h2>
-<p>The source for the book is maintained in <code>github</code> and you
-can find numerous contributors for the book who find and suggest fixes
-using pull requests.</p>
+<p>Chi riceve il permesso di tradurre il libro si impegna a renderne
+disponibile online una copia gratuita. Alcune traduzioni sono
+disponibili anche in versione stampata e si possono acquistare.</p>
+<h2 id="elenco-dei-collaboratori-di-python-for-everybody">Elenco dei
+collaboratori di Python for Everybody</h2>
+<p>Il sorgente del libro è mantenuto su <code>github</code>, dove puoi
+trovare numerosi collaboratori che individuano errori e propongono
+correzioni tramite pull request.</p>
 <p>https://github.com/csev/py4e/</p>
-<p>Look under <code>Insights -&gt; Contributors</code> to see all the
-folks who have contributed through <code>github</code>.</p>
+<p>Guarda nella sezione <code>Insights -&gt; Contributors</code> per
+vedere tutte le persone che hanno contribuito tramite
+<code>github</code>.</p>
 <p>Juan Carlos Perez Castellanos, Juan Dougnac, Daniel Merino
 Echeverría, Jaime Bermeo Ramírez, Fernando Tardío, Alessandro Rossetti,
 Vittore Zen, Yuri Loia de Medeiros, Konstantia Kiourtidou, Andrzej
@@ -213,138 +233,151 @@ Wójtowicz, Elliott Hauser, Stephen Catto, Sue Blumenberg, Tamara
 Brunnock, Mihaela Mack, Chris Kolosiwsky, Dustin Farley, Jens Leerssen,
 Naveen KT, Mirza Ibrahimovic, Naveen (<span class="citation"
 data-cites="togarnk">@togarnk</span>), Zhou Fangyi, Alistair Walsh,
-Erica Brody, Jih-Sheng Huang, Louis Luangkesorn, and Michael Fudge</p>
-<p>You can see contribution details at:</p>
+Erica Brody, Jih-Sheng Huang, Louis Luangkesorn e Michael Fudge</p>
+<p>Puoi vedere i dettagli dei contributi all’indirizzo:</p>
 <p>https://github.com/csev/py4e/graphs/contributors</p>
-<h2 id="contributor-list-for-python-for-informatics">Contributor List
-for Python for Informatics</h2>
-<p>Bruce Shields for copy editing early drafts, Sarah Hegge, Steven
-Cherry, Sarah Kathleen Barbarow, Andrea Parker, Radaphat Chongthammakun,
-Megan Hixon, Kirby Urner, Sarah Kathleen Barbrow, Katie Kujala, Noah
-Botimer, Emily Alinder, Mark Thompson-Kular, James Perry, Eric Hofer,
-Eytan Adar, Peter Robinson, Deborah J. Nelson, Jonathan C. Anthony, Eden
-Rassette, Jeannette Schroeder, Justin Feezell, Chuanqi Li, Gerald
-Gordinier, Gavin Thomas Strassel, Ryan Clement, Alissa Talley, Caitlin
-Holman, Yong-Mi Kim, Karen Stover, Cherie Edmonds, Maria Seiferle, Romer
-Kristi D. Aranas (RK), Grant Boyer, Hedemarrie Dussan,</p>
-<h2 id="preface-for-think-python">Preface for “Think Python”</h2>
-<h3 id="the-strange-history-of-think-python">The strange history of
-“Think Python”</h3>
-<p>(Allen B. Downey)</p>
-<p>In January 1999 I was preparing to teach an introductory programming
-class in Java. I had taught it three times and I was getting frustrated.
-The failure rate in the class was too high and, even for students who
-succeeded, the overall level of achievement was too low.</p>
-<p>One of the problems I saw was the books. They were too big, with too
-much unnecessary detail about Java, and not enough high-level guidance
-about how to program. And they all suffered from the trap door effect:
-they would start out easy, proceed gradually, and then somewhere around
-Chapter 5 the bottom would fall out. The students would get too much new
-material, too fast, and I would spend the rest of the semester picking
-up the pieces.</p>
-<p>Two weeks before the first day of classes, I decided to write my own
-book. My goals were:</p>
-<ul>
-<li><p>Keep it short. It is better for students to read 10 pages than
-not read 50 pages.</p></li>
-<li><p>Be careful with vocabulary. I tried to minimize the jargon and
-define each term at first use.</p></li>
-<li><p>Build gradually. To avoid trap doors, I took the most difficult
-topics and split them into a series of small steps.</p></li>
-<li><p>Focus on programming, not the programming language. I included
-the minimum useful subset of Java and left out the rest.</p></li>
-</ul>
-<p>I needed a title, so on a whim I chose <em>How to Think Like a
-Computer Scientist</em>.</p>
-<p>My first version was rough, but it worked. Students did the reading,
-and they understood enough that I could spend class time on the hard
-topics, the interesting topics and (most important) letting the students
-practice.</p>
-<p>I released the book under the GNU Free Documentation License, which
-allows users to copy, modify, and distribute the book.</p>
-<p> </p>
-<p>What happened next is the cool part. Jeff Elkner, a high school
-teacher in Virginia, adopted my book and translated it into Python. He
-sent me a copy of his translation, and I had the unusual experience of
-learning Python by reading my own book.</p>
-<p>Jeff and I revised the book, incorporated a case study by Chris
-Meyers, and in 2001 we released <em>How to Think Like a Computer
-Scientist: Learning with Python</em>, also under the GNU Free
-Documentation License. As Green Tea Press, I published the book and
-started selling hard copies through Amazon.com and college book stores.
-Other books from Green Tea Press are available at <a
-href="greenteapress.com">greenteapress.com</a>.</p>
-<p>In 2003 I started teaching at Olin College and I got to teach Python
-for the first time. The contrast with Java was striking. Students
-struggled less, learned more, worked on more interesting projects, and
-generally had a lot more fun.</p>
-<p>Over the last five years I have continued to develop the book,
-correcting errors, improving some of the examples and adding material,
-especially exercises. In 2008 I started work on a major revision—at the
-same time, I was contacted by an editor at Cambridge University Press
-who was interested in publishing the next edition. Good timing!</p>
-<p>I hope you enjoy working with this book, and that it helps you learn
-to program and think, at least a little bit, like a computer
-scientist.</p>
-<h3 id="acknowledgements-for-think-python">Acknowledgements for “Think
+<h2 id="elenco-dei-traduttori-di-python-per-tutti">Elenco dei traduttori
+di Python per tutti</h2>
+<p>Traduzione a cura di Vittore Zen e Alessandro Rossetti</p>
+<p>Traduttori: Umberto Buonora, Gianfranco Frisani, Alessandro Rella,
+Alessandro Rossetti</p>
+<p>Correzione bozze: Silvia Baseggio, Alessandro Rella, Alessandro
+Rossetti</p>
+<p>Revisione e aggiornamento all’edizione inglese attuale (2026):
+Alessandro Rossetti. Controllo tecnico del codice: Vittore Zen.</p>
+<h2 id="elenco-dei-collaboratori-di-python-for-informatics">Elenco dei
+collaboratori di Python for Informatics</h2>
+<p>Bruce Shields per la correzione delle prime bozze, Sarah Hegge,
+Steven Cherry, Sarah Kathleen Barbarow, Andrea Parker, Radaphat
+Chongthammakun, Megan Hixon, Kirby Urner, Sarah Kathleen Barbrow, Katie
+Kujala, Noah Botimer, Emily Alinder, Mark Thompson-Kular, James Perry,
+Eric Hofer, Eytan Adar, Peter Robinson, Deborah J. Nelson, Jonathan C.
+Anthony, Eden Rassette, Jeannette Schroeder, Justin Feezell, Chuanqi Li,
+Gerald Gordinier, Gavin Thomas Strassel, Ryan Clement, Alissa Talley,
+Caitlin Holman, Yong-Mi Kim, Karen Stover, Cherie Edmonds, Maria
+Seiferle, Romer Kristi D. Aranas (RK), Grant Boyer, Hedemarrie
+Dussan.</p>
+<h2 id="prefazione-di-think-python">Prefazione di “Think Python”</h2>
+<h3 id="la-strana-storia-di-think-python">La strana storia di “Think
 Python”</h3>
 <p>(Allen B. Downey)</p>
-<p>First and most importantly, I thank Jeff Elkner, who translated my
-Java book into Python, which got this project started and introduced me
-to what has turned out to be my favorite language.</p>
-<p>I also thank Chris Meyers, who contributed several sections to
-<em>How to Think Like a Computer Scientist</em>.</p>
-<p>And I thank the Free Software Foundation for developing the GNU Free
-Documentation License, which helped make my collaboration with Jeff and
-Chris possible.</p>
+<p>Nel gennaio 1999 mi stavo preparando a tenere un corso introduttivo
+di programmazione in Java. Lo avevo già tenuto tre volte e cominciavo a
+sentirmi frustrato. La percentuale di bocciati era troppo alta e, anche
+tra gli studenti che lo superavano, il livello complessivo di
+preparazione era troppo basso.</p>
+<p>Uno dei problemi che avevo notato erano i libri. Erano troppo
+voluminosi, con troppi dettagli inutili su Java e troppo poche
+indicazioni di alto livello su come programmare. E soffrivano tutti
+dell’effetto botola: all’inizio erano facili, procedevano gradualmente e
+poi, verso il Capitolo 5, si apriva la botola. Gli studenti ricevevano
+troppo materiale nuovo, troppo in fretta, e io passavo il resto del
+semestre a raccogliere i cocci.</p>
+<p>Due settimane prima del primo giorno di lezione decisi di scrivere un
+libro mio. I miei obiettivi erano:</p>
+<ul>
+<li><p>Essere breve. È meglio che gli studenti leggano 10 pagine
+piuttosto che non ne leggano 50.</p></li>
+<li><p>Prestare attenzione al vocabolario. Cercai di ridurre al minimo
+il gergo e di definire ogni termine al primo uso.</p></li>
+<li><p>Procedere per gradi. Per evitare le botole, presi gli argomenti
+più difficili e li divisi in una serie di piccoli passi.</p></li>
+<li><p>Concentrarsi sulla programmazione, non sul linguaggio di
+programmazione. Inclusi il minimo sottoinsieme utile di Java e
+tralasciai il resto.</p></li>
+</ul>
+<p>Mi serviva un titolo, così d’impulso scelsi <em>How to Think Like a
+Computer Scientist</em>.</p>
+<p>La prima versione era grezza, ma funzionava. Gli studenti leggevano e
+capivano abbastanza da permettermi di dedicare le ore di lezione agli
+argomenti difficili, a quelli interessanti e (cosa più importante) a
+farli esercitare.</p>
+<p>Pubblicai il libro con la GNU Free Documentation License, che
+permette agli utenti di copiarlo, modificarlo e distribuirlo.</p>
 <p> </p>
-<p>I also thank the editors at Lulu who worked on <em>How to Think Like
-a Computer Scientist</em>.</p>
-<p>I thank all the students who worked with earlier versions of this
-book and all the contributors (listed in an Appendix) who sent in
-corrections and suggestions.</p>
-<p>And I thank my wife, Lisa, for her work on this book, and Green Tea
-Press, and everything else, too.</p>
+<p>Quello che successe dopo è la parte più bella. Jeff Elkner, un
+insegnante di scuola superiore in Virginia, adottò il mio libro e lo
+tradusse in Python. Mi mandò una copia della sua traduzione ed ebbi
+l’insolita esperienza di imparare Python leggendo il mio stesso
+libro.</p>
+<p>Jeff e io rivedemmo il libro, vi includemmo un caso di studio di
+Chris Meyers e nel 2001 pubblicammo <em>How to Think Like a Computer
+Scientist: Learning with Python</em>, anch’esso con la GNU Free
+Documentation License. Con il marchio Green Tea Press pubblicai il libro
+e cominciai a venderne copie cartacee tramite Amazon.com e le librerie
+universitarie. Altri libri di Green Tea Press sono disponibili su <a
+href="https://greenteapress.com">greenteapress.com</a>.</p>
+<p>Nel 2003 cominciai a insegnare all’Olin College e per la prima volta
+ebbi modo di insegnare Python. Il contrasto con Java era impressionante.
+Gli studenti avevano meno difficoltà, imparavano di più, lavoravano a
+progetti più interessanti e, in generale, si divertivano molto di
+più.</p>
+<p>Negli ultimi cinque anni ho continuato a sviluppare il libro,
+correggendo errori, migliorando alcuni esempi e aggiungendo materiale,
+soprattutto esercizi. Nel 2008 ho cominciato a lavorare a un’importante
+revisione e, nello stesso periodo, mi ha contattato un editor della
+Cambridge University Press interessato a pubblicare l’edizione
+successiva. Tempismo perfetto!</p>
+<p>Spero che ti piaccia lavorare con questo libro e che ti aiuti a
+imparare a programmare e a pensare, almeno un po’, come un
+informatico.</p>
+<h3 id="ringraziamenti-di-think-python">Ringraziamenti di “Think
+Python”</h3>
+<p>(Allen B. Downey)</p>
+<p>Prima di tutto, e soprattutto, ringrazio Jeff Elkner, che ha tradotto
+in Python il mio libro su Java: così è partito questo progetto e ho
+conosciuto quello che si è rivelato il mio linguaggio preferito.</p>
+<p>Ringrazio anche Chris Meyers, che ha scritto diverse sezioni di
+<em>How to Think Like a Computer Scientist</em>.</p>
+<p>E ringrazio la Free Software Foundation per aver sviluppato la GNU
+Free Documentation License, che ha contribuito a rendere possibile la
+mia collaborazione con Jeff e Chris.</p>
+<p> </p>
+<p>Ringrazio anche i redattori di Lulu che hanno lavorato a <em>How to
+Think Like a Computer Scientist</em>.</p>
+<p>Ringrazio tutti gli studenti che hanno lavorato con le versioni
+precedenti di questo libro e tutti i collaboratori (elencati in
+un’appendice) che hanno inviato correzioni e suggerimenti.</p>
+<p>E ringrazio mia moglie, Lisa, per il lavoro che ha fatto su questo
+libro, su Green Tea Press e anche su tutto il resto.</p>
 <p>Allen B. Downey<br />
 Needham MA<br />
 </p>
-<p>Allen Downey is an Associate Professor of Computer Science at the
-Franklin W. Olin College of Engineering.</p>
-<h2 id="contributor-list-for-think-python">Contributor List for “Think
-Python”</h2>
-<p></p>
+<p>Allen Downey è professore associato di informatica presso il Franklin
+W. Olin College of Engineering.</p>
+<h2 id="elenco-dei-collaboratori-di-think-python">Elenco dei
+collaboratori di “Think Python”</h2>
 <p>(Allen B. Downey)</p>
-<p>More than 100 sharp-eyed and thoughtful readers have sent in
-suggestions and corrections over the past few years. Their
-contributions, and enthusiasm for this project, have been a huge
-help.</p>
-<p>For the detail on the nature of each of the contributions from these
-individuals, see the “Think Python” text.</p>
+<p>Negli ultimi anni più di 100 lettori premurosi e dall’occhio acuto
+hanno inviato suggerimenti e correzioni. Il loro contributo e il loro
+entusiasmo per questo progetto sono stati di grande aiuto.</p>
+<p>Per i dettagli sul contributo di ciascuna di queste persone, consulta
+il testo di “Think Python”.</p>
 <p>Lloyd Hugh Allen, Yvon Boulianne, Fred Bremmer, Jonah Cohen, Michael
-Conlon, Benoit Girard, Courtney Gleason and Katherine Smith, Lee Harr,
+Conlon, Benoit Girard, Courtney Gleason e Katherine Smith, Lee Harr,
 James Kaylin, David Kershaw, Eddie Lam, Man-Yong Lee, David Mayo, Chris
 McAloon, Matthew J. Moelter, Simon Dicon Montford, John Ouzts, Kevin
 Parks, David Pool, Michael Schmitt, Robin Shaw, Paul Sleigh, Craig T.
 Snydal, Ian Thomas, Keith Verheyden, Peter Winstanley, Chris Wrobel,
 Moshe Zadka, Christoph Zwerschke, James Mayer, Hayden McAfee, Angel
-Arnal, Tauhidul Hoque and Lex Berezhny, Dr. Michele Alzetta, Andy
+Arnal, Tauhidul Hoque e Lex Berezhny, Dr. Michele Alzetta, Andy
 Mitchell, Kalin Harvey, Christopher P. Smith, David Hutchins, Gregor
 Lingl, Julie Peters, Florin Oprina, D. J. Webre, Ken, Ivo Wever, Curtis
 Yanko, Ben Logan, Jason Armstrong, Louis Cordier, Brian Cain, Rob Black,
-Jean-Philippe Rey at Ecole Centrale Paris, Jason Mader at George
-Washington University made a number Jan Gundtofte-Bruun, Abel David and
-Alexis Dinno, Charles Thayer, Roger Sperberg, Sam Bull, Andrew Cheung,
-C. Corey Capel, Alessandra, Wim Champagne, Douglas Wright, Jared
-Spindor, Lin Peiheng, Ray Hagtvedt, Torsten Hübsch, Inga Petuhhov, Arne
-Babenhauserheide, Mark E. Casida, Scott Tyler, Gordon Shephard, Andrew
-Turner, Adam Hobart, Daryl Hammond and Sarah Zimmerman, George Sass,
-Brian Bingham, Leah Engelbert-Fenton, Joe Funke, Chao-chao Chen, Jeff
-Paine, Lubos Pintes, Gregg Lind and Abigail Heithoff, Max Hailperin,
-Chotipat Pornavalai, Stanislaw Antol, Eric Pashman, Miguel Azevedo,
-Jianhua Liu, Nick King, Martin Zuther, Adam Zimmerman, Ratnakar Tiwari,
-Anurag Goel, Kelli Kratzer, Mark Griffiths, Roydan Ongie, Patryk
-Wolowiec, Mark Chonofsky, Russell Coleman, Wei Huang, Karen Barber, Nam
-Nguyen, Stéphane Morin, Fernando Tardio, and Paul Stoop.</p>
+Jean-Philippe Rey dell’École Centrale Paris, Jason Mader della George
+Washington University, Jan Gundtofte-Bruun, Abel David e Alexis Dinno,
+Charles Thayer, Roger Sperberg, Sam Bull, Andrew Cheung, C. Corey Capel,
+Alessandra, Wim Champagne, Douglas Wright, Jared Spindor, Lin Peiheng,
+Ray Hagtvedt, Torsten Hübsch, Inga Petuhhov, Arne Babenhauserheide, Mark
+E. Casida, Scott Tyler, Gordon Shephard, Andrew Turner, Adam Hobart,
+Daryl Hammond e Sarah Zimmerman, George Sass, Brian Bingham, Leah
+Engelbert-Fenton, Joe Funke, Chao-chao Chen, Jeff Paine, Lubos Pintes,
+Gregg Lind e Abigail Heithoff, Max Hailperin, Chotipat Pornavalai,
+Stanislaw Antol, Eric Pashman, Miguel Azevedo, Jianhua Liu, Nick King,
+Martin Zuther, Adam Zimmerman, Ratnakar Tiwari, Anurag Goel, Kelli
+Kratzer, Mark Griffiths, Roydan Ongie, Patryk Wolowiec, Mark Chonofsky,
+Russell Coleman, Wei Huang, Karen Barber, Nam Nguyen, Stéphane Morin,
+Fernando Tardio e Paul Stoop.</p>
 </body>
 </html>
 <?php if ( file_exists("../bookfoot.php") ) {

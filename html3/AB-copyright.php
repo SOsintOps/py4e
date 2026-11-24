@@ -3,16 +3,22 @@
   ob_start();
 }?>
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="pandoc" />
+  <meta name="generator" content="pandoc 3.14" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>Copyright Detail</title>
+  <title>Dettagli sul copyright</title>
   <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
     html {
       color: #1a1a1a;
+      color: light-dark(#1a1a1a, #fdfdfd);
       background-color: #fdfdfd;
+      background-color: light-dark(#fdfdfd, #1a1a1a);
+      color-scheme: light dark;
     }
     body {
       margin: 0 auto;
@@ -35,31 +41,11 @@
         font-size: 1.8em;
       }
     }
-    @media print {
-      html {
-        background-color: white;
-      }
-      body {
-        background-color: transparent;
-        color: black;
-        font-size: 12pt;
-      }
-      p, h2, h3 {
-        orphans: 3;
-        widows: 3;
-      }
-      h2, h3, h4 {
-        page-break-after: avoid;
-      }
-    }
     p {
       margin: 1em 0;
     }
-    a {
-      color: #1a1a1a;
-    }
-    a:visited {
-      color: #1a1a1a;
+    a, a:visited {
+      color: inherit;
     }
     img {
       max-width: 100%;
@@ -88,10 +74,14 @@
     blockquote {
       margin: 1em 0 1em 1.7em;
       padding-left: 1em;
-      border-left: 2px solid #e6e6e6;
+      border-left: 2px solid;
+      border-color: #e6e6e6;
+      border-color: light-dark(#e6e6e6, #4c4c4c);
       color: #606060;
+      color: light-dark(#606060, #b6b6b6);
     }
     code {
+      white-space: pre-wrap;
       font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
       font-size: 85%;
       margin: 0;
@@ -112,7 +102,7 @@
     }
     hr {
       border: none;
-      border-top: 1px solid #1a1a1a;
+      border-top: 1px solid currentColor;
       height: 1px;
       margin: 1em 0;
     }
@@ -129,11 +119,11 @@
     }
     tbody {
       margin-top: 0.5em;
-      border-top: 1px solid #1a1a1a;
-      border-bottom: 1px solid #1a1a1a;
+      border-top: 1px solid currentColor;
+      border-bottom: 1px solid currentColor;
     }
     th {
-      border-top: 1px solid #1a1a1a;
+      border-top: 1px solid currentColor;
       padding: 0.25em 0.5em 0.25em 0.5em;
     }
     td {
@@ -155,10 +145,19 @@
     #TOC a:not(:hover) {
       text-decoration: none;
     }
-    code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
-    div.columns{display: flex; gap: min(4vw, 1.5em);}
-    div.column{flex: auto; overflow-x: auto;}
+    em, em em em, em em em em em {
+      font-style: italic;
+    }
+    em em, em em em em {
+      font-style: normal;
+    }
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     /* The extra [class] is a hack that increases specificity enough to
        override a similar rule in reveal.js */
@@ -169,55 +168,73 @@
       margin: 0 0.8em 0.2em -1.6em;
       vertical-align: middle;
     }
-    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
-  </style>
+    @media print {
+      html {
+        color-scheme: light only;
+      }
+      html, body, pre, code {
+        background-color: transparent;
+      }
+      body, a, a:visited, blockquote {
+        color: black;
+      }
+      pre, code {
+        padding: 0;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }  </style>
 </head>
 <body>
-<h1 id="copyright-detail">Copyright Detail</h1>
-<p>This work is licensed under a Creative Common
-Attribution-NonCommercial-ShareAlike 3.0 Unported License. This license
-is available at</p>
+<h1 id="dettagli-sul-copyright">Dettagli sul copyright</h1>
+<p>Quest’opera è distribuita con licenza Creative Commons
+Attribution-NonCommercial-ShareAlike 3.0 Unported. La licenza è
+disponibile all’indirizzo</p>
 <p><a
-href="creativecommons.org/licenses/by-nc-sa/3.0/">creativecommons.org/licenses/by-nc-sa/3.0/</a>.</p>
-<p>I would have preferred to license the book under the less restrictive
-CC-BY-SA license. But unfortunately there are a few unscrupulous
-organizations who search for and find freely licensed books, and then
-publish and sell virtually unchanged copies of the books on a print on
-demand service such as LuLu or KDP. KDP has (thankfully) added a policy
-that gives the wishes of the actual copyright holder preference over a
-non-copyright holder attempting to publish a freely licensed work.
-Unfortunately there are many print-on-demand services and very few have
-as well-considered a policy as KDP.</p>
-<p>Regretfully, I added the NC element to the license this book to give
-me recourse in case someone tries to clone this book and sell it
-commercially. Unfortunately, adding NC limits uses of this material that
-I would like to permit. So I have added this section of the document to
-describe specific situations where I am giving my permission in advance
-to use the material in this book in situations that some might consider
-commercial.</p>
+href="https://creativecommons.org/licenses/by-nc-sa/3.0/">creativecommons.org/licenses/by-nc-sa/3.0/</a></p>
+<p>Avrei preferito pubblicare il libro con la meno restrittiva licenza
+CC-BY-SA. Purtroppo, però, ci sono alcune organizzazioni senza scrupoli
+che cercano e trovano libri con licenza libera e poi ne pubblicano e
+vendono copie praticamente identiche su un servizio di stampa su
+richiesta come LuLu o KDP. KDP ha (per fortuna) introdotto una politica
+che dà la precedenza alla volontà del vero detentore del copyright
+rispetto a quella di chi, senza detenerlo, tenta di pubblicare un’opera
+con licenza libera. Sfortunatamente ci sono molti servizi di stampa su
+richiesta e pochissimi hanno una politica ben ponderata come quella di
+KDP.</p>
+<p>A malincuore ho aggiunto l’elemento NC alla licenza di questo libro
+per potermi tutelare nel caso qualcuno cerchi di clonarlo e di venderlo
+a fini commerciali. Purtroppo, l’aggiunta di NC limita alcuni usi di
+questo materiale che vorrei permettere. Ho quindi aggiunto questa
+sezione del documento per descrivere i casi specifici in cui do in
+anticipo il permesso di usare il materiale di questo libro in situazioni
+che alcuni potrebbero considerare commerciali.</p>
 <ul>
-<li><p>If you are printing a limited number of copies of all or part of
-this book for use in a course (e.g., like a coursepack), then you are
-granted CC-BY license to these materials for that purpose.</p></li>
-<li><p>If you are a teacher at a university and you translate this book
-into a language other than English and teach using the translated book,
-then you can contact me and I will grant you a CC-BY-SA license to these
-materials with respect to the publication of your translation. In
-particular, you will be permitted to sell the resulting translated book
-commercially.</p></li>
+<li><p>Se stampi un numero limitato di copie di tutto il libro o di una
+sua parte per usarle in un corso (ad esempio, come dispensa), ti viene
+concessa per questo scopo la licenza CC-BY su questi materiali.</p></li>
+<li><p>Se sei un docente universitario, traduci questo libro in una
+lingua diversa dall’inglese e lo usi tradotto nelle tue lezioni, puoi
+contattarmi e ti concederò una licenza CC-BY-SA su questi materiali per
+la pubblicazione della tua traduzione. In particolare, potrai vendere a
+fini commerciali il libro tradotto così ottenuto.</p></li>
 </ul>
-<p>If you are intending to translate the book, you may want to contact
-me so we can make sure that you have all of the related course materials
-so you can translate them as well.</p>
-<p>Of course, you are welcome to contact me and ask for permission if
-these clauses are not sufficient. In all cases, permission to reuse and
-remix this material will be granted as long as there is clear added
-value or benefit to students or teachers that will accrue as a result of
-the new work.</p>
+<p>Se intendi tradurre il libro, ti conviene contattarmi, così possiamo
+assicurarci che tu abbia tutti i materiali del corso collegati al libro
+e possa tradurre anche quelli.</p>
+<p>Naturalmente, puoi contattarmi e chiedere il permesso se queste
+clausole non sono sufficienti. In ogni caso, il permesso di riutilizzare
+e remixare questo materiale sarà concesso purché dal nuovo lavoro derivi
+un chiaro valore aggiunto o un beneficio per studenti o insegnanti.</p>
 <p>Charles Severance<br />
 www.dr-chuck.com<br />
 Ann Arbor, MI, USA<br />
-September 9, 2013</p>
+9 settembre 2013</p>
 </body>
 </html>
 <?php if ( file_exists("../bookfoot.php") ) {

@@ -3,16 +3,22 @@
   ob_start();
 }?>
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="pandoc" />
+  <meta name="generator" content="pandoc 3.14" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>Functions</title>
+  <title>Funzioni</title>
   <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
     html {
       color: #1a1a1a;
+      color: light-dark(#1a1a1a, #fdfdfd);
       background-color: #fdfdfd;
+      background-color: light-dark(#fdfdfd, #1a1a1a);
+      color-scheme: light dark;
     }
     body {
       margin: 0 auto;
@@ -35,31 +41,11 @@
         font-size: 1.8em;
       }
     }
-    @media print {
-      html {
-        background-color: white;
-      }
-      body {
-        background-color: transparent;
-        color: black;
-        font-size: 12pt;
-      }
-      p, h2, h3 {
-        orphans: 3;
-        widows: 3;
-      }
-      h2, h3, h4 {
-        page-break-after: avoid;
-      }
-    }
     p {
       margin: 1em 0;
     }
-    a {
-      color: #1a1a1a;
-    }
-    a:visited {
-      color: #1a1a1a;
+    a, a:visited {
+      color: inherit;
     }
     img {
       max-width: 100%;
@@ -88,10 +74,14 @@
     blockquote {
       margin: 1em 0 1em 1.7em;
       padding-left: 1em;
-      border-left: 2px solid #e6e6e6;
+      border-left: 2px solid;
+      border-color: #e6e6e6;
+      border-color: light-dark(#e6e6e6, #4c4c4c);
       color: #606060;
+      color: light-dark(#606060, #b6b6b6);
     }
     code {
+      white-space: pre-wrap;
       font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
       font-size: 85%;
       margin: 0;
@@ -112,7 +102,7 @@
     }
     hr {
       border: none;
-      border-top: 1px solid #1a1a1a;
+      border-top: 1px solid currentColor;
       height: 1px;
       margin: 1em 0;
     }
@@ -129,11 +119,11 @@
     }
     tbody {
       margin-top: 0.5em;
-      border-top: 1px solid #1a1a1a;
-      border-bottom: 1px solid #1a1a1a;
+      border-top: 1px solid currentColor;
+      border-bottom: 1px solid currentColor;
     }
     th {
-      border-top: 1px solid #1a1a1a;
+      border-top: 1px solid currentColor;
       padding: 0.25em 0.5em 0.25em 0.5em;
     }
     td {
@@ -155,10 +145,19 @@
     #TOC a:not(:hover) {
       text-decoration: none;
     }
-    code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
-    div.columns{display: flex; gap: min(4vw, 1.5em);}
-    div.column{flex: auto; overflow-x: auto;}
+    em, em em em, em em em em em {
+      font-style: italic;
+    }
+    em em, em em em em {
+      font-style: normal;
+    }
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     /* The extra [class] is a hack that increases specificity enough to
        override a similar rule in reveal.js */
@@ -169,158 +168,174 @@
       margin: 0 0.8em 0.2em -1.6em;
       vertical-align: middle;
     }
-    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
-  </style>
+    @media print {
+      html {
+        color-scheme: light only;
+      }
+      html, body, pre, code {
+        background-color: transparent;
+      }
+      body, a, a:visited, blockquote {
+        color: black;
+      }
+      pre, code {
+        padding: 0;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }  </style>
 </head>
 <body>
-<h1 id="functions">Functions</h1>
-<h2 id="function-calls">Function calls</h2>
-<p></p>
-<p>In the context of programming, a <em>function</em> is a named
-sequence of statements that performs a computation. When you define a
-function, you specify the name and the sequence of statements. Later,
-you can “call” the function by name. We have already seen one example of
-a <em>function call</em>:</p>
+<h1 id="funzioni">Funzioni</h1>
+<h2 id="chiamate-di-funzione">Chiamate di funzione</h2>
+<p> Nel contesto della programmazione, una <em>funzione</em> è una
+sequenza di istruzioni con un nome, che esegue un calcolo. Quando
+definisci una funzione, ne specifichi il nome e la sequenza di
+istruzioni. In seguito puoi “chiamare” la funzione per nome. Abbiamo già
+visto un esempio di <em>chiamata di funzione</em>:</p>
 <pre class="python"><code>&gt;&gt;&gt; type(32)
 &lt;class &#39;int&#39;&gt;</code></pre>
-<p>The name of the function is <code>type</code>. The expression in
-parentheses is called the <em>argument</em> of the function. The
-argument is a value or variable that we are passing into the function as
-input to the function. The result, for the <code>type</code> function,
-is the type of the argument.</p>
-<p></p>
-<p>It is common to say that a function “takes” an argument and “returns”
-a result. The result is called the <em>return value</em>.</p>
-<p> </p>
-<h2 id="built-in-functions">Built-in functions</h2>
-<p>Python provides a number of important built-in functions that we can
-use without needing to provide the function definition. The creators of
-Python wrote a set of functions to solve common problems and included
-them in Python for us to use.</p>
-<p>The <code>max</code> and <code>min</code> functions give us the
-largest and smallest values in a list, respectively:</p>
+<p>Il nome della funzione è <code>type</code>. L’espressione tra
+parentesi si chiama <em>argomento</em> della funzione. L’argomento è un
+valore o una variabile che passiamo alla funzione come input. Il
+risultato, per la funzione <code>type</code>, è il tipo
+dell’argomento.</p>
+<p>Si dice comunemente che una funzione “accetta” un argomento e
+“restituisce” un risultato. Il risultato si chiama <em>valore di
+ritorno</em> (return value). </p>
+<h2 id="funzioni-built-in">Funzioni built-in</h2>
+<p>Python fornisce diverse funzioni built-in importanti, che possiamo
+usare senza doverne scrivere la definizione. I creatori di Python hanno
+scritto un insieme di funzioni per risolvere problemi comuni e le hanno
+incluse in Python perché le potessimo usare.</p>
+<p>Le funzioni <code>max</code> e <code>min</code> ci danno
+rispettivamente il valore più grande e il più piccolo di un elenco:</p>
 <pre class="python"><code>&gt;&gt;&gt; max(&#39;Hello world&#39;)
 &#39;w&#39;
 &gt;&gt;&gt; min(&#39;Hello world&#39;)
 &#39; &#39;
 &gt;&gt;&gt;</code></pre>
-<p>The <code>max</code> function tells us the “largest character” in the
-string (which turns out to be the letter “w”) and the <code>min</code>
-function shows us the smallest character (which turns out to be a
-space).</p>
-<p>Another very common built-in function is the <code>len</code>
-function which tells us how many items are in its argument. If the
-argument to <code>len</code> is a string, it returns the number of
-characters in the string.</p>
+<p>La funzione <code>max</code> ci indica il “carattere più grande”
+della stringa (che risulta essere la lettera <code>'w'</code>), mentre
+la funzione <code>min</code> ci mostra il carattere più piccolo (che
+risulta essere uno spazio).</p>
+<p>Un’altra funzione built-in molto comune è <code>len</code>, che ci
+dice quanti elementi ci sono nel suo argomento. Se l’argomento di
+<code>len</code> è una stringa, la funzione restituisce il numero di
+caratteri della stringa.</p>
 <pre class="python"><code>&gt;&gt;&gt; len(&#39;Hello world&#39;)
 11
 &gt;&gt;&gt;</code></pre>
-<p>These functions are not limited to looking at strings. They can
-operate on any set of values, as we will see in later chapters.</p>
-<p>You should treat the names of built-in functions as reserved words
-(i.e., avoid using “max” as a variable name).</p>
-<h2 id="type-conversion-functions">Type conversion functions</h2>
-<p> </p>
-<p>Python also provides built-in functions that convert values from one
-type to another. The <code>int</code> function takes any value and
-converts it to an integer, if it can, or complains otherwise:</p>
-<p> </p>
+<p>Queste funzioni non si limitano alle stringhe: possono operare su
+qualsiasi insieme di valori, come vedremo nei prossimi capitoli.</p>
+<p>Dovresti trattare i nomi delle funzioni built-in come parole
+riservate (cioè, evita di usare <code>max</code> come nome di
+variabile).</p>
+<h2 id="funzioni-di-conversione-dei-tipi-di-dato">Funzioni di
+conversione dei tipi di dato</h2>
+<p> Python fornisce anche funzioni built-in che convertono i valori da
+un tipo a un altro. La funzione <code>int</code> accetta qualsiasi
+valore e, se può, lo converte in un intero; altrimenti si lamenta: </p>
 <pre class="python"><code>&gt;&gt;&gt; int(&#39;32&#39;)
 32
 &gt;&gt;&gt; int(&#39;Hello&#39;)
 ValueError: invalid literal for int() with base 10: &#39;Hello&#39;</code></pre>
-<p><code>int</code> can convert floating-point values to integers, but
-it doesn’t round off; it chops off the fraction part:</p>
+<p><code>int</code> può convertire in interi i valori in virgola mobile,
+ma non arrotonda; tronca la parte frazionaria:</p>
 <pre class="python"><code>&gt;&gt;&gt; int(3.99999)
 3
 &gt;&gt;&gt; int(-2.3)
 -2</code></pre>
-<p><code>float</code> converts integers and strings to floating-point
-numbers:</p>
-<p> </p>
+<p><code>float</code> converte numeri interi e stringhe in numeri in
+virgola mobile: </p>
 <pre class="python"><code>&gt;&gt;&gt; float(32)
 32.0
 &gt;&gt;&gt; float(&#39;3.14159&#39;)
 3.14159</code></pre>
-<p>Finally, <code>str</code> converts its argument to a string:</p>
-<p> </p>
+<p>Infine, <code>str</code> converte il suo argomento in una stringa:
+</p>
 <pre class="python"><code>&gt;&gt;&gt; str(32)
 &#39;32&#39;
 &gt;&gt;&gt; str(3.14159)
 &#39;3.14159&#39;</code></pre>
-<h2 id="math-functions">Math functions</h2>
-<p> </p>
-<p>Python has a <code>math</code> module that provides most of the
-familiar mathematical functions. Before we can use the module, we have
-to import it:</p>
+<h2 id="funzioni-matematiche">Funzioni matematiche</h2>
+<p> Python ha un modulo <code>math</code> che fornisce la maggior parte
+delle funzioni matematiche più note. Prima di poter usare il modulo,
+dobbiamo importarlo:</p>
 <pre class="python"><code>&gt;&gt;&gt; import math</code></pre>
-<p>This statement creates a <em>module object</em> named math. If you
-print the module object, you get some information about it:</p>
+<p>Questa istruzione crea un <em>oggetto modulo</em> chiamato
+<code>math</code>. Se stampi l’oggetto modulo, ottieni alcune
+informazioni che lo riguardano:</p>
 <pre class="python"><code>&gt;&gt;&gt; print(math)
 &lt;module &#39;math&#39; (built-in)&gt;</code></pre>
-<p>The module object contains the functions and variables defined in the
-module. To access one of the functions, you have to specify the name of
-the module and the name of the function, separated by a dot (also known
-as a period). This format is called <em>dot notation</em>.</p>
-<p></p>
+<p>L’oggetto modulo contiene le funzioni e le variabili definite nel
+modulo. Per accedere a una delle funzioni devi specificare il nome del
+modulo e il nome della funzione, separati da un punto. Questo formato si
+chiama <em>notazione puntata</em> (dot notation). </p>
 <pre class="python"><code>&gt;&gt;&gt; ratio = signal_power / noise_power
 &gt;&gt;&gt; decibels = 10 * math.log10(ratio)
 
 &gt;&gt;&gt; radians = 0.7
 &gt;&gt;&gt; height = math.sin(radians)</code></pre>
-<p>The first example computes the logarithm base 10 of the
-signal-to-noise ratio. The math module also provides a function called
-<code>log</code> that computes logarithms base e.</p>
-<p> </p>
-<p>The second example finds the sine of <code>radians</code>. The name
-of the variable is a hint that <code>sin</code> and the other
-trigonometric functions (<code>cos</code>, <code>tan</code>, etc.) take
-arguments in radians. To convert from degrees to radians, divide by 360
-and multiply by <span class="math inline">2<em>π</em></span>:</p>
+<p>Il primo esempio calcola il logaritmo in base 10 del rapporto
+segnale/rumore. Il modulo <code>math</code> fornisce anche una funzione
+chiamata <code>log</code>, che calcola i logaritmi in base
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>e</mi><annotation encoding="application/x-tex">e</annotation></semantics></math>.
+</p>
+<p>Il secondo esempio calcola il seno di <code>radians</code>. Il nome
+della variabile suggerisce che <code>sin</code> e le altre funzioni
+trigonometriche (<code>cos</code>, <code>tan</code>, ecc.) accettano
+argomenti in radianti. Per convertire i gradi in radianti, dividi per
+360 e moltiplica per
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mi>π</mi></mrow><annotation encoding="application/x-tex">2\pi</annotation></semantics></math>:</p>
 <pre class="python"><code>&gt;&gt;&gt; degrees = 45
 &gt;&gt;&gt; radians = degrees / 360.0 * 2 * math.pi
 &gt;&gt;&gt; math.sin(radians)
 0.7071067811865476</code></pre>
-<p>The expression <code>math.pi</code> gets the variable <code>pi</code>
-from the math module. The value of this variable is an approximation of
-<span class="math inline"><em>π</em></span>, accurate to about 15
-digits.</p>
-<p></p>
-<p>If you know your trigonometry, you can check the previous result by
-comparing it to the square root of two divided by two:</p>
-<p> </p>
+<p>L’espressione <code>math.pi</code> prende la variabile
+<code>pi</code> dal modulo <code>math</code>. Il valore di questa
+variabile è un’approssimazione di
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>π</mi><annotation encoding="application/x-tex">\pi</annotation></semantics></math>,
+precisa fino a circa 15 cifre. </p>
+<p>Se conosci la trigonometria, puoi controllare il risultato precedente
+confrontandolo con la radice quadrata di due fratto due: </p>
 <pre class="python"><code>&gt;&gt;&gt; math.sqrt(2) / 2.0
 0.7071067811865476</code></pre>
-<h2 id="random-numbers">Random numbers</h2>
+<h2 id="numeri-casuali">Numeri casuali</h2>
+<p> Con gli stessi input, la maggior parte dei programmi per computer
+genera ogni volta gli stessi output: per questo si dicono
+<em>deterministici</em>. Di solito il determinismo è un bene, perché ci
+aspettiamo che lo stesso calcolo produca lo stesso risultato. Per alcune
+applicazioni, però, vogliamo che il computer sia imprevedibile. I giochi
+sono un esempio ovvio, ma ce ne sono altri.</p>
+<p>Rendere un programma davvero non deterministico non è poi così
+facile, ma ci sono modi per farlo almeno sembrare tale. Uno di questi è
+usare <em>algoritmi</em> che generano numeri <em>pseudo-casuali</em>
+(pseudorandom). I numeri pseudo-casuali non sono davvero casuali, perché
+li genera un calcolo deterministico, ma guardando solo i numeri è quasi
+impossibile distinguerli da quelli casuali.</p>
 <p> </p>
-<p>Given the same inputs, most computer programs generate the same
-outputs every time, so they are said to be <em>deterministic</em>.
-Determinism is usually a good thing, since we expect the same
-calculation to yield the same result. For some applications, though, we
-want the computer to be unpredictable. Games are an obvious example, but
-there are more.</p>
-<p>Making a program truly nondeterministic turns out to be not so easy,
-but there are ways to make it at least seem nondeterministic. One of
-them is to use <em>algorithms</em> that generate <em>pseudorandom</em>
-numbers. Pseudorandom numbers are not truly random because they are
-generated by a deterministic computation, but just by looking at the
-numbers it is all but impossible to distinguish them from random.</p>
-<p> </p>
-<p>The <code>random</code> module provides functions that generate
-pseudorandom numbers (which I will simply call “random” from here
-on).</p>
-<p> </p>
-<p>The function <code>random</code> returns a random float between 0.0
-and 1.0 (including 0.0 but not 1.0). Each time you call
-<code>random</code>, you get the next number in a long series. To see a
-sample, run this loop:</p>
+<p>Il modulo <code>random</code> fornisce funzioni che generano numeri
+pseudo-casuali (che chiamerò semplicemente “casuali” da qui in poi).
+</p>
+<p>La funzione <code>random</code> restituisce un numero casuale in
+virgola mobile compreso tra <code>0.0</code> e <code>1.0</code>
+(<code>0.0</code> incluso, <code>1.0</code> escluso). Ogni volta che
+chiami <code>random</code>, ottieni il numero successivo di una lunga
+serie. Per vederne un esempio, esegui questo ciclo:</p>
 <pre class="python"><code>import random
 
 for i in range(10):
     x = random.random()
     print(x)</code></pre>
-<p>This program produces the following list of 10 random numbers between
-0.0 and up to but not including 1.0.</p>
+<p>Questo programma produce il seguente elenco di 10 numeri casuali
+compresi tra <code>0.0</code> e <code>1.0</code> (<code>1.0</code>
+escluso).</p>
 <pre><code>0.11132867921152356
 0.5950949227890241
 0.04820265884996877
@@ -331,99 +346,94 @@ for i in range(10):
 0.510535245390327
 0.27447040171978143
 0.028511805472785867</code></pre>
-<p><strong>Exercise 1:</strong> Run the program on your system and see
-what numbers you get. Run the program more than once and see what
-numbers you get.</p>
-<p>The <code>random</code> function is only one of many functions that
-handle random numbers. The function <code>randint</code> takes the
-parameters <code>low</code> and <code>high</code>, and returns an
-integer between <code>low</code> and <code>high</code> (including
-both).</p>
-<p> </p>
+<p><strong>Esercizio 1:</strong> Esegui il programma sul tuo sistema e
+guarda quali numeri ottieni. Eseguilo più volte e guarda quali numeri
+ottieni.</p>
+<p>La funzione <code>random</code> è solo una delle molte funzioni che
+gestiscono i numeri casuali. La funzione <code>randint</code> accetta i
+parametri <code>low</code> e <code>high</code> e restituisce un intero
+compreso tra <code>low</code> e <code>high</code> (estremi inclusi).
+</p>
 <pre class="python"><code>&gt;&gt;&gt; random.randint(5, 10)
 5
 &gt;&gt;&gt; random.randint(5, 10)
 9</code></pre>
-<p>To choose an element from a sequence at random, you can use
-<code>choice</code>:</p>
-<p> </p>
+<p>Per scegliere a caso un elemento da una sequenza puoi usare
+<code>choice</code>: </p>
 <pre class="python"><code>&gt;&gt;&gt; t = [1, 2, 3]
 &gt;&gt;&gt; random.choice(t)
 2
 &gt;&gt;&gt; random.choice(t)
 3</code></pre>
-<p>The <code>random</code> module also provides functions to generate
-random values from continuous distributions including Gaussian,
-exponential, gamma, and a few more.</p>
-<h2 id="adding-new-functions">Adding new functions</h2>
-<p>So far, we have only been using the functions that come with Python,
-but it is also possible to add new functions. A <em>function
-definition</em> specifies the name of a new function and the sequence of
-statements that execute when the function is called. Once we define a
-function, we can reuse the function over and over throughout our
-program.</p>
-<p> </p>
-<p>Here is an example:</p>
+<p>Il modulo <code>random</code> fornisce anche funzioni per generare
+valori casuali da distribuzioni continue, tra cui la gaussiana,
+l’esponenziale, la gamma e qualche altra.</p>
+<h2 id="aggiungere-nuove-funzioni">Aggiungere nuove funzioni</h2>
+<p>Finora abbiamo usato solo le funzioni fornite con Python, ma è anche
+possibile aggiungerne di nuove. Una <em>definizione di funzione</em>
+specifica il nome di una nuova funzione e la sequenza di istruzioni
+eseguite quando la funzione viene chiamata. Una volta definita una
+funzione, possiamo riutilizzarla più e più volte in tutto il nostro
+programma. </p>
+<p>Ecco un esempio:</p>
 <pre class="python"><code>def print_lyrics():
     print(&quot;I&#39;m a lumberjack, and I&#39;m okay.&quot;)
     print(&#39;I sleep all night and I work all day.&#39;)</code></pre>
-<p><code>def</code> is a keyword that indicates that this is a function
-definition. The name of the function is <code>print_lyrics</code>. The
-rules for function names are the same as for variable names: letters,
-numbers and some punctuation marks are legal, but the first character
-can’t be a number. You can’t use a keyword as the name of a function,
-and you should avoid having a variable and a function with the same
-name.</p>
+<p><code>def</code> è una parola chiave e indica che questa è una
+definizione di funzione. Il nome della funzione è
+<code>print_lyrics</code>. Per i nomi delle funzioni valgono le stesse
+regole dei nomi delle variabili: sono consentiti lettere, numeri e
+alcuni segni di punteggiatura, ma il primo carattere non può essere un
+numero. Non puoi usare una parola chiave come nome di una funzione, e
+dovresti evitare di dare lo stesso nome a una variabile e a una
+funzione.</p>
 <p> </p>
-<p>The empty parentheses after the name indicate that this function
-doesn’t take any arguments. Later we will build functions that take
-arguments as their inputs.</p>
-<p> </p>
-<p>The first line of the function definition is called the
-<em>header</em>; the rest is called the <em>body</em>. The header has to
-end with a colon and the body has to be indented. By convention, the
-indentation is always four spaces. The body can contain any number of
-statements.</p>
-<p></p>
-<p>If you type a function definition in interactive mode, the
-interpreter prints ellipses (<em>…</em>) to let you know that the
-definition isn’t complete:</p>
+<p>Le parentesi vuote dopo il nome indicano che questa funzione non
+accetta argomenti. Più avanti costruiremo funzioni che accettano
+argomenti come input. </p>
+<p>La prima riga della definizione di funzione si chiama
+<em>intestazione</em> (header); il resto si chiama <em>corpo</em>
+(body). L’intestazione deve terminare con i due punti e il corpo deve
+essere indentato. Per convenzione, l’indentazione è sempre di quattro
+spazi. Il corpo può contenere un numero qualsiasi di istruzioni. </p>
+<p>Se digiti una definizione di funzione in modalità interattiva,
+l’interprete stampa dei puntini di sospensione (<code>...</code>) per
+farti sapere che la definizione non è completa:</p>
 <pre class="python"><code>&gt;&gt;&gt; def print_lyrics():
 ...     print(&quot;I&#39;m a lumberjack, and I&#39;m okay.&quot;)
 ...     print(&#39;I sleep all night and I work all day.&#39;)
 ...</code></pre>
-<p>To end the function, you have to enter an empty line (this is not
-necessary in a script).</p>
-<p>Defining a function creates a variable with the same name.</p>
+<p>Per terminare la funzione devi inserire una riga vuota (in uno script
+non è necessario).</p>
+<p>La definizione di una funzione crea una variabile con lo stesso
+nome.</p>
 <pre class="python"><code>&gt;&gt;&gt; print(print_lyrics)
 &lt;function print_lyrics at 0xb7e99e9c&gt;
 &gt;&gt;&gt; print(type(print_lyrics))
 &lt;class &#39;function&#39;&gt;</code></pre>
-<p>The value of <code>print_lyrics</code> is a <em>function object</em>,
-which has type “function”.</p>
-<p> </p>
-<p>The syntax for calling the new function is the same as for built-in
-functions:</p>
+<p>Il valore di <code>print_lyrics</code> è un <em>oggetto
+funzione</em>, che ha tipo <code>function</code>. </p>
+<p>La sintassi per chiamare la nuova funzione è la stessa delle funzioni
+built-in:</p>
 <pre class="python"><code>&gt;&gt;&gt; print_lyrics()
 I&#39;m a lumberjack, and I&#39;m okay.
 I sleep all night and I work all day.</code></pre>
-<p>Once you have defined a function, you can use it inside another
-function. For example, to repeat the previous refrain, we could write a
-function called <code>repeat_lyrics</code>:</p>
+<p>Dopo aver definito una funzione, puoi usarla dentro un’altra
+funzione. Ad esempio, per ripetere il ritornello precedente, potremmo
+scrivere una funzione chiamata <code>repeat_lyrics</code>:</p>
 <pre class="python"><code>def repeat_lyrics():
     print_lyrics()
     print_lyrics()</code></pre>
-<p>And then call <code>repeat_lyrics</code>:</p>
+<p>E poi chiamare <code>repeat_lyrics</code>:</p>
 <pre class="python"><code>&gt;&gt;&gt; repeat_lyrics()
 I&#39;m a lumberjack, and I&#39;m okay.
 I sleep all night and I work all day.
 I&#39;m a lumberjack, and I&#39;m okay.
 I sleep all night and I work all day.</code></pre>
-<p>But that’s not really how the song goes.</p>
-<h2 id="definitions-and-uses">Definitions and uses</h2>
-<p></p>
-<p>Pulling together the code fragments from the previous section, the
-whole program looks like this:</p>
+<p>Ma la canzone non fa proprio così.</p>
+<h2 id="definizioni-e-usi">Definizioni e usi</h2>
+<p> Se mettiamo insieme i frammenti di codice della sezione precedente,
+il programma completo è questo:</p>
 <pre class="python"><code>def print_lyrics():
     print(&quot;I&#39;m a lumberjack, and I&#39;m okay.&quot;)
     print(&#39;I sleep all night and I work all day.&#39;)
@@ -436,65 +446,65 @@ def repeat_lyrics():
 repeat_lyrics()
 
 # Code: https://www.py4e.com/code3/lyrics.py</code></pre>
-<p>This program has two function definitions: <code>print_lyrics</code>
-and <code>repeat_lyrics</code>. Function definitions get executed just
-like other statements, but the effect is to create function objects. The
-statements inside the function do not get executed until the function is
-called, and the function definition generates no output.</p>
-<p></p>
-<p>As you might expect, you have to create a function before you can
-execute it. In other words, the function definition has to be executed
-before the first time it is called.</p>
-<p><strong>Exercise 2:</strong> Move the last line of this program to
-the top, so the function call appears before the definitions. Run the
-program and see what error message you get.</p>
-<p><strong>Exercise 3:</strong> Move the function call back to the
-bottom and move the definition of <code>print_lyrics</code> after the
-definition of <code>repeat_lyrics</code>. What happens when you run this
-program?</p>
-<h2 id="flow-of-execution">Flow of execution</h2>
-<p></p>
-<p>In order to ensure that a function is defined before its first use,
-you have to know the order in which statements are executed, which is
-called the <em>flow of execution</em>.</p>
-<p>Execution always begins at the first statement of the program.
-Statements are executed one at a time, in order from top to bottom.</p>
-<p>Function <em>definitions</em> do not alter the flow of execution of
-the program, but remember that statements inside the function are not
-executed until the function is called.</p>
-<p>A function call is like a detour in the flow of execution. Instead of
-going to the next statement, the flow jumps to the body of the function,
-executes all the statements there, and then comes back to pick up where
-it left off.</p>
-<p>That sounds simple enough, until you remember that one function can
-call another. While in the middle of one function, the program might
-have to execute the statements in another function. But while executing
-that new function, the program might have to execute yet another
-function!</p>
-<p>Fortunately, Python is good at keeping track of where it is, so each
-time a function completes, the program picks up where it left off in the
-function that called it. When it gets to the end of the program, it
-terminates.</p>
-<p>What’s the moral of this sordid tale? When you read a program, you
-don’t always want to read from top to bottom. Sometimes it makes more
-sense if you follow the flow of execution.</p>
-<h2 id="parameters-and-arguments">Parameters and arguments</h2>
-<p> </p>
-<p>Some of the built-in functions we have seen require arguments. For
-example, when you call <code>math.sin</code> you pass a number as an
-argument. Some functions take more than one argument:
-<code>math.pow</code> takes two, the base and the exponent.</p>
-<p>Inside the function, the arguments are assigned to variables called
-<em>parameters</em>. Here is an example of a user-defined function that
-takes an argument:</p>
-<p></p>
+<p>Questo programma ha due definizioni di funzione:
+<code>print_lyrics</code> e <code>repeat_lyrics</code>. Le definizioni
+di funzione vengono eseguite proprio come le altre istruzioni, ma il
+loro effetto è creare oggetti funzione. Le istruzioni all’interno della
+funzione non vengono eseguite finché la funzione non viene chiamata, e
+la definizione di funzione non genera alcun output. </p>
+<p>Come puoi immaginare, devi creare una funzione prima di poterla
+eseguire. In altre parole, la definizione di funzione deve essere
+eseguita prima che la funzione venga chiamata per la prima volta.</p>
+<p><strong>Esercizio 2:</strong> Sposta l’ultima riga di questo
+programma all’inizio, in modo che la chiamata di funzione compaia prima
+delle definizioni. Esegui il programma e guarda quale messaggio di
+errore ottieni.</p>
+<p><strong>Esercizio 3:</strong> Riporta la chiamata di funzione in
+fondo e sposta la definizione di <code>print_lyrics</code> dopo la
+definizione di <code>repeat_lyrics</code>. Cosa succede quando esegui
+questo programma?</p>
+<h2 id="flusso-di-esecuzione">Flusso di esecuzione</h2>
+<p> Per assicurarti che una funzione sia definita prima del suo primo
+uso, devi conoscere l’ordine in cui vengono eseguite le istruzioni, cioè
+il <em>flusso di esecuzione</em> (flow of execution).</p>
+<p>L’esecuzione inizia sempre dalla prima istruzione del programma. Le
+istruzioni vengono eseguite una alla volta, in ordine, dall’alto verso
+il basso.</p>
+<p>Le <em>definizioni</em> di funzione non alterano il flusso di
+esecuzione del programma, ma ricorda che le istruzioni all’interno della
+funzione non vengono eseguite finché la funzione non viene chiamata.</p>
+<p>Una chiamata di funzione è come una deviazione nel flusso di
+esecuzione: invece di passare all’istruzione successiva, il flusso salta
+al corpo della funzione, esegue tutte le istruzioni che contiene e poi
+torna indietro per riprendere dal punto in cui si era interrotto.</p>
+<p>Sembra abbastanza semplice, finché non ti ricordi che una funzione
+può chiamarne un’altra. Mentre si trova nel mezzo di una funzione, il
+programma potrebbe dover eseguire le istruzioni di un’altra funzione. Ma
+mentre esegue questa nuova funzione, il programma potrebbe doverne
+eseguire un’altra ancora!</p>
+<p>Fortunatamente Python è bravo a tenere traccia del punto in cui si
+trova, quindi ogni volta che una funzione termina, il programma riprende
+da dove si era interrotto nella funzione che l’ha chiamata. Quando
+arriva alla fine del programma, termina.</p>
+<p>Qual è la morale di questa sordida storia? Quando leggi un programma,
+non sempre conviene leggerlo dall’alto verso il basso. A volte ha più
+senso seguire il flusso di esecuzione.</p>
+<h2 id="parametri-e-argomenti">Parametri e argomenti</h2>
+<p> Alcune delle funzioni built-in che abbiamo visto richiedono degli
+argomenti. Ad esempio, quando chiami <code>math.sin</code> passi un
+numero come argomento. Alcune funzioni accettano più di un argomento:
+<code>math.pow</code> ne accetta due, la base e l’esponente.</p>
+<p>All’interno della funzione, gli argomenti sono assegnati a variabili
+chiamate <em>parametri</em>. Ecco un esempio di una funzione definita
+dall’utente che accetta un argomento: </p>
 <pre class="python"><code>def print_twice(bruce):
     print(bruce)
     print(bruce)</code></pre>
-<p>This function assigns the argument to a parameter named
-<code>bruce</code>. When the function is called, it prints the value of
-the parameter (whatever it is) twice.</p>
-<p>This function works with any value that can be printed.</p>
+<p>Questa funzione assegna l’argomento a un parametro chiamato
+<code>bruce</code>. Quando la funzione viene chiamata, stampa due volte
+il valore del parametro (qualunque esso sia).</p>
+<p>Questa funzione va bene per qualsiasi valore che si possa
+stampare.</p>
 <pre class="python"><code>&gt;&gt;&gt; print_twice(&#39;Spam&#39;)
 Spam
 Spam
@@ -505,73 +515,69 @@ Spam
 &gt;&gt;&gt; print_twice(math.pi)
 3.141592653589793
 3.141592653589793</code></pre>
-<p>The same rules of composition that apply to built-in functions also
-apply to user-defined functions, so we can use any kind of expression as
-an argument for <code>print_twice</code>:</p>
-<p></p>
+<p>Le regole di composizione delle funzioni built-in valgono anche per
+le funzioni definite dall’utente, quindi possiamo usare qualsiasi tipo
+di espressione come argomento di <code>print_twice</code>: </p>
 <pre class="python"><code>&gt;&gt;&gt; print_twice(&#39;Spam &#39;*4)
 Spam Spam Spam Spam
 Spam Spam Spam Spam
 &gt;&gt;&gt; print_twice(math.cos(math.pi))
 -1.0
 -1.0</code></pre>
-<p>The argument is evaluated before the function is called, so in the
-examples the expressions <code>'Spam '*4</code> and
-<code>math.cos(math.pi)</code> are only evaluated once.</p>
-<p></p>
-<p>You can also use a variable as an argument:</p>
+<p>L’argomento viene valutato prima che la funzione sia chiamata, quindi
+negli esempi le espressioni <code>'Spam '*4</code> e
+<code>math.cos(math.pi)</code> vengono valutate una sola volta.</p>
+<p>Puoi anche usare una variabile come argomento:</p>
 <pre class="python"><code>&gt;&gt;&gt; michael = &#39;Eric, the half a bee.&#39;
 &gt;&gt;&gt; print_twice(michael)
 Eric, the half a bee.
 Eric, the half a bee.</code></pre>
-<p>The name of the variable we pass as an argument
-(<code>michael</code>) has nothing to do with the name of the parameter
-(<code>bruce</code>). It doesn’t matter what the value was called back
-home (in the caller); here in <code>print_twice</code>, we call
-everybody <code>bruce</code>.</p>
-<h2 id="fruitful-functions-and-void-functions">Fruitful functions and
-void functions</h2>
-<p> </p>
-<p>Some of the functions we are using, such as the math functions, yield
-results; for lack of a better name, I call them <em>fruitful
-functions</em>. Other functions, like <code>print_twice</code>, perform
-an action but don’t return a value. They are called <em>void
-functions</em>.</p>
-<p>When you call a fruitful function, you almost always want to do
-something with the result; for example, you might assign it to a
-variable or use it as part of an expression:</p>
+<p>Il nome della variabile che passiamo come argomento
+(<code>michael</code>) non ha nulla a che fare con il nome del parametro
+(<code>bruce</code>). Non importa come si chiamava il valore a casa sua
+(nel chiamante): qui, in <code>print_twice</code>, chiamiamo tutti
+<code>bruce</code>.</p>
+<h2 id="funzioni-produttive-e-funzioni-vuote">Funzioni produttive e
+funzioni vuote</h2>
+<p> Alcune delle funzioni che stiamo usando, come le funzioni
+matematiche, producono risultati; in mancanza di un nome migliore, le
+chiamo <em>funzioni produttive</em> (fruitful functions). Altre
+funzioni, come <code>print_twice</code>, eseguono un’azione ma non
+restituiscono alcun valore. Si chiamano <em>funzioni vuote</em> (void
+functions).</p>
+<p>Quando chiami una funzione produttiva, quasi sempre vuoi fare
+qualcosa con il risultato; ad esempio, potresti assegnarlo a una
+variabile o usarlo come parte di un’espressione:</p>
 <pre class="python"><code>x = math.cos(radians)
 golden = (math.sqrt(5) + 1) / 2</code></pre>
-<p>When you call a function in interactive mode, Python displays the
-result:</p>
+<p>Quando chiami una funzione in modalità interattiva, Python ne
+visualizza il risultato:</p>
 <pre class="python"><code>&gt;&gt;&gt; math.sqrt(5)
 2.23606797749979</code></pre>
-<p>But in a script, if you call a fruitful function and do not store the
-result of the function in a variable, the return value vanishes into the
-mist!</p>
+<p>Ma in uno script, se chiami una funzione produttiva e non ne
+memorizzi il risultato in una variabile, il valore di ritorno svanisce
+nella nebbia!</p>
 <pre class="python"><code>math.sqrt(5)</code></pre>
-<p>This script computes the square root of 5, but since it doesn’t store
-the result in a variable or display the result, it is not very
-useful.</p>
-<p> </p>
-<p>Void functions might display something on the screen or have some
-other effect, but they don’t have a return value. If you try to assign
-the result to a variable, you get a special value called
-<code>None</code>.</p>
-<p> </p>
+<p>Questo script calcola la radice quadrata di 5 ma, poiché non
+memorizza il risultato in una variabile e non lo visualizza, non è molto
+utile. </p>
+<p>Le funzioni vuote possono visualizzare qualcosa sullo schermo o avere
+qualche altro effetto, ma non hanno alcun valore di ritorno. Se tenti di
+assegnare il risultato a una variabile ottieni un valore speciale
+chiamato <code>None</code>. </p>
 <pre class="python"><code>&gt;&gt;&gt; result = print_twice(&#39;Bing&#39;)
 Bing
 Bing
 &gt;&gt;&gt; print(result)
 None</code></pre>
-<p>The value <code>None</code> is not the same as the string “None”. It
-is a special value that has its own type:</p>
+<p>Il valore <code>None</code> non è la stessa cosa della stringa
+<code>'None'</code>. È un valore speciale che ha un tipo tutto suo:</p>
 <pre class="python"><code>&gt;&gt;&gt; print(type(None))
 &lt;class &#39;NoneType&#39;&gt;</code></pre>
-<p>To return a result from a function, we use the <code>return</code>
-statement in our function. For example, we could make a very simple
-function called <code>addtwo</code> that adds two numbers together and
-returns a result.</p>
+<p>Per restituire un risultato da una funzione, usiamo l’istruzione
+<code>return</code> nella nostra funzione. Ad esempio, potremmo creare
+una funzione molto semplice chiamata <code>addtwo</code> che somma due
+numeri e restituisce un risultato.</p>
 <pre class="python"><code>def addtwo(a, b):
     added = a + b
     return added
@@ -580,162 +586,166 @@ x = addtwo(3, 5)
 print(x)
 
 # Code: https://www.py4e.com/code3/addtwo.py</code></pre>
-<p>When this script executes, the <code>print</code> statement will
-print out “8” because the <code>addtwo</code> function was called with 3
-and 5 as arguments. Within the function, the parameters <code>a</code>
-and <code>b</code> were 3 and 5 respectively. The function computed the
-sum of the two numbers and placed it in the local function variable
-named <code>added</code>. Then it used the <code>return</code> statement
-to send the computed value back to the calling code as the function
-result, which was assigned to the variable <code>x</code> and printed
-out.</p>
-<h2 id="why-functions">Why functions?</h2>
-<p></p>
-<p>It may not be clear why it is worth the trouble to divide a program
-into functions. There are several reasons:</p>
+<p>Quando questo script viene eseguito, l’istruzione <code>print</code>
+stampa <code>8</code> perché la funzione <code>addtwo</code> è stata
+chiamata con <code>3</code> e <code>5</code> come argomenti. All’interno
+della funzione, i parametri <code>a</code> e <code>b</code> valevano
+rispettivamente <code>3</code> e <code>5</code>. La funzione ha
+calcolato la somma dei due numeri e l’ha inserita in una variabile
+locale della funzione, chiamata <code>added</code>. Poi ha usato
+l’istruzione <code>return</code> per rimandare il valore calcolato al
+codice chiamante come risultato della funzione; il valore è stato
+assegnato alla variabile <code>x</code> e stampato.</p>
+<h2 id="perché-le-funzioni">Perché le funzioni?</h2>
+<p> Forse non è chiaro perché valga la pena di dividere un programma in
+funzioni. I motivi sono diversi:</p>
 <ul>
-<li><p>Creating a new function gives you an opportunity to name a group
-of statements, which makes your program easier to read, understand, and
-debug.</p></li>
-<li><p>Functions can make a program smaller by eliminating repetitive
-code. Later, if you make a change, you only have to make it in one
-place.</p></li>
-<li><p>Dividing a long program into functions allows you to debug the
-parts one at a time and then assemble them into a working
-whole.</p></li>
-<li><p>Well-designed functions are often useful for many programs. Once
-you write and debug one, you can reuse it.</p></li>
+<li>Creare una nuova funzione ti dà l’occasione di dare un nome a un
+gruppo di istruzioni, e questo semplifica la lettura, la comprensione e
+il debug del programma.</li>
+<li>Le funzioni possono rendere un programma più piccolo eliminando il
+codice ripetitivo. Se in seguito fai una modifica, ti basta farla in un
+solo punto.</li>
+<li>Dividere un programma lungo in funzioni ti permette di fare il debug
+delle parti una alla volta e poi di assemblarle in un insieme
+funzionante.</li>
+<li>Le funzioni ben progettate sono spesso utili per molti programmi.
+Dopo aver scritto una funzione e averne fatto il debug, puoi
+riutilizzarla.</li>
 </ul>
-<p>Throughout the rest of the book, often we will use a function
-definition to explain a concept. Part of the skill of creating and using
-functions is to have a function properly capture an idea such as “find
-the smallest value in a list of values”. Later we will show you code
-that finds the smallest in a list of values and we will present it to
-you as a function named <code>min</code> which takes a list of values as
-its argument and returns the smallest value in the list.</p>
-<h2 id="debugging">Debugging</h2>
-<p></p>
-<p>If you are using a text editor to write your scripts, you might run
-into problems with spaces and tabs. The best way to avoid these problems
-is to use spaces exclusively (no tabs). Most text editors that know
-about Python do this by default, but some don’t.</p>
-<p></p>
-<p>Tabs and spaces are usually invisible, which makes them hard to
-debug, so try to find an editor that manages indentation for you.</p>
-<p>Also, don’t forget to save your program before you run it. Some
-development environments do this automatically, but some don’t. In that
-case, the program you are looking at in the text editor is not the same
-as the program you are running.</p>
-<p>Debugging can take a long time if you keep running the same incorrect
-program over and over!</p>
-<p>Make sure that the code you are looking at is the code you are
-running. If you’re not sure, put something like
-<code>print("hello")</code> at the beginning of the program and run it
-again. If you don’t see <code>hello</code>, you’re not running the right
-program!</p>
-<h2 id="glossary">Glossary</h2>
+<p>Nel resto del libro useremo spesso una definizione di funzione per
+spiegare un concetto. Parte dell’abilità nel creare e usare le funzioni
+sta nel fare in modo che una funzione racchiuda bene un’idea, come
+“trova il valore più piccolo in un elenco di valori”. Più avanti ti
+mostreremo il codice che trova il valore più piccolo in un elenco di
+valori e te lo presenteremo come una funzione chiamata <code>min</code>,
+che accetta come argomento un elenco di valori e restituisce il valore
+più piccolo dell’elenco.</p>
+<h2 id="debug">Debug</h2>
+<p> Se usi un editor di testo per scrivere i tuoi script, potresti avere
+problemi con spazi e tabulazioni. Il modo migliore per evitarli è usare
+solo gli spazi (niente tabulazioni). La maggior parte degli editor di
+testo che conoscono Python lo fa per impostazione predefinita, ma alcuni
+no.</p>
+<p>Tabulazioni e spazi sono di solito invisibili, il che rende difficile
+il debug: cerca quindi un editor che gestisca l’indentazione al posto
+tuo.</p>
+<p>Inoltre, non dimenticare di salvare il programma prima di eseguirlo.
+Alcuni ambienti di sviluppo lo fanno automaticamente, altri no. In quel
+caso, il programma che stai guardando nell’editor di testo non è lo
+stesso che stai eseguendo.</p>
+<p>Il debug può richiedere molto tempo se continui a eseguire più e più
+volte lo stesso programma sbagliato!</p>
+<p>Assicurati che il codice che stai guardando sia il codice che stai
+eseguendo. Se non ne sei sicuro, inserisci qualcosa come
+<code>print("hello")</code> all’inizio del programma ed eseguilo di
+nuovo. Se non vedi <code>hello</code>, non stai eseguendo il programma
+giusto!</p>
+<h2 id="glossario">Glossario</h2>
 <dl>
-<dt>algorithm</dt>
+<dt><strong>Algoritmo</strong></dt>
 <dd>
-A general process for solving a category of problems.
+Un procedimento generale per risolvere una categoria di problemi.
 </dd>
-<dt>argument</dt>
+<dt><strong>Argomento</strong></dt>
 <dd>
-A value provided to a function when the function is called. This value
-is assigned to the corresponding parameter in the function.
+Un valore fornito a una funzione quando questa viene chiamata. Questo
+valore è assegnato al parametro corrispondente nella funzione.
 </dd>
-<dt>body</dt>
+<dt><strong>Chiamata di funzione</strong></dt>
 <dd>
-The sequence of statements inside a function definition.
+Un’istruzione che esegue una funzione. È composta dal nome della
+funzione seguito da un elenco di argomenti.
 </dd>
-<dt>composition</dt>
+<dt><strong>Composizione</strong></dt>
 <dd>
-Using an expression as part of a larger expression, or a statement as
-part of a larger statement.
+L’uso di un’espressione come parte di un’espressione più grande, o di
+un’istruzione come parte di un’istruzione più grande.
 </dd>
-<dt>deterministic</dt>
+<dt><strong>Corpo</strong></dt>
 <dd>
-Pertaining to a program that does the same thing each time it runs,
-given the same inputs.
+La sequenza di istruzioni contenute in una definizione di funzione.
 </dd>
-<dt>dot notation</dt>
+<dt><strong>Definizione di funzione</strong></dt>
 <dd>
-The syntax for calling a function in another module by specifying the
-module name followed by a dot (period) and the function name.
+Un’istruzione che crea una nuova funzione, specificandone il nome, i
+parametri e le istruzioni che esegue.
 </dd>
-<dt>flow of execution</dt>
+<dt><strong>Deterministico</strong></dt>
 <dd>
-The order in which statements are executed during a program run.
+Relativo a un programma che fa la stessa cosa ogni volta che viene
+eseguito, dati gli stessi input.
 </dd>
-<dt>fruitful function</dt>
+<dt><strong>Flusso di esecuzione</strong></dt>
 <dd>
-A function that returns a value.
+L’ordine in cui le istruzioni vengono eseguite durante l’esecuzione di
+un programma.
 </dd>
-<dt>function</dt>
+<dt><strong>Funzione</strong></dt>
 <dd>
-A named sequence of statements that performs some useful operation.
-Functions may or may not take arguments and may or may not produce a
-result.
+Una sequenza di istruzioni con un nome, che svolge qualche operazione
+utile. Le funzioni possono accettare argomenti oppure no, e possono
+produrre un risultato oppure no.
 </dd>
-<dt>function call</dt>
+<dt><strong>Funzione produttiva</strong></dt>
 <dd>
-A statement that executes a function. It consists of the function name
-followed by an argument list.
+Una funzione che restituisce un valore.
 </dd>
-<dt>function definition</dt>
+<dt><strong>Funzione vuota</strong></dt>
 <dd>
-A statement that creates a new function, specifying its name,
-parameters, and the statements it executes.
+Una funzione che non restituisce alcun valore.
 </dd>
-<dt>function object</dt>
+<dt><strong>Intestazione</strong></dt>
 <dd>
-A value created by a function definition. The name of the function is a
-variable that refers to a function object.
+La prima riga di una definizione di funzione.
 </dd>
-<dt>header</dt>
+<dt><strong>Istruzione <code>import</code></strong></dt>
 <dd>
-The first line of a function definition.
+Un’istruzione che legge il file di un modulo e crea un oggetto modulo.
 </dd>
-<dt>import statement</dt>
+<dt><strong>Notazione puntata</strong></dt>
 <dd>
-A statement that reads a module file and creates a module object.
+La sintassi per chiamare una funzione di un altro modulo, specificando
+il nome del modulo seguito da un punto e dal nome della funzione.
 </dd>
-<dt>module object</dt>
+<dt><strong>Oggetto funzione</strong></dt>
 <dd>
-A value created by an <code>import</code> statement that provides access
-to the data and code defined in a module.
+Un valore creato da una definizione di funzione. Il nome della funzione
+è una variabile che fa riferimento a un oggetto funzione.
 </dd>
-<dt>parameter</dt>
+<dt><strong>Oggetto modulo</strong></dt>
 <dd>
-A name used inside a function to refer to the value passed as an
-argument.
+Un valore creato da un’istruzione <code>import</code>, che fornisce
+accesso ai dati e al codice definiti in un modulo.
 </dd>
-<dt>pseudorandom</dt>
+<dt><strong>Parametro</strong></dt>
 <dd>
-Pertaining to a sequence of numbers that appear to be random, but are
-generated by a deterministic program.
+Un nome usato all’interno di una funzione per fare riferimento al valore
+passato come argomento.
 </dd>
-<dt>return value</dt>
+<dt><strong>Pseudo-casuale</strong></dt>
 <dd>
-The result of a function. If a function call is used as an expression,
-the return value is the value of the expression.
+Relativo a una sequenza di numeri che sembrano casuali, ma sono generati
+da un programma deterministico.
 </dd>
-<dt>void function</dt>
+<dt><strong>Valore di ritorno</strong></dt>
 <dd>
-A function that does not return a value.
+Il risultato di una funzione. Se una chiamata di funzione è usata come
+espressione, il valore di ritorno è il valore dell’espressione.
 </dd>
 </dl>
-<h2 id="exercises">Exercises</h2>
-<p><strong>Exercise 4:</strong> What is the purpose of the “def” keyword
-in Python?</p>
-<p>a) It is slang that means “the following code is really cool”<br />
-b) It indicates the start of a function<br />
-c) It indicates that the following indented section of code is to be
-stored for later<br />
-d) b and c are both true<br />
-e) None of the above</p>
-<p><strong>Exercise 5:</strong> What will the following Python program
-print out?</p>
+<h2 id="esercizi">Esercizi</h2>
+<p><strong>Esercizio 4:</strong> A cosa serve la parola chiave
+<code>def</code> in Python?</p>
+<p>a) È un’espressione gergale che significa “il codice seguente è
+veramente fico”<br />
+b) Indica l’inizio di una funzione<br />
+c) Indica che la seguente sezione di codice indentata deve essere
+memorizzata per un uso successivo<br />
+d) b e c sono entrambe vere<br />
+e) Nessuna delle precedenti</p>
+<p><strong>Esercizio 5:</strong> Cosa stamperà il seguente programma
+Python?</p>
 <pre class="python"><code>def fred():
    print(&quot;Zap&quot;)
 
@@ -750,16 +760,17 @@ b) Zap ABC Zap<br />
 c) ABC Zap jane<br />
 d) ABC Zap ABC<br />
 e) Zap Zap Zap</p>
-<p><strong>Exercise 6:</strong> Rewrite your pay computation with
-time-and-a-half for overtime and create a function called
-<code>computepay</code> which takes two parameters (<code>hours</code>
-and <code>rate</code>).</p>
+<p><strong>Esercizio 6:</strong> Riscrivi il calcolo della paga con gli
+straordinari pagati il 50% in più e crea una funzione chiamata
+<code>computepay</code> che accetta due parametri (<code>hours</code> e
+<code>rate</code>).</p>
 <pre><code>Enter Hours: 45
 Enter Rate: 10
 Pay: 475.0</code></pre>
-<p><strong>Exercise 7:</strong> Rewrite the grade program from the
-previous chapter using a function called <code>computegrade</code> that
-takes a score as its parameter and returns a grade as a string.</p>
+<p><strong>Esercizio 7:</strong> Riscrivi il programma dei voti del
+capitolo precedente usando una funzione chiamata
+<code>computegrade</code> che accetta un punteggio come parametro e
+restituisce un voto sotto forma di stringa.</p>
 <pre><code> Score   Grade
 &gt;= 0.9     A
 &gt;= 0.8     B
@@ -776,7 +787,7 @@ Bad score</code></pre>
 C</code></pre>
 <pre><code>Enter score: 0.5
 F</code></pre>
-<p>Run the program repeatedly to test the various different values for
+<p>Esegui più volte il programma per testare i diversi valori di
 input.</p>
 </body>
 </html>

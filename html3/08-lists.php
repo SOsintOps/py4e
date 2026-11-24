@@ -3,16 +3,22 @@
   ob_start();
 }?>
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="pandoc" />
+  <meta name="generator" content="pandoc 3.14" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>Lists</title>
+  <title>Liste</title>
   <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
     html {
       color: #1a1a1a;
+      color: light-dark(#1a1a1a, #fdfdfd);
       background-color: #fdfdfd;
+      background-color: light-dark(#fdfdfd, #1a1a1a);
+      color-scheme: light dark;
     }
     body {
       margin: 0 auto;
@@ -35,31 +41,11 @@
         font-size: 1.8em;
       }
     }
-    @media print {
-      html {
-        background-color: white;
-      }
-      body {
-        background-color: transparent;
-        color: black;
-        font-size: 12pt;
-      }
-      p, h2, h3 {
-        orphans: 3;
-        widows: 3;
-      }
-      h2, h3, h4 {
-        page-break-after: avoid;
-      }
-    }
     p {
       margin: 1em 0;
     }
-    a {
-      color: #1a1a1a;
-    }
-    a:visited {
-      color: #1a1a1a;
+    a, a:visited {
+      color: inherit;
     }
     img {
       max-width: 100%;
@@ -88,10 +74,14 @@
     blockquote {
       margin: 1em 0 1em 1.7em;
       padding-left: 1em;
-      border-left: 2px solid #e6e6e6;
+      border-left: 2px solid;
+      border-color: #e6e6e6;
+      border-color: light-dark(#e6e6e6, #4c4c4c);
       color: #606060;
+      color: light-dark(#606060, #b6b6b6);
     }
     code {
+      white-space: pre-wrap;
       font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
       font-size: 85%;
       margin: 0;
@@ -112,7 +102,7 @@
     }
     hr {
       border: none;
-      border-top: 1px solid #1a1a1a;
+      border-top: 1px solid currentColor;
       height: 1px;
       margin: 1em 0;
     }
@@ -129,11 +119,11 @@
     }
     tbody {
       margin-top: 0.5em;
-      border-top: 1px solid #1a1a1a;
-      border-bottom: 1px solid #1a1a1a;
+      border-top: 1px solid currentColor;
+      border-bottom: 1px solid currentColor;
     }
     th {
-      border-top: 1px solid #1a1a1a;
+      border-top: 1px solid currentColor;
       padding: 0.25em 0.5em 0.25em 0.5em;
     }
     td {
@@ -155,10 +145,19 @@
     #TOC a:not(:hover) {
       text-decoration: none;
     }
-    code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
-    div.columns{display: flex; gap: min(4vw, 1.5em);}
-    div.column{flex: auto; overflow-x: auto;}
+    em, em em em, em em em em em {
+      font-style: italic;
+    }
+    em em, em em em em {
+      font-style: normal;
+    }
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     /* The extra [class] is a hack that increases specificity enough to
        override a similar rule in reveal.js */
@@ -169,131 +168,157 @@
       margin: 0 0.8em 0.2em -1.6em;
       vertical-align: middle;
     }
-    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
-  </style>
+    @media print {
+      html {
+        color-scheme: light only;
+      }
+      html, body, pre, code {
+        background-color: transparent;
+      }
+      body, a, a:visited, blockquote {
+        color: black;
+      }
+      pre, code {
+        padding: 0;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }  </style>
 </head>
 <body>
-<h1 id="lists">Lists</h1>
+<h1 id="liste">Liste</h1>
 <p> </p>
-<h2 id="a-list-is-a-sequence">A list is a sequence</h2>
-<p>Like a string, a <em>list</em> is a sequence of values. In a string,
-the values are characters; in a list, they can be any type. The values
-in lists are called <em>elements</em> or sometimes <em>items</em>.</p>
+<h2 id="una-lista-è-una-sequenza">Una lista è una sequenza</h2>
+<p>Come una stringa, una <em>lista</em> è una sequenza di valori. In una
+stringa i valori sono caratteri; in una lista possono essere di
+qualsiasi tipo. I valori di una lista sono chiamati <em>elementi</em> o
+a volte <em>item</em>.</p>
 <p> </p>
-<p>There are several ways to create a new list; the simplest is to
-enclose the elements in square brackets (“[” and ”]”):</p>
+<p>Ci sono diversi modi per creare una nuova lista; il più semplice è
+racchiudere gli elementi tra parentesi quadre (<code>[</code> e
+<code>]</code>):</p>
 <pre class="python"><code>[10, 20, 30, 40]
 [&#39;crunchy frog&#39;, &#39;ram bladder&#39;, &#39;lark vomit&#39;]</code></pre>
-<p>The first example is a list of four integers. The second is a list of
-three strings. The elements of a list don’t have to be the same type.
-The following list contains a string, a float, an integer, and (lo!)
-another list:</p>
+<p>Il primo esempio è una lista di quattro interi. Il secondo è una
+lista di tre stringhe. Gli elementi di una lista non devono per forza
+essere dello stesso tipo. La lista seguente contiene una stringa, un
+numero in virgola mobile, un intero e (guarda un po’!) un’altra
+lista:</p>
 <pre class="python"><code>[&#39;spam&#39;, 2.0, 5, [10, 20]]</code></pre>
-<p>A list within another list is <em>nested</em>.</p>
+<p>Una lista dentro un’altra lista è <em>annidata</em>.</p>
 <p> </p>
-<p>A list that contains no elements is called an empty list; you can
-create one with empty brackets, <code>[]</code>.</p>
+<p>Una lista che non contiene elementi è chiamata lista vuota; puoi
+crearne una con le parentesi quadre vuote, <code>[]</code>.</p>
 <p> </p>
-<p>As you might expect, you can assign list values to variables:</p>
+<p>Come potresti aspettarti, puoi assegnare valori di tipo lista alle
+variabili:</p>
 <pre class="python"><code>&gt;&gt;&gt; cheeses = [&#39;Cheddar&#39;, &#39;Edam&#39;, &#39;Gouda&#39;]
 &gt;&gt;&gt; numbers = [17, 123]
 &gt;&gt;&gt; empty = []
 &gt;&gt;&gt; print(cheeses, numbers, empty)
 [&#39;Cheddar&#39;, &#39;Edam&#39;, &#39;Gouda&#39;] [17, 123] []</code></pre>
-<p></p>
-<h2 id="lists-are-mutable">Lists are mutable</h2>
+<h2 id="le-liste-sono-mutabili">Le liste sono mutabili</h2>
 <p> </p>
-<p>The syntax for accessing the elements of a list is the same as for
-accessing the characters of a string: the bracket operator. The
-expression inside the brackets specifies the index. Remember that the
-indices start at 0:</p>
+<p>La sintassi per accedere agli elementi di una lista è la stessa usata
+per accedere ai caratteri di una stringa: l’operatore parentesi quadre.
+L’espressione dentro le parentesi quadre specifica l’indice. Ricorda che
+gli indici partono da 0:</p>
 <pre class="python"><code>&gt;&gt;&gt; print(cheeses[0])
 Cheddar</code></pre>
-<p>Unlike strings, lists are mutable because you can change the order of
-items in a list or reassign an item in a list. When the bracket operator
-appears on the left side of an assignment, it identifies the element of
-the list that will be assigned.</p>
-<p></p>
+<p>A differenza delle stringhe, le liste sono mutabili, perché puoi
+cambiare l’ordine degli elementi di una lista o riassegnare un elemento
+di una lista. Quando l’operatore parentesi quadre compare sul lato
+sinistro di un’assegnazione, identifica l’elemento della lista a cui
+verrà assegnato il valore.</p>
 <pre class="python"><code>&gt;&gt;&gt; numbers = [17, 123]
 &gt;&gt;&gt; numbers[1] = 5
 &gt;&gt;&gt; print(numbers)
 [17, 5]</code></pre>
-<p>The one-th element of <code>numbers</code>, which used to be 123, is
-now 5.</p>
+<p>L’elemento numero 1 (“unesimo”) di <code>numbers</code>, che prima
+era <code>123</code>, ora è <code>5</code>.</p>
 <p> </p>
-<p>You can think of a list as a relationship between indices and
-elements. This relationship is called a <em>mapping</em>; each index
-“maps to” one of the elements.</p>
+<p>Puoi pensare a una lista come a una relazione tra indici ed elementi.
+Questa relazione è chiamata <em>mappatura</em> (mapping); ogni indice
+“corrisponde a” uno degli elementi.</p>
 <p> </p>
-<p>List indices work the same way as string indices:</p>
+<p>Gli indici delle liste funzionano come quelli delle stringhe:</p>
 <ul>
-<li><p>Any integer expression can be used as an index.</p></li>
-<li><p>If you try to read or write an element that does not exist, you
-get an <code>IndexError</code>.</p></li>
+<li><p>Qualsiasi espressione intera può essere usata come
+indice.</p></li>
+<li><p>Se provi a leggere o a scrivere un elemento che non esiste,
+ottieni un <code>IndexError</code>.</p></li>
 </ul>
 <p> </p>
 <ul>
-<li>If an index has a negative value, it counts backward from the end of
-the list.</li>
+<li>Se un indice ha un valore negativo, conta all’indietro dalla fine
+della lista.</li>
 </ul>
 <p> </p>
-<p>The <code>in</code> operator also works on lists.</p>
+<p>Anche l’operatore <code>in</code> funziona sulle liste.</p>
 <pre class="python"><code>&gt;&gt;&gt; cheeses = [&#39;Cheddar&#39;, &#39;Edam&#39;, &#39;Gouda&#39;]
 &gt;&gt;&gt; &#39;Edam&#39; in cheeses
 True
 &gt;&gt;&gt; &#39;Brie&#39; in cheeses
 False</code></pre>
-<h2 id="traversing-a-list">Traversing a list</h2>
+<h2 id="scorrere-una-lista">Scorrere una lista</h2>
 <p> </p>
-<p>The most common way to traverse the elements of a list is with a
-<code>for</code> loop. The syntax is the same as for strings:</p>
+<p>Il modo più comune per scorrere gli elementi di una lista è usare un
+ciclo <code>for</code>. La sintassi è la stessa usata per le
+stringhe:</p>
 <pre class="python"><code>for cheese in cheeses:
     print(cheese)</code></pre>
-<p>This works well if you only need to read the elements of the list.
-But if you want to write or update the elements, you need the indices. A
-common way to do that is to combine the functions <code>range</code> and
+<p>Questo funziona bene se devi solo leggere gli elementi della lista.
+Ma se vuoi scrivere o aggiornare gli elementi, ti servono gli indici. Un
+modo comune per farlo è combinare le funzioni <code>range</code> e
 <code>len</code>:</p>
 <p> </p>
 <pre class="python"><code>for i in range(len(numbers)):
     numbers[i] = numbers[i] * 2</code></pre>
-<p>This loop traverses the list and updates each element.
-<code>len</code> returns the number of elements in the list.
-<code>range</code> returns a list of indices from 0 to <span
-class="math inline"><em>n</em> − 1</span>, where <span
-class="math inline"><em>n</em></span> is the length of the list. Each
-time through the loop, <code>i</code> gets the index of the next
-element. The assignment statement in the body uses <code>i</code> to
-read the old value of the element and to assign the new value.</p>
+<p>Questo ciclo scorre la lista e aggiorna ogni elemento.
+<code>len</code> restituisce il numero di elementi della lista.
+<code>range</code> restituisce una sequenza di indici da 0 a
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">n-1</annotation></semantics></math>,
+dove
+<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>n</mi><annotation encoding="application/x-tex">n</annotation></semantics></math>
+è la lunghezza della lista. A ogni passaggio del ciclo, <code>i</code>
+riceve l’indice dell’elemento successivo. L’istruzione di assegnazione
+nel corpo usa <code>i</code> per leggere il vecchio valore dell’elemento
+e per assegnare il nuovo valore.</p>
 <p> </p>
-<p>A <code>for</code> loop over an empty list never executes the
-body:</p>
+<p>Un ciclo <code>for</code> su una lista vuota non esegue mai il
+corpo:</p>
 <pre class="python"><code>for x in empty:
     print(&#39;This never happens.&#39;)</code></pre>
-<p>Although a list can contain another list, the nested list still
-counts as a single element. The length of this list is four:</p>
+<p>Anche se una lista può contenere un’altra lista, la lista annidata
+conta comunque come un singolo elemento. La lunghezza di questa lista è
+quattro:</p>
 <p> </p>
 <pre class="python"><code>[&#39;spam&#39;, 1, [&#39;Brie&#39;, &#39;Roquefort&#39;, &#39;Pol le Veq&#39;], [1, 2, 3]]</code></pre>
-<h2 id="list-operations">List operations</h2>
-<p></p>
-<p>The <code>+</code> operator concatenates lists:</p>
+<h2 id="operazioni-sulle-liste">Operazioni sulle liste</h2>
+<p>L’operatore <code>+</code> concatena le liste:</p>
 <p> </p>
 <pre class="python"><code>&gt;&gt;&gt; a = [1, 2, 3]
 &gt;&gt;&gt; b = [4, 5, 6]
 &gt;&gt;&gt; c = a + b
 &gt;&gt;&gt; print(c)
 [1, 2, 3, 4, 5, 6]</code></pre>
-<p>Similarly, the <code>*</code> operator repeats a list a given number
-of times:</p>
+<p>Allo stesso modo, l’operatore <code>*</code> ripete una lista un dato
+numero di volte:</p>
 <p> </p>
 <pre class="python"><code>&gt;&gt;&gt; [0] * 4
 [0, 0, 0, 0]
 &gt;&gt;&gt; [1, 2, 3] * 3
 [1, 2, 3, 1, 2, 3, 1, 2, 3]</code></pre>
-<p>The first example repeats four times. The second example repeats the
-list three times.</p>
-<h2 id="list-slices">List slices</h2>
+<p>Il primo esempio ripete <code>[0]</code> quattro volte. Il secondo
+esempio ripete la lista <code>[1, 2, 3]</code> tre volte.</p>
+<h2 id="slice-di-liste">Slice di liste</h2>
 <p> </p>
-<p>The slice operator also works on lists:</p>
+<p>Anche l’operatore slice funziona sulle liste:</p>
 <pre class="python"><code>&gt;&gt;&gt; t = [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;, &#39;e&#39;, &#39;f&#39;]
 &gt;&gt;&gt; t[1:3]
 [&#39;b&#39;, &#39;c&#39;]
@@ -301,55 +326,55 @@ list three times.</p>
 [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;]
 &gt;&gt;&gt; t[3:]
 [&#39;d&#39;, &#39;e&#39;, &#39;f&#39;]</code></pre>
-<p>If you omit the first index, the slice starts at the beginning. If
-you omit the second, the slice goes to the end. So if you omit both, the
-slice is a copy of the whole list.</p>
+<p>Se ometti il primo indice, la slice parte dall’inizio. Se ometti il
+secondo, la slice arriva fino alla fine. Quindi, se li ometti entrambi,
+la slice è una copia dell’intera lista.</p>
 <p> </p>
 <pre class="python"><code>&gt;&gt;&gt; t[:]
 [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;, &#39;e&#39;, &#39;f&#39;]</code></pre>
-<p>Since lists are mutable, it is often useful to make a copy before
-performing operations that fold, spindle, or mutilate lists.</p>
-<p></p>
-<p>A slice operator on the left side of an assignment can update
-multiple elements:</p>
+<p>Poiché le liste sono mutabili, spesso è utile farne una copia prima
+di eseguire operazioni che piegano, infilzano o mutilano le liste.</p>
+<p>Un operatore slice sul lato sinistro di un’assegnazione può
+aggiornare più elementi:</p>
 <p> </p>
 <pre class="python"><code>&gt;&gt;&gt; t = [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;, &#39;e&#39;, &#39;f&#39;]
 &gt;&gt;&gt; t[1:3] = [&#39;x&#39;, &#39;y&#39;]
 &gt;&gt;&gt; print(t)
 [&#39;a&#39;, &#39;x&#39;, &#39;y&#39;, &#39;d&#39;, &#39;e&#39;, &#39;f&#39;]</code></pre>
-<h2 id="list-methods">List methods</h2>
+<h2 id="metodi-delle-liste">Metodi delle liste</h2>
 <p> </p>
-<p>Python provides methods that operate on lists. For example,
-<code>append</code> adds a new element to the end of a list:</p>
+<p>Python fornisce metodi che operano sulle liste. Ad esempio,
+<code>append</code> aggiunge un nuovo elemento alla fine di una
+lista:</p>
 <p> </p>
 <pre class="python"><code>&gt;&gt;&gt; t = [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;]
 &gt;&gt;&gt; t.append(&#39;d&#39;)
 &gt;&gt;&gt; print(t)
 [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;]</code></pre>
-<p><code>extend</code> takes a list as an argument and appends all of
-the elements:</p>
+<p><code>extend</code> accetta una lista come argomento e ne aggiunge in
+coda tutti gli elementi:</p>
 <p> </p>
 <pre class="python"><code>&gt;&gt;&gt; t1 = [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;]
 &gt;&gt;&gt; t2 = [&#39;d&#39;, &#39;e&#39;]
 &gt;&gt;&gt; t1.extend(t2)
 &gt;&gt;&gt; print(t1)
 [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;, &#39;e&#39;]</code></pre>
-<p>This example leaves <code>t2</code> unmodified.</p>
-<p><code>sort</code> arranges the elements of the list from low to
-high:</p>
+<p>Questo esempio lascia <code>t2</code> invariata.</p>
+<p><code>sort</code> dispone gli elementi della lista dal più piccolo al
+più grande:</p>
 <p> </p>
 <pre class="python"><code>&gt;&gt;&gt; t = [&#39;d&#39;, &#39;c&#39;, &#39;e&#39;, &#39;b&#39;, &#39;a&#39;]
 &gt;&gt;&gt; t.sort()
 &gt;&gt;&gt; print(t)
 [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;, &#39;e&#39;]</code></pre>
-<p>Most list methods are void; they modify the list and return
-<code>None</code>. If you accidentally write <code>t = t.sort()</code>,
-you will be disappointed with the result.</p>
+<p>La maggior parte dei metodi delle liste sono vuoti: modificano la
+lista e restituiscono <code>None</code>. Se per sbaglio scrivi
+<code>t = t.sort()</code>, resterai deluso dal risultato.</p>
 <p> </p>
-<h2 id="deleting-elements">Deleting elements</h2>
+<h2 id="eliminare-elementi">Eliminare elementi</h2>
 <p> </p>
-<p>There are several ways to delete elements from a list. If you know
-the index of the element you want, you can use <code>pop</code>:</p>
+<p>Ci sono diversi modi per eliminare elementi da una lista. Se conosci
+l’indice dell’elemento che vuoi, puoi usare <code>pop</code>:</p>
 <p> </p>
 <pre class="python"><code>&gt;&gt;&gt; t = [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;]
 &gt;&gt;&gt; x = t.pop(1)
@@ -357,37 +382,37 @@ the index of the element you want, you can use <code>pop</code>:</p>
 [&#39;a&#39;, &#39;c&#39;]
 &gt;&gt;&gt; print(x)
 b</code></pre>
-<p><code>pop</code> modifies the list and returns the element that was
-removed. If you don’t provide an index, it deletes and returns the last
-element.</p>
-<p>If you don’t need the removed value, you can use the <code>del</code>
-statement:</p>
+<p><code>pop</code> modifica la lista e restituisce l’elemento che è
+stato rimosso. Se non fornisci un indice, elimina e restituisce l’ultimo
+elemento.</p>
+<p>Se non ti serve il valore rimosso, puoi usare l’istruzione
+<code>del</code>:</p>
 <p> </p>
 <pre class="python"><code>&gt;&gt;&gt; t = [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;]
 &gt;&gt;&gt; del t[1]
 &gt;&gt;&gt; print(t)
 [&#39;a&#39;, &#39;c&#39;]</code></pre>
-<p>If you know the element you want to remove (but not the index), you
-can use <code>remove</code>:</p>
+<p>Se conosci l’elemento che vuoi rimuovere (ma non l’indice), puoi
+usare <code>remove</code>:</p>
 <p> </p>
 <pre class="python"><code>&gt;&gt;&gt; t = [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;]
 &gt;&gt;&gt; t.remove(&#39;b&#39;)
 &gt;&gt;&gt; print(t)
 [&#39;a&#39;, &#39;c&#39;]</code></pre>
-<p>The return value from <code>remove</code> is <code>None</code>.</p>
+<p>Il valore di ritorno di <code>remove</code> è <code>None</code>.</p>
 <p> </p>
-<p>To remove more than one element, you can use <code>del</code> with a
-slice index:</p>
+<p>Per rimuovere più di un elemento, puoi usare <code>del</code> con un
+indice di slice:</p>
 <pre class="python"><code>&gt;&gt;&gt; t = [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;, &#39;e&#39;, &#39;f&#39;]
 &gt;&gt;&gt; del t[1:5]
 &gt;&gt;&gt; print(t)
 [&#39;a&#39;, &#39;f&#39;]</code></pre>
-<p>As usual, the slice selects all the elements up to, but not
-including, the second index.</p>
-<h2 id="lists-and-functions">Lists and functions</h2>
-<p>There are a number of built-in functions that can be used on lists
-that allow you to quickly look through a list without writing your own
-loops:</p>
+<p>Come al solito, la slice seleziona tutti gli elementi fino al secondo
+indice, escluso.</p>
+<h2 id="liste-e-funzioni">Liste e funzioni</h2>
+<p>Ci sono diverse funzioni built-in che si possono usare sulle liste e
+che ti permettono di esaminare rapidamente una lista senza scrivere
+cicli tuoi:</p>
 <pre class="python"><code>&gt;&gt;&gt; nums = [3, 41, 12, 9, 74, 15]
 &gt;&gt;&gt; print(len(nums))
 6
@@ -399,13 +424,14 @@ loops:</p>
 154
 &gt;&gt;&gt; print(sum(nums)/len(nums))
 25</code></pre>
-<p>The <code>sum()</code> function only works when the list elements are
-numbers. The other functions (<code>max()</code>, <code>len()</code>,
-etc.) work with lists of strings and other types that can be
-comparable.</p>
-<p>We could rewrite an earlier program that computed the average of a
-list of numbers entered by the user using a list.</p>
-<p>First, the program to compute an average without a list:</p>
+<p>La funzione <code>sum()</code> si può usare solo quando gli elementi
+della lista sono numeri. Le altre (<code>max()</code>,
+<code>len()</code>, ecc.) funzionano con liste di stringhe e di altri
+tipi che possono essere confrontati.</p>
+<p>Usando una lista potremmo riscrivere un programma precedente, che
+calcolava la media di un elenco di numeri inseriti dall’utente.</p>
+<p>Per prima cosa, il programma per calcolare una media senza una
+lista:</p>
 <pre class="python"><code>total = 0
 count = 0
 while (True):
@@ -419,11 +445,12 @@ average = total / count
 print(&#39;Average:&#39;, average)
 
 # Code: https://www.py4e.com/code3/avenum.py</code></pre>
-<p>In this program, we have <code>count</code> and <code>total</code>
-variables to keep the number and running total of the user’s numbers as
-we repeatedly prompt the user for a number.</p>
-<p>We could simply remember each number as the user entered it and use
-built-in functions to compute the sum and count at the end.</p>
+<p>In questo programma abbiamo le variabili <code>count</code> e
+<code>total</code> per tenere il conteggio e il totale parziale dei
+numeri dell’utente mentre continuiamo a chiedergli un numero.</p>
+<p>Potremmo semplicemente ricordare ogni numero man mano che l’utente lo
+inserisce e usare le funzioni built-in per calcolare la somma e il
+conteggio alla fine.</p>
 <pre class="python"><code>numlist = list()
 while (True):
     inp = input(&#39;Enter a number: &#39;)
@@ -435,28 +462,29 @@ average = sum(numlist) / len(numlist)
 print(&#39;Average:&#39;, average)
 
 # Code: https://www.py4e.com/code3/avelist.py</code></pre>
-<p>We make an empty list before the loop starts, and then each time we
-have a number, we append it to the list. At the end of the program, we
-simply compute the sum of the numbers in the list and divide it by the
-count of the numbers in the list to come up with the average.</p>
-<h2 id="lists-and-strings">Lists and strings</h2>
+<p>Creiamo una lista vuota prima che il ciclo inizi, e poi ogni volta
+che abbiamo un numero lo aggiungiamo in coda alla lista. Alla fine del
+programma calcoliamo semplicemente la somma dei numeri della lista e la
+dividiamo per il conteggio dei numeri della lista per ottenere la
+media.</p>
+<h2 id="liste-e-stringhe">Liste e stringhe</h2>
 <p> </p>
-<p>A string is a sequence of characters and a list is a sequence of
-values, but a list of characters is not the same as a string. To convert
-from a string to a list of characters, you can use
+<p>Una stringa è una sequenza di caratteri e una lista è una sequenza di
+valori, ma una lista di caratteri non è la stessa cosa di una stringa.
+Per convertire una stringa in una lista di caratteri puoi usare
 <code>list</code>:</p>
 <p> </p>
 <pre class="python"><code>&gt;&gt;&gt; s = &#39;spam&#39;
 &gt;&gt;&gt; t = list(s)
 &gt;&gt;&gt; print(t)
 [&#39;s&#39;, &#39;p&#39;, &#39;a&#39;, &#39;m&#39;]</code></pre>
-<p>Because <code>list</code> is the name of a built-in function, you
-should avoid using it as a variable name. I also avoid the letter “l”
-because it looks too much like the number “1”. So that’s why I use
-“t”.</p>
-<p>The <code>list</code> function breaks a string into individual
-letters. If you want to break a string into words, you can use the
-<code>split</code> method:</p>
+<p>Poiché <code>list</code> è il nome di una funzione built-in, dovresti
+evitare di usarlo come nome di variabile. Io evito anche la lettera
+<code>l</code>, perché somiglia troppo al numero <code>1</code>. Ecco
+perché uso <code>t</code>.</p>
+<p>La funzione <code>list</code> spezza una stringa in singole lettere.
+Se vuoi spezzare una stringa in parole, puoi usare il metodo
+<code>split</code>:</p>
 <p> </p>
 <pre class="python"><code>&gt;&gt;&gt; s = &#39;pining for the fjords&#39;
 &gt;&gt;&gt; t = s.split()
@@ -464,41 +492,42 @@ letters. If you want to break a string into words, you can use the
 [&#39;pining&#39;, &#39;for&#39;, &#39;the&#39;, &#39;fjords&#39;]
 &gt;&gt;&gt; print(t[2])
 the</code></pre>
-<p>Once you have used <code>split</code> to break the string into a list
-of words, you can use the index operator (square bracket) to look at a
-particular word in the list.</p>
-<p>You can call <code>split</code> with an optional argument called a
-<em>delimiter</em> that specifies which characters to use as word
-boundaries. The following example uses a hyphen as a delimiter:</p>
+<p>Una volta usato <code>split</code> per spezzare la stringa in una
+lista di parole, puoi usare l’operatore di indicizzazione (parentesi
+quadre) per guardare una particolare parola della lista.</p>
+<p>Puoi chiamare <code>split</code> con un argomento opzionale detto
+<em>delimitatore</em>, che specifica quali caratteri usare come confini
+delle parole. L’esempio seguente usa un trattino come delimitatore:</p>
 <p> </p>
 <pre class="python"><code>&gt;&gt;&gt; s = &#39;spam-spam-spam&#39;
 &gt;&gt;&gt; delimiter = &#39;-&#39;
 &gt;&gt;&gt; s.split(delimiter)
 [&#39;spam&#39;, &#39;spam&#39;, &#39;spam&#39;]</code></pre>
-<p><code>join</code> is the inverse of <code>split</code>. It takes a
-list of strings and concatenates the elements. <code>join</code> is a
-string method, so you have to invoke it on the delimiter and pass the
-list as a parameter:</p>
+<p><code>join</code> è l’inverso di <code>split</code>. Accetta una
+lista di stringhe e ne concatena gli elementi. <code>join</code> è un
+metodo delle stringhe, quindi devi invocarlo sul delimitatore e passare
+la lista come parametro:</p>
 <p> </p>
 <pre class="python"><code>&gt;&gt;&gt; t = [&#39;pining&#39;, &#39;for&#39;, &#39;the&#39;, &#39;fjords&#39;]
 &gt;&gt;&gt; delimiter = &#39; &#39;
 &gt;&gt;&gt; delimiter.join(t)
 &#39;pining for the fjords&#39;</code></pre>
-<p>In this case the delimiter is a space character, so <code>join</code>
-puts a space between words. To concatenate strings without spaces, you
-can use the empty string, ““, as a delimiter.</p>
+<p>In questo caso il delimitatore è un carattere di spazio, quindi
+<code>join</code> mette uno spazio tra le parole. Per concatenare
+stringhe senza spazi puoi usare come delimitatore la stringa vuota,
+<code>""</code>.</p>
 <p> </p>
-<h2 id="parsing-lines">Parsing lines</h2>
-<p>Usually when we are reading a file we want to do something to the
-lines other than just printing the whole line. Often we want to find the
-“interesting lines” and then <em>parse</em> the line to find some
-interesting <em>part</em> of the line. What if we wanted to print out
-the day of the week from those lines that start with “From”?</p>
+<h2 id="analisi-delle-righe">Analisi delle righe</h2>
+<p>Di solito, quando leggiamo un file, con le righe vogliamo fare
+qualcosa di più che stamparle per intero. Spesso vogliamo trovare le
+“righe interessanti” e poi <em>analizzare</em> la riga per trovarne
+qualche <em>parte</em> interessante. E se volessimo stampare il giorno
+della settimana delle righe che iniziano con <code>"From "</code>?</p>
 <pre><code>From stephen.marquard@uct.ac.za Sat Jan  5 09:14:16 2008</code></pre>
-<p>The <code>split</code> method is very effective when faced with this
-kind of problem. We can write a small program that looks for lines where
-the line starts with “From”, <code>split</code> those lines, and then
-print out the third word in the line:</p>
+<p>Il metodo <code>split</code> è molto efficace con questo tipo di
+problema. Possiamo scrivere un piccolo programma che cerca le righe che
+iniziano con <code>"From "</code>, divide queste righe con
+<code>split</code> e poi stampa la terza parola della riga:</p>
 <pre class="python"><code>fhand = open(&#39;mbox-short.txt&#39;)
 for line in fhand:
     line = line.rstrip()
@@ -507,108 +536,105 @@ for line in fhand:
     print(words[2])
 
 # Code: https://www.py4e.com/code3/search5.py</code></pre>
-<p>The program produces the following output:</p>
+<p>Il programma produce il seguente output:</p>
 <pre><code>Sat
 Fri
 Fri
 Fri
 ...</code></pre>
-<p>Later, we will learn increasingly sophisticated techniques for
-picking the lines to work on and how we pull those lines apart to find
-the exact bit of information we are looking for.</p>
-<h2 id="objects-and-values">Objects and values</h2>
+<p>Più avanti impareremo tecniche sempre più sofisticate per scegliere
+le righe su cui lavorare e per scomporre quelle righe fino a trovare
+l’esatta informazione che stiamo cercando.</p>
+<h2 id="oggetti-e-valori">Oggetti e valori</h2>
 <p> </p>
-<p>If we execute these assignment statements:</p>
+<p>Se eseguiamo queste istruzioni di assegnazione:</p>
 <pre class="python"><code>a = &#39;banana&#39;
 b = &#39;banana&#39;</code></pre>
-<p>we know that <code>a</code> and <code>b</code> both refer to a
-string, but we don’t know whether they refer to the <em>same</em>
-string. There are two possible states:</p>
-<p></p>
+<p>sappiamo che <code>a</code> e <code>b</code> si riferiscono entrambe
+a una stringa, ma non sappiamo se si riferiscono alla <em>stessa</em>
+stringa. Ci sono due stati possibili:</p>
 <figure>
-<img src="../images/list1.svg" alt="Variables and Objects" style="height: 0.5in;"/>
+<img src="../images/list1.svg" alt="Variabili e oggetti" style="height: 0.5in;"/>
 <figcaption>
-Variables and Objects
+Variabili e oggetti
 </figcaption>
 </figure>
-<p>In one case, <code>a</code> and <code>b</code> refer to two different
-objects that have the same value. In the second case, they refer to the
-same object.</p>
+<p>In un caso, <code>a</code> e <code>b</code> si riferiscono a due
+oggetti diversi che hanno lo stesso valore. Nel secondo caso, si
+riferiscono allo stesso oggetto.</p>
 <p> </p>
-<p>To check whether two variables refer to the same object, you can use
-the <code>is</code> operator.</p>
+<p>Per controllare se due variabili si riferiscono allo stesso oggetto,
+puoi usare l’operatore <code>is</code>.</p>
 <pre class="python"><code>&gt;&gt;&gt; a = &#39;banana&#39;
 &gt;&gt;&gt; b = &#39;banana&#39;
 &gt;&gt;&gt; a is b
 True</code></pre>
-<p>In this example, Python only created one string object, and both
-<code>a</code> and <code>b</code> refer to it.</p>
-<p>But when you create two lists, you get two objects:</p>
+<p>In questo esempio Python ha creato un solo oggetto stringa, e sia
+<code>a</code> sia <code>b</code> si riferiscono a esso.</p>
+<p>Ma quando crei due liste, ottieni due oggetti:</p>
 <pre class="python"><code>&gt;&gt;&gt; a = [1, 2, 3]
 &gt;&gt;&gt; b = [1, 2, 3]
 &gt;&gt;&gt; a is b
 False</code></pre>
-<p>In this case we would say that the two lists are <em>equivalent</em>,
-because they have the same elements, but not <em>identical</em>, because
-they are not the same object. If two objects are identical, they are
-also equivalent, but if they are equivalent, they are not necessarily
-identical.</p>
+<p>In questo caso diremmo che le due liste sono <em>equivalenti</em>,
+perché hanno gli stessi elementi, ma non <em>identiche</em>, perché non
+sono lo stesso oggetto. Se due oggetti sono identici, sono anche
+equivalenti, ma se sono equivalenti non sono necessariamente
+identici.</p>
 <p> </p>
-<p>Until now, we have been using “object” and “value” interchangeably,
-but it is more precise to say that an object has a value. If you execute
-<code>a = [1,2,3]</code>, <code>a</code> refers to a list object whose
-value is a particular sequence of elements. If another list has the same
-elements, we would say it has the same value.</p>
+<p>Finora abbiamo usato “oggetto” e “valore” in modo intercambiabile, ma
+è più preciso dire che un oggetto ha un valore. Se esegui
+<code>a = [1,2,3]</code>, <code>a</code> si riferisce a un oggetto lista
+il cui valore è una particolare sequenza di elementi. Se un’altra lista
+ha gli stessi elementi, diremmo che ha lo stesso valore.</p>
 <p> </p>
 <h2 id="aliasing">Aliasing</h2>
 <p> </p>
-<p>If <code>a</code> refers to an object and you assign
-<code>b = a</code>, then both variables refer to the same object:</p>
+<p>Se <code>a</code> si riferisce a un oggetto e assegni
+<code>b = a</code>, allora entrambe le variabili si riferiscono allo
+stesso oggetto:</p>
 <pre class="python"><code>&gt;&gt;&gt; a = [1, 2, 3]
 &gt;&gt;&gt; b = a
 &gt;&gt;&gt; b is a
 True</code></pre>
-<p>The association of a variable with an object is called a
-<em>reference</em>. In this example, there are two references to the
-same object.</p>
-<p></p>
-<p>An object with more than one reference has more than one name, so we
-say that the object is <em>aliased</em>.</p>
-<p></p>
-<p>If the aliased object is mutable, changes made with one alias affect
-the other:</p>
+<p>L’associazione di una variabile con un oggetto è chiamata
+<em>riferimento</em>. In questo esempio ci sono due riferimenti allo
+stesso oggetto.</p>
+<p>Un oggetto con più di un riferimento ha più di un nome, quindi
+diciamo che l’oggetto ha degli <em>alias</em>.</p>
+<p>Se l’oggetto con più alias è mutabile, le modifiche fatte con un
+alias hanno effetto sull’altro:</p>
 <pre class="python"><code>&gt;&gt;&gt; b[0] = 17
 &gt;&gt;&gt; print(a)
 [17, 2, 3]</code></pre>
-<p>Although this behavior can be useful, it is error-prone. In general,
-it is safer to avoid aliasing when you are working with mutable
-objects.</p>
-<p></p>
-<p>For immutable objects like strings, aliasing is not as much of a
-problem. In this example:</p>
+<p>Anche se questo comportamento può essere utile, è soggetto a errori.
+In generale, è più sicuro evitare l’aliasing quando lavori con oggetti
+mutabili.</p>
+<p>Per gli oggetti immutabili come le stringhe, l’aliasing non è un gran
+problema. In questo esempio:</p>
 <pre class="python"><code>a = &#39;banana&#39;
 b = &#39;banana&#39;</code></pre>
-<p>it almost never makes a difference whether <code>a</code> and
-<code>b</code> refer to the same string or not.</p>
-<h2 id="list-arguments">List arguments</h2>
+<p>non fa quasi mai differenza se <code>a</code> e <code>b</code> si
+riferiscono alla stessa stringa o no.</p>
+<h2 id="liste-come-argomenti">Liste come argomenti</h2>
 <p> </p>
-<p>When you pass a list to a function, the function gets a reference to
-the list. If the function modifies a list parameter, the caller sees the
-change. For example, <code>delete_head</code> removes the first element
-from a list:</p>
+<p>Quando passi una lista a una funzione, la funzione riceve un
+riferimento alla lista. Se la funzione modifica un parametro di tipo
+lista, il chiamante vede la modifica. Ad esempio,
+<code>delete_head</code> rimuove il primo elemento da una lista:</p>
 <pre class="python"><code>def delete_head(t):
     del t[0]</code></pre>
-<p>Here’s how it is used:</p>
+<p>Ecco come si usa:</p>
 <pre class="python"><code>&gt;&gt;&gt; letters = [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;]
 &gt;&gt;&gt; delete_head(letters)
 &gt;&gt;&gt; print(letters)
 [&#39;b&#39;, &#39;c&#39;]</code></pre>
-<p>The parameter <code>t</code> and the variable <code>letters</code>
-are aliases for the same object.</p>
-<p>It is important to distinguish between operations that modify lists
-and operations that create new lists. For example, the
-<code>append</code> method modifies a list, but the <code>+</code>
-operator creates a new list:</p>
+<p>Il parametro <code>t</code> e la variabile <code>letters</code> sono
+alias dello stesso oggetto.</p>
+<p>È importante distinguere tra le operazioni che modificano le liste e
+quelle che creano nuove liste. Ad esempio, il metodo <code>append</code>
+modifica una lista, ma l’operatore <code>+</code> crea una nuova
+lista:</p>
 <p> </p>
 <pre class="python"><code>&gt;&gt;&gt; t1 = [1, 2]
 &gt;&gt;&gt; t2 = t1.append(3)
@@ -622,135 +648,138 @@ None
 [1, 2, 3]
 &gt;&gt;&gt; t1 is t3
 False</code></pre>
-<p>This difference is important when you write functions that are
-supposed to modify lists. For example, this function <em>does not</em>
-delete the head of a list:</p>
+<p>Questa differenza è importante quando scrivi funzioni che devono
+modificare le liste. Ad esempio, questa funzione <em>non</em> elimina la
+testa di una lista:</p>
 <pre class="python"><code>def bad_delete_head(t):
     t = t[1:]              # WRONG!</code></pre>
-<p>The slice operator creates a new list and the assignment makes
-<code>t</code> refer to it, but none of that has any effect on the list
-that was passed as an argument.</p>
+<p>L’operatore slice crea una nuova lista e l’assegnazione fa sì che
+<code>t</code> si riferisca a essa, ma niente di tutto ciò ha effetto
+sulla lista che è stata passata come argomento.</p>
 <p> </p>
-<p>An alternative is to write a function that creates and returns a new
-list. For example, <code>tail</code> returns all but the first element
-of a list:</p>
+<p>Un’alternativa è scrivere una funzione che crea e restituisce una
+nuova lista. Ad esempio, <code>tail</code> restituisce tutti gli
+elementi di una lista tranne il primo:</p>
 <pre class="python"><code>def tail(t):
     return t[1:]</code></pre>
-<p>This function leaves the original list unmodified. Here’s how it is
-used:</p>
+<p>Questa funzione lascia invariata la lista originale. Ecco come si
+usa:</p>
 <pre class="python"><code>&gt;&gt;&gt; letters = [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;]
 &gt;&gt;&gt; rest = tail(letters)
 &gt;&gt;&gt; print(rest)
 [&#39;b&#39;, &#39;c&#39;]</code></pre>
-<p><strong>Exercise 1:</strong> Write a function called
-<code>chop</code> that takes a list and modifies it, removing the first
-and last elements, and returns <code>None</code>. Then write a function
-called <code>middle</code> that takes a list and returns a new list that
-contains all but the first and last elements.</p>
-<h2 id="debugging">Debugging</h2>
-<p></p>
-<p>Careless use of lists (and other mutable objects) can lead to long
-hours of debugging. Here are some common pitfalls and ways to avoid
-them:</p>
+<p><strong>Esercizio 1:</strong> Scrivi una funzione chiamata
+<code>chop</code> che accetta una lista e la modifica, rimuovendo il
+primo e l’ultimo elemento, e restituisce <code>None</code>. Poi scrivi
+una funzione chiamata <code>middle</code> che accetta una lista e
+restituisce una nuova lista che contiene tutti gli elementi tranne il
+primo e l’ultimo.</p>
+<h2 id="debug">Debug</h2>
+<p>Un uso disattento delle liste (e di altri oggetti mutabili) può
+portare a lunghe ore di debug. Ecco alcune trappole comuni e i modi per
+evitarle:</p>
 <ol type="1">
-<li><p>Don’t forget that most list methods modify the argument and
-return <code>None</code>. This is the opposite of the string methods,
-which return a new string and leave the original alone.</p>
-<p>If you are used to writing string code like this:</p>
+<li><p>Non dimenticare che la maggior parte dei metodi delle liste
+modifica l’argomento e restituisce <code>None</code>. È l’opposto dei
+metodi delle stringhe, che restituiscono una nuova stringa e non toccano
+l’originale.</p>
+<p>Se sei abituato a scrivere codice per le stringhe come questo:</p>
 <pre class="python"><code>word = word.strip()</code></pre>
-<p>It is tempting to write list code like this:</p>
+<p>Viene la tentazione di scrivere codice per le liste come questo:</p>
 <pre class="python"><code>t = t.sort()           # WRONG!</code></pre>
 <p> </p>
-<p>Because <code>sort</code> returns <code>None</code>, the next
-operation you perform with <code>t</code> is likely to fail.</p>
-<p>Before using list methods and operators, you should read the
-documentation carefully and then test them in interactive mode. The
-methods and operators that lists share with other sequences (like
-strings) are documented at:</p>
+<p>Poiché <code>sort</code> restituisce <code>None</code>, è probabile
+che la successiva operazione che esegui con <code>t</code> fallisca.</p>
+<p>Prima di usare i metodi e gli operatori delle liste, dovresti leggere
+con attenzione la documentazione e poi testarli in modalità interattiva.
+I metodi e gli operatori che le liste condividono con altre sequenze
+(come le stringhe) sono documentati su:</p>
 <p><a
 href="https://docs.python.org/library/stdtypes.html#common-sequence-operations">docs.python.org/library/stdtypes.html#common-sequence-operations</a></p>
-<p>The methods and operators that only apply to mutable sequences are
-documented at:</p>
+<p>I metodi e gli operatori che si applicano solo alle sequenze mutabili
+sono documentati su:</p>
 <p><a
 href="https://docs.python.org/library/stdtypes.html#mutable-sequence-types">docs.python.org/library/stdtypes.html#mutable-sequence-types</a></p></li>
-<li><p>Pick an idiom and stick with it.</p>
-<p></p>
-<p>Part of the problem with lists is that there are too many ways to do
-things. For example, to remove an element from a list, you can use
-<code>pop</code>, <code>remove</code>, <code>del</code>, or even a slice
-assignment.</p>
-<p>To add an element, you can use the <code>append</code> method or the
-<code>+</code> operator. But don’t forget that these are right:</p>
+<li><p>Scegli un idioma e attieniti a quello.</p>
+<p>Parte del problema con le liste è che ci sono troppi modi di fare le
+cose. Ad esempio, per rimuovere un elemento da una lista puoi usare
+<code>pop</code>, <code>remove</code>, <code>del</code> o perfino
+un’assegnazione a una slice.</p>
+<p>Per aggiungere un elemento puoi usare il metodo <code>append</code> o
+l’operatore <code>+</code>. Ma non dimenticare che questi sono
+giusti:</p>
 <pre class="python"><code>t.append(x)
 t = t + [x]</code></pre>
-<p>And these are wrong:</p>
+<p>E questi sono sbagliati:</p>
 <pre class="python"><code>t.append([x])          # WRONG!
 t = t.append(x)        # WRONG!
 t + [x]                # WRONG!
 t = t + x              # WRONG!</code></pre>
-<p>Try out each of these examples in interactive mode to make sure you
-understand what they do. Notice that only the last one causes a runtime
-error; the other three are legal, but they do the wrong thing.</p></li>
-<li><p>Make copies to avoid aliasing.</p>
+<p>Prova ognuno di questi esempi in modalità interattiva per assicurarti
+di capire cosa fanno. Nota che solo l’ultimo causa un errore di runtime;
+gli altri tre sono leciti, ma fanno la cosa sbagliata.</p></li>
+<li><p>Fai delle copie per evitare l’aliasing.</p>
 <p> </p>
-<p>If you want to use a method like <code>sort</code> that modifies the
-argument, but you need to keep the original list as well, you can make a
-copy.</p>
+<p>Se vuoi usare un metodo come <code>sort</code>, che modifica
+l’argomento, ma devi conservare anche la lista originale, puoi farne una
+copia.</p>
 <pre class="python"><code>orig = t[:]
 t.sort()</code></pre>
-<p>In this example you could also use the built-in function
-<code>sorted</code>, which returns a new, sorted list and leaves the
-original alone. But in that case you should avoid using
-<code>sorted</code> as a variable name!</p></li>
-<li><p>Lists, <code>split</code>, and files</p>
-<p>When we read and parse files, there are many opportunities to
-encounter input that can crash our program so it is a good idea to
-revisit the <em>guardian</em> pattern when it comes to writing programs
-that read through a file and look for a “needle in the haystack”.</p>
-<p>Let’s revisit our program that is looking for the day of the week on
-the from lines of our file:</p>
+<p>In questo esempio potresti usare anche la funzione built-in
+<code>sorted</code>, che restituisce una nuova lista ordinata e non
+tocca l’originale. Ma in quel caso dovresti evitare di usare
+<code>sorted</code> come nome di variabile!</p></li>
+<li><p>Liste, <code>split</code> e file</p>
+<p>Quando leggiamo e analizziamo i file, ci sono molte occasioni di
+incontrare un input che può mandare in crash il nostro programma, quindi
+è una buona idea riprendere lo schema del <em>guardiano</em> quando si
+tratta di scrivere programmi che leggono un file e cercano un “ago nel
+pagliaio”.</p>
+<p>Riprendiamo il nostro programma che cerca il giorno della settimana
+nelle righe <code>From</code> del file:</p>
 <pre><code>From stephen.marquard@uct.ac.za Sat Jan  5 09:14:16 2008</code></pre>
-<p>Since we are breaking this line into words, we could dispense with
-the use of <code>startswith</code> and simply look at the first word of
-the line to determine if we are interested in the line at all. We can
-use <code>continue</code> to skip lines that don’t have “From” as the
-first word as follows:</p>
+<p>Dato che stiamo spezzando questa riga in parole, potremmo fare a meno
+di <code>startswith</code> e guardare semplicemente la prima parola per
+stabilire se la riga ci interessa. Possiamo usare <code>continue</code>
+per saltare le righe che non hanno <code>From</code> come prima parola,
+come segue:</p>
 <pre class="python"><code>fhand = open(&#39;mbox-short.txt&#39;)
 for line in fhand:
     words = line.split()
     if words[0] != &#39;From&#39; : continue
     print(words[2])</code></pre>
-<p>This looks much simpler and we don’t even need to do the
-<code>rstrip</code> to remove the newline at the end of the file. But is
-it better?</p>
+<p>Sembra molto più semplice e non ci serve nemmeno <code>rstrip</code>
+per rimuovere il newline (il carattere di fine riga) alla fine della
+riga. Ma è meglio?</p>
 <pre><code>python search8.py
 Sat
 Traceback (most recent call last):
   File &quot;search8.py&quot;, line 5, in &lt;module&gt;
     if words[0] != &#39;From&#39; : continue
 IndexError: list index out of range</code></pre>
-<p>It kind of works and we see the day from the first line (Sat), but
-then the program fails with a traceback error. What went wrong? What
-messed-up data caused our elegant, clever, and very Pythonic program to
-fail?</p>
-<p>You could stare at it for a long time and puzzle through it or ask
-someone for help, but the quicker and smarter approach is to add a
-<code>print</code> statement. The best place to add the print statement
-is right before the line where the program failed and print out the data
-that seems to be causing the failure.</p>
-<p>Now this approach may generate a lot of lines of output, but at least
-you will immediately have some clue as to the problem at hand. So we add
-a print of the variable <code>words</code> right before line five. We
-even add a prefix “Debug:” to the line so we can keep our regular output
-separate from our debug output.</p>
+<p>Più o meno funziona e vediamo il giorno della prima riga
+(<code>Sat</code>), ma poi il programma fallisce con un errore di
+traceback. Cos’è andato storto? Quali dati pasticciati hanno fatto
+fallire il nostro programma elegante, intelligente e molto Pythonic?</p>
+<p>Potresti fissarlo a lungo e scervellarti oppure chiedere aiuto a
+qualcuno, ma l’approccio più rapido e intelligente è aggiungere
+un’istruzione <code>print</code>. Il posto migliore per aggiungerla è
+subito prima della riga in cui il programma è fallito, per stampare i
+dati che sembrano causare l’errore.</p>
+<p>Certo, questo approccio può generare molte righe di output, ma almeno
+avrai subito qualche indizio sul problema in questione. Quindi
+aggiungiamo una stampa della variabile <code>words</code> subito prima
+della riga cinque. Aggiungiamo anche un prefisso <code>Debug:</code>
+alla riga, così da tenere separati l’output normale e quello di
+debug.</p>
 <pre class="python"><code>for line in fhand:
     words = line.split()
     print(&#39;Debug:&#39;, words)
     if words[0] != &#39;From&#39; : continue
     print(words[2])</code></pre>
-<p>When we run the program, a lot of output scrolls off the screen but
-at the end, we see our debug output and the traceback so we know what
-happened just before the traceback.</p>
+<p>Quando eseguiamo il programma, molto output scorre via dallo schermo,
+ma alla fine vediamo il nostro output di debug e il traceback, quindi
+sappiamo cos’è successo subito prima del traceback.</p>
 <pre><code>Debug: [&#39;X-DSPAM-Confidence:&#39;, &#39;0.8475&#39;]
 Debug: [&#39;X-DSPAM-Probability:&#39;, &#39;0.0000&#39;]
 Debug: []
@@ -758,25 +787,27 @@ Traceback (most recent call last):
   File &quot;search9.py&quot;, line 6, in &lt;module&gt;
     if words[0] != &#39;From&#39; : continue
 IndexError: list index out of range</code></pre>
-<p>Each debug line is printing the list of words which we get when we
-<code>split</code> the line into words. When the program fails, the list
-of words is empty <code>[]</code>. If we open the file in a text editor
-and look at the file, at that point it looks as follows:</p>
+<p>Ogni riga di debug stampa la lista di parole che otteniamo quando
+dividiamo la riga in parole con <code>split</code>. Quando il programma
+fallisce, la lista di parole è vuota: <code>[]</code>. Se apriamo il
+file in un editor di testo e lo guardiamo, in quel punto appare
+così:</p>
 <pre><code>X-DSPAM-Result: Innocent
 X-DSPAM-Processed: Sat Jan  5 09:14:16 2008
 X-DSPAM-Confidence: 0.8475
 X-DSPAM-Probability: 0.0000
 
 Details: http://source.sakaiproject.org/viewsvn/?view=rev&amp;rev=39772</code></pre>
-<p>The error occurs when our program encounters a blank line! Of course
-there are “zero words” on a blank line. Why didn’t we think of that when
-we were writing the code? When the code looks for the first word
-(<code>word[0]</code>) to check to see if it matches “From”, we get an
-“index out of range” error.</p>
-<p>This of course is the perfect place to add some <em>guardian</em>
-code to avoid checking the first word if the first word is not there.
-There are many ways to protect this code; we will choose to check the
-number of words we have before we look at the first word:</p>
+<p>L’errore si verifica quando il nostro programma incontra una riga
+vuota! Naturalmente in una riga vuota ci sono “zero parole”. Perché non
+ci abbiamo pensato quando scrivevamo il codice? Quando il codice cerca
+la prima parola (<code>words[0]</code>) per controllare se corrisponde a
+<code>From</code>, otteniamo un errore “index out of range”.</p>
+<p>Questo naturalmente è il posto perfetto per aggiungere del codice
+<em>guardiano</em>, per evitare di controllare la prima parola se non
+c’è. Ci sono molti modi per proteggere questo codice; noi sceglieremo di
+controllare il numero di parole che abbiamo prima di guardare la prima
+parola:</p>
 <pre class="python"><code>fhand = open(&#39;mbox-short.txt&#39;)
 count = 0
 for line in fhand:
@@ -785,121 +816,129 @@ for line in fhand:
     if len(words) == 0 : continue
     if words[0] != &#39;From&#39; : continue
     print(words[2])</code></pre>
-<p>First we commented out the debug print statement instead of removing
-it, in case our modification fails and we need to debug again. Then we
-added a guardian statement that checks to see if we have zero words, and
-if so, we use <code>continue</code> to skip to the next line in the
-file.</p>
-<p>We can think of the two <code>continue</code> statements as helping
-us refine the set of lines which are “interesting” to us and which we
-want to process some more. A line which has no words is “uninteresting”
-to us so we skip to the next line. A line which does not have “From” as
-its first word is uninteresting to us so we skip it.</p>
-<p>The program as modified runs successfully, so perhaps it is correct.
-Our guardian statement does make sure that the <code>words[0]</code>
-will never fail, but perhaps it is not enough. When we are programming,
-we must always be thinking, “What might go wrong?”</p></li>
+<p>Per prima cosa abbiamo trasformato in commento l’istruzione
+<code>print</code> di debug invece di rimuoverla, nel caso in cui la
+nostra modifica fallisca e dobbiamo fare di nuovo il debug. Poi abbiamo
+aggiunto un’istruzione guardiana che controlla se abbiamo zero parole e,
+in tal caso, usiamo <code>continue</code> per saltare alla riga
+successiva del file.</p>
+<p>Possiamo pensare alle due istruzioni <code>continue</code> come a un
+aiuto per affinare l’insieme delle righe che per noi sono “interessanti”
+e che vogliamo elaborare ulteriormente. Una riga che non ha parole è
+“non interessante” per noi, quindi saltiamo alla riga successiva. Una
+riga che non ha <code>From</code> come prima parola non è interessante
+per noi, quindi la saltiamo.</p>
+<p>Il programma così modificato viene eseguito con successo, quindi
+forse è corretto. La nostra istruzione guardiana garantisce che
+<code>words[0]</code> non fallirà mai, ma forse non basta. Quando
+programmiamo, dobbiamo sempre pensare: “Cosa potrebbe andare
+storto?”</p></li>
 </ol>
-<p><strong>Exercise 2:</strong> Figure out which line of the above
-program is still not properly guarded. See if you can construct a text
-file which causes the program to fail and then modify the program so
-that the line is properly guarded and test it to make sure it handles
-your new text file.</p>
-<p><strong>Exercise 3:</strong> Rewrite the guardian code in the above
-example without two <code>if</code> statements. Instead, use a compound
-logical expression using the <code>or</code> logical operator with a
-single <code>if</code> statement.</p>
-<h2 id="glossary">Glossary</h2>
+<p><strong>Esercizio 2:</strong> Scopri quale riga del programma qui
+sopra non è ancora protetta nel modo giusto. Vedi se riesci a costruire
+un file di testo che fa fallire il programma, poi modifica il programma
+in modo che la riga sia protetta nel modo giusto e testalo per
+assicurarti che gestisca il tuo nuovo file di testo.</p>
+<p><strong>Esercizio 3:</strong> Riscrivi il codice guardiano
+dell’esempio qui sopra senza due istruzioni <code>if</code>. Usa invece
+un’espressione logica composta, con l’operatore logico <code>or</code> e
+una sola istruzione <code>if</code>.</p>
+<h2 id="glossario">Glossario</h2>
 <dl>
-<dt>aliasing</dt>
+<dt><strong>Aliasing</strong></dt>
 <dd>
-A circumstance where two or more variables refer to the same object.
+Una circostanza in cui due o più variabili si riferiscono allo stesso
+oggetto.
 </dd>
-<dt>delimiter</dt>
+<dt><strong>Delimitatore</strong></dt>
 <dd>
-A character or string used to indicate where a string should be split.
+Un carattere o una stringa usati per indicare dove va divisa una
+stringa.
 </dd>
-<dt>element</dt>
+<dt><strong>Elemento</strong></dt>
 <dd>
-One of the values in a list (or other sequence); also called items.
+Uno dei valori di una lista (o di un’altra sequenza); detto anche item.
 </dd>
-<dt>equivalent</dt>
+<dt><strong>Equivalente</strong></dt>
 <dd>
-Having the same value.
+Relativo a oggetti che hanno lo stesso valore.
 </dd>
-<dt>index</dt>
+<dt><strong>Identico</strong></dt>
 <dd>
-An integer value that indicates an element in a list.
+Relativo a oggetti che sono lo stesso oggetto (il che implica
+l’equivalenza).
 </dd>
-<dt>identical</dt>
+<dt><strong>Indice</strong></dt>
 <dd>
-Being the same object (which implies equivalence).
+Un valore intero che indica un elemento di una lista.
 </dd>
-<dt>list</dt>
+<dt><strong>Lista</strong></dt>
 <dd>
-A sequence of values.
+Una sequenza di valori.
 </dd>
-<dt>list traversal</dt>
+<dt><strong>Lista annidata</strong></dt>
 <dd>
-The sequential accessing of each element in a list.
+Una lista che è un elemento di un’altra lista.
 </dd>
-<dt>nested list</dt>
+<dt><strong>Oggetto</strong></dt>
 <dd>
-A list that is an element of another list.
+Qualcosa a cui una variabile può riferirsi. Un oggetto ha un tipo e un
+valore.
 </dd>
-<dt>object</dt>
+<dt><strong>Riferimento</strong></dt>
 <dd>
-Something a variable can refer to. An object has a type and a value.
+L’associazione tra una variabile e il suo valore.
 </dd>
-<dt>reference</dt>
+<dt><strong>Scorrimento di una lista</strong></dt>
 <dd>
-The association between a variable and its value.
+L’accesso in sequenza a ogni elemento di una lista.
 </dd>
 </dl>
-<h2 id="exercises">Exercises</h2>
-<p></p>
-<p><strong>Exercise 4: Find all unique words in a file</strong></p>
-<p>Shakespeare used over 20,000 words in his works. But how would you
-determine that? How would you produce the list of all the words that
-Shakespeare used? Would you download all his work, read it and track all
-unique words by hand?</p>
-<p>Let’s use Python to achieve that instead. List all unique words,
-sorted in alphabetical order, that are stored in a file
-<code>romeo.txt</code> containing a subset of Shakespeare’s work.</p>
-<p>To get started, download a copy of the file <a
+<h2 id="esercizi">Esercizi</h2>
+<p><strong>Esercizio 4: Trova tutte le parole distinte di un
+file</strong></p>
+<p>Shakespeare ha usato oltre 20.000 parole nelle sue opere. Ma come
+faresti a stabilirlo? Come produrresti l’elenco di tutte le parole che
+Shakespeare ha usato? Scaricheresti tutte le sue opere, le leggeresti e
+terresti traccia a mano di tutte le parole distinte?</p>
+<p>Usiamo invece Python per riuscirci. Elenca tutte le parole distinte,
+in ordine alfabetico, memorizzate in un file <code>romeo.txt</code> che
+contiene una parte dell’opera di Shakespeare.</p>
+<p>Per cominciare, scarica una copia del file <a
 href="http://www.py4e.com/code3/romeo.txt">www.py4e.com/code3/romeo.txt</a>.
-Create a list of unique words, which will contain the final result.
-Write a program to open the file <code>romeo.txt</code> and read it line
-by line. For each line, split the line into a list of words using the
-<code>split</code> function. For each word, check to see if the word is
-already in the list of unique words. If the word is not in the list of
-unique words, add it to the list. When the program completes, sort and
-print the list of unique words in alphabetical order.</p>
+Crea una lista di parole distinte, che conterrà il risultato finale.
+Scrivi un programma che apra il file <code>romeo.txt</code> e lo legga
+riga per riga. Dividi ogni riga in una lista di parole usando il metodo
+<code>split</code>. Per ogni parola, controlla se è già nella lista
+delle parole distinte. Se non c’è, aggiungila alla lista. Quando il
+programma ha finito, ordina e stampa la lista delle parole distinte in
+ordine alfabetico.</p>
 <pre><code>Enter file: romeo.txt
 [&#39;Arise&#39;, &#39;But&#39;, &#39;It&#39;, &#39;Juliet&#39;, &#39;Who&#39;, &#39;already&#39;,
 &#39;and&#39;, &#39;breaks&#39;, &#39;east&#39;, &#39;envious&#39;, &#39;fair&#39;, &#39;grief&#39;,
 &#39;is&#39;, &#39;kill&#39;, &#39;light&#39;, &#39;moon&#39;, &#39;pale&#39;, &#39;sick&#39;, &#39;soft&#39;,
 &#39;sun&#39;, &#39;the&#39;, &#39;through&#39;, &#39;what&#39;, &#39;window&#39;,
 &#39;with&#39;, &#39;yonder&#39;]</code></pre>
-<p><strong>Exercise 5: Minimalist Email Client.</strong></p>
-<p>MBOX (mail box) is a popular file format to store and share a
-collection of emails. This was used by early email servers and desktop
-apps. Without getting into too many details, MBOX is a text file, which
-stores emails consecutively. Emails are separated by a special line
-which starts with <code>From</code> (notice the space). Importantly,
-lines starting with <code>From:</code> (notice the colon) describes the
-email itself and does not act as a separator. Imagine you wrote a
-minimalist email app, that lists the email of the senders in the user’s
-Inbox and counts the number of emails.</p>
-<p>Write a program to read through the mail box data and when you find a
-line that starts with “From”, you will split the line into words using
-the <code>split</code> function. We are interested in who sent the
-message, which is the second word on the From line.</p>
+<p><strong>Esercizio 5: Client di posta minimalista.</strong></p>
+<p>MBOX (mail box) è un formato di file molto diffuso per memorizzare e
+condividere una raccolta di email. Era usato dai primi server di posta e
+dalle prime applicazioni desktop. Senza entrare troppo nei dettagli,
+MBOX è un file di testo che memorizza le email una dopo l’altra. Le
+email sono separate da una riga speciale che inizia con
+<code>"From "</code> (nota lo spazio). Attenzione: le righe che iniziano
+con <code>From:</code> (nota i due punti) descrivono l’email stessa e
+non fanno da separatore. Immagina di aver scritto un’applicazione di
+posta minimalista, che elenca gli indirizzi email dei mittenti nella
+posta in arrivo dell’utente e conta il numero di email.</p>
+<p>Scrivi un programma che legga i dati della casella di posta e, quando
+trova una riga che inizia con <code>From</code>, la divida in parole
+usando il metodo <code>split</code>. Ci interessa chi ha inviato il
+messaggio, cioè la seconda parola della riga <code>From</code>.</p>
 <pre><code>From stephen.marquard@uct.ac.za Sat Jan 5 09:14:16 2008</code></pre>
-<p>You will parse the From line and print out the second word for each
-From line, then you will also count the number of From (not From:) lines
-and print out a count at the end. This is a good sample output with a
-few lines removed:</p>
+<p>Analizza la riga <code>From</code> e stampa la seconda parola di ogni
+riga <code>From</code>, poi conta anche il numero di righe
+<code>From</code> (non <code>From:</code>) e stampa il conteggio alla
+fine. Ecco un buon esempio di output, con alcune righe rimosse:</p>
 <pre><code>python fromcount.py
 Enter a file name: mbox-short.txt
 stephen.marquard@uct.ac.za
@@ -913,13 +952,13 @@ cwen@iupui.edu
 cwen@iupui.edu
 cwen@iupui.edu
 There were 27 lines in the file with From as the first word</code></pre>
-<p><strong>Exercise 6:</strong></p>
-<p>Rewrite the program that prompts the user for a list of numbers and
-prints out the maximum and minimum of the numbers at the end when the
-user enters “done”. Write the program to store the numbers the user
-enters in a list and use the <code>max()</code> and <code>min()</code>
-functions to compute the maximum and minimum numbers after the loop
-completes.</p>
+<p><strong>Esercizio 6:</strong></p>
+<p>Riscrivi il programma che chiede all’utente un elenco di numeri e
+stampa alla fine il massimo e il minimo dei numeri, quando l’utente
+inserisce <code>done</code>. Scrivi il programma in modo che memorizzi
+in una lista i numeri che l’utente inserisce e usi le funzioni
+<code>max()</code> e <code>min()</code> per calcolare il numero massimo
+e il numero minimo dopo la fine del ciclo.</p>
 <pre><code>Enter a number: 6
 Enter a number: 2
 Enter a number: 9

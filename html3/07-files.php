@@ -3,16 +3,22 @@
   ob_start();
 }?>
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="pandoc" />
+  <meta name="generator" content="pandoc 3.14" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>Files</title>
+  <title>File</title>
   <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
     html {
       color: #1a1a1a;
+      color: light-dark(#1a1a1a, #fdfdfd);
       background-color: #fdfdfd;
+      background-color: light-dark(#fdfdfd, #1a1a1a);
+      color-scheme: light dark;
     }
     body {
       margin: 0 auto;
@@ -35,31 +41,11 @@
         font-size: 1.8em;
       }
     }
-    @media print {
-      html {
-        background-color: white;
-      }
-      body {
-        background-color: transparent;
-        color: black;
-        font-size: 12pt;
-      }
-      p, h2, h3 {
-        orphans: 3;
-        widows: 3;
-      }
-      h2, h3, h4 {
-        page-break-after: avoid;
-      }
-    }
     p {
       margin: 1em 0;
     }
-    a {
-      color: #1a1a1a;
-    }
-    a:visited {
-      color: #1a1a1a;
+    a, a:visited {
+      color: inherit;
     }
     img {
       max-width: 100%;
@@ -88,10 +74,14 @@
     blockquote {
       margin: 1em 0 1em 1.7em;
       padding-left: 1em;
-      border-left: 2px solid #e6e6e6;
+      border-left: 2px solid;
+      border-color: #e6e6e6;
+      border-color: light-dark(#e6e6e6, #4c4c4c);
       color: #606060;
+      color: light-dark(#606060, #b6b6b6);
     }
     code {
+      white-space: pre-wrap;
       font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
       font-size: 85%;
       margin: 0;
@@ -112,7 +102,7 @@
     }
     hr {
       border: none;
-      border-top: 1px solid #1a1a1a;
+      border-top: 1px solid currentColor;
       height: 1px;
       margin: 1em 0;
     }
@@ -129,11 +119,11 @@
     }
     tbody {
       margin-top: 0.5em;
-      border-top: 1px solid #1a1a1a;
-      border-bottom: 1px solid #1a1a1a;
+      border-top: 1px solid currentColor;
+      border-bottom: 1px solid currentColor;
     }
     th {
-      border-top: 1px solid #1a1a1a;
+      border-top: 1px solid currentColor;
       padding: 0.25em 0.5em 0.25em 0.5em;
     }
     td {
@@ -155,10 +145,19 @@
     #TOC a:not(:hover) {
       text-decoration: none;
     }
-    code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
-    div.columns{display: flex; gap: min(4vw, 1.5em);}
-    div.column{flex: auto; overflow-x: auto;}
+    em, em em em, em em em em em {
+      font-style: italic;
+    }
+    em em, em em em em {
+      font-style: normal;
+    }
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     /* The extra [class] is a hack that increases specificity enough to
        override a similar rule in reveal.js */
@@ -169,79 +168,99 @@
       margin: 0 0.8em 0.2em -1.6em;
       vertical-align: middle;
     }
-    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
-  </style>
+    @media print {
+      html {
+        color-scheme: light only;
+      }
+      html, body, pre, code {
+        background-color: transparent;
+      }
+      body, a, a:visited, blockquote {
+        color: black;
+      }
+      pre, code {
+        padding: 0;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }  </style>
 </head>
 <body>
-<h1 id="files">Files</h1>
+<h1 id="file">File</h1>
 <p> </p>
-<h2 id="persistence">Persistence</h2>
+<h2 id="persistenza">Persistenza</h2>
 <p> </p>
-<p>So far, we have learned how to write programs and communicate our
-intentions to the <em>Central Processing Unit</em> using conditional
-execution, functions, and iterations. We have learned how to create and
-use data structures in the <em>Main Memory</em>. The CPU and memory are
-where our software works and runs. It is where all of the “thinking”
-happens.</p>
-<p>But if you recall from our hardware architecture discussions, once
-the power is turned off, anything stored in either the CPU or main
-memory is erased. So up to now, our programs have just been transient
-fun exercises to learn Python.</p>
+<p>Finora abbiamo imparato a scrivere programmi e a comunicare le nostre
+intenzioni alla CPU usando l’esecuzione condizionale, le funzioni e le
+iterazioni. Abbiamo imparato a creare e usare strutture dati nella
+<em>memoria principale</em>. La CPU e la memoria sono i luoghi in cui il
+nostro software lavora e viene eseguito. È lì che avviene tutto il
+“pensiero”.</p>
+<p>Ma se ricordi i nostri discorsi sull’architettura hardware, una volta
+tolta l’alimentazione tutto ciò che è memorizzato nella CPU o nella
+memoria principale viene cancellato. Quindi finora i nostri programmi
+sono stati solo fugaci esercizi divertenti per imparare Python.</p>
 <figure>
-<img src="../images/arch.svg" alt="Secondary Memory" style="height: 2.5in;"/>
+<img src="../images/arch.svg" alt="Memoria secondaria" style="height: 2.5in;"/>
 <figcaption>
-Secondary Memory
+Memoria secondaria
 </figcaption>
 </figure>
-<p>In this chapter, we start to work with <em>Secondary Memory</em> (or
-files). Secondary memory is not erased when the power is turned off. Or
-in the case of a USB flash drive, the data we write from our programs
-can be removed from the system and transported to another system.</p>
-<p>We will primarily focus on reading and writing text files such as
-those we create in a text editor. Later we will see how to work with
-database files which are binary files, specifically designed to be read
-and written through database software.</p>
-<h2 id="opening-files">Opening files</h2>
+<p>In questo capitolo iniziamo a lavorare con la <em>memoria
+secondaria</em> (o con i file). La memoria secondaria non viene
+cancellata quando si toglie l’alimentazione. Oppure, nel caso di una
+chiavetta USB, i dati che scriviamo con i nostri programmi possono
+essere portati via dal sistema e trasportati su un altro sistema.</p>
+<p>Ci concentreremo soprattutto sulla lettura e la scrittura di file di
+testo, come quelli che creiamo in un editor di testo. Più avanti vedremo
+come lavorare con i file di database, che sono file binari progettati
+appositamente per essere letti e scritti tramite un software di
+database.</p>
+<h2 id="aprire-i-file">Aprire i file</h2>
 <p> </p>
-<p>When we want to read or write a file (say on your hard drive), we
-first must <em>open</em> the file. Opening the file communicates with
-your operating system, which knows where the data for each file is
-stored. When you open a file, you are asking the operating system to
-find the file by name and make sure the file exists. In this example, we
-open the file <em>mbox.txt</em>, which should be stored in the same
-folder that you are in when you start Python. You can download this file
-from <a
-href="http://www.py4e.com/code3/mbox.txt">www.py4e.com/code3/mbox.txt</a></p>
+<p>Quando vogliamo leggere o scrivere un file (ad esempio sul tuo disco
+rigido), dobbiamo prima <em>aprire</em> il file. Aprirlo significa
+comunicare con il sistema operativo, che sa dove sono memorizzati i dati
+di ogni file. Quando apri un file, chiedi al sistema operativo di
+trovare il file in base al nome e di assicurarsi che esista. In questo
+esempio apriamo il file <code>mbox.txt</code>, che dovrebbe essere
+memorizzato nella stessa cartella in cui ti trovi quando avvii Python.
+Puoi scaricare questo file da <a
+href="http://www.py4e.com/code3/mbox.txt">www.py4e.com/code3/mbox.txt</a>.</p>
 <pre class="python"><code>&gt;&gt;&gt; fhand = open(&#39;mbox.txt&#39;)
 &gt;&gt;&gt; print(fhand)
 &lt;_io.TextIOWrapper name=&#39;mbox.txt&#39; mode=&#39;r&#39; encoding=&#39;cp1252&#39;&gt;</code></pre>
-<p></p>
-<p>If the <code>open</code> is successful, the operating system returns
-us a <em>file handle</em>. The file handle is not the actual data
-contained in the file, but instead it is a “handle” that we can use to
-read the data. You are given a handle if the requested file exists and
-you have the proper permissions to read the file.</p>
+<p>Se la <code>open</code> ha successo, il sistema operativo ci
+restituisce un <em>handle del file</em> (file handle). L’handle del file
+non è il dato vero e proprio contenuto nel file, ma una “maniglia”
+(handle) che possiamo usare per leggere i dati. Ricevi un handle se il
+file richiesto esiste e hai i permessi adeguati per leggerlo.</p>
 <figure>
-<img src="../images/handle.svg" alt="A File Handle" style="height: 2.0in;"/>
+<img src="../images/handle.svg" alt="Un handle del file" style="height: 2.0in;"/>
 <figcaption>
-A File Handle
+Un handle del file
 </figcaption>
 </figure>
-<p>If the file does not exist, <code>open</code> will fail with a
-traceback and you will not get a handle to access the contents of the
-file:</p>
+<p>Se il file non esiste, <code>open</code> fallirà con un traceback e
+non otterrai un handle per accedere al contenuto del file:</p>
 <pre class="python"><code>&gt;&gt;&gt; fhand = open(&#39;stuff.txt&#39;)
 Traceback (most recent call last):
 File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;
 FileNotFoundError: [Errno 2] No such file or directory: &#39;stuff.txt&#39;</code></pre>
-<p>Later we will use <code>try</code> and <code>except</code> to deal
-more gracefully with the situation where we attempt to open a file that
-does not exist.</p>
-<h2 id="text-files-and-lines">Text files and lines</h2>
-<p>A text file can be thought of as a sequence of lines, much like a
-Python string can be thought of as a sequence of characters. For
-example, this is a sample of a text file which records mail activity
-from various individuals in an open source project development team:</p>
+<p>Più avanti useremo <code>try</code> ed <code>except</code> per
+gestire con più eleganza la situazione in cui tentiamo di aprire un file
+che non esiste.</p>
+<h2 id="file-di-testo-e-righe">File di testo e righe</h2>
+<p>Un file di testo si può considerare una sequenza di righe, proprio
+come una stringa Python si può considerare una sequenza di caratteri. Ad
+esempio, questo è un estratto di un file di testo che registra
+l’attività di posta di varie persone in un gruppo di sviluppo di un
+progetto open source:</p>
 <pre><code>From stephen.marquard@uct.ac.za Sat Jan  5 09:14:16 2008
 Return-Path: &lt;postmaster@collab.sakaiproject.org&gt;
 Date: Sat, 5 Jan 2008 09:12:18 -0500
@@ -250,29 +269,28 @@ From: stephen.marquard@uct.ac.za
 Subject: [sakai] svn commit: r39772 - content/branches/
 Details: http://source.sakaiproject.org/viewsvn/?view=rev&amp;rev=39772
 ...</code></pre>
-<p>The entire file of mail interactions is available from</p>
+<p>L’intero file delle interazioni di posta è disponibile su</p>
 <p><a
 href="http://www.py4e.com/code3/mbox.txt">www.py4e.com/code3/mbox.txt</a></p>
-<p>and a shortened version of the file is available from</p>
+<p>e una versione ridotta del file è disponibile su</p>
 <p><a
 href="http://www.py4e.com/code3/mbox-short.txt">www.py4e.com/code3/mbox-short.txt</a></p>
-<p>These files are in a standard format for a file containing multiple
-mail messages. The lines which start with “From” separate the messages
-and the lines which start with “From:” are part of the messages. For
-more information about the mbox format, see <a
-href="https://en.wikipedia.org/wiki/Mbox"
+<p>Questi file sono in un formato standard per un file che contiene più
+messaggi di posta. Le righe che iniziano con <code>"From "</code>
+separano i messaggi e le righe che iniziano con <code>"From:"</code>
+fanno parte dei messaggi. Per maggiori informazioni sul formato mbox,
+vedi <a href="https://en.wikipedia.org/wiki/Mbox"
 class="uri">https://en.wikipedia.org/wiki/Mbox</a>.</p>
-<p>To break the file into lines, there is a special character that
-represents the “end of the line” called the <em>newline</em>
-character.</p>
-<p></p>
-<p>In Python, we represent the <em>newline</em> character as a
-backslash-n in string constants. Even though this looks like two
-characters, it is actually a single character. When we look at the
-variable by entering “stuff” in the interpreter, it shows us the
-<code>\n</code> in the string, but when we use <code>print</code> to
-show the string, we see the string broken into two lines by the newline
-character.</p>
+<p>Per suddividere il file in righe, c’è un carattere speciale che
+rappresenta la “fine della riga”, chiamato carattere
+<em>newline</em>.</p>
+<p>In Python rappresentiamo il carattere <em>newline</em> come
+backslash-n nelle costanti stringa. Anche se sembra formato da due
+caratteri, in realtà è un carattere solo. Quando guardiamo la variabile
+inserendo <code>stuff</code> nell’interprete, questo ci mostra il
+<code>\n</code> nella stringa, ma quando usiamo <code>print</code> per
+mostrare la stringa, la vediamo spezzata su due righe dal carattere
+newline.</p>
 <pre class="python"><code>&gt;&gt;&gt; stuff = &#39;Hello\nWorld!&#39;
 &gt;&gt;&gt; stuff
 &#39;Hello\nWorld!&#39;
@@ -285,19 +303,18 @@ X
 Y
 &gt;&gt;&gt; len(stuff)
 3</code></pre>
-<p>You can also see that the length of the string <code>X\nY</code> is
-<em>three</em> characters because the newline character is a single
-character.</p>
-<p>So when we look at the lines in a file, we need to <em>imagine</em>
-that there is a special invisible character called the newline at the
-end of each line that marks the end of the line.</p>
-<p>So the newline character separates the characters in the file into
-lines.</p>
-<h2 id="reading-files">Reading files</h2>
+<p>Puoi anche vedere che la lunghezza della stringa <code>X\nY</code> è
+di <em>tre</em> caratteri, perché il carattere newline è un carattere
+solo.</p>
+<p>Quindi, quando guardiamo le righe di un file, dobbiamo
+<em>immaginare</em> che alla fine di ogni riga ci sia un carattere
+speciale invisibile, chiamato newline, che segna la fine della riga.</p>
+<p>Quindi il carattere newline separa in righe i caratteri del file.</p>
+<h2 id="leggere-i-file">Leggere i file</h2>
 <p> </p>
-<p>While the <em>file handle</em> does not contain the data for the
-file, it is quite easy to construct a <code>for</code> loop to read
-through and count each of the lines in a file:</p>
+<p>Anche se l’<em>handle del file</em> non contiene i dati del file, è
+piuttosto facile costruire un ciclo <code>for</code> per leggere e
+contare ciascuna delle righe di un file:</p>
 <pre class="python"><code>fhand = open(&#39;mbox-short.txt&#39;)
 count = 0
 for line in fhand:
@@ -305,72 +322,76 @@ for line in fhand:
 print(&#39;Line Count:&#39;, count)
 
 # Code: https://www.py4e.com/code3/open.py</code></pre>
-<p>We can use the file handle as the sequence in our <code>for</code>
-loop. Our <code>for</code> loop simply counts the number of lines in the
-file and prints them out. The rough translation of the <code>for</code>
-loop into English is, “for each line in the file represented by the file
-handle, add one to the <code>count</code> variable.”</p>
-<p>The reason that the <code>open</code> function does not read the
-entire file is that the file might be quite large with many gigabytes of
-data. The <code>open</code> statement takes the same amount of time
-regardless of the size of the file. The <code>for</code> loop actually
-causes the data to be read from the file.</p>
-<p>When the file is read using a <code>for</code> loop in this manner,
-Python takes care of splitting the data in the file into separate lines
-using the newline character. Python reads each line through the newline
-and includes the newline as the last character in the <code>line</code>
-variable for each iteration of the <code>for</code> loop.</p>
-<p>Because the <code>for</code> loop reads the data one line at a time,
-it can efficiently read and count the lines in very large files without
-running out of main memory to store the data. The above program can
-count the lines in any size file using very little memory since each
-line is read, counted, and then discarded.</p>
-<p>If you know the file is relatively small compared to the size of your
-main memory, you can read the whole file into one string using the
-<code>read</code> method on the file handle.</p>
+<p>Possiamo usare l’handle del file come sequenza nel nostro ciclo
+<code>for</code>. Il ciclo <code>for</code> conta semplicemente il
+numero di righe del file e lo stampa. La traduzione approssimativa del
+ciclo <code>for</code> in italiano è: “per ogni riga del file
+rappresentato dall’handle del file, aggiungi uno alla variabile
+<code>count</code>”.</p>
+<p>La funzione <code>open</code> non legge l’intero file perché il file
+potrebbe essere molto grande, con molti gigabyte di dati. L’istruzione
+<code>open</code> impiega lo stesso tempo a prescindere dalla dimensione
+del file. È il ciclo <code>for</code> che in realtà fa leggere i dati
+dal file.</p>
+<p>Quando il file viene letto in questo modo con un ciclo
+<code>for</code>, Python si occupa di suddividere i dati del file in
+righe separate usando il carattere newline. Python legge ogni riga fino
+al newline e include il newline come ultimo carattere nella variabile
+<code>line</code> a ogni iterazione del ciclo <code>for</code>.</p>
+<p>Poiché il ciclo <code>for</code> legge i dati una riga alla volta,
+può leggere e contare in modo efficiente le righe di file molto grandi
+senza esaurire la memoria principale per memorizzare i dati. Il
+programma qui sopra può contare le righe di un file di qualsiasi
+dimensione usando pochissima memoria, dato che ogni riga viene letta,
+contata e poi scartata.</p>
+<p>Se sai che il file è relativamente piccolo rispetto alla dimensione
+della tua memoria principale, puoi leggere l’intero file in un’unica
+stringa usando il metodo <code>read</code> sull’handle del file.</p>
 <pre class="python"><code>&gt;&gt;&gt; fhand = open(&#39;mbox-short.txt&#39;)
 &gt;&gt;&gt; inp = fhand.read()
 &gt;&gt;&gt; print(len(inp))
 94626
 &gt;&gt;&gt; print(inp[:20])
 From stephen.marquar</code></pre>
-<p>In this example, the entire contents (all 94,626 characters) of the
-file <em>mbox-short.txt</em> are read directly into the variable
-<code>inp</code>. We use string slicing to print out the first 20
-characters of the string data stored in <code>inp</code>.</p>
-<p>When the file is read in this manner, all the characters including
-all of the lines and newline characters are one big string in the
-variable <code>inp</code>. It is a good idea to store the output of
-<code>read</code> as a variable because each call to <code>read</code>
-exhausts the resource:</p>
+<p>In questo esempio l’intero contenuto (tutti i 94.626 caratteri) del
+file <code>mbox-short.txt</code> viene letto direttamente nella
+variabile <code>inp</code>. Usiamo lo slicing delle stringhe per
+stampare i primi 20 caratteri della stringa memorizzata in
+<code>inp</code>.</p>
+<p>Quando il file viene letto in questo modo, tutti i caratteri,
+comprese tutte le righe e i caratteri newline, sono un’unica grande
+stringa nella variabile <code>inp</code>. È una buona idea memorizzare
+l’output di <code>read</code> in una variabile, perché ogni chiamata a
+<code>read</code> esaurisce la risorsa:</p>
 <pre class="python"><code>&gt;&gt;&gt; fhand = open(&#39;mbox-short.txt&#39;)
 &gt;&gt;&gt; print(len(fhand.read()))
 94626
 &gt;&gt;&gt; print(len(fhand.read()))
 0</code></pre>
-<p>Remember that this form of the <code>open</code> function should only
-be used if the file data will fit comfortably in the main memory of your
-computer. If the file is too large to fit in main memory, you should
-write your program to read the file in chunks using a <code>for</code>
-or <code>while</code> loop.</p>
-<h2 id="searching-through-a-file">Searching through a file</h2>
-<p>When you are searching through data in a file, it is a very common
-pattern to read through a file, ignoring most of the lines and only
-processing lines which meet a particular condition. We can combine the
-pattern for reading a file with string methods to build simple search
-mechanisms.</p>
+<p>Ricorda che il metodo <code>read</code> va usato solo se i dati del
+file entrano comodamente nella memoria principale del tuo computer. Se
+il file è troppo grande per entrare nella memoria principale, dovresti
+scrivere il programma in modo che legga il file a pezzi usando un ciclo
+<code>for</code> o <code>while</code>.</p>
+<h2 id="cercare-in-un-file">Cercare in un file</h2>
+<p>Quando cerchi tra i dati di un file, uno schema molto comune è
+leggere il file ignorando la maggior parte delle righe ed elaborando
+solo quelle che soddisfano una particolare condizione. Possiamo
+combinare lo schema per la lettura di un file con i metodi delle
+stringhe per costruire semplici meccanismi di ricerca.</p>
 <p> </p>
-<p>For example, if we wanted to read a file and only print out lines
-which started with the prefix “From:”, we could use the string method
-<em>startswith</em> to select only those lines with the desired
-prefix:</p>
+<p>Ad esempio, se volessimo leggere un file e stampare solo le righe che
+iniziano con il prefisso <code>From:</code>, potremmo usare il metodo
+delle stringhe <code>startswith</code> per selezionare solo le righe con
+il prefisso desiderato:</p>
 <pre class="python"><code>fhand = open(&#39;mbox-short.txt&#39;)
 for line in fhand:
     if line.startswith(&#39;From:&#39;):
         print(line)
 
 # Code: https://www.py4e.com/code3/search1.py</code></pre>
-<p>When this program runs, we get the following output:</p>
+<p>Quando questo programma viene eseguito, otteniamo il seguente
+output:</p>
 <pre><code>From: stephen.marquard@uct.ac.za
 
 From: louis@media.berkeley.edu
@@ -379,16 +400,17 @@ From: zqian@umich.edu
 
 From: rjlowe@iupui.edu
 ...</code></pre>
-<p>The output looks great since the only lines we are seeing are those
-which start with “From:”, but why are we seeing the extra blank lines?
-This is due to that invisible <em>newline</em> character. Each of the
-lines ends with a newline, so the <code>print</code> statement prints
-the string in the variable <em>line</em> which includes a newline and
-then <code>print</code> adds <em>another</em> newline, resulting in the
-double spacing effect we see.</p>
-<p>We could use line slicing to print all but the last character, but a
-simpler approach is to use the <em>rstrip</em> method which strips
-whitespaces from the right side of a string as follows:</p>
+<p>L’output sembra ottimo, dato che le uniche righe che vediamo sono
+quelle che iniziano con <code>From:</code>, ma perché vediamo le righe
+vuote in più? Dipende da quel carattere <em>newline</em> invisibile.
+Ogni riga termina con un newline, quindi l’istruzione <code>print</code>
+stampa la stringa nella variabile <code>line</code>, che include un
+newline, e poi <code>print</code> aggiunge <em>un altro</em> newline,
+producendo l’effetto di interlinea doppia che vediamo.</p>
+<p>Potremmo usare lo slicing della riga per stampare tutto tranne
+l’ultimo carattere, ma un approccio più semplice è usare il metodo
+<code>rstrip</code>, che rimuove gli spazi bianchi dal lato destro di
+una stringa, come segue:</p>
 <pre class="python"><code>fhand = open(&#39;mbox-short.txt&#39;)
 for line in fhand:
     line = line.rstrip()
@@ -396,7 +418,8 @@ for line in fhand:
         print(line)
 
 # Code: https://www.py4e.com/code3/search2.py</code></pre>
-<p>When this program runs, we get the following output:</p>
+<p>Quando questo programma viene eseguito, otteniamo il seguente
+output:</p>
 <pre><code>From: stephen.marquard@uct.ac.za
 From: louis@media.berkeley.edu
 From: zqian@umich.edu
@@ -405,13 +428,14 @@ From: zqian@umich.edu
 From: rjlowe@iupui.edu
 From: cwen@iupui.edu
 ...</code></pre>
-<p>As your file processing programs get more complicated, you may want
-to structure your search loops using <code>continue</code>. The basic
-idea of the search loop is that you are looking for “interesting” lines
-and effectively skipping “uninteresting” lines. And then when we find an
-interesting line, we do something with that line.</p>
-<p>We can structure the loop to follow the pattern of skipping
-uninteresting lines as follows:</p>
+<p>Man mano che i tuoi programmi di elaborazione dei file diventano più
+complicati, ti conviene strutturare i cicli di ricerca usando
+<code>continue</code>. L’idea di base del ciclo di ricerca è che cerchi
+le righe “interessanti” e di fatto salti quelle “non interessanti”. E
+poi, quando troviamo una riga interessante, facciamo qualcosa con quella
+riga.</p>
+<p>Possiamo strutturare il ciclo secondo lo schema in cui si saltano le
+righe non interessanti, come segue:</p>
 <pre class="python"><code>fhand = open(&#39;mbox-short.txt&#39;)
 for line in fhand:
     line = line.rstrip()
@@ -422,18 +446,20 @@ for line in fhand:
     print(line)
 
 # Code: https://www.py4e.com/code3/search3.py</code></pre>
-<p>The output of the program is the same. In English, the uninteresting
-lines are those which do not start with “From:”, which we skip using
-<code>continue</code>. For the “interesting” lines (i.e., those that
-start with “From:”) we perform the processing.</p>
-<p>We can use the <code>find</code> string method to simulate a text
-editor search that finds lines where the search string is anywhere in
-the line. Since <code>find</code> looks for an occurrence of a string
-within another string and either returns the position of the string or
--1 if the string was not found, we can write the following loop to show
-lines which contain the string “<span class="citation"
-data-cites="uct.ac.za">@uct.ac.za</span>” (i.e., they come from the
-University of Cape Town in South Africa):</p>
+<p>L’output del programma è lo stesso. In italiano, le righe non
+interessanti sono quelle che non iniziano con <code>From:</code>, che
+saltiamo usando <code>continue</code>. Per le righe “interessanti” (cioè
+quelle che iniziano con <code>From:</code>) eseguiamo
+l’elaborazione.</p>
+<p>Possiamo usare il metodo delle stringhe <code>find</code> per
+simulare la ricerca di un editor di testo, che trova le righe in cui la
+stringa cercata compare in un punto qualsiasi della riga. Dato che
+<code>find</code> cerca un’occorrenza di una stringa all’interno di
+un’altra stringa e restituisce la posizione della stringa oppure
+<code>-1</code> se la stringa non è stata trovata, possiamo scrivere il
+seguente ciclo per mostrare le righe che contengono la stringa
+<code>@uct.ac.za</code> (cioè che provengono dall’Università di Città
+del Capo, in Sudafrica):</p>
 <pre class="python"><code>fhand = open(&#39;mbox-short.txt&#39;)
 for line in fhand:
     line = line.rstrip()
@@ -441,7 +467,7 @@ for line in fhand:
     print(line)
 
 # Code: https://www.py4e.com/code3/search4.py</code></pre>
-<p>Which produces the following output:</p>
+<p>Il programma produce il seguente output:</p>
 <pre><code>From stephen.marquard@uct.ac.za Sat Jan  5 09:14:16 2008
 X-Authentication-Warning: set sender to stephen.marquard@uct.ac.za using -f
 From: stephen.marquard@uct.ac.za
@@ -451,20 +477,20 @@ X-Authentication-Warning: set sender to david.horwitz@uct.ac.za using -f
 From: david.horwitz@uct.ac.za
 Author: david.horwitz@uct.ac.za
 ...</code></pre>
-<p>Here we also use the contracted form of the <code>if</code> statement
-where we put the <code>continue</code> on the same line as the
-<code>if</code>. This contracted form of the <code>if</code> functions
-the same as if the <code>continue</code> were on the next line and
-indented.</p>
-<h2 id="letting-the-user-choose-the-file-name">Letting the user choose
-the file name</h2>
-<p>We really do not want to have to edit our Python code every time we
-want to process a different file. It would be more usable to ask the
-user to enter the file name string each time the program runs so they
-can use our program on different files without changing the Python
-code.</p>
-<p>This is quite simple to do by reading the file name from the user
-using <code>input</code> as follows:</p>
+<p>Qui usiamo anche la forma contratta dell’istruzione <code>if</code>,
+in cui mettiamo il <code>continue</code> sulla stessa riga
+dell’<code>if</code>. Questa forma contratta dell’<code>if</code>
+funziona come se il <code>continue</code> fosse sulla riga successiva e
+indentato.</p>
+<h2 id="far-scegliere-allutente-il-nome-del-file">Far scegliere
+all’utente il nome del file</h2>
+<p>Non vogliamo certo dover modificare il nostro codice Python ogni
+volta che vogliamo elaborare un file diverso. Sarebbe più pratico
+chiedere all’utente di inserire la stringa con il nome del file ogni
+volta che il programma viene eseguito, così che possa usare il nostro
+programma su file diversi senza cambiare il codice Python.</p>
+<p>Farlo è piuttosto semplice: leggiamo il nome del file dall’utente
+usando <code>input</code>, come segue:</p>
 <pre class="python"><code>fname = input(&#39;Enter the file name: &#39;)
 fhand = open(fname)
 count = 0
@@ -474,9 +500,9 @@ for line in fhand:
 print(&#39;There were&#39;, count, &#39;subject lines in&#39;, fname)
 
 # Code: https://www.py4e.com/code3/search6.py</code></pre>
-<p>We read the file name from the user and place it in a variable named
-<code>fname</code> and open that file. Now we can run the program
-repeatedly on different files.</p>
+<p>Leggiamo il nome del file dall’utente, lo mettiamo in una variabile
+chiamata <code>fname</code> e apriamo quel file. Ora possiamo eseguire
+il programma più volte su file diversi.</p>
 <pre><code>python search6.py
 Enter the file name: mbox.txt
 There were 1797 subject lines in mbox.txt
@@ -484,15 +510,17 @@ There were 1797 subject lines in mbox.txt
 python search6.py
 Enter the file name: mbox-short.txt
 There were 27 subject lines in mbox-short.txt</code></pre>
-<p>Before peeking at the next section, take a look at the above program
-and ask yourself, “What could go possibly wrong here?” or “What might
-our friendly user do that would cause our nice little program to
-ungracefully exit with a traceback, making us look not-so-cool in the
-eyes of our users?”</p>
-<h2 id="using-try-except-and-open">Using <code>try, except,</code> and
-<code>open</code></h2>
-<p>I told you not to peek. This is your last chance.</p>
-<p>What if our user types something that is not a file name?</p>
+<p>Prima di sbirciare la prossima sezione, dai un’occhiata al programma
+qui sopra e chiediti: “Cosa potrebbe mai andare storto qui?” oppure:
+“Cosa potrebbe fare il nostro amichevole utente per far uscire in malo
+modo il nostro bel programmino con un traceback, facendoci fare una
+figura non proprio brillante agli occhi dei nostri utenti?”</p>
+<h2 id="usare-try-except-e-open">Usare <code>try</code>,
+<code>except</code> e <code>open</code></h2>
+<p>Ti avevo detto di non sbirciare. Questa è la tua ultima
+possibilità.</p>
+<p>E se il nostro utente digita qualcosa che non è il nome di un
+file?</p>
 <pre><code>python search6.py
 Enter the file name: missing.txt
 Traceback (most recent call last):
@@ -506,22 +534,24 @@ Traceback (most recent call last):
   File &quot;search6.py&quot;, line 2, in &lt;module&gt;
     fhand = open(fname)
 FileNotFoundError: [Errno 2] No such file or directory: &#39;na na boo boo&#39;</code></pre>
-<p>Do not laugh. Users will eventually do every possible thing they can
-do to break your programs, either mistakenly or with malicious intent.
-As a matter of fact, an important part of any software development team
-is a person or group called <em>Quality Assurance</em> (or QA for short)
-whose very job it is to do the craziest things possible in an attempt to
-break the software that the programmer has created.</p>
+<p>Non ridere. Prima o poi gli utenti faranno ogni cosa possibile per
+rompere i tuoi programmi, per sbaglio o con intenzioni malevole.
+Infatti, una parte importante di qualsiasi gruppo di sviluppo software è
+costituita da una o più persone, chiamate <em>controllo qualità</em>
+(Quality Assurance, o QA in breve), il cui lavoro è proprio fare le cose
+più folli possibili nel tentativo di rompere il software che il
+programmatore ha creato.</p>
 <p> </p>
-<p>The QA team is responsible for finding the flaws in programs before
-we have delivered the program to the end users who may be purchasing the
-software or paying our salary to write the software. So the QA team is
-the programmer’s best friend.</p>
+<p>Il gruppo QA ha il compito di trovare i difetti nei programmi prima
+che consegniamo il programma agli utenti finali, che magari acquistano
+il software o ci pagano lo stipendio per scriverlo. Quindi il gruppo QA
+è il migliore amico del programmatore.</p>
 <p> </p>
-<p>So now that we see the flaw in the program, we can elegantly fix it
-using the <code>try</code>/<code>except</code> structure. We need to
-assume that the <code>open</code> call might fail and add recovery code
-when the <code>open</code> fails as follows:</p>
+<p>Quindi, ora che vediamo il difetto nel programma, possiamo
+correggerlo con eleganza usando la struttura
+<code>try</code>/<code>except</code>. Dobbiamo presumere che la chiamata
+a <code>open</code> possa fallire e aggiungere il codice di recupero per
+quando la <code>open</code> fallisce, come segue:</p>
 <pre class="python"><code>fname = input(&#39;Enter the file name: &#39;)
 try:
     fhand = open(fname)
@@ -535,10 +565,10 @@ for line in fhand:
 print(&#39;There were&#39;, count, &#39;subject lines in&#39;, fname)
 
 # Code: https://www.py4e.com/code3/search7.py</code></pre>
-<p>The <code>exit</code> function terminates the program. It is a
-function that we call that never returns. Now when our user (or QA team)
-types in silliness or bad file names, we “catch” them and recover
-gracefully:</p>
+<p>La funzione <code>exit</code> termina il programma. È una funzione
+che chiamiamo e che non restituisce mai il controllo. Ora, quando il
+nostro utente (o il gruppo QA) digita sciocchezze o nomi di file
+sbagliati, li “catturiamo” e rimediamo con eleganza:</p>
 <pre><code>python search7.py
 Enter the file name: mbox.txt
 There were 1797 subject lines in mbox.txt
@@ -546,114 +576,117 @@ There were 1797 subject lines in mbox.txt
 python search7.py
 Enter the file name: na na boo boo
 File cannot be opened: na na boo boo</code></pre>
-<p></p>
-<p>Protecting the <code>open</code> call is a good example of the proper
-use of <code>try</code> and <code>except</code> in a Python program. We
-use the term “Pythonic” when we are doing something the “Python way”. We
-might say that the above example is the Pythonic way to open a file.</p>
-<p>Once you become more skilled in Python, you can engage in repartee
-with other Python programmers to decide which of two equivalent
-solutions to a problem is “more Pythonic”. The goal to be “more
-Pythonic” captures the notion that programming is part engineering and
-part art. We are not always interested in just making something work, we
-also want our solution to be elegant and to be appreciated as elegant by
-our peers.</p>
-<h2 id="writing-files">Writing files</h2>
-<p></p>
-<p>To write a file, you have to open it with mode “w” as a second
-parameter:</p>
+<p>Proteggere la chiamata a <code>open</code> è un buon esempio dell’uso
+corretto di <code>try</code> ed <code>except</code> in un programma
+Python. Usiamo il termine “Pythonic” quando facciamo qualcosa “alla
+maniera di Python”. Potremmo dire che l’esempio qui sopra è il modo
+Pythonic di aprire un file.</p>
+<p>Quando sarai diventato più abile in Python, potrai lanciarti in un
+botta e risposta con altri programmatori Python per decidere quale di
+due soluzioni equivalenti a un problema sia “più Pythonic”. L’obiettivo
+di essere “più Pythonic” coglie l’idea che la programmazione è in parte
+ingegneria e in parte arte. Non sempre ci interessa soltanto far
+funzionare qualcosa: vogliamo anche che la nostra soluzione sia elegante
+e che sia apprezzata come elegante dai nostri pari.</p>
+<h2 id="scrivere-i-file">Scrivere i file</h2>
+<p>Per scrivere un file, devi aprirlo con la modalità <code>'w'</code>
+come secondo parametro:</p>
 <pre class="python"><code>&gt;&gt;&gt; fout = open(&#39;output.txt&#39;, &#39;w&#39;)
 &gt;&gt;&gt; print(fout)
 &lt;_io.TextIOWrapper name=&#39;output.txt&#39; mode=&#39;w&#39; encoding=&#39;cp1252&#39;&gt;</code></pre>
-<p>If the file already exists, opening it in write mode clears out the
-old data and starts fresh, so be careful! If the file doesn’t exist, a
-new one is created.</p>
-<p>The <code>write</code> method of the file handle object puts data
-into the file, returning the number of characters written. The default
-write mode is text for writing (and reading) strings.</p>
+<p>Se il file esiste già, aprirlo in modalità di scrittura cancella i
+vecchi dati e riparte da zero, quindi fai attenzione! Se il file non
+esiste, ne viene creato uno nuovo.</p>
+<p>Il metodo <code>write</code> dell’oggetto handle del file inserisce i
+dati nel file e restituisce il numero di caratteri scritti. La modalità
+di scrittura predefinita è quella di testo, per scrivere (e leggere)
+stringhe.</p>
 <pre class="python"><code>&gt;&gt;&gt; line1 = &quot;This here&#39;s the wattle,\n&quot;
 &gt;&gt;&gt; fout.write(line1)
 24</code></pre>
-<p></p>
-<p>Again, the file object keeps track of where it is, so if you call
-<code>write</code> again, it adds the new data to the end.</p>
-<p>We must make sure to manage the ends of lines as we write to the file
-by explicitly inserting the newline character when we want to end a
-line. The <code>print</code> statement automatically appends a newline,
-but the <code>write</code> method does not add the newline
-automatically.</p>
+<p>Di nuovo, l’oggetto file tiene traccia del punto in cui si trova,
+quindi se chiami ancora <code>write</code>, aggiunge i nuovi dati alla
+fine.</p>
+<p>Dobbiamo assicurarci di gestire la fine di ogni riga mentre scriviamo
+nel file, inserendo in modo esplicito il carattere newline quando
+vogliamo terminare una riga. L’istruzione <code>print</code> aggiunge
+automaticamente un newline in coda, ma il metodo <code>write</code> non
+aggiunge il newline automaticamente.</p>
 <pre class="python"><code>&gt;&gt;&gt; line2 = &#39;the emblem of our land.\n&#39;
 &gt;&gt;&gt; fout.write(line2)
 24</code></pre>
-<p>When you are done writing, you have to close the file to make sure
-that the last bit of data is physically written to the disk so it will
-not be lost if the power goes off.</p>
+<p>Quando hai finito di scrivere, devi chiudere il file per assicurarti
+che l’ultima parte dei dati sia scritta fisicamente sul disco, così che
+non vada persa se manca l’alimentazione.</p>
 <pre class="python"><code>&gt;&gt;&gt; fout.close()</code></pre>
-<p>We could close the files which we open for reading as well, but we
-can be a little sloppy if we are only opening a few files since Python
-makes sure that all open files are closed when the program ends. When we
-are writing files, we want to explicitly close the files so as to leave
-nothing to chance.</p>
+<p>Potremmo chiudere anche i file che apriamo in lettura, ma possiamo
+essere un po’ trasandati se apriamo solo pochi file, dato che Python si
+assicura che tutti i file aperti vengano chiusi quando il programma
+termina. Quando scriviamo dei file, vogliamo chiuderli in modo esplicito
+per non lasciare nulla al caso.</p>
 <p> </p>
-<h2 id="debugging">Debugging</h2>
+<h2 id="debug">Debug</h2>
 <p> </p>
-<p>When you are reading and writing files, you might run into problems
-with whitespace. These errors can be hard to debug because spaces, tabs,
-and newlines are normally invisible:</p>
+<p>Quando leggi e scrivi file, potresti incontrare problemi con gli
+spazi bianchi. Il debug di questi errori può essere difficile, perché
+spazi, tabulazioni e newline sono normalmente invisibili:</p>
 <pre class="python"><code>&gt;&gt;&gt; s = &#39;1 2\t 3\n 4&#39;
 &gt;&gt;&gt; print(s)
 1 2  3
  4</code></pre>
 <p> </p>
-<p>The built-in function <code>repr</code> can help. It takes any object
-as an argument and returns a string representation of the object. For
-strings, it represents whitespace characters with backslash
-sequences:</p>
+<p>La funzione built-in <code>repr</code> può aiutare. Accetta come
+argomento un oggetto qualsiasi e restituisce una rappresentazione
+dell’oggetto sotto forma di stringa. Per le stringhe, rappresenta i
+caratteri di spazio bianco usando sequenze con il backslash:</p>
 <pre class="python"><code>&gt;&gt;&gt; print(repr(s))
 &#39;1 2\t 3\n 4&#39;</code></pre>
-<p>This can be helpful for debugging.</p>
-<p>One other problem you might run into is that different systems use
-different characters to indicate the end of a line. Some systems use a
-newline, represented <code>\n</code>. Others use a return character,
-represented <code>\r</code>. Some use both. If you move files between
-different systems, these inconsistencies might cause problems.</p>
-<p></p>
-<p>For most systems, there are applications to convert from one format
-to another. You can find them (and read more about this issue) at <a
+<p>Questo può essere utile per il debug.</p>
+<p>Un altro problema che potresti incontrare è che sistemi diversi usano
+caratteri diversi per indicare la fine di una riga. Alcuni sistemi usano
+un newline, rappresentato da <code>\n</code>. Altri usano un carattere
+di ritorno carrello, rappresentato da <code>\r</code>. Alcuni usano
+entrambi. Se sposti file tra sistemi diversi, queste incoerenze
+potrebbero causare problemi.</p>
+<p>Per la maggior parte dei sistemi ci sono applicazioni per convertire
+da un formato all’altro. Puoi trovarle (e leggere altro su questo
+problema) su <a
 href="https://wikipedia.org/wiki/Newline">https://www.wikipedia.org/wiki/Newline</a>.
-Or, of course, you could write one yourself.</p>
-<h2 id="glossary">Glossary</h2>
+Oppure, naturalmente, potresti scriverne una tu.</p>
+<h2 id="glossario">Glossario</h2>
 <dl>
-<dt>catch</dt>
+<dt><strong>Catturare</strong></dt>
 <dd>
-To prevent an exception from terminating a program using the
-<code>try</code> and <code>except</code> statements.
+Impedire che un’eccezione termini un programma usando le istruzioni
+<code>try</code> ed <code>except</code>.
 </dd>
-<dt>newline</dt>
+<dt><strong>Controllo qualità</strong></dt>
 <dd>
-A special character used in files and strings to indicate the end of a
-line.
+Una persona o un gruppo che si occupa di garantire la qualità
+complessiva di un prodotto software. Spesso il QA contribuisce a testare
+un prodotto e a individuarne i problemi prima che sia rilasciato.
 </dd>
-<dt>Pythonic</dt>
+<dt><strong>File di testo</strong></dt>
 <dd>
-A technique that works elegantly in Python. “Using try and except is the
-<em>Pythonic</em> way to recover from missing files”.
+Una sequenza di caratteri memorizzata su un supporto permanente, come un
+disco rigido.
 </dd>
-<dt>Quality Assurance</dt>
+<dt><strong>Newline</strong></dt>
 <dd>
-A person or team focused on ensuring the overall quality of a software
-product. QA is often involved in testing a product and identifying
-problems before the product is released.
+Un carattere speciale usato nei file e nelle stringhe per indicare la
+fine di una riga.
 </dd>
-<dt>text file</dt>
+<dt><strong>Pythonic</strong></dt>
 <dd>
-A sequence of characters stored in permanent storage like a hard drive.
+Relativo a una tecnica che funziona in modo elegante in Python. “Usare
+<code>try</code> ed <code>except</code> è il modo <em>Pythonic</em> di
+rimediare alla mancanza di un file”.
 </dd>
 </dl>
-<h2 id="exercises">Exercises</h2>
-<p><strong>Exercise 1:</strong> Write a program to read through a file
-and print the contents of the file (line by line) all in upper case.
-Executing the program will look as follows:</p>
+<h2 id="esercizi">Esercizi</h2>
+<p><strong>Esercizio 1:</strong> Scrivi un programma che legga un file e
+ne stampi il contenuto (riga per riga) tutto in maiuscolo. L’esecuzione
+del programma avrà questo aspetto:</p>
 <pre><code>python shout.py
 Enter a file name: mbox-short.txt
 FROM STEPHEN.MARQUARD@UCT.AC.ZA SAT JAN  5 09:14:16 2008
@@ -661,30 +694,32 @@ RETURN-PATH: &lt;POSTMASTER@COLLAB.SAKAIPROJECT.ORG&gt;
 RECEIVED: FROM MURDER (MAIL.UMICH.EDU [141.211.14.90])
      BY FRANKENSTEIN.MAIL.UMICH.EDU (CYRUS V2.3.8) WITH LMTPA;
      SAT, 05 JAN 2008 09:14:16 -0500</code></pre>
-<p>You can download the file from <a
-href="http://www.py4e.com/code3/mbox-short.txt">www.py4e.com/code3/mbox-short.txt</a></p>
-<p><strong>Exercise 2:</strong> Write a program to prompt for a file
-name, and then read through the file and look for lines of the form:</p>
+<p>Puoi scaricare il file da <a
+href="http://www.py4e.com/code3/mbox-short.txt">www.py4e.com/code3/mbox-short.txt</a>.</p>
+<p><strong>Esercizio 2:</strong> Scrivi un programma che chieda il nome
+di un file, poi legga il file e cerchi le righe della forma:</p>
 <pre><code>X-DSPAM-Confidence: 0.8475</code></pre>
-<p>When you encounter a line that starts with “X-DSPAM-Confidence:” pull
-apart the line to extract the floating-point number on the line. Count
-these lines and then compute the total of the spam confidence values
-from these lines. When you reach the end of the file, print out the
-average spam confidence.</p>
+<p>Quando incontri una riga che inizia con
+<code>X-DSPAM-Confidence:</code>, scomponi la riga per estrarre il
+numero in virgola mobile che contiene. Conta queste righe e poi calcola
+il totale dei valori di “spam confidence” di queste righe. Quando
+raggiungi la fine del file, stampa il valore medio di “spam
+confidence”.</p>
 <pre><code>Enter the file name: mbox.txt
 Average spam confidence: 0.894128046745
 
 Enter the file name: mbox-short.txt
 Average spam confidence: 0.750718518519</code></pre>
-<p>Test your file on the <em>mbox.txt</em> and <em>mbox-short.txt</em>
-files.</p>
-<p><strong>Exercise 3:</strong></p>
-<p>Sometimes when programmers get bored or want to have a bit of fun,
-they add a harmless <em>Easter Egg</em> to their program. Modify the
-program that prompts the user for the file name so that it prints a
-funny message when the user types in the exact file name “na na boo
-boo”. The program should behave normally for all other files which exist
-and don’t exist. Here is a sample execution of the program:</p>
+<p>Testa il tuo programma sui file <code>mbox.txt</code> e
+<code>mbox-short.txt</code>.</p>
+<p><strong>Esercizio 3:</strong></p>
+<p>A volte, quando i programmatori si annoiano o vogliono divertirsi un
+po’, aggiungono un innocuo <em>Easter egg</em> al loro programma.
+Modifica il programma che chiede all’utente il nome del file in modo che
+stampi un messaggio divertente quando l’utente digita esattamente il
+nome di file <code>na na boo boo</code>. Il programma dovrebbe
+comportarsi normalmente con tutti gli altri file, che esistano o no.
+Ecco un esempio di esecuzione del programma:</p>
 <pre><code>python egg.py
 Enter the file name: mbox.txt
 There were 1797 subject lines in mbox.txt
@@ -696,8 +731,8 @@ File cannot be opened: missing.tyxt
 python egg.py
 Enter the file name: na na boo boo
 NA NA BOO BOO TO YOU - You have been punk&#39;d!</code></pre>
-<p>We are not encouraging you to put Easter Eggs in your programs; this
-is just an exercise.</p>
+<p>Non ti stiamo incoraggiando a mettere Easter egg nei tuoi programmi;
+questo è solo un esercizio.</p>
 </body>
 </html>
 <?php if ( file_exists("../bookfoot.php") ) {

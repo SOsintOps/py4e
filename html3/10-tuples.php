@@ -3,16 +3,22 @@
   ob_start();
 }?>
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="pandoc" />
+  <meta name="generator" content="pandoc 3.14" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>Tuples</title>
+  <title>Tuple</title>
   <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
     html {
       color: #1a1a1a;
+      color: light-dark(#1a1a1a, #fdfdfd);
       background-color: #fdfdfd;
+      background-color: light-dark(#fdfdfd, #1a1a1a);
+      color-scheme: light dark;
     }
     body {
       margin: 0 auto;
@@ -35,31 +41,11 @@
         font-size: 1.8em;
       }
     }
-    @media print {
-      html {
-        background-color: white;
-      }
-      body {
-        background-color: transparent;
-        color: black;
-        font-size: 12pt;
-      }
-      p, h2, h3 {
-        orphans: 3;
-        widows: 3;
-      }
-      h2, h3, h4 {
-        page-break-after: avoid;
-      }
-    }
     p {
       margin: 1em 0;
     }
-    a {
-      color: #1a1a1a;
-    }
-    a:visited {
-      color: #1a1a1a;
+    a, a:visited {
+      color: inherit;
     }
     img {
       max-width: 100%;
@@ -88,10 +74,14 @@
     blockquote {
       margin: 1em 0 1em 1.7em;
       padding-left: 1em;
-      border-left: 2px solid #e6e6e6;
+      border-left: 2px solid;
+      border-color: #e6e6e6;
+      border-color: light-dark(#e6e6e6, #4c4c4c);
       color: #606060;
+      color: light-dark(#606060, #b6b6b6);
     }
     code {
+      white-space: pre-wrap;
       font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
       font-size: 85%;
       margin: 0;
@@ -112,7 +102,7 @@
     }
     hr {
       border: none;
-      border-top: 1px solid #1a1a1a;
+      border-top: 1px solid currentColor;
       height: 1px;
       margin: 1em 0;
     }
@@ -129,11 +119,11 @@
     }
     tbody {
       margin-top: 0.5em;
-      border-top: 1px solid #1a1a1a;
-      border-bottom: 1px solid #1a1a1a;
+      border-top: 1px solid currentColor;
+      border-bottom: 1px solid currentColor;
     }
     th {
-      border-top: 1px solid #1a1a1a;
+      border-top: 1px solid currentColor;
       padding: 0.25em 0.5em 0.25em 0.5em;
     }
     td {
@@ -155,10 +145,19 @@
     #TOC a:not(:hover) {
       text-decoration: none;
     }
-    code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
-    div.columns{display: flex; gap: min(4vw, 1.5em);}
-    div.column{flex: auto; overflow-x: auto;}
+    em, em em em, em em em em em {
+      font-style: italic;
+    }
+    em em, em em em em {
+      font-style: normal;
+    }
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     /* The extra [class] is a hack that increases specificity enough to
        override a similar rule in reveal.js */
@@ -169,106 +168,127 @@
       margin: 0 0.8em 0.2em -1.6em;
       vertical-align: middle;
     }
-    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
-  </style>
+    @media print {
+      html {
+        color-scheme: light only;
+      }
+      html, body, pre, code {
+        background-color: transparent;
+      }
+      body, a, a:visited, blockquote {
+        color: black;
+      }
+      pre, code {
+        padding: 0;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }  </style>
 </head>
 <body>
-<h1 id="tuples">Tuples</h1>
-<h2 id="tuples-are-immutable">Tuples are immutable</h2>
+<h1 id="tuple">Tuple</h1>
+<h2 id="le-tuple-sono-immutabili">Le tuple sono immutabili</h2>
 <p> </p>
-<p>A tuple<a href="#fn1" class="footnote-ref" id="fnref1"
-role="doc-noteref"><sup>1</sup></a> is a sequence of values much like a
-list. The values stored in a tuple can be any type, and they are indexed
-by integers. The important difference is that tuples are
-<em>immutable</em>. Tuples are also <em>comparable</em> and
-<em>hashable</em> so we can sort lists of them and use tuples as key
-values in Python dictionaries.</p>
+<p>Una tupla<a href="#fn1" class="footnote-ref" id="fnref1"
+role="doc-noteref"><sup>1</sup></a> è una sequenza di valori molto
+simile a una lista. I valori memorizzati in una tupla possono essere di
+qualsiasi tipo e sono indicizzati da interi. La differenza importante è
+che le tuple sono <em>immutabili</em>. Le tuple sono anche
+<em>confrontabili</em> e <em>hashable</em>, quindi possiamo ordinare
+liste di tuple e usare le tuple come chiavi nei dizionari Python.</p>
 <p> </p>
-<p>Syntactically, a tuple is a comma-separated list of values:</p>
+<p>Sintatticamente, una tupla è un elenco di valori separati da
+virgole:</p>
 <pre class="python"><code>&gt;&gt;&gt; t = &#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;, &#39;e&#39;</code></pre>
-<p>Although it is not necessary, it is common to enclose tuples in
-parentheses to help us quickly identify tuples when we look at Python
-code:</p>
-<p></p>
+<p>Anche se non è necessario, di solito le tuple si racchiudono tra
+parentesi tonde, per aiutarci a riconoscerle subito quando guardiamo il
+codice Python:</p>
 <pre class="python"><code>&gt;&gt;&gt; t = (&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;, &#39;e&#39;)</code></pre>
-<p>To create a tuple with a single element, you have to include the
-final comma:</p>
+<p>Per creare una tupla con un solo elemento, devi includere la virgola
+finale:</p>
 <p> </p>
 <pre class="python"><code>&gt;&gt;&gt; t1 = (&#39;a&#39;,)
 &gt;&gt;&gt; type(t1)
 &lt;type &#39;tuple&#39;&gt;</code></pre>
-<p>Without the comma Python treats <code>('a')</code> as an expression
-with a string in parentheses that evaluates to a string:</p>
+<p>Senza la virgola Python tratta <code>('a')</code> come un’espressione
+con una stringa tra parentesi tonde, che viene valutata come una
+stringa:</p>
 <pre class="python"><code>&gt;&gt;&gt; t2 = (&#39;a&#39;)
 &gt;&gt;&gt; type(t2)
 &lt;type &#39;str&#39;&gt;</code></pre>
-<p>Another way to construct a tuple is the built-in function
-<code>tuple</code>. With no argument, it creates an empty tuple:</p>
+<p>Un altro modo per costruire una tupla è la funzione built-in
+<code>tuple</code>. Senza argomenti, crea una tupla vuota:</p>
 <p> </p>
 <pre class="python"><code>&gt;&gt;&gt; t = tuple()
 &gt;&gt;&gt; print(t)
 ()</code></pre>
-<p>If the argument is a sequence (string, list, or tuple), the result of
-the call to <code>tuple</code> is a tuple with the elements of the
-sequence:</p>
+<p>Se l’argomento è una sequenza (stringa, lista o tupla), il risultato
+della chiamata a <code>tuple</code> è una tupla con gli elementi della
+sequenza:</p>
 <pre class="python"><code>&gt;&gt;&gt; t = tuple(&#39;lupins&#39;)
 &gt;&gt;&gt; print(t)
 (&#39;l&#39;, &#39;u&#39;, &#39;p&#39;, &#39;i&#39;, &#39;n&#39;, &#39;s&#39;)</code></pre>
-<p>Because <code>tuple</code> is the name of a constructor, you should
-avoid using it as a variable name.</p>
-<p>Most list operators also work on tuples. The bracket operator indexes
-an element:</p>
+<p>Poiché <code>tuple</code> è il nome di un costruttore, dovresti
+evitare di usarlo come nome di variabile.</p>
+<p>La maggior parte degli operatori delle liste funziona anche sulle
+tuple. L’operatore parentesi quadre indicizza un elemento:</p>
 <p> </p>
 <pre class="python"><code>&gt;&gt;&gt; t = (&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;, &#39;e&#39;)
 &gt;&gt;&gt; print(t[0])
 &#39;a&#39;</code></pre>
-<p>And the slice operator selects a range of elements.</p>
+<p>E l’operatore slice seleziona un intervallo di elementi.</p>
 <p> </p>
 <pre class="python"><code>&gt;&gt;&gt; print(t[1:3])
 (&#39;b&#39;, &#39;c&#39;)</code></pre>
-<p>But if you try to modify one of the elements of the tuple, you get an
-error:</p>
+<p>Ma se provi a modificare uno degli elementi della tupla, ottieni un
+errore:</p>
 <p> </p>
 <pre class="python"><code>&gt;&gt;&gt; t[0] = &#39;A&#39;
 TypeError: object doesn&#39;t support item assignment</code></pre>
-<p>You can’t modify the elements of a tuple, but you can replace one
-tuple with another:</p>
+<p>Non puoi modificare gli elementi di una tupla, ma puoi sostituire una
+tupla con un’altra:</p>
 <pre class="python"><code>&gt;&gt;&gt; t = (&#39;A&#39;,) + t[1:]
 &gt;&gt;&gt; print(t)
 (&#39;A&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;, &#39;e&#39;)</code></pre>
-<h2 id="comparing-tuples">Comparing tuples</h2>
+<h2 id="confronto-tra-tuple">Confronto tra tuple</h2>
 <p> </p>
-<p>The comparison operators work with tuples and other sequences. Python
-starts by comparing the first element from each sequence. If they are
-equal, it goes on to the next element, and so on, until it finds
-elements that differ. Subsequent elements are not considered (even if
-they are really big).</p>
+<p>Gli operatori di confronto funzionano con le tuple e con le altre
+sequenze. Python inizia confrontando il primo elemento di ogni sequenza.
+Se sono uguali, passa all’elemento successivo, e così via, finché non
+trova elementi diversi. Gli elementi che seguono non vengono considerati
+(anche se sono davvero grandi).</p>
 <pre class="python"><code>&gt;&gt;&gt; (0, 1, 2) &lt; (0, 3, 4)
 True
 &gt;&gt;&gt; (0, 1, 2000000) &lt; (0, 3, 4)
 True</code></pre>
-<p>The <code>sort</code> function works the same way. It sorts primarily
-by first element, but in the case of a tie, it sorts by second element,
-and so on.</p>
-<p>This feature lends itself to a pattern called <em>DSU</em> for</p>
+<p>Il metodo <code>sort</code> si comporta allo stesso modo. Ordina
+prima di tutto in base al primo elemento, ma in caso di parità ordina in
+base al secondo elemento, e così via.</p>
+<p>Questa caratteristica si presta a uno schema chiamato <em>DSU</em>,
+che sta per</p>
 <dl>
-<dt>Decorate</dt>
+<dt><em>Decorate</em> (decorare)</dt>
 <dd>
-a sequence by building a list of tuples with one or more sort keys
-preceding the elements from the sequence,
+una sequenza costruendo una lista di tuple con una o più chiavi di
+ordinamento che precedono gli elementi della sequenza,
 </dd>
-<dt>Sort</dt>
+<dt><em>Sort</em> (ordinare)</dt>
 <dd>
-the list of tuples using the Python built-in <code>sort</code>, and
+la lista di tuple usando il <code>sort</code> built-in di Python e
 </dd>
-<dt>Undecorate</dt>
+<dt><em>Undecorate</em> (togliere la decorazione)</dt>
 <dd>
-by extracting the sorted elements of the sequence.
+estraendo gli elementi ordinati della sequenza.
 </dd>
 </dl>
 <p> </p>
-<p>For example, suppose you have a list of words and you want to sort
-them from longest to shortest:</p>
+<p>Ad esempio, supponi di avere una lista di parole e di volerle
+ordinare dalla più lunga alla più corta:</p>
 <pre class="python"><code>txt = &#39;but soft what light in yonder window breaks&#39;
 words = txt.split()
 t = list()
@@ -284,31 +304,35 @@ for length, word in t:
 print(res)
 
 # Code: https://www.py4e.com/code3/soft.py</code></pre>
-<p>The first loop builds a list of tuples, where each tuple is a word
-preceded by its length.</p>
-<p><code>sort</code> compares the first element, length, first, and only
-considers the second element to break ties. The keyword argument
-<code>reverse=True</code> tells <code>sort</code> to go in decreasing
-order.</p>
+<p>Il primo ciclo costruisce una lista di tuple, in cui ogni tupla è una
+parola preceduta dalla sua lunghezza.</p>
+<p><code>sort</code> confronta innanzitutto il primo elemento, la
+lunghezza, e considera il secondo elemento solo per risolvere i casi di
+parità. L’<em>argomento chiave-valore</em> (keyword argument)
+<code>reverse=True</code> dice a <code>sort</code> di procedere in
+ordine decrescente.</p>
 <p> </p>
-<p>The second loop traverses the list of tuples and builds a list of
-words in descending order of length. The four-character words are sorted
-in <em>reverse</em> alphabetical order, so “what” appears before “soft”
-in the following list.</p>
-<p>The output of the program is as follows:</p>
+<p>Il secondo ciclo scorre la lista di tuple e costruisce una lista di
+parole in ordine decrescente di lunghezza. Le parole di quattro
+caratteri sono in ordine alfabetico <em>inverso</em>, quindi
+<code>'what'</code> compare prima di <code>'soft'</code> nella lista
+seguente.</p>
+<p>L’output del programma è il seguente:</p>
 <pre><code>[&#39;yonder&#39;, &#39;window&#39;, &#39;breaks&#39;, &#39;light&#39;, &#39;what&#39;,
 &#39;soft&#39;, &#39;but&#39;, &#39;in&#39;]</code></pre>
-<p>Of course the line loses much of its poetic impact when turned into a
-Python list and sorted in descending word length order.</p>
-<h2 id="tuple-assignment">Tuple assignment</h2>
+<p>Naturalmente il verso perde molto del suo impatto poetico quando
+viene trasformato in una lista Python e ordinato per lunghezza
+decrescente delle parole.</p>
+<h2 id="assegnazione-di-tupla">Assegnazione di tupla</h2>
 <p> </p>
-<p>One of the unique syntactic features of the Python language is the
-ability to have a tuple on the left side and a sequence on the right
-side of an assignment statement. This allows you to assign more than one
-variable at a time to the given sequence.</p>
-<p>In this example we have a two-element tuple and assign the first and
-second elements of the tuple to the variables <code>x</code> and
-<code>y</code> in a single statement.</p>
+<p>Una delle caratteristiche sintattiche peculiari del linguaggio Python
+è la possibilità di avere una tupla sul lato sinistro e una sequenza sul
+lato destro di un’istruzione di assegnazione. Questo ti permette di
+assegnare più di una variabile alla volta a partire dalla sequenza
+data.</p>
+<p>In questo esempio abbiamo una tupla di due elementi e assegniamo il
+primo e il secondo elemento della tupla alle variabili <code>x</code> e
+<code>y</code> con una sola istruzione.</p>
 <pre class="python"><code>&gt;&gt;&gt; m = ( &#39;have&#39;, &#39;fun&#39; )
 &gt;&gt;&gt; x, y = m
 &gt;&gt;&gt; x
@@ -316,9 +340,9 @@ second elements of the tuple to the variables <code>x</code> and
 &gt;&gt;&gt; y
 &#39;fun&#39;
 &gt;&gt;&gt;</code></pre>
-<p>This is more general than tuple-to-tuple assignment. Both tuples and
-lists are sequences, so this syntax works with a two element list as
-well.</p>
+<p>Questa sintassi è più generale di un’assegnazione da tupla a tupla.
+Sia le tuple sia le liste sono sequenze, quindi funziona anche con una
+lista di due elementi.</p>
 <pre class="python"><code>&gt;&gt;&gt; m = [ &#39;have&#39;, &#39;fun&#39; ]
 &gt;&gt;&gt; x, y = m
 &gt;&gt;&gt; x
@@ -326,8 +350,8 @@ well.</p>
 &gt;&gt;&gt; y
 &#39;fun&#39;
 &gt;&gt;&gt;</code></pre>
-<p>It is not magic, Python <em>roughly</em> translates the tuple
-assignment syntax to be the following:<a href="#fn2"
+<p>Non è magia: Python traduce <em>approssimativamente</em> la sintassi
+dell’assegnazione di tupla nel codice seguente:<a href="#fn2"
 class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
 <pre class="python"><code>&gt;&gt;&gt; m = ( &#39;have&#39;, &#39;fun&#39; )
 &gt;&gt;&gt; x = m[0]
@@ -337,9 +361,9 @@ class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
 &gt;&gt;&gt; y
 &#39;fun&#39;
 &gt;&gt;&gt;</code></pre>
-<p>Stylistically when we use a tuple on the left side of the assignment
-statement, we omit the parentheses, but the following is an equally
-valid syntax:</p>
+<p>Per una questione di stile, quando usiamo una tupla sul lato sinistro
+dell’istruzione di assegnazione omettiamo le parentesi tonde, ma la
+sintassi seguente è altrettanto valida:</p>
 <pre class="python"><code>&gt;&gt;&gt; m = ( &#39;have&#39;, &#39;fun&#39; )
 &gt;&gt;&gt; (x, y) = m
 &gt;&gt;&gt; x
@@ -347,46 +371,48 @@ valid syntax:</p>
 &gt;&gt;&gt; y
 &#39;fun&#39;
 &gt;&gt;&gt;</code></pre>
-<p>A particularly clever application of tuple assignment allows us to
-<em>swap</em> the values of two variables in a single statement:</p>
+<p>Un’applicazione particolarmente ingegnosa dell’assegnazione di tupla
+ci permette di <em>scambiare</em> i valori di due variabili con una sola
+istruzione:</p>
 <pre class="python"><code>&gt;&gt;&gt; a, b = b, a</code></pre>
-<p>Both sides of this statement are tuples, but the left side is a tuple
-of variables; the right side is a tuple of expressions. Each value on
-the right side is assigned to its respective variable on the left side.
-All the expressions on the right side are evaluated before any of the
-assignments.</p>
-<p>The number of variables on the left and the number of values on the
-right must be the same:</p>
+<p>Entrambi i lati di questa istruzione sono tuple, ma il lato sinistro
+è una tupla di variabili; il lato destro è una tupla di espressioni.
+Ogni valore sul lato destro viene assegnato alla rispettiva variabile
+sul lato sinistro. Tutte le espressioni sul lato destro vengono valutate
+prima di qualsiasi assegnazione.</p>
+<p>Il numero delle variabili a sinistra e il numero dei valori a destra
+devono essere uguali:</p>
 <p> </p>
 <pre class="python"><code>&gt;&gt;&gt; a, b = 1, 2, 3
 ValueError: too many values to unpack</code></pre>
-<p>More generally, the right side can be any kind of sequence (string,
-list, or tuple). For example, to split an email address into a user name
-and a domain, you could write:</p>
+<p>Più in generale, il lato destro può essere qualsiasi tipo di sequenza
+(stringa, lista o tupla). Ad esempio, per dividere un indirizzo email in
+nome utente e dominio, potresti scrivere:</p>
 <p> </p>
 <pre class="python"><code>&gt;&gt;&gt; addr = &#39;monty@python.org&#39;
 &gt;&gt;&gt; uname, domain = addr.split(&#39;@&#39;)</code></pre>
-<p>The return value from <code>split</code> is a list with two elements;
-the first element is assigned to <code>uname</code>, the second to
-<code>domain</code>.</p>
+<p>Il valore di ritorno di <code>split</code> è una lista di due
+elementi; il primo elemento viene assegnato a <code>uname</code>, il
+secondo a <code>domain</code>.</p>
 <pre class="python"><code>&gt;&gt;&gt; print(uname)
 monty
 &gt;&gt;&gt; print(domain)
 python.org</code></pre>
-<h2 id="dictionaries-and-tuples">Dictionaries and tuples</h2>
+<h2 id="dizionari-e-tuple">Dizionari e tuple</h2>
 <p> </p>
-<p>Dictionaries have a method called <code>items</code> that returns a
-list of tuples, where each tuple is a key-value pair:</p>
+<p>I dizionari hanno un metodo chiamato <code>items</code> che
+restituisce le coppie chiave-valore del dizionario, ognuna sotto forma
+di tupla:</p>
 <pre class="python"><code>&gt;&gt;&gt; d = {&#39;b&#39;:1, &#39;a&#39;:10, &#39;c&#39;:22}
 &gt;&gt;&gt; t = list(d.items())
 &gt;&gt;&gt; print(t)
 [(&#39;b&#39;, 1), (&#39;a&#39;, 10), (&#39;c&#39;, 22)]</code></pre>
-<p>As you should expect from a dictionary, the items are in
-non-alphabetical order.</p>
-<p>However, since the list of tuples is a list, and tuples are
-comparable, we can now sort the list of tuples. Converting a dictionary
-to a list of tuples is a way for us to output the contents of a
-dictionary sorted by key:</p>
+<p>Come dovresti aspettarti da un dizionario, gli elementi non sono in
+ordine alfabetico.</p>
+<p>Però, dato che la lista di tuple è una lista e le tuple sono
+confrontabili, ora possiamo ordinarla. Convertire un dizionario in una
+lista di tuple è un modo per ottenere in output il contenuto di un
+dizionario ordinato per chiave:</p>
 <pre class="python"><code>&gt;&gt;&gt; d = {&#39;b&#39;:1, &#39;a&#39;:10, &#39;c&#39;:22}
 &gt;&gt;&gt; t = list(d.items())
 &gt;&gt;&gt; t
@@ -394,38 +420,37 @@ dictionary sorted by key:</p>
 &gt;&gt;&gt; t.sort()
 &gt;&gt;&gt; t
 [(&#39;a&#39;, 10), (&#39;b&#39;, 1), (&#39;c&#39;, 22)]</code></pre>
-<p>The list of tuples is now sorted in ascending alphabetical order by
-the key.</p>
-<h2 id="multiple-assignment-with-dictionaries">Multiple assignment with
-dictionaries</h2>
+<p>Ora la lista di tuple è ordinata per chiave, in ordine alfabetico
+crescente.</p>
+<h2 id="assegnazione-multipla-con-i-dizionari">Assegnazione multipla con
+i dizionari</h2>
 <p> </p>
-<p>Combining <code>items</code>, tuple assignment, and <code>for</code>,
-you can see a nice code pattern for traversing the keys and values of a
-dictionary in a single loop:</p>
+<p>Combinando <code>items</code>, l’assegnazione di tupla e
+<code>for</code>, puoi vedere uno schema di codice elegante per scorrere
+le chiavi e i valori di un dizionario in un solo ciclo:</p>
 <pre class="python"><code>d = {&#39;a&#39;:10, &#39;b&#39;:1, &#39;c&#39;:22}
 for key, val in d.items():
     print(val, key)</code></pre>
-<p>This loop has two <em>iteration variables</em> because
-<code>items</code> returns a list of tuples and <code>key, val</code> is
-a tuple assignment that successively iterates through each of the
-key-value pairs in the dictionary.</p>
-<p>For each iteration through the loop, both <code>key</code> and
-<code>val</code> are advanced to the next key-value pair in the
-dictionary (still in hash order).</p>
-<p>The output of this loop is:</p>
+<p>Questo ciclo ha due <em>variabili di iterazione</em>, perché
+<code>items</code> dà una tupla per ogni coppia e <code>key, val</code>
+è un’assegnazione di tupla che scorre in successione le coppie
+chiave-valore del dizionario.</p>
+<p>A ogni iterazione del ciclo, sia <code>key</code> sia
+<code>val</code> avanzano alla coppia chiave-valore successiva del
+dizionario (sempre nell’ordine di inserimento).</p>
+<p>L’output di questo ciclo è:</p>
 <pre><code>10 a
 1 b
 22 c</code></pre>
-<p>Again, it is in hash key order (i.e., no particular order).</p>
-<p>If we combine these two techniques, we can print out the contents of
-a dictionary sorted by the <em>value</em> stored in each key-value
-pair.</p>
-<p>To do this, we first make a list of tuples where each tuple is
-<code>(value, key)</code>. The <code>items</code> method would give us a
-list of <code>(key, value)</code> tuples, but this time we want to sort
-by value, not key. Once we have constructed the list with the value-key
-tuples, it is a simple matter to sort the list in reverse order and
-print it out.</p>
+<p>Di nuovo, l’ordine è quello in cui le chiavi sono state inserite.</p>
+<p>Se combiniamo queste due tecniche, possiamo stampare il contenuto di
+un dizionario ordinato in base al <em>valore</em> memorizzato in
+ciascuna coppia chiave-valore.</p>
+<p>Per farlo, creiamo prima una lista di tuple in cui ogni tupla è
+<code>(value, key)</code>. Il metodo <code>items</code> ci darebbe delle
+tuple <code>(key, value)</code>, ma questa volta vogliamo ordinare per
+valore, non per chiave. Una volta costruita la lista con le tuple
+valore-chiave, è semplice ordinarla in senso inverso e stamparla.</p>
 <pre class="python"><code>&gt;&gt;&gt; d = {&#39;a&#39;:10, &#39;b&#39;:1, &#39;c&#39;:22}
 &gt;&gt;&gt; l = list()
 &gt;&gt;&gt; for key, val in d.items() :
@@ -437,14 +462,14 @@ print it out.</p>
 &gt;&gt;&gt; l
 [(22, &#39;c&#39;), (10, &#39;a&#39;), (1, &#39;b&#39;)]
 &gt;&gt;&gt;</code></pre>
-<p>By carefully constructing the list of tuples to have the value as the
-first element of each tuple, we can sort the list of tuples and print
-our dictionary contents sorted by value.</p>
-<h2 id="the-most-common-words">The most common words</h2>
-<p></p>
-<p>Coming back to our running example of the text from <em>Romeo and
-Juliet</em> Act 2, Scene 2, we can augment our program to use this
-technique to print the ten most common words in the text as follows:</p>
+<p>Costruendo con cura la lista di tuple in modo che il valore sia il
+primo elemento di ogni tupla, possiamo ordinarla e stampare il contenuto
+del dizionario ordinato per valore.</p>
+<h2 id="le-parole-più-comuni">Le parole più comuni</h2>
+<p>Tornando al nostro esempio ricorrente, il testo di <em>Romeo e
+Giulietta</em>, atto II, scena II, possiamo ampliare il programma e
+usare questa tecnica per stampare le dieci parole più comuni del testo,
+come segue:</p>
 <pre class="python"><code>import string
 fhand = open(&#39;romeo-full.txt&#39;)
 counts = dict()
@@ -469,20 +494,21 @@ for key, val in lst[:10]:
     print(key, val)
 
 # Code: https://www.py4e.com/code3/count3.py</code></pre>
-<p>The first part of the program which reads the file and computes the
-dictionary that maps each word to the count of words in the document is
-unchanged. But instead of simply printing out <code>counts</code> and
-ending the program, we construct a list of <code>(val, key)</code>
-tuples and then sort the list in reverse order.</p>
-<p>Since the value is first, it will be used for the comparisons. If
-there is more than one tuple with the same value, it will look at the
-second element (the key), so tuples where the value is the same will be
-further sorted by the alphabetical order of the key.</p>
-<p>At the end we write a nice <code>for</code> loop which does a
-multiple assignment iteration and prints out the ten most common words
-by iterating through a slice of the list (<code>lst[:10]</code>).</p>
-<p>So now the output finally looks like what we want for our word
-frequency analysis.</p>
+<p>La prima parte del programma non è cambiata: legge il file e calcola
+il dizionario che fa corrispondere ogni parola al suo conteggio nel
+documento. Ma invece di stampare semplicemente <code>counts</code> e
+terminare il programma, costruiamo una lista di tuple
+<code>(val, key)</code> e poi la ordiniamo in senso inverso.</p>
+<p>Poiché il valore viene per primo, sarà usato per i confronti. Se c’è
+più di una tupla con lo stesso valore, verrà esaminato il secondo
+elemento (la chiave), quindi le tuple con lo stesso valore saranno
+ordinate ulteriormente secondo l’ordine alfabetico inverso della
+chiave.</p>
+<p>Alla fine scriviamo un bel ciclo <code>for</code> che esegue
+un’iterazione con assegnazione multipla e stampa le dieci parole più
+comuni scorrendo una slice della lista (<code>lst[:10]</code>).</p>
+<p>Così ora l’output ha finalmente l’aspetto che vogliamo per la nostra
+analisi della frequenza delle parole.</p>
 <pre><code>61 i
 42 and
 40 romeo
@@ -493,154 +519,157 @@ frequency analysis.</p>
 30 that
 29 my
 24 thee</code></pre>
-<p>The fact that this complex data parsing and analysis can be done with
-an easy-to-understand 19-line Python program is one reason why Python is
-a good choice as a language for exploring information.</p>
-<h2 id="using-tuples-as-keys-in-dictionaries">Using tuples as keys in
-dictionaries</h2>
+<p>Il fatto che questa complessa analisi del testo e dei dati si possa
+fare con un programma Python di 19 righe, facile da capire, è uno dei
+motivi per cui Python è una buona scelta come linguaggio per esplorare
+le informazioni.</p>
+<h2 id="usare-le-tuple-come-chiavi-nei-dizionari">Usare le tuple come
+chiavi nei dizionari</h2>
 <p> </p>
-<p>Because tuples are <em>hashable</em> and lists are not, if we want to
-create a <em>composite</em> key to use in a dictionary we must use a
-tuple as the key.</p>
-<p>We would encounter a composite key if we wanted to create a telephone
-directory that maps from last-name, first-name pairs to telephone
-numbers. Assuming that we have defined the variables <code>last</code>,
-<code>first</code>, and <code>number</code>, we could write a dictionary
-assignment statement as follows:</p>
+<p>Poiché le tuple sono <em>hashable</em> e le liste no, se vogliamo
+creare una chiave <em>composta</em> per un dizionario dobbiamo usare
+come chiave una tupla.</p>
+<p>Avremmo a che fare con una chiave composta se volessimo creare una
+rubrica telefonica che fa corrispondere coppie cognome-nome a numeri di
+telefono. Supponendo di aver definito le variabili <code>last</code>,
+<code>first</code> e <code>number</code>, potremmo scrivere
+un’istruzione di assegnazione al dizionario come segue:</p>
 <pre class="python"><code>directory[last,first] = number</code></pre>
-<p>The expression in brackets is a tuple. We could use tuple assignment
-in a <code>for</code> loop to traverse this dictionary.</p>
-<p></p>
+<p>L’espressione tra parentesi quadre è una tupla. Potremmo usare
+l’assegnazione di tupla in un ciclo <code>for</code> per scorrere questo
+dizionario.</p>
 <pre class="python"><code>for last, first in directory:
     print(first, last, directory[last,first])</code></pre>
-<p>This loop traverses the keys in <code>directory</code>, which are
-tuples. It assigns the elements of each tuple to <code>last</code> and
-<code>first</code>, then prints the name and corresponding telephone
-number.</p>
-<h2 id="sequences-strings-lists-and-tuples---oh-my">Sequences: strings,
-lists, and tuples - Oh My!</h2>
-<p></p>
-<p>I have focused on lists of tuples, but almost all of the examples in
-this chapter also work with lists of lists, tuples of tuples, and tuples
-of lists. To avoid enumerating the possible combinations, it is
-sometimes easier to talk about sequences of sequences.</p>
-<p>In many contexts, the different kinds of sequences (strings, lists,
-and tuples) can be used interchangeably. So how and why do you choose
-one over the others?</p>
+<p>Questo ciclo scorre le chiavi di <code>directory</code>, che sono
+tuple. Assegna gli elementi di ogni tupla a <code>last</code> e
+<code>first</code>, poi stampa il nome e il numero di telefono
+corrispondente.</p>
+<h2 id="sequenze-stringhe-liste-e-tuple---oh-cavolo">Sequenze: stringhe,
+liste e tuple - Oh cavolo!</h2>
+<p>Mi sono concentrato sulle liste di tuple, ma quasi tutti gli esempi
+di questo capitolo funzionano anche con liste di liste, tuple di tuple e
+tuple di liste. Per evitare di elencare le combinazioni possibili, a
+volte è più semplice parlare di sequenze di sequenze.</p>
+<p>In molti contesti i diversi tipi di sequenze (stringhe, liste e
+tuple) possono essere usati in modo intercambiabile. Allora come e
+perché ne scegli uno invece degli altri?</p>
 <p> </p>
-<p>To start with the obvious, strings are more limited than other
-sequences because the elements have to be characters. They are also
-immutable. If you need the ability to change the characters in a string
-(as opposed to creating a new string), you might want to use a list of
-characters instead.</p>
-<p>Lists are more common than tuples, mostly because they are mutable.
-But there are a few cases where you might prefer tuples:</p>
+<p>Per cominciare dall’ovvio, le stringhe sono più limitate delle altre
+sequenze perché gli elementi devono essere caratteri. Sono anche
+immutabili. Se ti serve poter cambiare i caratteri di una stringa
+(invece di creare una nuova stringa), ti conviene usare piuttosto una
+lista di caratteri.</p>
+<p>Le liste sono più comuni delle tuple, soprattutto perché sono
+mutabili. Ma ci sono alcuni casi in cui potresti preferire le tuple:</p>
 <ol type="1">
-<li><p>In some contexts, like a <code>return</code> statement, it is
-syntactically simpler to create a tuple than a list. In other contexts,
-you might prefer a list.</p></li>
-<li><p>If you want to use a sequence as a dictionary key, you have to
-use an immutable type like a tuple or string.</p></li>
-<li><p>If you are passing a sequence as an argument to a function, using
-tuples reduces the potential for unexpected behavior due to
-aliasing.</p></li>
+<li><p>In alcuni contesti, come un’istruzione <code>return</code>, è
+sintatticamente più semplice creare una tupla che una lista. In altri
+contesti potresti preferire una lista.</p></li>
+<li><p>Se vuoi usare una sequenza come chiave di un dizionario, devi
+usare un tipo immutabile come una tupla o una stringa.</p></li>
+<li><p>Se passi una sequenza come argomento a una funzione, usare le
+tuple riduce la possibilità di comportamenti inattesi dovuti
+all’aliasing.</p></li>
 </ol>
-<p>Because tuples are immutable, they don’t provide methods like
-<code>sort</code> and <code>reverse</code>, which modify existing lists.
-However Python provides the built-in functions <code>sorted</code> and
-<code>reversed</code>, which take any sequence as a parameter and return
-a new sequence with the same elements in a different order.</p>
+<p>Poiché le tuple sono immutabili, non forniscono metodi come
+<code>sort</code> e <code>reverse</code>, che modificano liste
+esistenti. Python però fornisce le funzioni built-in <code>sorted</code>
+e <code>reversed</code>, che accettano qualsiasi sequenza come parametro
+e restituiscono una nuova sequenza con gli stessi elementi in un ordine
+diverso.</p>
 <p> </p>
-<h2 id="list-comprehension">List comprehension</h2>
-<p>Sometimes you want to create a sequence by using data from another
-sequence. You can achieve this by writing a for loop and appending one
-item at a time. For example, if you wanted to convert a list of strings
-– each string storing digits – into numbers that you can sum up, you
-would write:</p>
+<h2 id="comprensione-di-lista">Comprensione di lista</h2>
+<p>A volte vuoi creare una sequenza usando i dati di un’altra sequenza.
+Puoi farlo scrivendo un ciclo <code>for</code> e aggiungendo un elemento
+alla volta. Ad esempio, se volessi convertire una lista di stringhe –
+ognuna delle quali contiene delle cifre – in numeri da sommare,
+scriveresti:</p>
 <pre class="python"><code>list_of_ints_in_strings = [&#39;42&#39;, &#39;65&#39;, &#39;12&#39;]
 list_of_ints = []
 for x in list_of_ints_in_strings:
     list_of_ints.append(int(x))
 
 print(sum(list_of_ints))</code></pre>
-<p>With list comprehension, the above code can be written in a more
-compact manner:</p>
+<p>Con la <em>comprensione di lista</em> (list comprehension), il codice
+qui sopra si può scrivere in modo più compatto:</p>
 <pre class="python"><code>list_of_ints_in_strings = [&#39;42&#39;, &#39;65&#39;, &#39;12&#39;]
 list_of_ints = [ int(x) for x in list_of_ints_in_strings ]
 print(sum(list_of_ints))</code></pre>
-<p></p>
-<h2 id="debugging">Debugging</h2>
+<h2 id="debug">Debug</h2>
 <p> </p>
-<p>Lists, dictionaries and tuples are known generically as <em>data
-structures</em>; in this chapter we are starting to see compound data
-structures, like lists of tuples, and dictionaries that contain tuples
-as keys and lists as values. Compound data structures are useful, but
-they are prone to what I call <em>shape errors</em>; that is, errors
-caused when a data structure has the wrong type, size, or composition,
-or perhaps you write some code and forget the shape of your data and
-introduce an error. For example, if you are expecting a list with one
-integer and I give you a plain old integer (not in a list), it won’t
-work.</p>
-<h2 id="glossary">Glossary</h2>
+<p>Liste, dizionari e tuple sono chiamati genericamente <em>strutture
+dati</em>; in questo capitolo cominciamo a vedere strutture dati
+composte, come liste di tuple e dizionari che contengono tuple come
+chiavi e liste come valori. Le strutture dati composte sono utili, ma
+sono soggette a quelli che io chiamo <em>errori di forma</em> (shape
+error), cioè errori causati da una struttura dati che ha il tipo, la
+dimensione o la composizione sbagliati; oppure magari scrivi del codice,
+dimentichi la forma dei dati e introduci un errore. Ad esempio, se ti
+aspetti una lista con un solo intero e io ti do un semplice intero (non
+dentro una lista), non funzionerà.</p>
+<h2 id="glossario">Glossario</h2>
 <dl>
-<dt>comparable</dt>
+<dt><strong>Assegnazione di tupla</strong></dt>
 <dd>
-A type where one value can be checked to see if it is greater than, less
-than, or equal to another value of the same type. Types which are
-comparable can be put in a list and sorted.
+Un’assegnazione con una sequenza sul lato destro e una tupla di
+variabili sul lato sinistro. Il lato destro viene valutato e poi i suoi
+elementi vengono assegnati alle variabili sul lato sinistro.
 </dd>
-<dt>data structure</dt>
+<dt><strong>Confrontabile</strong></dt>
 <dd>
-A collection of related values, often organized in lists, dictionaries,
-tuples, etc.
+Relativo a un tipo in cui si può controllare se un valore è maggiore o
+minore di un altro valore dello stesso tipo, o uguale a esso. I tipi
+confrontabili possono essere messi in una lista e ordinati.
 </dd>
-<dt>DSU</dt>
+<dt><strong>DSU</strong></dt>
 <dd>
-Abbreviation of “decorate-sort-undecorate”, a pattern that involves
-building a list of tuples, sorting, and extracting part of the result.
+L’abbreviazione di <em>decorate-sort-undecorate</em> (decorare,
+ordinare, togliere la decorazione), uno schema che consiste nel
+costruire una lista di tuple, ordinarla ed estrarre una parte del
+risultato.
 </dd>
-<dt>gather</dt>
+<dt><strong>Forma (di una struttura dati)</strong></dt>
 <dd>
-The operation of assembling a variable-length argument tuple.
+Un riepilogo del tipo, della dimensione e della composizione di una
+struttura dati.
 </dd>
-<dt>hashable</dt>
+<dt><strong>Hashable</strong></dt>
 <dd>
-A type that has a hash function. Immutable types like integers, floats,
-and strings are hashable; mutable types like lists and dictionaries are
-not.
+Relativo a un tipo che ha una funzione hash. I tipi immutabili come gli
+interi, i numeri in virgola mobile e le stringhe sono hashable; i tipi
+mutabili come le liste e i dizionari non lo sono.
 </dd>
-<dt>scatter</dt>
+<dt><strong>Raccolta (gather)</strong></dt>
 <dd>
-The operation of treating a sequence as a list of arguments.
+L’operazione che assembla una tupla di argomenti di lunghezza variabile.
 </dd>
-<dt>shape (of a data structure)</dt>
+<dt><strong>Singleton</strong></dt>
 <dd>
-A summary of the type, size, and composition of a data structure.
+Una lista (o un’altra sequenza) con un solo elemento.
 </dd>
-<dt>singleton</dt>
+<dt><strong>Spacchettamento (scatter)</strong></dt>
 <dd>
-A list (or other sequence) with a single element.
+L’operazione che tratta una sequenza come un elenco di argomenti.
 </dd>
-<dt>tuple</dt>
+<dt><strong>Struttura dati</strong></dt>
 <dd>
-An immutable sequence of elements.
+Una collezione di valori correlati, spesso organizzati in liste,
+dizionari, tuple, ecc.
 </dd>
-<dt>tuple assignment</dt>
+<dt><strong>Tupla</strong></dt>
 <dd>
-An assignment with a sequence on the right side and a tuple of variables
-on the left. The right side is evaluated and then its elements are
-assigned to the variables on the left.
+Una sequenza immutabile di elementi.
 </dd>
 </dl>
-<h2 id="exercises">Exercises</h2>
-<p><strong>Exercise 1:</strong> Revise a previous program as follows:
-Read and parse the “From” lines and pull out the addresses from the
-line. Count the number of messages from each person using a
-dictionary.</p>
-<p>After all the data has been read, print the person with the most
-commits by creating a list of (count, email) tuples from the dictionary.
-Then sort the list in reverse order and print out the person who has the
-most commits.</p>
+<h2 id="esercizi">Esercizi</h2>
+<p><strong>Esercizio 1:</strong> Rivedi un programma precedente come
+segue: leggi e analizza le righe <code>"From "</code> ed estraine gli
+indirizzi. Conta il numero di messaggi di ogni persona usando un
+dizionario.</p>
+<p>Dopo aver letto tutti i dati, stampa la persona con più commit
+creando dal dizionario una lista di tuple <code>(count, email)</code>.
+Poi ordina la lista in senso inverso e stampa la persona che ha più
+commit.</p>
 <pre><code>Sample Line:
 From stephen.marquard@uct.ac.za Sat Jan  5 09:14:16 2008
 
@@ -649,12 +678,12 @@ cwen@iupui.edu 5
 
 Enter a file name: mbox.txt
 zqian@umich.edu 195</code></pre>
-<p><strong>Exercise 2:</strong> This program counts the distribution of
-the hour of the day for each of the messages. You can pull the hour from
-the “From” line by finding the time string and then splitting that
-string into parts using the colon character. Once you have accumulated
-the counts for each hour, print out the counts, one per line, sorted by
-hour as shown below.</p>
+<p><strong>Esercizio 2:</strong> Questo programma conta la distribuzione
+dei messaggi per ora del giorno. Puoi estrarre l’ora dalla riga
+<code>"From "</code> trovando la stringa dell’orario e poi dividendo
+quella stringa in parti con il carattere dei due punti. Dopo aver
+accumulato i conteggi per ogni ora, stampali, uno per riga, ordinati per
+ora, come mostrato qui sotto.</p>
 <pre><code>python timeofday.py
 Enter a file name: mbox-short.txt
 04 3
@@ -669,27 +698,27 @@ Enter a file name: mbox-short.txt
 17 2
 18 1
 19 1</code></pre>
-<p><strong>Exercise 3:</strong> Write a program that reads a file and
-prints the <em>letters</em> in decreasing order of frequency.</p>
-<p>Your program should convert all the input to lower case and only
-count the letters a-z. Your program should not count spaces, digits,
-punctuation, or anything other than the letters a-z. Find text samples
-from several different languages and see how letter frequency varies
-between languages. Compare your results with the tables at <a
-href="https://wikipedia.org/wiki/Letter_frequencies"
+<p><strong>Esercizio 3:</strong> Scrivi un programma che legga un file e
+stampi le <em>lettere</em> in ordine decrescente di frequenza.</p>
+<p>Il programma dovrebbe convertire tutto l’input in minuscolo e contare
+solo le lettere a-z. Non dovrebbe contare spazi, cifre, segni di
+punteggiatura o qualsiasi cosa diversa dalle lettere a-z. Trova campioni
+di testo in diverse lingue e guarda come varia la frequenza delle
+lettere da una lingua all’altra. Confronta i risultati con le tabelle su
+<a href="https://wikipedia.org/wiki/Letter_frequencies"
 class="uri">https://wikipedia.org/wiki/Letter_frequencies</a>.</p>
 <p> </p>
 <section id="footnotes" class="footnotes footnotes-end-of-document"
 role="doc-endnotes">
 <hr />
 <ol>
-<li id="fn1"><p>Fun fact: The word “tuple” comes from the names given to
-sequences of numbers of varying lengths: single, double, triple,
-quadruple, quintuple, sextuple, septuple, etc.<a href="#fnref1"
+<li id="fn1"><p>Curiosità: la parola “tupla” deriva dai nomi dati alle
+sequenze di numeri di diversa lunghezza: singola, doppia, tripla,
+quadrupla, quintupla, sestupla, settupla, ecc.<a href="#fnref1"
 class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2"><p>Python does not translate the syntax literally. For
-example, if you try this with a dictionary, it will not work as you
-might expect.<a href="#fnref2" class="footnote-back"
+<li id="fn2"><p>Python non traduce la sintassi alla lettera. Ad esempio,
+se provi a farlo con un dizionario, non funzionerà come potresti
+aspettarti.<a href="#fnref2" class="footnote-back"
 role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>

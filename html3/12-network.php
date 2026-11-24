@@ -3,16 +3,22 @@
   ob_start();
 }?>
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="pandoc" />
+  <meta name="generator" content="pandoc 3.14" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>Networked programs</title>
+  <title>Programmi in rete</title>
   <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
     html {
       color: #1a1a1a;
+      color: light-dark(#1a1a1a, #fdfdfd);
       background-color: #fdfdfd;
+      background-color: light-dark(#fdfdfd, #1a1a1a);
+      color-scheme: light dark;
     }
     body {
       margin: 0 auto;
@@ -35,31 +41,11 @@
         font-size: 1.8em;
       }
     }
-    @media print {
-      html {
-        background-color: white;
-      }
-      body {
-        background-color: transparent;
-        color: black;
-        font-size: 12pt;
-      }
-      p, h2, h3 {
-        orphans: 3;
-        widows: 3;
-      }
-      h2, h3, h4 {
-        page-break-after: avoid;
-      }
-    }
     p {
       margin: 1em 0;
     }
-    a {
-      color: #1a1a1a;
-    }
-    a:visited {
-      color: #1a1a1a;
+    a, a:visited {
+      color: inherit;
     }
     img {
       max-width: 100%;
@@ -88,10 +74,14 @@
     blockquote {
       margin: 1em 0 1em 1.7em;
       padding-left: 1em;
-      border-left: 2px solid #e6e6e6;
+      border-left: 2px solid;
+      border-color: #e6e6e6;
+      border-color: light-dark(#e6e6e6, #4c4c4c);
       color: #606060;
+      color: light-dark(#606060, #b6b6b6);
     }
     code {
+      white-space: pre-wrap;
       font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
       font-size: 85%;
       margin: 0;
@@ -112,7 +102,7 @@
     }
     hr {
       border: none;
-      border-top: 1px solid #1a1a1a;
+      border-top: 1px solid currentColor;
       height: 1px;
       margin: 1em 0;
     }
@@ -129,11 +119,11 @@
     }
     tbody {
       margin-top: 0.5em;
-      border-top: 1px solid #1a1a1a;
-      border-bottom: 1px solid #1a1a1a;
+      border-top: 1px solid currentColor;
+      border-bottom: 1px solid currentColor;
     }
     th {
-      border-top: 1px solid #1a1a1a;
+      border-top: 1px solid currentColor;
       padding: 0.25em 0.5em 0.25em 0.5em;
     }
     td {
@@ -155,10 +145,19 @@
     #TOC a:not(:hover) {
       text-decoration: none;
     }
-    code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
-    div.columns{display: flex; gap: min(4vw, 1.5em);}
-    div.column{flex: auto; overflow-x: auto;}
+    em, em em em, em em em em em {
+      font-style: italic;
+    }
+    em em, em em em em {
+      font-style: normal;
+    }
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     /* The extra [class] is a hack that increases specificity enough to
        override a similar rule in reveal.js */
@@ -169,62 +168,83 @@
       margin: 0 0.8em 0.2em -1.6em;
       vertical-align: middle;
     }
-    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
-  </style>
+    @media print {
+      html {
+        color-scheme: light only;
+      }
+      html, body, pre, code {
+        background-color: transparent;
+      }
+      body, a, a:visited, blockquote {
+        color: black;
+      }
+      pre, code {
+        padding: 0;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }  </style>
 </head>
 <body>
-<h1 id="networked-programs">Networked programs</h1>
-<p>While many of the examples in this book have focused on reading files
-and looking for data in those files, there are many different sources of
-information when one considers the Internet.</p>
-<p>In this chapter we will pretend to be a web browser and retrieve web
-pages using the Hypertext Transfer Protocol (HTTP). Then we will read
-through the web page data and parse it.</p>
+<h1 id="programmi-in-rete">Programmi in rete</h1>
+<p>Molti degli esempi di questo libro si sono concentrati sulla lettura
+dei file e sulla ricerca di dati al loro interno, ma se si pensa a
+Internet le fonti di informazione sono molte e di tipo diverso.</p>
+<p>In questo capitolo faremo finta di essere un browser web e
+recupereremo pagine web usando l’Hypertext Transfer Protocol (HTTP). Poi
+leggeremo i dati di quelle pagine e li analizzeremo.</p>
 <h2 id="hypertext-transfer-protocol---http">Hypertext Transfer Protocol
 - HTTP</h2>
-<p>The network protocol that powers the web is actually quite simple and
-there is built-in support in Python called <code>socket</code> which
-makes it very easy to make network connections and retrieve data over
-those sockets in a Python program.</p>
-<p>A <em>socket</em> is much like a file, except that a single socket
-provides a two-way connection between two programs. You can both read
-from and write to the same socket. If you write something to a socket,
-it is sent to the application at the other end of the socket. If you
-read from the socket, you are given the data which the other application
-has sent.</p>
-<p>But if you try to read a socket<a href="#fn1" class="footnote-ref"
-id="fnref1" role="doc-noteref"><sup>1</sup></a> when the program on the
-other end of the socket has not sent any data, you just sit and wait. If
-the programs on both ends of the socket simply wait for some data
-without sending anything, they will wait for a very long time, so an
-important part of programs that communicate over the Internet is to have
-some sort of protocol.</p>
-<p>A protocol is a set of precise rules that determine who is to go
-first, what they are to do, and then what the responses are to that
-message, and who sends next, and so on. In a sense the two applications
-at either end of the socket are doing a dance and making sure not to
-step on each other’s toes.</p>
-<p>There are many documents that describe these network protocols. The
-Hypertext Transfer Protocol is described in the following document:</p>
+<p>Il protocollo di rete su cui si basa il web è in realtà piuttosto
+semplice, e Python ha un supporto built-in, chiamato
+<code>socket</code>, che rende molto facile aprire connessioni di rete e
+recuperare dati attraverso quei socket in un programma Python.</p>
+<p>Un <em>socket</em> è molto simile a un file, con la differenza che un
+solo socket fornisce una connessione bidirezionale tra due programmi.
+Sullo stesso socket puoi sia leggere sia scrivere. Se scrivi qualcosa su
+un socket, viene inviato all’applicazione che si trova all’altra
+estremità del socket. Se leggi dal socket, ricevi i dati che l’altra
+applicazione ha inviato.</p>
+<p>Ma se provi a leggere da un socket<a href="#fn1" class="footnote-ref"
+id="fnref1" role="doc-noteref"><sup>1</sup></a> quando il programma
+all’altra estremità non ha inviato alcun dato, resti lì ad aspettare. Se
+i programmi ai due capi del socket aspettano semplicemente dei dati
+senza inviare nulla, aspetteranno per moltissimo tempo; per questo, nei
+programmi che comunicano su Internet, è importante avere un qualche tipo
+di protocollo.</p>
+<p>Un protocollo è un insieme di regole precise che stabiliscono chi
+deve cominciare, cosa deve fare, quali sono poi le risposte a quel
+messaggio, chi invia dopo, e così via. In un certo senso le due
+applicazioni ai capi del socket stanno ballando e fanno attenzione a non
+pestarsi i piedi.</p>
+<p>Esistono molti documenti che descrivono questi protocolli di rete.
+L’Hypertext Transfer Protocol è descritto nel documento seguente:</p>
 <p><a href="https://www.w3.org/Protocols/rfc2616/rfc2616.txt"
 class="uri">https://www.w3.org/Protocols/rfc2616/rfc2616.txt</a></p>
-<p>This is a long and complex 176-page document with a lot of detail. If
-you find it interesting, feel free to read it all. But if you take a
-look around page 36 of RFC2616 you will find the syntax for the GET
-request. To request a document from a web server, we make a connection,
-e.g. to the <code>www.pr4e.org</code> server on port 80, and then send a
-line of the form</p>
+<p>È un documento lungo e complesso, di 176 pagine, con moltissimi
+dettagli. Se lo trovi interessante, leggilo pure tutto. Ma se dai
+un’occhiata intorno a pagina 36 dell’RFC2616, troverai la sintassi della
+richiesta <code>GET</code>. Per richiedere un documento a un server web,
+apriamo una connessione, ad esempio con il server
+<code>data.pr4e.org</code> sulla porta 80, e poi inviamo una riga di
+questa forma</p>
 <p><code>GET http://data.pr4e.org/romeo.txt HTTP/1.0</code></p>
-<p>where the second parameter is the web page we are requesting, and
-then we also send a blank line. The web server will respond with some
-header information about the document and a blank line followed by the
-document content.</p>
-<h2 id="the-worlds-simplest-web-browser">The world’s simplest web
-browser</h2>
-<p>Perhaps the easiest way to show how the HTTP protocol works is to
-write a very simple Python program that makes a connection to a web
-server and follows the rules of the HTTP protocol to request a document
-and display what the server sends back.</p>
+<p>dove il secondo parametro è la pagina web che stiamo richiedendo; poi
+inviamo anche una riga vuota. Il server web risponderà con alcune
+informazioni di intestazione sul documento e con una riga vuota, seguita
+dal contenuto del documento.</p>
+<h2 id="il-browser-web-più-semplice-del-mondo">Il browser web più
+semplice del mondo</h2>
+<p>Forse il modo più facile per mostrare come funziona il protocollo
+HTTP è scrivere un programma Python molto semplice che apre una
+connessione con un server web e segue le regole del protocollo HTTP per
+richiedere un documento e visualizzare ciò che il server invia in
+risposta.</p>
 <pre class="python"><code>import socket
 
 mysock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -241,23 +261,24 @@ while True:
 mysock.close()
 
 # Code: https://www.py4e.com/code3/socket1.py</code></pre>
-<p>First the program makes a connection to port 80 on the server <a
-href="http://www.pr4e.com">www.pr4e.com</a>. Since our program is
-playing the role of the “web browser”, the HTTP protocol says we must
-send the GET command followed by a blank line. <code>\r\n</code>
-signifies an EOL (end of line), so <code>\r\n\r\n</code> signifies
-nothing between two EOL sequences. That is the equivalent of a blank
-line.</p>
+<p>Per prima cosa il programma apre una connessione sulla porta 80 del
+server <code>data.pr4e.org</code>. Dato che il programma recita la parte
+del “browser web”, il protocollo HTTP dice che dobbiamo inviare il
+comando <code>GET</code> seguito da una riga vuota. <code>\r\n</code>
+indica un EOL (end of line, fine riga), quindi <code>\r\n\r\n</code>
+indica che tra due sequenze EOL non c’è niente. Equivale a una riga
+vuota.</p>
 <figure>
-<img src="../images/socket.svg" alt="A Socket Connection" style="height: 2.0in;"/>
+<img src="../images/socket.svg" alt="Una connessione tramite socket" style="height: 2.0in;"/>
 <figcaption>
-A Socket Connection
+Una connessione tramite socket
 </figcaption>
 </figure>
-<p>Once we send that blank line, we write a loop that receives data in
-512-character chunks from the socket and prints the data out until there
-is no more data to read (i.e., the recv() returns an empty string).</p>
-<p>The program produces the following output:</p>
+<p>Dopo aver inviato quella riga vuota, scriviamo un ciclo che riceve
+dal socket dati in blocchi da 512 caratteri e li stampa, finché non ci
+sono più dati da leggere (cioè finché <code>recv()</code> non
+restituisce una stringa vuota).</p>
+<p>Il programma produce l’output seguente:</p>
 <pre><code>HTTP/1.1 200 OK
 Date: Wed, 11 Apr 2018 18:52:55 GMT
 Server: Apache/2.4.7 (Ubuntu)
@@ -275,42 +296,43 @@ But soft what light through yonder window breaks
 It is the east and Juliet is the sun
 Arise fair sun and kill the envious moon
 Who is already sick and pale with grief</code></pre>
-<p>The output starts with headers which the web server sends to describe
-the document. For example, the <code>Content-Type</code> header
-indicates that the document is a plain text document
-(<code>text/plain</code>).</p>
-<p>After the server sends us the headers, it adds a blank line to
-indicate the end of the headers, and then sends the actual data of the
-file <em>romeo.txt</em>.</p>
-<p>This example shows how to make a low-level network connection with
-sockets. Sockets can be used to communicate with a web server or with a
-mail server or many other kinds of servers. All that is needed is to
-find the document which describes the protocol and write the code to
-send and receive the data according to the protocol.</p>
-<p>However, since the protocol that we use most commonly is the HTTP web
-protocol, Python has a special library specifically designed to support
-the HTTP protocol for the retrieval of documents and data over the web,
-<code>urllib</code>, which we’ll cover shortly.</p>
-<p>One of the requirements for using the HTTP protocol is the need to
-send and receive data as bytes objects, instead of strings. In the
-preceding example, the <code>encode()</code> and <code>decode()</code>
-methods convert strings into bytes objects and back again.</p>
-<p>The next example uses <code>b''</code> notation to specify that a
-variable should be stored as a bytes object. <code>encode()</code> and
-<code>b''</code> are equivalent.</p>
+<p>L’output comincia con le intestazioni che il server web invia per
+descrivere il documento. Ad esempio, l’intestazione
+<code>Content-Type</code> indica che si tratta di un documento di solo
+testo (<code>text/plain</code>).</p>
+<p>Dopo averci inviato le intestazioni, il server aggiunge una riga
+vuota per indicarne la fine, e poi invia i dati veri e propri del file
+<code>romeo.txt</code>.</p>
+<p>Questo esempio mostra come aprire una connessione di rete di basso
+livello con i socket. I socket si possono usare per comunicare con un
+server web, con un server di posta o con molti altri tipi di server.
+Basta trovare il documento che descrive il protocollo e scrivere il
+codice che invia e riceve i dati secondo quel protocollo.</p>
+<p>Tuttavia, dato che il protocollo che usiamo più spesso è HTTP, il
+protocollo del web, Python ha una libreria speciale, progettata apposta
+per supportare HTTP nel recupero di documenti e dati dal web:
+<code>urllib</code>, che vedremo tra poco.</p>
+<p>Uno dei requisiti per usare il protocollo HTTP è inviare e ricevere i
+dati come oggetti bytes, invece che come stringhe. Nell’esempio
+precedente, i metodi <code>encode()</code> e <code>decode()</code>
+convertono le stringhe in oggetti bytes e viceversa.</p>
+<p>L’esempio seguente usa la notazione <code>b''</code> per specificare
+che una variabile deve essere memorizzata come oggetto bytes.
+<code>encode()</code> e <code>b''</code> sono equivalenti.</p>
 <pre><code>&gt;&gt;&gt; b&#39;Hello world&#39;
 b&#39;Hello world&#39;
 &gt;&gt;&gt; &#39;Hello world&#39;.encode()
 b&#39;Hello world&#39;</code></pre>
-<h2 id="retrieving-an-image-over-http">Retrieving an image over
-HTTP</h2>
+<h2 id="recuperare-unimmagine-tramite-http">Recuperare un’immagine
+tramite HTTP</h2>
 <p> </p>
-<p>In the above example, we retrieved a plain text file which had
-newlines in the file and we simply copied the data to the screen as the
-program ran. We can use a similar program to retrieve an image using
-HTTP. Instead of copying the data to the screen as the program runs, we
-accumulate the data in a string, trim off the headers, and then save the
-image data to a file as follows:</p>
+<p>Nell’esempio precedente abbiamo recuperato un file di solo testo che
+conteneva dei newline (caratteri di fine riga) e ci siamo limitati a
+copiare i dati sullo schermo mentre il programma veniva eseguito.
+Possiamo usare un programma simile per recuperare un’immagine tramite
+HTTP. Invece di copiare i dati sullo schermo durante l’esecuzione, li
+accumuliamo in una stringa, togliamo le intestazioni e poi salviamo i
+dati dell’immagine in un file, come segue:</p>
 <pre class="python"><code>import socket
 import time
 
@@ -344,7 +366,7 @@ fhand.write(picture)
 fhand.close()
 
 # Code: https://www.py4e.com/code3/urljpeg.py</code></pre>
-<p>When the program runs, it produces the following output:</p>
+<p>Durante l’esecuzione, il programma produce l’output seguente:</p>
 <pre><code>$ python urljpeg.py
 5120 5120
 5120 10240
@@ -370,29 +392,30 @@ Pragma: no-cache
 Expires: Wed, 11 Jan 1984 05:00:00 GMT
 Connection: close
 Content-Type: image/jpeg</code></pre>
-<p>You can see that for this url, the <code>Content-Type</code> header
-indicates that body of the document is an image
-(<code>image/jpeg</code>). Once the program completes, you can view the
-image data by opening the file <code>stuff.jpg</code> in an image
-viewer.</p>
-<p>As the program runs, you can see that we don’t get 5120 characters
-each time we call the <code>recv()</code> method. We get as many
-characters as have been transferred across the network to us by the web
-server at the moment we call <code>recv()</code>. In this example, we
-either get as few as 3200 characters each time we request up to 5120
-characters of data.</p>
-<p>Your results may be different depending on your network speed. Also
-note that on the last call to <code>recv()</code> we get 3167 bytes,
-which is the end of the stream, and in the next call to
-<code>recv()</code> we get a zero-length string that tells us that the
-server has called <code>close()</code> on its end of the socket and
-there is no more data forthcoming.</p>
+<p>Puoi notare che per questo URL l’intestazione
+<code>Content-Type</code> indica che il corpo del documento è
+un’immagine (<code>image/jpeg</code>). Quando il programma ha finito,
+puoi vedere l’immagine aprendo il file <code>stuff.jpg</code> con un
+visualizzatore di immagini.</p>
+<p>Mentre il programma viene eseguito, puoi notare che non riceviamo
+5120 caratteri a ogni chiamata del metodo <code>recv()</code>. Riceviamo
+i caratteri che il server web ci ha già trasmesso attraverso la rete nel
+momento in cui chiamiamo <code>recv()</code>. In questo esempio, ogni
+volta che chiediamo fino a 5120 caratteri di dati, ne riceviamo a volte
+anche solo 3200.</p>
+<p>I risultati possono variare a seconda della velocità della rete. Nota
+anche che all’ultima chiamata a <code>recv()</code> riceviamo 3167 byte,
+cioè la fine del flusso, e alla chiamata successiva a
+<code>recv()</code> riceviamo una stringa di lunghezza zero, che ci dice
+che il server ha chiamato <code>close()</code> sulla sua estremità del
+socket e che non arriveranno altri dati.</p>
 <p> </p>
-<p>We can slow down our successive <code>recv()</code> calls by
-uncommenting the call to <code>time.sleep()</code>. This way, we wait a
-quarter of a second after each call so that the server can “get ahead”
-of us and send more data to us before we call <code>recv()</code> again.
-With the delay, in place the program executes as follows:</p>
+<p>Possiamo rallentare le chiamate successive a <code>recv()</code>
+togliendo il commento dalla chiamata a <code>time.sleep()</code>. In
+questo modo, dopo ogni chiamata aspettiamo un quarto di secondo, così il
+server può “portarsi avanti” e inviarci altri dati prima che chiamiamo
+di nuovo <code>recv()</code>. Con il ritardo attivo, il programma viene
+eseguito così:</p>
 <pre><code>$ python urljpeg.py
 5120 5120
 5120 10240
@@ -415,26 +438,28 @@ Pragma: no-cache
 Expires: Wed, 11 Jan 1984 05:00:00 GMT
 Connection: close
 Content-Type: image/jpeg</code></pre>
-<p>Now other than the first and last calls to <code>recv()</code>, we
-now get 5120 characters each time we ask for new data.</p>
-<p>There is a buffer between the server making <code>send()</code>
-requests and our application making <code>recv()</code> requests. When
-we run the program with the delay in place, at some point the server
-might fill up the buffer in the socket and be forced to pause until our
-program starts to empty the buffer. The pausing of either the sending
-application or the receiving application is called “flow control.”</p>
-<p></p>
-<h2 id="retrieving-web-pages-with-urllib">Retrieving web pages with
+<p>Ora, tranne che nella prima e nell’ultima chiamata a
+<code>recv()</code>, riceviamo 5120 caratteri ogni volta che chiediamo
+nuovi dati.</p>
+<p>Tra il server che fa richieste <code>send()</code> e la nostra
+applicazione che fa richieste <code>recv()</code> c’è un buffer. Quando
+eseguiamo il programma con il ritardo attivo, a un certo punto il server
+potrebbe riempire il buffer del socket ed essere costretto a fermarsi
+finché il nostro programma non comincia a svuotarlo. La pausa
+dell’applicazione che invia o di quella che riceve si chiama
+<em>controllo di flusso</em> (flow control).</p>
+<h2 id="recuperare-pagine-web-con-urllib">Recuperare pagine web con
 <code>urllib</code></h2>
-<p>While we can manually send and receive data over HTTP using the
-socket library, there is a much simpler way to perform this common task
-in Python by using the <code>urllib</code> library.</p>
-<p>Using <code>urllib</code>, you can treat a web page much like a file.
-You simply indicate which web page you would like to retrieve and
-<code>urllib</code> handles all of the HTTP protocol and header
-details.</p>
-<p>The equivalent code to read the <em>romeo.txt</em> file from the web
-using <code>urllib</code> is as follows:</p>
+<p>Anche se con la libreria <code>socket</code> possiamo inviare e
+ricevere dati via HTTP a mano, in Python c’è un modo molto più semplice
+per svolgere questo compito comune: usare la libreria
+<code>urllib</code>.</p>
+<p>Con <code>urllib</code> puoi trattare una pagina web in modo molto
+simile a un file. Ti basta indicare quale pagina web vuoi recuperare, e
+<code>urllib</code> gestisce tutti i dettagli del protocollo HTTP e
+delle intestazioni.</p>
+<p>Il codice equivalente per leggere dal web il file
+<code>romeo.txt</code> con <code>urllib</code> è il seguente:</p>
 <pre class="python"><code>import urllib.request
 
 fhand = urllib.request.urlopen(&#39;http://data.pr4e.org/romeo.txt&#39;)
@@ -442,19 +467,20 @@ for line in fhand:
     print(line.decode().strip())
 
 # Code: https://www.py4e.com/code3/urllib1.py</code></pre>
-<p>Once the web page has been opened with
-<code>urllib.request.urlopen</code>, we can treat it like a file and
-read through it using a <code>for</code> loop.</p>
-<p>When the program runs, we only see the output of the contents of the
-file. The headers are still sent, but the <code>urllib</code> code
-consumes the headers and only returns the data to us.</p>
+<p>Una volta aperta la pagina web con
+<code>urllib.request.urlopen</code>, possiamo trattarla come un file e
+leggerne il contenuto con un ciclo <code>for</code>.</p>
+<p>Quando il programma viene eseguito, vediamo in output solo il
+contenuto del file. Le intestazioni vengono comunque inviate, ma il
+codice di <code>urllib</code> le consuma e ci restituisce solo i
+dati.</p>
 <pre><code>But soft what light through yonder window breaks
 It is the east and Juliet is the sun
 Arise fair sun and kill the envious moon
 Who is already sick and pale with grief</code></pre>
-<p>As an example, we can write a program to retrieve the data for
-<code>romeo.txt</code> and compute the frequency of each word in the
-file as follows:</p>
+<p>Ad esempio, possiamo scrivere un programma che recupera i dati di
+<code>romeo.txt</code> e calcola la frequenza di ogni parola del file,
+come segue:</p>
 <pre class="python"><code>import urllib.request, urllib.parse, urllib.error
 
 fhand = urllib.request.urlopen(&#39;http://data.pr4e.org/romeo.txt&#39;)
@@ -467,19 +493,18 @@ for line in fhand:
 print(counts)
 
 # Code: https://www.py4e.com/code3/urlwords.py</code></pre>
-<p>Again, once we have opened the web page, we can read it like a local
-file.</p>
-<h2 id="reading-binary-files-using-urllib">Reading binary files using
+<p>Di nuovo, una volta aperta la pagina web, possiamo leggerla come un
+file locale.</p>
+<h2 id="leggere-file-binari-con-urllib">Leggere file binari con
 <code>urllib</code></h2>
-<p>Sometimes you want to retrieve a non-text (or binary) file such as an
-image or video file. The data in these files is generally not useful to
-print out, but you can easily make a copy of a URL to a local file on
-your hard disk using <code>urllib</code>.</p>
-<p></p>
-<p>The pattern is to open the URL and use <code>read</code> to download
-the entire contents of the document into a string variable
-(<code>img</code>) then write that information to a local file as
-follows:</p>
+<p>A volte vuoi recuperare un file non testuale (o binario), come
+un’immagine o un video. Di solito stampare i dati di questi file non
+serve, ma con <code>urllib</code> puoi facilmente fare una copia di un
+URL in un file locale sul disco rigido.</p>
+<p>Lo schema consiste nell’aprire l’URL e usare <code>read</code> per
+scaricare l’intero contenuto del documento in una variabile stringa
+(<code>img</code>), poi scrivere queste informazioni in un file locale,
+come segue:</p>
 <pre class="python"><code>import urllib.request, urllib.parse, urllib.error
 
 img = urllib.request.urlopen(&#39;http://data.pr4e.org/cover3.jpg&#39;).read()
@@ -488,18 +513,19 @@ fhand.write(img)
 fhand.close()
 
 # Code: https://www.py4e.com/code3/curl1.py</code></pre>
-<p>This program reads all of the data in at once across the network and
-stores it in the variable <code>img</code> in the main memory of your
-computer, then opens the file <code>cover.jpg</code> and writes the data
-out to your disk. The <code>wb</code> argument for <code>open()</code>
-opens a binary file for writing only. This program will work if the size
-of the file is less than the size of the memory of your computer.</p>
-<p>However if this is a large audio or video file, this program may
-crash or at least run extremely slowly when your computer runs out of
-memory. In order to avoid running out of memory, we retrieve the data in
-blocks (or buffers) and then write each block to your disk before
-retrieving the next block. This way the program can read any size file
-without using up all of the memory you have in your computer.</p>
+<p>Questo programma legge dalla rete tutti i dati in una volta sola e li
+memorizza nella variabile <code>img</code>, nella memoria principale del
+computer; poi apre il file <code>cover3.jpg</code> e scrive i dati sul
+disco. L’argomento <code>wb</code> di <code>open()</code> apre un file
+binario in sola scrittura. Il programma funzionerà se la dimensione del
+file è minore di quella della memoria del computer.</p>
+<p>Se però si tratta di un file audio o video di grandi dimensioni,
+quando il computer esaurisce la memoria il programma potrebbe andare in
+crash o almeno rallentare moltissimo. Per non esaurire la memoria,
+recuperiamo i dati a blocchi (o buffer) e scriviamo ogni blocco sul
+disco prima di recuperare il successivo. In questo modo il programma può
+leggere file di qualsiasi dimensione senza consumare tutta la memoria
+del computer.</p>
 <pre class="python"><code>import urllib.request, urllib.parse, urllib.error
 
 img = urllib.request.urlopen(&#39;http://data.pr4e.org/cover3.jpg&#39;)
@@ -515,55 +541,57 @@ print(size, &#39;characters copied.&#39;)
 fhand.close()
 
 # Code: https://www.py4e.com/code3/curl2.py</code></pre>
-<p>In this example, we read only 100,000 characters at a time and then
-write those characters to the <code>cover3.jpg</code> file before
-retrieving the next 100,000 characters of data from the web.</p>
-<p>This program runs as follows:</p>
+<p>In questo esempio leggiamo solo 100.000 caratteri alla volta e li
+scriviamo nel file <code>cover3.jpg</code> prima di recuperare dal web i
+100.000 caratteri successivi.</p>
+<p>Ecco come viene eseguito il programma:</p>
 <pre><code>python curl2.py
 230210 characters copied.</code></pre>
-<h2 id="parsing-html-and-scraping-the-web">Parsing HTML and scraping the
-web</h2>
+<h2 id="analizzare-lhtml-e-fare-lo-scraping-del-web">Analizzare l’HTML e
+fare lo scraping del web</h2>
 <p> </p>
-<p>One of the common uses of the <code>urllib</code> capability in
-Python is to <em>scrape</em> the web. Web scraping is when we write a
-program that pretends to be a web browser and retrieves pages, then
-examines the data in those pages looking for patterns.</p>
-<p>As an example, a search engine such as Google will look at the source
-of one web page and extract the links to other pages and retrieve those
-pages, extracting links, and so on. Using this technique, Google
-<em>spiders</em> its way through nearly all of the pages on the web.</p>
-<p>Google also uses the frequency of links from pages it finds to a
-particular page as one measure of how “important” a page is and how high
-the page should appear in its search results.</p>
-<h2 id="parsing-html-using-regular-expressions">Parsing HTML using
-regular expressions</h2>
-<p>One simple way to parse HTML is to use regular expressions to
-repeatedly search for and extract substrings that match a particular
-pattern.</p>
-<p>Here is a simple web page:</p>
+<p>Uno degli usi comuni delle funzionalità di <code>urllib</code> in
+Python è fare lo <em>scraping</em> del web. Fare web scraping significa
+scrivere un programma che finge di essere un browser web e recupera
+pagine, poi esamina i dati di quelle pagine alla ricerca di schemi.</p>
+<p>Ad esempio, un motore di ricerca come Google esamina il sorgente di
+una pagina web, ne estrae i link ad altre pagine, recupera quelle
+pagine, ne estrae i link, e così via. Con questa tecnica Google, come
+uno <em>spider</em>, si fa strada attraverso quasi tutte le pagine del
+web.</p>
+<p>Google usa anche la frequenza dei link che, dalle pagine che trova,
+puntano a una determinata pagina: è una delle misure di quanto quella
+pagina sia “importante” e di quanto in alto debba comparire nei
+risultati di ricerca.</p>
+<h2 id="analizzare-lhtml-con-le-espressioni-regolari">Analizzare l’HTML
+con le espressioni regolari</h2>
+<p>Un modo semplice per analizzare l’HTML è usare le espressioni
+regolari per cercare ed estrarre ripetutamente le sottostringhe che
+corrispondono a un determinato schema.</p>
+<p>Ecco una semplice pagina web:</p>
 <pre class="html"><code>&lt;h1&gt;The First Page&lt;/h1&gt;
 &lt;p&gt;
 If you like, you can switch to the
 &lt;a href=&quot;http://www.dr-chuck.com/page2.htm&quot;&gt;
 Second Page&lt;/a&gt;.
 &lt;/p&gt;</code></pre>
-<p>We can construct a well-formed regular expression to match and
-extract the link values from the above text as follows:</p>
+<p>Possiamo costruire un’espressione regolare ben formata che individui
+ed estragga i valori dei link dal testo qui sopra, in questo modo:</p>
 <pre><code>href=&quot;http[s]?://.+?&quot;</code></pre>
-<p>Our regular expression looks for strings that start with
-“href="http://” or “href="https://”, followed by one or more characters
-(<code>.+?</code>), followed by another double quote. The question mark
-behind the <code>[s]?</code> indicates to search for the string “http”
-followed by zero or one “s”.</p>
-<p>The question mark added to the <code>.+?</code> indicates that the
-match is to be done in a “non-greedy” fashion instead of a “greedy”
-fashion. A non-greedy match tries to find the <em>smallest</em> possible
-matching string and a greedy match tries to find the <em>largest</em>
-possible matching string.</p>
+<p>L’espressione regolare cerca le stringhe che iniziano con
+<code>href="http://</code> o <code>href="https://</code>, seguite da uno
+o più caratteri (<code>.+?</code>) e poi da un’altra virgoletta doppia.
+Il punto interrogativo di <code>[s]?</code> indica di cercare la stringa
+<code>http</code> seguita da zero o una <code>s</code>.</p>
+<p>Il punto interrogativo aggiunto a <code>.+?</code> indica che la
+corrispondenza va cercata in modo <em>non avido</em> (non-greedy) invece
+che in modo <em>avido</em> (greedy). Una corrispondenza non avida cerca
+la stringa corrispondente <em>più corta</em> possibile, mentre una
+corrispondenza avida cerca quella <em>più lunga</em> possibile.</p>
 <p> </p>
-<p>We add parentheses to our regular expression to indicate which part
-of our matched string we would like to extract, and produce the
-following program:</p>
+<p>Aggiungiamo all’espressione regolare delle parentesi tonde per
+indicare quale parte della stringa trovata vogliamo estrarre, e
+otteniamo il programma seguente:</p>
 <p> </p>
 <pre class="python"><code># Search for link values within URL input
 import urllib.request, urllib.parse, urllib.error
@@ -582,14 +610,15 @@ for link in links:
     print(link.decode())
 
 # Code: https://www.py4e.com/code3/urlregex.py</code></pre>
-<p>The <code>ssl</code> library allows this program to access web sites
-that strictly enforce HTTPS. The <code>read</code> method returns HTML
-source code as a bytes object instead of returning an HTTPResponse
-object. The <code>findall</code> regular expression method will give us
-a list of all of the strings that match our regular expression,
-returning only the link text between the double quotes.</p>
-<p>When we run the program and input a URL, we get the following
-output:</p>
+<p>La libreria <code>ssl</code> permette a questo programma di accedere
+ai siti web che impongono rigorosamente HTTPS. Il metodo
+<code>read</code> restituisce il codice sorgente HTML come oggetto bytes
+invece di restituire un oggetto <code>HTTPResponse</code>. Il metodo
+<code>findall</code> delle espressioni regolari ci darà una lista di
+tutte le stringhe che corrispondono all’espressione regolare e
+restituirà solo il testo del link tra le virgolette doppie.</p>
+<p>Quando eseguiamo il programma e inseriamo un URL, otteniamo l’output
+seguente:</p>
 <pre><code>Enter - https://docs.python.org
 https://docs.python.org/3/index.html
 https://www.python.org/
@@ -605,35 +634,38 @@ https://www.python.org/doc/av/
 https://www.python.org/
 https://www.python.org/psf/donations/
 http://sphinx.pocoo.org/</code></pre>
-<p>Regular expressions work very nicely when your HTML is well formatted
-and predictable. But since there are a lot of “broken” HTML pages out
-there, a solution only using regular expressions might either miss some
-valid links or end up with bad data.</p>
-<p>This can be solved by using a robust HTML parsing library.</p>
-<h2 id="parsing-html-using-beautifulsoup">Parsing HTML using
+<p>Le espressioni regolari funzionano molto bene quando l’HTML è ben
+formattato e prevedibile. Ma dato che in giro ci sono moltissime pagine
+HTML “difettose”, una soluzione basata solo sulle espressioni regolari
+potrebbe perdere alcuni link validi oppure ritrovarsi con dati
+sbagliati.</p>
+<p>Il problema si può risolvere usando una libreria robusta per
+l’analisi dell’HTML.</p>
+<h2 id="analizzare-lhtml-con-beautifulsoup">Analizzare l’HTML con
 BeautifulSoup</h2>
-<p></p>
-<p>Even though HTML looks like XML<a href="#fn2" class="footnote-ref"
-id="fnref2" role="doc-noteref"><sup>2</sup></a> and some pages are
-carefully constructed to be XML, most HTML is generally broken in ways
-that cause an XML parser to reject the entire page of HTML as improperly
-formed.</p>
-<p>There are a number of Python libraries which can help you parse HTML
-and extract data from the pages. Each of the libraries has its strengths
-and weaknesses and you can pick one based on your needs.</p>
-<p>As an example, we will simply parse some HTML input and extract links
-using the <em>BeautifulSoup</em> library. BeautifulSoup tolerates highly
-flawed HTML and still lets you easily extract the data you need. You can
-download and install the BeautifulSoup code from:</p>
+<p>Anche se l’HTML somiglia a XML<a href="#fn2" class="footnote-ref"
+id="fnref2" role="doc-noteref"><sup>2</sup></a> e alcune pagine sono
+costruite con cura per essere XML, la maggior parte dell’HTML contiene
+di solito errori che portano un parser XML a rifiutare l’intera pagina
+HTML come malformata.</p>
+<p>Esistono diverse librerie Python che possono aiutarti ad analizzare
+l’HTML e a estrarre dati dalle pagine. Ognuna ha i suoi punti di forza e
+di debolezza, e puoi sceglierne una in base alle tue esigenze.</p>
+<p>Ad esempio, ci limiteremo ad analizzare un po’ di HTML in input e a
+estrarne i link con la libreria <em>BeautifulSoup</em>. BeautifulSoup
+tollera anche HTML pieno di difetti e ti permette comunque di estrarre
+facilmente i dati che ti servono. Puoi scaricare e installare il codice
+di BeautifulSoup da:</p>
 <p><a href="https://pypi.python.org/pypi/beautifulsoup4"
 class="uri">https://pypi.python.org/pypi/beautifulsoup4</a></p>
-<p>Information on installing BeautifulSoup with the Python Package Index
-tool <code>pip</code> is available at:</p>
+<p>Le informazioni su come installare BeautifulSoup con
+<code>pip</code>, lo strumento del Python Package Index, sono
+disponibili su:</p>
 <p><a href="https://packaging.python.org/tutorials/installing-packages/"
 class="uri">https://packaging.python.org/tutorials/installing-packages/</a></p>
-<p>We will use <code>urllib</code> to read the page and then use
-<code>BeautifulSoup</code> to extract the <code>href</code> attributes
-from the anchor (<code>a</code>) tags.</p>
+<p>Useremo <code>urllib</code> per leggere la pagina e poi
+<code>BeautifulSoup</code> per estrarre gli attributi <code>href</code>
+dai <em>tag ancora</em> (anchor tag, <code>a</code>).</p>
 <p> </p>
 <pre class="python"><code># To run this, download the BeautifulSoup zip file
 # http://www.py4e.com/code3/bs4.zip
@@ -659,11 +691,11 @@ for tag in tags:
     print(tag.get(&#39;href&#39;, None))
 
 # Code: https://www.py4e.com/code3/urllinks.py</code></pre>
-<p>The program prompts for a web address, then opens the web page, reads
-the data and passes the data to the BeautifulSoup parser, and then
-retrieves all of the anchor tags and prints out the <code>href</code>
-attribute for each tag.</p>
-<p>When the program runs, it produces the following output:</p>
+<p>Il programma chiede un indirizzo web, poi apre la pagina web, ne
+legge i dati e li passa al parser di BeautifulSoup, quindi recupera
+tutti i tag ancora e stampa l’attributo <code>href</code> di ogni
+tag.</p>
+<p>Durante l’esecuzione, il programma produce l’output seguente:</p>
 <pre><code>Enter - https://docs.python.org
 genindex.html
 py-modindex.html
@@ -708,11 +740,13 @@ copyright.html
 https://www.python.org/psf/donations/
 bugs.html
 http://sphinx.pocoo.org/</code></pre>
-<p>This list is much longer because some HTML anchor tags are relative
-paths (e.g., tutorial/index.html) or in-page references (e.g., ‘#’) that
-do not include “http://” or “https://”, which was a requirement in our
-regular expression.</p>
-<p>You can use also BeautifulSoup to pull out various parts of each
+<p>Questo elenco è molto più lungo perché alcuni tag ancora dell’HTML
+contengono percorsi relativi (ad esempio
+<code>tutorial/index.html</code>) o riferimenti interni alla pagina (ad
+esempio <code>#</code>) che non includono <code>http://</code> o
+<code>https://</code>, richiesti invece dalla nostra espressione
+regolare.</p>
+<p>Puoi usare BeautifulSoup anche per estrarre le varie parti di ogni
 tag:</p>
 <pre class="python"><code># To run this, download the BeautifulSoup zip file
 # http://www.py4e.com/code3/bs4.zip
@@ -748,108 +782,110 @@ Second Page&lt;/a&gt;
 URL: http://www.dr-chuck.com/page2.htm
 Content: [&#39;\nSecond Page&#39;]
 Attrs: [(&#39;href&#39;, &#39;http://www.dr-chuck.com/page2.htm&#39;)]</code></pre>
-<p><code>html.parser</code> is the HTML parser included in the standard
-Python 3 library. Information on other HTML parsers is available at:</p>
+<p><code>html.parser</code> è il parser HTML incluso nella libreria
+standard di Python 3. Le informazioni sugli altri parser HTML sono
+disponibili su:</p>
 <p><a
 href="http://www.crummy.com/software/BeautifulSoup/bs4/doc/#installing-a-parser"
 class="uri">http://www.crummy.com/software/BeautifulSoup/bs4/doc/#installing-a-parser</a></p>
-<p>These examples only begin to show the power of BeautifulSoup when it
-comes to parsing HTML.</p>
-<h2 id="bonus-section-for-unix-linux-users">Bonus section for Unix /
-Linux users</h2>
-<p>If you have a Linux, Unix, or Macintosh computer, you probably have
-commands built in to your operating system that retrieves both plain
-text and binary files using the HTTP or File Transfer (FTP) protocols.
-One of these commands is <code>curl</code>:</p>
-<p></p>
+<p>Questi esempi cominciano appena a mostrare la potenza di
+BeautifulSoup quando si tratta di analizzare l’HTML.</p>
+<h2 id="sezione-bonus-per-gli-utenti-unix-linux">Sezione bonus per gli
+utenti Unix / Linux</h2>
+<p>Se hai un computer Linux, Unix o Macintosh, probabilmente il sistema
+operativo include dei comandi che recuperano sia file di solo testo sia
+file binari con i protocolli HTTP o FTP (File Transfer Protocol). Uno di
+questi comandi è <code>curl</code>:</p>
 <pre class="bash"><code>$ curl -O http://www.py4e.com/cover.jpg</code></pre>
-<p>The command <code>curl</code> is short for “copy URL” and so the two
-examples listed earlier to retrieve binary files with
-<code>urllib</code> are cleverly named <code>curl1.py</code> and
-<code>curl2.py</code> on <a
-href="http://www.py4e.com/code3">www.py4e.com/code3</a> as they
-implement similar functionality to the <code>curl</code> command. There
-is also a <code>curl3.py</code> sample program that does this task a
-little more effectively, in case you actually want to use this pattern
-in a program you are writing.</p>
-<p>A second command that functions very similarly is
+<p>Il comando <code>curl</code> è l’abbreviazione di “copy URL”, e per
+questo i due esempi visti prima per recuperare file binari con
+<code>urllib</code> hanno i nomi ingegnosi di <code>curl1.py</code> e
+<code>curl2.py</code> su <a
+href="http://www.py4e.com/code3">www.py4e.com/code3</a>: svolgono una
+funzione simile a quella del comando <code>curl</code>. C’è anche un
+programma di esempio, <code>curl3.py</code>, che svolge questo compito
+in modo un po’ più efficace, nel caso tu voglia davvero usare questo
+schema in un programma che stai scrivendo.</p>
+<p>Un secondo comando che funziona in modo molto simile è
 <code>wget</code>:</p>
-<p></p>
 <pre class="bash"><code>$ wget http://www.py4e.com/cover.jpg</code></pre>
-<p>Both of these commands make retrieving webpages and remote files a
-simple task.</p>
-<h2 id="glossary">Glossary</h2>
+<p>Tutti e due i comandi rendono semplice recuperare pagine web e file
+remoti.</p>
+<h2 id="glossario">Glossario</h2>
 <dl>
-<dt>BeautifulSoup</dt>
+<dt><strong>BeautifulSoup</strong></dt>
 <dd>
-A Python library for parsing HTML documents and extracting data from
-HTML documents that compensates for most of the imperfections in the
-HTML that browsers generally ignore. You can download the BeautifulSoup
-code from <a href="http://www.crummy.com">www.crummy.com</a>.
+Una libreria Python per analizzare documenti HTML ed estrarne i dati,
+che compensa la maggior parte delle imperfezioni dell’HTML che i browser
+di solito ignorano. Puoi scaricare il codice di BeautifulSoup da <a
+href="http://www.crummy.com">www.crummy.com</a>.
 </dd>
-<dt>port</dt>
+<dt><strong>Porta</strong></dt>
 <dd>
-A number that generally indicates which application you are contacting
-when you make a socket connection to a server. As an example, web
-traffic usually uses port 80 while email traffic uses port 25.
+Un numero che in genere indica quale applicazione stai contattando
+quando apri una connessione socket con un server. Ad esempio, il
+traffico web usa di solito la porta 80, mentre il traffico email usa la
+porta 25.
 </dd>
-<dt>scrape</dt>
+<dt><strong>Scraping</strong></dt>
 <dd>
-When a program pretends to be a web browser and retrieves a web page,
-then looks at the web page content. Often programs are following the
-links in one page to find the next page so they can traverse a network
-of pages or a social network.
+L’attività di un programma che finge di essere un browser web, recupera
+una pagina web e poi ne esamina il contenuto. Spesso i programmi seguono
+i link di una pagina per trovare la pagina successiva, così da poter
+percorrere una rete di pagine o un social network.
 </dd>
-<dt>socket</dt>
+<dt><strong>Socket</strong></dt>
 <dd>
-A network connection between two applications where the applications can
-send and receive data in either direction.
+Una connessione di rete tra due applicazioni, attraverso la quale le
+applicazioni possono inviare e ricevere dati in entrambe le direzioni.
 </dd>
-<dt>spider</dt>
+<dt><strong>Spider</strong></dt>
 <dd>
-The act of a web search engine retrieving a page and then all the pages
-linked from a page and so on until they have nearly all of the pages on
-the Internet which they use to build their search index.
+L’attività di un motore di ricerca web che recupera una pagina, poi
+tutte le pagine a cui questa rimanda, e così via, finché non ha raccolto
+quasi tutte le pagine di Internet, che usa per costruire il proprio
+indice di ricerca.
 </dd>
 </dl>
-<h2 id="exercises">Exercises</h2>
-<p><strong>Exercise 1:</strong> Change the socket program
-<code>socket1.py</code> to prompt the user for the URL so it can read
-any web page.</p>
-<p>You can use <code>split('/')</code> to break the URL into its
-component parts so you can extract the host name for the socket
-<code>connect</code> call. Add error checking using <code>try</code> and
-<code>except</code> to handle the condition where the user enters an
-improperly formatted or non-existent URL.</p>
-<p><strong>Exercise 2:</strong> Change your socket program so that it
-counts the number of characters it has received and stops displaying any
-text after it has shown 3000 characters. The program should retrieve the
-entire document and count the total number of characters and display the
-count of the number of characters at the end of the document.</p>
-<p><strong>Exercise 3:</strong> Use <code>urllib</code> to replicate the
-previous exercise of (1) retrieving the document from a URL, (2)
-displaying up to 3000 characters, and (3) counting the overall number of
-characters in the document. Don’t worry about the headers for this
-exercise, simply show the first 3000 characters of the document
-contents.</p>
-<p><strong>Exercise 4:</strong> Change the <code>urllinks.py</code>
-program to extract and count paragraph (p) tags from the retrieved HTML
-document and display the count of the paragraphs as the output of your
-program. Do not display the paragraph text, only count them. Test your
-program on several small web pages as well as some larger web pages.</p>
-<p><strong>Exercise 5:</strong> (Advanced) Change the socket program so
-that it only shows data after the headers and a blank line have been
-received. Remember that <code>recv</code> receives characters (newlines
-and all), not lines.</p>
+<h2 id="esercizi">Esercizi</h2>
+<p><strong>Esercizio 1:</strong> Modifica il programma con i socket
+<code>socket1.py</code> in modo che chieda all’utente l’URL e possa così
+leggere qualsiasi pagina web.</p>
+<p>Puoi usare <code>split('/')</code> per scomporre l’URL nelle sue
+parti, così da estrarre il nome dell’host per la chiamata
+<code>connect</code> del socket. Aggiungi il controllo degli errori con
+<code>try</code> ed <code>except</code> per gestire il caso in cui
+l’utente inserisca un URL formattato male o inesistente.</p>
+<p><strong>Esercizio 2:</strong> Modifica il tuo programma con i socket
+in modo che conti il numero di caratteri ricevuti e smetta di
+visualizzare il testo dopo averne mostrati 3000. Il programma dovrebbe
+recuperare l’intero documento, contare il numero totale di caratteri e
+visualizzarne il conteggio alla fine del documento.</p>
+<p><strong>Esercizio 3:</strong> Usa <code>urllib</code> per rifare
+l’esercizio precedente: (1) recuperare il documento da un URL, (2)
+visualizzare fino a 3000 caratteri e (3) contare il numero complessivo
+di caratteri del documento. In questo esercizio non preoccuparti delle
+intestazioni: mostra semplicemente i primi 3000 caratteri del contenuto
+del documento.</p>
+<p><strong>Esercizio 4:</strong> Modifica il programma
+<code>urllinks.py</code> in modo che estragga e conti i tag di paragrafo
+(<code>p</code>) del documento HTML recuperato e visualizzi come output
+del programma il numero dei paragrafi. Non visualizzare il testo dei
+paragrafi: contali e basta. Testa il programma su diverse pagine web
+piccole e anche su alcune pagine web più grandi.</p>
+<p><strong>Esercizio 5:</strong> (Avanzato) Modifica il programma con i
+socket in modo che mostri i dati solo dopo aver ricevuto le intestazioni
+e una riga vuota. Ricorda che <code>recv</code> riceve caratteri
+(newline compresi), non righe.</p>
 <section id="footnotes" class="footnotes footnotes-end-of-document"
 role="doc-endnotes">
 <hr />
 <ol>
-<li id="fn1"><p>If you want to learn more about sockets, protocols or
-how web servers are developed, you can explore the course at
+<li id="fn1"><p>Se vuoi saperne di più sui socket, sui protocolli o su
+come si sviluppano i server web, puoi esplorare il corso su
 https://www.dj4e.com.<a href="#fnref1" class="footnote-back"
 role="doc-backlink">↩︎</a></p></li>
-<li id="fn2"><p>The XML format is described in the next chapter.<a
+<li id="fn2"><p>Il formato XML è descritto nel prossimo capitolo.<a
 href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>

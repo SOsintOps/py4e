@@ -3,16 +3,22 @@
   ob_start();
 }?>
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="pandoc" />
+  <meta name="generator" content="pandoc 3.14" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>Conditional execution</title>
+  <title>Esecuzione condizionale</title>
   <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
     html {
       color: #1a1a1a;
+      color: light-dark(#1a1a1a, #fdfdfd);
       background-color: #fdfdfd;
+      background-color: light-dark(#fdfdfd, #1a1a1a);
+      color-scheme: light dark;
     }
     body {
       margin: 0 auto;
@@ -35,31 +41,11 @@
         font-size: 1.8em;
       }
     }
-    @media print {
-      html {
-        background-color: white;
-      }
-      body {
-        background-color: transparent;
-        color: black;
-        font-size: 12pt;
-      }
-      p, h2, h3 {
-        orphans: 3;
-        widows: 3;
-      }
-      h2, h3, h4 {
-        page-break-after: avoid;
-      }
-    }
     p {
       margin: 1em 0;
     }
-    a {
-      color: #1a1a1a;
-    }
-    a:visited {
-      color: #1a1a1a;
+    a, a:visited {
+      color: inherit;
     }
     img {
       max-width: 100%;
@@ -88,10 +74,14 @@
     blockquote {
       margin: 1em 0 1em 1.7em;
       padding-left: 1em;
-      border-left: 2px solid #e6e6e6;
+      border-left: 2px solid;
+      border-color: #e6e6e6;
+      border-color: light-dark(#e6e6e6, #4c4c4c);
       color: #606060;
+      color: light-dark(#606060, #b6b6b6);
     }
     code {
+      white-space: pre-wrap;
       font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
       font-size: 85%;
       margin: 0;
@@ -112,7 +102,7 @@
     }
     hr {
       border: none;
-      border-top: 1px solid #1a1a1a;
+      border-top: 1px solid currentColor;
       height: 1px;
       margin: 1em 0;
     }
@@ -129,11 +119,11 @@
     }
     tbody {
       margin-top: 0.5em;
-      border-top: 1px solid #1a1a1a;
-      border-bottom: 1px solid #1a1a1a;
+      border-top: 1px solid currentColor;
+      border-bottom: 1px solid currentColor;
     }
     th {
-      border-top: 1px solid #1a1a1a;
+      border-top: 1px solid currentColor;
       padding: 0.25em 0.5em 0.25em 0.5em;
     }
     td {
@@ -155,10 +145,19 @@
     #TOC a:not(:hover) {
       text-decoration: none;
     }
-    code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
-    div.columns{display: flex; gap: min(4vw, 1.5em);}
-    div.column{flex: auto; overflow-x: auto;}
+    em, em em em, em em em em em {
+      font-style: italic;
+    }
+    em em, em em em em {
+      font-style: normal;
+    }
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     /* The extra [class] is a hack that increases specificity enough to
        override a similar rule in reveal.js */
@@ -169,30 +168,47 @@
       margin: 0 0.8em 0.2em -1.6em;
       vertical-align: middle;
     }
-    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
-  </style>
+    @media print {
+      html {
+        color-scheme: light only;
+      }
+      html, body, pre, code {
+        background-color: transparent;
+      }
+      body, a, a:visited, blockquote {
+        color: black;
+      }
+      pre, code {
+        padding: 0;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }  </style>
 </head>
 <body>
-<h1 id="conditional-execution">Conditional execution</h1>
-<h2 id="boolean-expressions">Boolean expressions</h2>
-<p> </p>
-<p>A <em>boolean expression</em> is an expression that is either true or
-false. The following examples use the operator <code>==</code>, which
-compares two operands and produces <code>True</code> if they are equal
-and <code>False</code> otherwise:</p>
+<h1 id="esecuzione-condizionale">Esecuzione condizionale</h1>
+<h2 id="espressioni-booleane">Espressioni booleane</h2>
+<p> Un’<em>espressione booleana</em> è un’espressione che può essere
+solo vera o falsa. Gli esempi seguenti usano l’operatore
+<code>==</code>, che confronta due operandi e produce <code>True</code>
+se sono uguali e <code>False</code> in caso contrario:</p>
 <pre class="python"><code>&gt;&gt;&gt; 5 == 5
 True
 &gt;&gt;&gt; 5 == 6
 False</code></pre>
-<p><code>True</code> and <code>False</code> are special values that
-belong to the class <code>bool</code>; they are not strings:</p>
-<p> </p>
+<p><code>True</code> e <code>False</code> sono valori speciali che
+appartengono alla classe <code>bool</code>; non sono stringhe: </p>
 <pre class="python"><code>&gt;&gt;&gt; type(True)
 &lt;class &#39;bool&#39;&gt;
 &gt;&gt;&gt; type(False)
 &lt;class &#39;bool&#39;&gt;</code></pre>
-<p>The <code>==</code> operator is one of the <em>comparison
-operators</em>; the others are:</p>
+<p>L’operatore <code>==</code> è uno degli <em>operatori di
+confronto</em>; gli altri sono:</p>
 <pre class="python"><code>x != y               # x is not equal to y
 x &gt; y                # x is greater than y
 x &lt; y                # x is less than y
@@ -200,166 +216,158 @@ x &gt;= y               # x is greater than or equal to y
 x &lt;= y               # x is less than or equal to y
 x is y               # x is the same as y
 x is not y           # x is not the same as y</code></pre>
-<p>Although these operations are probably familiar to you, the Python
-symbols are different from the mathematical symbols for the same
-operations. A common error is to use a single equal sign
-(<code>=</code>) instead of a double equal sign (<code>==</code>).
-Remember that <code>=</code> is an assignment operator and
-<code>==</code> is a comparison operator. There is no such thing as
-<code>=&lt;</code> or <code>=&gt;</code>.</p>
-<p> </p>
-<h2 id="logical-operators">Logical operators</h2>
-<p> </p>
-<p>There are three <em>logical operators</em>: <code>and</code>,
-<code>or</code>, and <code>not</code>. The semantics (meaning) of these
-operators is similar to their meaning in English. For example,</p>
+<p>Probabilmente conosci già queste operazioni, ma i simboli di Python
+sono diversi da quelli che la matematica usa per le stesse operazioni.
+Un errore comune è usare un solo segno di uguale (<code>=</code>) al
+posto di un doppio segno di uguale (<code>==</code>). Ricorda che
+<code>=</code> è un operatore di assegnazione, mentre <code>==</code> è
+un operatore di confronto. <code>=&lt;</code> e <code>=&gt;</code> non
+esistono. </p>
+<h2 id="operatori-logici">Operatori logici</h2>
+<p> Esistono tre <em>operatori logici</em>: <code>and</code>,
+<code>or</code> e <code>not</code>. La semantica (significato) di questi
+operatori è simile al senso che queste parole hanno in inglese. Ad
+esempio,</p>
 <p><code>x &gt; 0 and x &lt; 10</code></p>
-<p>is true only if <code>x</code> is greater than 0 <em>and</em> less
-than 10.</p>
+<p>è vera solo se <code>x</code> è maggiore di 0 <em>e</em> minore di
+10.</p>
 <p> </p>
-<p><code>n%2 == 0 or n%3 == 0</code> is true if <em>either</em> of the
-conditions is true, that is, if the number is divisible by 2 <em>or</em>
-3.</p>
-<p>Finally, the <code>not</code> operator negates a boolean expression,
-so <code>not (x &gt; y)</code> is true if <code>x &gt; y</code> is
-false.</p>
+<p><code>n%2 == 0 or n%3 == 0</code> è vera se è vera <em>almeno
+una</em> delle condizioni, cioè se il numero è divisibile per 2
+<em>o</em> per 3.</p>
+<p>Infine, l’operatore <code>not</code> nega un’espressione booleana,
+quindi <code>not (x &gt; y)</code> è vera se <code>x &gt; y</code> è
+falsa.</p>
 <pre class="python"><code>&gt;&gt;&gt; x = 1
 &gt;&gt;&gt; y = 2
 &gt;&gt;&gt; x &gt; y
 False
 &gt;&gt;&gt; not (x &gt; y)
 True</code></pre>
-<p>Strictly speaking, the operands of the logical operators should be
-boolean expressions, but Python is not very strict. Any nonzero number
-is interpreted as “true.”</p>
+<p>A rigore, gli operandi degli operatori logici dovrebbero essere
+espressioni booleane, ma Python non è molto rigoroso. Qualsiasi numero
+diverso da zero viene interpretato come “vero”:</p>
 <pre class="python"><code>&gt;&gt;&gt; 17 and True
 True</code></pre>
-<p>This flexibility can be useful in some situations, but there are some
-subtleties to it that might be confusing. You might want to avoid it
-until you are sure you know what you are doing.</p>
-<h2 id="conditional-execution-1">Conditional execution</h2>
-<p> </p>
-<p>In order to write useful programs, we almost always need the ability
-to check conditions and change the behavior of the program accordingly.
-<em>Conditional statements</em> give us this ability. The simplest form
-is the <code>if</code> statement:</p>
+<p>Questa flessibilità può tornare utile in certe situazioni, ma ha
+alcune sottigliezze che potrebbero creare confusione. Ti conviene
+evitarla finché non sei sicuro di sapere quello che stai facendo.</p>
+<h2 id="esecuzione-condizionale-1">Esecuzione condizionale</h2>
+<p> Per scrivere programmi utili dobbiamo quasi sempre poter controllare
+delle condizioni e cambiare di conseguenza il comportamento del
+programma. Le <em>istruzioni condizionali</em> ci danno questa
+possibilità. La forma più semplice è l’istruzione <code>if</code>:</p>
 <pre class="python"><code>if x &gt; 0 :
     print(&#39;x is positive&#39;)</code></pre>
-<p>The boolean expression after the <code>if</code> statement is called
-the <em>condition</em>. We end the <code>if</code> statement with a
-colon character (:) and the line(s) after the if statement are
-indented.</p>
+<p>L’espressione booleana dopo l’istruzione <code>if</code> si chiama
+<em>condizione</em>. Chiudiamo l’istruzione <code>if</code> con il
+carattere dei due punti (<code>:</code>), e la riga o le righe che la
+seguono sono indentate.</p>
 <figure>
-<img src="../images/if.svg" alt="If Logic" style="height: 1.5in;"/>
+<img src="../images/if.svg" alt="Logica dell'`if`" style="height: 1.5in;"/>
 <figcaption>
-If Logic
+Logica dell’<code>if</code>
 </figcaption>
 </figure>
-<p>If the logical condition is true, then the indented statement gets
-executed. If the logical condition is false, the indented statement is
-skipped.</p>
-<p> </p>
-<p><code>if</code> statements have the same structure as function
-definitions or <code>for</code> loops<a href="#fn1" class="footnote-ref"
-id="fnref1" role="doc-noteref"><sup>1</sup></a>. The statement consists
-of a header line that ends with the colon character (:) followed by an
-indented block. Statements like this are called <em>compound
-statements</em> because they stretch across more than one line.</p>
+<p>Se la condizione logica è vera, l’istruzione indentata viene
+eseguita. Se la condizione logica è falsa, l’istruzione indentata viene
+saltata. </p>
+<p>Le istruzioni <code>if</code> hanno la stessa struttura delle
+definizioni di funzione o dei cicli <code>for</code><a href="#fn1"
+class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.
+L’istruzione è formata da una riga di intestazione che termina con il
+carattere dei due punti (<code>:</code>), seguita da un blocco
+indentato. Le istruzioni come questa si chiamano <em>istruzioni
+composte</em> (compound statement) perché si estendono su più righe.</p>
 <pre class="python"><code>if x &gt; y:
     print(x)
     print(y)</code></pre>
-<p>There is no limit on the number of statements that can appear in the
-body, but there must be at least one. Occasionally, it is useful to have
-a body with no statements (usually as a place holder for code you
-haven’t written yet). In that case, you can use the <code>pass</code>
-statement to pass the Python interpreter check, which does nothing.</p>
-<p> </p>
+<p>Non c’è limite al numero di istruzioni che possono apparire nel
+corpo, ma deve essercene almeno una. A volte è utile avere un corpo
+senza istruzioni (di solito come segnaposto per codice che non hai
+ancora scritto). In questo caso puoi usare l’istruzione
+<code>pass</code>, che non fa nulla, per superare il controllo
+dell’interprete Python. </p>
 <pre class="python"><code>if x &lt; 0 :
     pass   # need to handle negative values, do nothing for now.</code></pre>
-<p>If you enter an <code>if</code> statement in the Python interpreter,
-the prompt will change from three chevrons (&gt;&gt;&gt;) to three dots
-(…) to indicate you are in the middle of a block of statements, as shown
-below:</p>
+<p>Se inserisci un’istruzione <code>if</code> nell’interprete Python, il
+prompt cambia da tre segni di maggiore (<code>&gt;&gt;&gt;</code>) a tre
+punti (<code>...</code>) per indicare che sei nel mezzo di un blocco di
+istruzioni, come mostrato qui sotto:</p>
 <pre class="python"><code>&gt;&gt;&gt; x = 3
 &gt;&gt;&gt; if x &lt; 10:
 ...    print(&#39;Small&#39;)
 ...
 Small
 &gt;&gt;&gt;</code></pre>
-<p>When using the Python interpreter, you must leave a blank line at the
-end of a block, otherwise Python will return an error:</p>
+<p>Quando usi l’interprete Python, devi lasciare una riga vuota alla
+fine di un blocco, altrimenti Python segnala un errore:</p>
 <pre class="python"><code>&gt;&gt;&gt; x = 3
 &gt;&gt;&gt; if x &lt; 10:
 ...    print(&#39;Small&#39;)
 ... print(&#39;Done&#39;)
   File &quot;&lt;stdin&gt;&quot;, line 3
     print(&#39;Done&#39;)
-        ^
+    ^^^^^
 SyntaxError: invalid syntax</code></pre>
-<p>A blank line at the end of a block of statements is not necessary
-when writing and executing a script, but it may improve readability of
-your code.</p>
-<h2 id="alternative-execution">Alternative execution</h2>
-<p> </p>
-<p>A second form of the <code>if</code> statement is <em>alternative
-execution</em>, in which there are two possibilities and the condition
-determines which one gets executed. The syntax looks like this:</p>
+<p>Quando scrivi ed esegui uno script non serve una riga vuota alla fine
+di un blocco di istruzioni, ma può rendere il tuo codice più
+leggibile.</p>
+<h2 id="esecuzione-alternativa">Esecuzione alternativa</h2>
+<p> Una seconda forma dell’istruzione <code>if</code> è l’<em>esecuzione
+alternativa</em>, in cui ci sono due possibilità e la condizione
+determina quale delle due viene eseguita. La sintassi è questa:</p>
 <pre class="python"><code>if x % 2 == 0:
     print(&#39;x is even&#39;)
 else:
     print(&#39;x is odd&#39;)</code></pre>
-<p>If the remainder when <code>x</code> is divided by 2 is 0, then we
-know that <code>x</code> is even, and the program displays a message to
-that effect. If the condition is false, the second set of statements is
-executed.</p>
+<p>Se il resto della divisione di <code>x</code> per 2 è 0, sappiamo che
+<code>x</code> è pari e il programma visualizza un messaggio che lo
+dice. Se la condizione è falsa, viene eseguita la seconda serie di
+istruzioni.</p>
 <figure>
-<img src="../images/if-else.svg" alt="If-Then-Else Logic" style="height: 1.5in;"/>
+<img src="../images/if-else.svg" alt="Logica dell'if-then-else" style="height: 1.5in;"/>
 <figcaption>
-If-Then-Else Logic
+Logica dell’if-then-else
 </figcaption>
 </figure>
-<p>Since the condition must either be true or false, exactly one of the
-alternatives will be executed. The alternatives are called
-<em>branches</em>, because they are branches in the flow of
-execution.</p>
-<p></p>
-<h2 id="chained-conditionals">Chained conditionals</h2>
-<p> </p>
-<p>Sometimes there are more than two possibilities and we need more than
-two branches. One way to express a computation like that is a
-<em>chained conditional</em>:</p>
+<p>Dato che la condizione deve essere per forza vera o falsa, viene
+eseguita esattamente una delle alternative. Le alternative si chiamano
+<em>rami</em> (branch), perché sono rami del flusso di esecuzione. </p>
+<h2 id="condizioni-concatenate">Condizioni concatenate</h2>
+<p> A volte ci sono più di due possibilità e ci servono più di due rami.
+Un modo per esprimere un calcolo di questo tipo è una <em>condizione
+concatenata</em> (chained conditional):</p>
 <pre class="python"><code>if x &lt; y:
     print(&#39;x is less than y&#39;)
 elif x &gt; y:
     print(&#39;x is greater than y&#39;)
 else:
     print(&#39;x and y are equal&#39;)</code></pre>
-<p><code>elif</code> is an abbreviation of “else if.” Again, exactly one
-branch will be executed.</p>
+<p><code>elif</code> è l’abbreviazione di “else if”. Anche in questo
+caso viene eseguito esattamente un ramo.</p>
 <figure>
-<img src="../images/elif.svg" alt="If-Then-ElseIf Logic" style="height: 2.0in;"/>
+<img src="../images/elif.svg" alt="Logica dell'if-then-elseif" style="height: 2.0in;"/>
 <figcaption>
-If-Then-ElseIf Logic
+Logica dell’if-then-elseif
 </figcaption>
 </figure>
-<p>There is no limit on the number of <code>elif</code> statements. If
-there is an <code>else</code> clause, it has to be at the end, but there
-doesn’t have to be one.</p>
-<p> </p>
+<p>Non c’è limite al numero di istruzioni <code>elif</code>. Se c’è una
+clausola <code>else</code>, deve essere alla fine, ma non è obbligatorio
+che ci sia. </p>
 <pre class="python"><code>if choice == &#39;a&#39;:
     print(&#39;Bad guess&#39;)
 elif choice == &#39;b&#39;:
     print(&#39;Good guess&#39;)
 elif choice == &#39;c&#39;:
     print(&#39;Close, but not correct&#39;)</code></pre>
-<p>Each condition is checked in order. If the first is false, the next
-is checked, and so on. If one of them is true, the corresponding branch
-executes, and the statement ends. Even if more than one condition is
-true, only the first true branch executes.</p>
-<h2 id="nested-conditionals">Nested conditionals</h2>
-<p> </p>
-<p>One conditional can also be nested within another. We could have
-written the three-branch example like this:</p>
+<p>Le condizioni vengono controllate in ordine. Se la prima è falsa,
+viene controllata la successiva, e così via. Se una è vera, viene
+eseguito il ramo corrispondente e l’istruzione termina. Anche se è vera
+più di una condizione, viene eseguito solo il primo ramo vero.</p>
+<h2 id="condizioni-annidate">Condizioni annidate</h2>
+<p> Una condizione può anche essere annidata dentro un’altra. Avremmo
+potuto scrivere l’esempio a tre rami in questo modo:</p>
 <pre class="python"><code>if x == y:
     print(&#39;x and y are equal&#39;)
 else:
@@ -367,37 +375,37 @@ else:
         print(&#39;x is less than y&#39;)
     else:
         print(&#39;x is greater than y&#39;)</code></pre>
-<p>The outer conditional contains two branches. The first branch
-contains a simple statement. The second branch contains another
-<code>if</code> statement, which has two branches of its own. Those two
-branches are both simple statements, although they could have been
-conditional statements as well.</p>
+<p>La condizione esterna contiene due rami. Il primo ramo contiene
+un’istruzione semplice. Il secondo ramo contiene un’altra istruzione
+<code>if</code>, che ha a sua volta due rami. Questi due rami sono
+entrambi istruzioni semplici, ma avrebbero potuto essere anche
+istruzioni condizionali.</p>
 <figure>
-<img src="../images/nested.svg" alt="Nested If Statements" style="height: 2.0in;"/>
+<img src="../images/nested.svg" alt="Istruzioni `if` annidate" style="height: 2.0in;"/>
 <figcaption>
-Nested If Statements
+Istruzioni <code>if</code> annidate
 </figcaption>
 </figure>
-<p>Although the indentation of the statements makes the structure
-apparent, <em>nested conditionals</em> become difficult to read very
-quickly. In general, it is a good idea to avoid them when you can.</p>
-<p>Logical operators often provide a way to simplify nested conditional
-statements. For example, we can rewrite the following code using a
-single conditional:</p>
+<p>Anche se l’indentazione delle istruzioni rende evidente la struttura,
+le <em>condizioni annidate</em> diventano molto presto difficili da
+leggere. In generale, è una buona idea evitarle quando puoi.</p>
+<p>Spesso gli operatori logici offrono un modo per semplificare le
+istruzioni condizionali annidate. Ad esempio, possiamo riscrivere il
+codice seguente con una sola condizione:</p>
 <pre class="python"><code>if 0 &lt; x:
     if x &lt; 10:
         print(&#39;x is a positive single-digit number.&#39;)</code></pre>
-<p>The <code>print</code> statement is executed only when we pass both
-conditionals. We can get the same effect with the <code>and</code>
-operator:</p>
+<p>L’istruzione <code>print</code> viene eseguita solo quando entrambe
+le condizioni sono vere. Possiamo ottenere lo stesso effetto con
+l’operatore <code>and</code>:</p>
 <pre class="python"><code>if 0 &lt; x and x &lt; 10:
     print(&#39;x is a positive single-digit number.&#39;)</code></pre>
-<h2 id="catching-exceptions-using-try-and-except">Catching exceptions
-using try and except</h2>
-<p>Earlier we saw a code segment where we used the <code>input</code>
-and <code>int</code> functions to read and parse an integer number
-entered by the user. We also saw how treacherous doing this could
-be:</p>
+<h2 id="catturare-le-eccezioni-usando-try-ed-except">Catturare le
+eccezioni usando <code>try</code> ed <code>except</code></h2>
+<p>In precedenza abbiamo visto un segmento di codice in cui usavamo le
+funzioni <code>input</code> e <code>int</code> per leggere e analizzare
+un numero intero inserito dall’utente. Abbiamo visto anche quanto può
+essere insidioso farlo:</p>
 <pre class="python"><code>&gt;&gt;&gt; prompt = &quot;What is the air velocity of an unladen swallow?\n&quot;
 &gt;&gt;&gt; speed = input(prompt)
 What is the air velocity of an unladen swallow?
@@ -406,24 +414,22 @@ What do you mean, an African or a European swallow?
 ValueError: invalid literal for int() with
 base 10: &#39;What do you mean, an African or a European swallow?&#39;
 &gt;&gt;&gt;</code></pre>
-<p>When we are executing these statements in the Python interpreter, we
-get a new prompt from the interpreter, think “oops”, and move on to our
-next statement.</p>
-<p>However if you place this code in a Python script and this error
-occurs, your script immediately stops in its tracks with a traceback. It
-does not execute the following statement.</p>
-<p></p>
-<p>Here is a sample program to convert a Fahrenheit temperature to a
-Celsius temperature:</p>
-<p> </p>
-<pre class="python"><code>inp = input(&#39;Enter Fahrenheit Temperature: &#39;)
+<p>Quando eseguiamo queste istruzioni nell’interprete Python,
+l’interprete ci dà un nuovo prompt, pensiamo “ops” e passiamo
+all’istruzione successiva.</p>
+<p>Se però inserisci questo codice in uno script Python e si verifica
+questo errore, lo script si ferma di colpo con un traceback. Non esegue
+l’istruzione successiva. </p>
+<p>Ecco un programma di esempio che converte una temperatura da
+Fahrenheit a Celsius: </p>
+<pre class="python"><code>inp = input(&#39;Enter Fahrenheit Temperature:&#39;)
 fahr = float(inp)
 cel = (fahr - 32.0) * 5.0 / 9.0
 print(cel)
 
 # Code: https://www.py4e.com/code3/fahren.py</code></pre>
-<p>If we execute this code and give it invalid input, it simply fails
-with an unfriendly error message:</p>
+<p>Se eseguiamo questo codice e gli diamo un input non valido, fallisce
+semplicemente con un messaggio di errore poco amichevole:</p>
 <pre><code>python fahren.py
 Enter Fahrenheit Temperature:72
 22.22222222222222</code></pre>
@@ -433,16 +439,17 @@ Traceback (most recent call last):
   File &quot;fahren.py&quot;, line 2, in &lt;module&gt;
     fahr = float(inp)
 ValueError: could not convert string to float: &#39;fred&#39;</code></pre>
-<p>There is a conditional execution structure built into Python to
-handle these types of expected and unexpected errors called “try /
-except”. The purpose of <code>try</code> and <code>except</code> is that
-you know that some sequence of instruction(s) may have a problem and you
-want to add some statements to be executed if an error occurs. These
-extra statements (the except block) are ignored if there is no
-error.</p>
-<p>You can think of the <code>try</code> and <code>except</code> feature
-in Python as an “insurance policy” on a sequence of statements.</p>
-<p>We can rewrite our temperature converter as follows:</p>
+<p>Per gestire questi tipi di errori, previsti e imprevisti, Python ha
+una struttura di esecuzione condizionale built-in chiamata
+<code>try</code>/<code>except</code>. Lo scopo di <code>try</code> ed
+<code>except</code> è questo: sai che una certa sequenza di istruzioni
+potrebbe avere un problema e vuoi aggiungere alcune istruzioni da
+eseguire se si verifica un errore. Queste istruzioni aggiuntive (il
+blocco <code>except</code>) vengono ignorate se non ci sono errori.</p>
+<p>Puoi pensare alla funzionalità <code>try</code> ed
+<code>except</code> di Python come a una “polizza assicurativa” su una
+sequenza di istruzioni.</p>
+<p>Possiamo riscrivere il convertitore di temperatura come segue:</p>
 <pre class="python"><code>inp = input(&#39;Enter Fahrenheit Temperature:&#39;)
 try:
     fahr = float(inp)
@@ -452,43 +459,41 @@ except:
     print(&#39;Please enter a number&#39;)
 
 # Code: https://www.py4e.com/code3/fahren2.py</code></pre>
-<p>Python starts by executing the sequence of statements in the
-<code>try</code> block. If all goes well, it skips the
-<code>except</code> block and proceeds. If an exception occurs in the
-<code>try</code> block, Python jumps out of the <code>try</code> block
-and executes the sequence of statements in the <code>except</code>
-block.</p>
+<p>Per prima cosa Python esegue la sequenza di istruzioni del blocco
+<code>try</code>. Se tutto va bene, salta il blocco <code>except</code>
+e prosegue. Se nel blocco <code>try</code> si verifica un’eccezione,
+Python esce dal blocco <code>try</code> ed esegue la sequenza di
+istruzioni del blocco <code>except</code>.</p>
 <pre><code>python fahren2.py
 Enter Fahrenheit Temperature:72
 22.22222222222222</code></pre>
 <pre><code>python fahren2.py
 Enter Fahrenheit Temperature:fred
 Please enter a number</code></pre>
-<p>Handling an exception with a <code>try</code> statement is called
-<em>catching</em> an exception. In this example, the <code>except</code>
-clause prints an error message. In general, catching an exception gives
-you a chance to fix the problem, or try again, or at least end the
-program gracefully.</p>
-<h2 id="short-circuit-evaluation-of-logical-expressions">Short-circuit
-evaluation of logical expressions</h2>
-<p></p>
-<p>When Python is processing a logical expression such as
-<code>x &gt;= 2 and (x/y) &gt; 2</code>, it evaluates the expression
-from left to right. Because of the definition of <code>and</code>, if
-<code>x</code> is less than 2, the expression <code>x &gt;= 2</code> is
-<code>False</code> and so the whole expression is <code>False</code>
-regardless of whether <code>(x/y) &gt; 2</code> evaluates to
-<code>True</code> or <code>False</code>.</p>
-<p>When Python detects that there is nothing to be gained by evaluating
-the rest of a logical expression, it stops its evaluation and does not
-do the computations in the rest of the logical expression. When the
-evaluation of a logical expression stops because the overall value is
-already known, it is called <em>short-circuiting</em> the
-evaluation.</p>
-<p> </p>
-<p>While this may seem like a fine point, the short-circuit behavior
-leads to a clever technique called the <em>guardian pattern</em>.
-Consider the following code sequence in the Python interpreter:</p>
+<p>Gestire un’eccezione con un’istruzione <code>try</code> si dice
+<em>catturare</em> (catch) un’eccezione. In questo esempio, la clausola
+<code>except</code> stampa un messaggio di errore. In generale,
+catturare un’eccezione ti dà la possibilità di risolvere il problema, di
+riprovare o almeno di terminare il programma in modo elegante.</p>
+<h2
+id="valutazione-in-cortocircuito-delle-espressioni-logiche">Valutazione
+in cortocircuito delle espressioni logiche</h2>
+<p> Quando Python elabora un’espressione logica come
+<code>x &gt;= 2 and (x/y) &gt; 2</code>, la valuta da sinistra a destra.
+Per come è definito <code>and</code>, se <code>x</code> è minore di 2
+l’espressione <code>x &gt;= 2</code> è <code>False</code>, e quindi
+l’intera espressione è <code>False</code>, sia che
+<code>(x/y) &gt; 2</code> valga <code>True</code> sia che valga
+<code>False</code>.</p>
+<p>Quando Python si accorge che valutare il resto di un’espressione
+logica non porta alcun vantaggio, ferma la valutazione e non esegue i
+calcoli che restano. Quando la valutazione di un’espressione logica si
+ferma perché il valore complessivo è già noto, si parla di valutazione
+in <em>cortocircuito</em> (short circuit).</p>
+<p> Può sembrare una sottigliezza, ma il comportamento di cortocircuito
+porta a una tecnica ingegnosa chiamata <em>schema del guardiano</em>
+(guardian pattern). Considera questa sequenza di codice nell’interprete
+Python:</p>
 <pre class="python"><code>&gt;&gt;&gt; x = 6
 &gt;&gt;&gt; y = 2
 &gt;&gt;&gt; x &gt;= 2 and (x/y) &gt; 2
@@ -502,19 +507,21 @@ False
 &gt;&gt;&gt; x &gt;= 2 and (x/y) &gt; 2
 Traceback (most recent call last):
   File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;
+    x &gt;= 2 and (x/y) &gt; 2
+                ~^~
 ZeroDivisionError: division by zero
 &gt;&gt;&gt;</code></pre>
-<p>The third calculation failed because Python was evaluating
-<code>(x/y)</code> and <code>y</code> was zero, which causes a runtime
-error. But the first and the second examples did <em>not</em> fail
-because in the first calculation <code>y</code> was non zero and in the
-second one the first part of these expressions <code>x &gt;= 2</code>
-evaluated to <code>False</code> so the <code>(x/y)</code> was not ever
-executed due to the <em>short-circuit</em> rule and there was no
-error.</p>
-<p>We can construct the logical expression to strategically place a
-<em>guard</em> evaluation just before the evaluation that might cause an
-error as follows:</p>
+<p>Il terzo calcolo è fallito perché Python stava valutando
+<code>(x/y)</code> e <code>y</code> era zero, il che causa un errore di
+runtime. Il primo e il secondo esempio invece <em>non</em> sono falliti:
+nel primo calcolo <code>y</code> era diverso da zero, e nel secondo la
+prima parte dell’espressione, <code>x &gt;= 2</code>, valeva
+<code>False</code>, quindi <code>(x/y)</code> non è mai stato eseguito,
+per la regola del <em>cortocircuito</em>, e non c’è stato alcun
+errore.</p>
+<p>Possiamo costruire l’espressione logica in modo da collocare
+strategicamente una valutazione di <em>guardia</em> subito prima di
+quella che potrebbe causare un errore, come segue:</p>
 <pre class="python"><code>&gt;&gt;&gt; x = 1
 &gt;&gt;&gt; y = 0
 &gt;&gt;&gt; x &gt;= 2 and y != 0 and (x/y) &gt; 2
@@ -526,132 +533,134 @@ False
 &gt;&gt;&gt; x &gt;= 2 and (x/y) &gt; 2 and y != 0
 Traceback (most recent call last):
   File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;
+    x &gt;= 2 and (x/y) &gt; 2 and y != 0
+                ~^~
 ZeroDivisionError: division by zero
 &gt;&gt;&gt;</code></pre>
-<p>In the first logical expression, <code>x &gt;= 2</code> is
-<code>False</code> so the evaluation stops at the <code>and</code>. In
-the second logical expression, <code>x &gt;= 2</code> is
-<code>True</code> but <code>y != 0</code> is <code>False</code> so we
-never reach <code>(x/y)</code>.</p>
-<p>In the third logical expression, the <code>y != 0</code> is
-<em>after</em> the <code>(x/y)</code> calculation so the expression
-fails with an error.</p>
-<p>In the second expression, we say that <code>y != 0</code> acts as a
-<em>guard</em> to ensure that we only execute <code>(x/y)</code> if
-<code>y</code> is non-zero.</p>
-<h2 id="debugging">Debugging</h2>
-<p> </p>
-<p>The traceback Python displays when an error occurs contains a lot of
-information, but it can be overwhelming. The most useful parts are
-usually:</p>
+<p>Nella prima espressione logica, <code>x &gt;= 2</code> è
+<code>False</code>, quindi la valutazione si ferma all’<code>and</code>.
+Nella seconda espressione logica, <code>x &gt;= 2</code> è
+<code>True</code> ma <code>y != 0</code> è <code>False</code>, quindi
+non arriviamo mai a <code>(x/y)</code>.</p>
+<p>Nella terza espressione logica, <code>y != 0</code> viene
+<em>dopo</em> il calcolo <code>(x/y)</code>, quindi l’espressione
+fallisce con un errore.</p>
+<p>Nella seconda espressione diciamo che <code>y != 0</code> fa da
+<em>guardia</em>, per assicurare che <code>(x/y)</code> venga eseguito
+solo se <code>y</code> è diverso da zero.</p>
+<h2 id="debug">Debug</h2>
+<p> Il traceback che Python visualizza quando si verifica un errore
+contiene molte informazioni, ma può disorientare. Le parti più utili
+sono di solito:</p>
 <ul>
-<li><p>What kind of error it was, and</p></li>
-<li><p>Where it occurred.</p></li>
+<li>il tipo di errore;</li>
+<li>dove si è verificato.</li>
 </ul>
-<p>Syntax errors are usually easy to find, but there are a few gotchas.
-Whitespace errors can be tricky because spaces and tabs are invisible
-and we are used to ignoring them.</p>
-<p></p>
+<p>Gli errori di sintassi sono di solito facili da trovare, ma ci sono
+alcuni tranelli. Gli errori dovuti agli spazi bianchi possono essere
+insidiosi, perché spazi e tabulazioni sono invisibili e siamo abituati a
+ignorarli. </p>
 <pre class="python"><code>&gt;&gt;&gt; x = 5
 &gt;&gt;&gt;  y = 6
   File &quot;&lt;stdin&gt;&quot;, line 1
     y = 6
-    ^
 IndentationError: unexpected indent</code></pre>
-<p>In this example, the problem is that the second line is indented by
-one space. But the error message points to <code>y</code>, which is
-misleading. In general, error messages indicate where the problem was
-discovered, but the actual error might be earlier in the code, sometimes
-on a previous line.</p>
-<p>In general, error messages tell you where the problem was discovered,
-but that is often not where it was caused.</p>
-<h2 id="glossary">Glossary</h2>
+<p>In questo esempio il problema è che la seconda riga è indentata di
+uno spazio. Ma il messaggio di errore punta a <code>y</code>, il che è
+fuorviante. In generale, i messaggi di errore indicano dove è stato
+scoperto il problema, ma l’errore vero potrebbe trovarsi prima nel
+codice, a volte in una riga precedente.</p>
+<p>In generale, i messaggi di errore ti dicono dove è stato scoperto il
+problema, ma spesso non è lì che è stato causato.</p>
+<h2 id="glossario">Glossario</h2>
 <dl>
-<dt>body</dt>
+<dt><strong>Condizione</strong></dt>
 <dd>
-The sequence of statements within a compound statement.
+L’espressione booleana in un’istruzione condizionale che determina quale
+ramo viene eseguito.
 </dd>
-<dt>boolean expression</dt>
+<dt><strong>Condizione annidata</strong></dt>
 <dd>
-An expression whose value is either <code>True</code> or
-<code>False</code>.
+Un’istruzione condizionale che appare in uno dei rami di un’altra
+istruzione condizionale.
 </dd>
-<dt>branch</dt>
+<dt><strong>Condizione concatenata</strong></dt>
 <dd>
-One of the alternative sequences of statements in a conditional
-statement.
+Un’istruzione condizionale con una serie di rami alternativi.
 </dd>
-<dt>chained conditional</dt>
+<dt><strong>Corpo</strong></dt>
 <dd>
-A conditional statement with a series of alternative branches.
+La sequenza di istruzioni all’interno di un’istruzione composta.
 </dd>
-<dt>comparison operator</dt>
+<dt><strong>Cortocircuito</strong></dt>
 <dd>
-One of the operators that compares its operands: <code>==</code>,
+Il comportamento per cui Python, a metà della valutazione di
+un’espressione logica, ferma la valutazione perché conosce già il valore
+finale dell’espressione, senza dover valutare il resto.
+</dd>
+<dt><strong>Espressione booleana</strong></dt>
+<dd>
+Un’espressione il cui valore è <code>True</code> o <code>False</code>.
+</dd>
+<dt><strong>Istruzione composta</strong></dt>
+<dd>
+Un’istruzione formata da un’intestazione e da un corpo. L’intestazione
+termina con i due punti (<code>:</code>). Il corpo è indentato rispetto
+all’intestazione.
+</dd>
+<dt><strong>Istruzione condizionale</strong></dt>
+<dd>
+Un’istruzione che controlla il flusso di esecuzione in base a una
+condizione.
+</dd>
+<dt><strong>Operatore di confronto</strong></dt>
+<dd>
+Uno degli operatori che confrontano i propri operandi: <code>==</code>,
 <code>!=</code>, <code>&gt;</code>, <code>&lt;</code>,
-<code>&gt;=</code>, and <code>&lt;=</code>.
+<code>&gt;=</code> e <code>&lt;=</code>.
 </dd>
-<dt>conditional statement</dt>
+<dt><strong>Operatore logico</strong></dt>
 <dd>
-A statement that controls the flow of execution depending on some
-condition.
+Uno degli operatori che combinano espressioni booleane:
+<code>and</code>, <code>or</code> e <code>not</code>.
 </dd>
-<dt>condition</dt>
+<dt><strong>Ramo</strong></dt>
 <dd>
-The boolean expression in a conditional statement that determines which
-branch is executed.
+Una delle sequenze di istruzioni alternative di un’istruzione
+condizionale.
 </dd>
-<dt>compound statement</dt>
+<dt><strong>Schema del guardiano</strong></dt>
 <dd>
-A statement that consists of a header and a body. The header ends with a
-colon (:). The body is indented relative to the header.
+La costruzione di un’espressione logica con confronti aggiuntivi, per
+sfruttare il comportamento di cortocircuito.
 </dd>
-<dt>guardian pattern</dt>
+<dt><strong>Traceback</strong></dt>
 <dd>
-Where we construct a logical expression with additional comparisons to
-take advantage of the short-circuit behavior.
-</dd>
-<dt>logical operator</dt>
-<dd>
-One of the operators that combines boolean expressions:
-<code>and</code>, <code>or</code>, and <code>not</code>.
-</dd>
-<dt>nested conditional</dt>
-<dd>
-A conditional statement that appears in one of the branches of another
-conditional statement.
-</dd>
-<dt>traceback</dt>
-<dd>
-A list of the functions that are executing, printed when an exception
-occurs.
-</dd>
-<dt>short circuit</dt>
-<dd>
-When Python is part-way through evaluating a logical expression and
-stops the evaluation because Python knows the final value for the
-expression without needing to evaluate the rest of the expression.
+Un elenco delle funzioni in esecuzione, che viene stampato quando si
+verifica un’eccezione.
 </dd>
 </dl>
-<h2 id="exercises">Exercises</h2>
-<p><strong>Exercise 1:</strong> Rewrite your pay computation to give the
-employee 1.5 times the hourly rate for hours worked above 40 hours.</p>
+<h2 id="esercizi">Esercizi</h2>
+<p><strong>Esercizio 1:</strong> Riscrivi il tuo calcolo della paga in
+modo da dare al dipendente 1,5 volte la tariffa oraria per le ore
+lavorate oltre le 40.</p>
 <pre><code>Enter Hours: 45
 Enter Rate: 10
 Pay: 475.0</code></pre>
-<p><strong>Exercise 2:</strong> Rewrite your pay program using
-<code>try</code> and <code>except</code> so that your program handles
-non-numeric input gracefully by printing a message and exiting the
-program. The following shows two executions of the program:</p>
+<p><strong>Esercizio 2:</strong> Riscrivi il tuo programma della paga
+usando <code>try</code> ed <code>except</code>, in modo che gestisca con
+eleganza un input non numerico, stampando un messaggio e uscendo dal
+programma. Ecco due esecuzioni del programma:</p>
 <pre><code>Enter Hours: 20
 Enter Rate: nine
 Error, please enter numeric input</code></pre>
 <pre><code>Enter Hours: forty
 Error, please enter numeric input</code></pre>
-<p><strong>Exercise 3:</strong> Write a program to prompt for a score
-between 0.0 and 1.0. If the score is out of range, print an error
-message. If the score is between 0.0 and 1.0, print a grade using the
-following table:</p>
+<p><strong>Esercizio 3:</strong> Scrivi un programma che chieda un
+punteggio compreso tra <code>0.0</code> e <code>1.0</code>. Se il
+punteggio è fuori dall’intervallo, stampa un messaggio di errore. Se il
+punteggio è compreso tra <code>0.0</code> e <code>1.0</code>, stampa un
+voto usando la tabella seguente:</p>
 <pre><code> Score   Grade
 &gt;= 0.9     A
 &gt;= 0.8     B
@@ -668,14 +677,14 @@ Bad score</code></pre>
 C</code></pre>
 <pre><code>Enter score: 0.5
 F</code></pre>
-<p>Run the program repeatedly as shown above to test the various
-different values for input.</p>
+<p>Esegui più volte il programma, come mostrato sopra, per testare i
+diversi valori di input.</p>
 <section id="footnotes" class="footnotes footnotes-end-of-document"
 role="doc-endnotes">
 <hr />
 <ol>
-<li id="fn1"><p>We will learn about functions in Chapter 4 and loops in
-Chapter 5.<a href="#fnref1" class="footnote-back"
+<li id="fn1"><p>Studieremo le funzioni nel Capitolo 4 e i cicli nel
+Capitolo 5.<a href="#fnref1" class="footnote-back"
 role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>

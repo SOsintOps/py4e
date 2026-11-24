@@ -3,16 +3,22 @@
   ob_start();
 }?>
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="pandoc" />
+  <meta name="generator" content="pandoc 3.14" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>Regular expressions</title>
+  <title>Espressioni regolari</title>
   <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
     html {
       color: #1a1a1a;
+      color: light-dark(#1a1a1a, #fdfdfd);
       background-color: #fdfdfd;
+      background-color: light-dark(#fdfdfd, #1a1a1a);
+      color-scheme: light dark;
     }
     body {
       margin: 0 auto;
@@ -35,31 +41,11 @@
         font-size: 1.8em;
       }
     }
-    @media print {
-      html {
-        background-color: white;
-      }
-      body {
-        background-color: transparent;
-        color: black;
-        font-size: 12pt;
-      }
-      p, h2, h3 {
-        orphans: 3;
-        widows: 3;
-      }
-      h2, h3, h4 {
-        page-break-after: avoid;
-      }
-    }
     p {
       margin: 1em 0;
     }
-    a {
-      color: #1a1a1a;
-    }
-    a:visited {
-      color: #1a1a1a;
+    a, a:visited {
+      color: inherit;
     }
     img {
       max-width: 100%;
@@ -88,10 +74,14 @@
     blockquote {
       margin: 1em 0 1em 1.7em;
       padding-left: 1em;
-      border-left: 2px solid #e6e6e6;
+      border-left: 2px solid;
+      border-color: #e6e6e6;
+      border-color: light-dark(#e6e6e6, #4c4c4c);
       color: #606060;
+      color: light-dark(#606060, #b6b6b6);
     }
     code {
+      white-space: pre-wrap;
       font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
       font-size: 85%;
       margin: 0;
@@ -112,7 +102,7 @@
     }
     hr {
       border: none;
-      border-top: 1px solid #1a1a1a;
+      border-top: 1px solid currentColor;
       height: 1px;
       margin: 1em 0;
     }
@@ -129,11 +119,11 @@
     }
     tbody {
       margin-top: 0.5em;
-      border-top: 1px solid #1a1a1a;
-      border-bottom: 1px solid #1a1a1a;
+      border-top: 1px solid currentColor;
+      border-bottom: 1px solid currentColor;
     }
     th {
-      border-top: 1px solid #1a1a1a;
+      border-top: 1px solid currentColor;
       padding: 0.25em 0.5em 0.25em 0.5em;
     }
     td {
@@ -155,10 +145,19 @@
     #TOC a:not(:hover) {
       text-decoration: none;
     }
-    code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
-    div.columns{display: flex; gap: min(4vw, 1.5em);}
-    div.column{flex: auto; overflow-x: auto;}
+    em, em em em, em em em em em {
+      font-style: italic;
+    }
+    em em, em em em em {
+      font-style: normal;
+    }
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     /* The extra [class] is a hack that increases specificity enough to
        override a similar rule in reveal.js */
@@ -169,40 +168,59 @@
       margin: 0 0.8em 0.2em -1.6em;
       vertical-align: middle;
     }
-    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
-  </style>
+    @media print {
+      html {
+        color-scheme: light only;
+      }
+      html, body, pre, code {
+        background-color: transparent;
+      }
+      body, a, a:visited, blockquote {
+        color: black;
+      }
+      pre, code {
+        padding: 0;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }  </style>
 </head>
 <body>
-<h1 id="regular-expressions">Regular expressions</h1>
-<p>So far we have been reading through files, looking for patterns and
-extracting various bits of lines that we find interesting. We have been
-using string methods like <code>split</code> and <code>find</code> and
-using lists and string slicing to extract portions of the lines.</p>
+<h1 id="espressioni-regolari">Espressioni regolari</h1>
+<p>Finora abbiamo letto i file, cercando schemi ed estraendo varie parti
+delle righe che ci sembrano interessanti. Per estrarre porzioni delle
+righe abbiamo usato metodi delle stringhe come <code>split</code> e
+<code>find</code>, le liste e lo slicing delle stringhe.</p>
 <p> </p>
-<p>This task of searching and extracting is so common that Python has a
-very powerful module called <em>regular expressions</em> that handles
-many of these tasks quite elegantly. The reason we have not introduced
-regular expressions earlier in the book is because while they are very
-powerful, they are a little complicated and their syntax takes some
-getting used to.</p>
-<p>Regular expressions are almost their own little programming language
-for searching and parsing strings. As a matter of fact, entire books
-have been written on the topic of regular expressions. In this chapter,
-we will only cover the basics of regular expressions. For more detail on
-regular expressions, see:</p>
+<p>Questo lavoro di ricerca ed estrazione è così comune che Python ha un
+modulo molto potente chiamato <em>espressioni regolari</em> (regular
+expressions), che gestisce molti di questi compiti in modo piuttosto
+elegante. Nel libro non abbiamo introdotto prima le espressioni regolari
+perché, per quanto molto potenti, sono un po’ complicate e ci vuole del
+tempo per abituarsi alla loro sintassi.</p>
+<p>Le espressioni regolari sono quasi un piccolo linguaggio di
+programmazione a sé stante, per cercare e analizzare stringhe. In
+effetti, sulle espressioni regolari sono stati scritti libri interi. In
+questo capitolo ne tratteremo solo le basi. Per maggiori dettagli sulle
+espressioni regolari, vedi:</p>
 <p><a href="https://en.wikipedia.org/wiki/Regular_expression"
 class="uri">https://en.wikipedia.org/wiki/Regular_expression</a></p>
 <p><a href="https://docs.python.org/library/re.html"
 class="uri">https://docs.python.org/library/re.html</a></p>
-<p>You can also bookmark the following page to experiment with regular
-expressions as you learn:</p>
+<p>Puoi anche aggiungere ai segnalibri la pagina seguente, per fare
+esperimenti con le espressioni regolari mentre impari:</p>
 <p><a href="https://regex101.com/"
 class="uri">https://regex101.com/</a></p>
-<p>The regular expression module <code>re</code> must be imported into
-your program before you can use it. The simplest use of the regular
-expression module is the <code>search()</code> function. The following
-program demonstrates a trivial use of the search function.</p>
-<p></p>
+<p>Prima di poter usare il modulo delle espressioni regolari
+<code>re</code>, devi importarlo nel programma. L’uso più semplice del
+modulo delle espressioni regolari è la funzione <code>search()</code>.
+Il programma seguente mostra un uso banale della funzione
+<code>search</code>.</p>
 <pre class="python"><code># Search for lines that contain &#39;From&#39;
 import re
 hand = open(&#39;mbox-short.txt&#39;)
@@ -212,21 +230,22 @@ for line in hand:
         print(line)
 
 # Code: https://www.py4e.com/code3/re01.py</code></pre>
-<p>We open the file, loop through each line, and use the regular
-expression <code>search()</code> to only print out lines that contain
-the string “From:”. This program does not use the real power of regular
-expressions, since we could have just as easily used
-<code>line.find()</code> to accomplish the same result.</p>
-<p></p>
-<p>The power of the regular expressions comes when we add special
-characters to the search string that allow us to more precisely control
-which lines match the string. Adding these special characters to our
-regular expression allows us to do sophisticated matching and extraction
-while writing very little code.</p>
-<p>For example, the caret character is used in regular expressions to
-match “the beginning” of a line. We could change our program to only
-match lines where “From:” was at the beginning of the line as
-follows:</p>
+<p>Apriamo il file, scorriamo ogni riga e usiamo la funzione
+<code>search()</code> delle espressioni regolari per stampare solo le
+righe che contengono la stringa <code>From:</code>. Questo programma non
+sfrutta la vera potenza delle espressioni regolari, perché avremmo
+potuto usare altrettanto facilmente <code>line.find()</code> per
+ottenere lo stesso risultato.</p>
+<p>La potenza delle espressioni regolari emerge quando aggiungiamo alla
+stringa di ricerca dei caratteri speciali, che ci permettono di
+controllare con più precisione quali righe corrispondono alla stringa.
+Aggiungendo questi caratteri speciali all’espressione regolare possiamo
+trovare corrispondenze ed estrarre dati in modo sofisticato, scrivendo
+pochissimo codice.</p>
+<p>Ad esempio, nelle espressioni regolari l’accento circonflesso
+corrisponde all’“inizio” di una riga. Potremmo cambiare il programma in
+modo che trovi corrispondenze solo nelle righe in cui <code>From:</code>
+si trova all’inizio, come segue:</p>
 <pre class="python"><code># Search for lines that start with &#39;From&#39;
 import re
 hand = open(&#39;mbox-short.txt&#39;)
@@ -236,23 +255,25 @@ for line in hand:
         print(line)
 
 # Code: https://www.py4e.com/code3/re02.py</code></pre>
-<p>Now we will only match lines that <em>start with</em> the string
-“From:”. This is still a very simple example that we could have done
-equivalently with the <code>startswith()</code> method from the string
-module. But it serves to introduce the notion that regular expressions
-contain special action characters that give us more control as to what
-will match the regular expression.</p>
-<p></p>
-<h2 id="character-matching-in-regular-expressions">Character matching in
-regular expressions</h2>
-<p>There are a number of other special characters that let us build even
-more powerful regular expressions. The most commonly used special
-character is the period or full stop, which matches any character.</p>
+<p>Ora troveremo corrispondenze solo nelle righe che <em>iniziano
+con</em> la stringa <code>From:</code>. È ancora un esempio molto
+semplice, che avremmo potuto realizzare in modo equivalente con il
+metodo <code>startswith()</code> delle stringhe. Ma serve a introdurre
+l’idea che le espressioni regolari contengono caratteri speciali che
+compiono un’azione e ci danno più controllo su ciò che corrisponderà
+all’espressione regolare.</p>
+<h2
+id="corrispondenza-di-caratteri-nelle-espressioni-regolari">Corrispondenza
+di caratteri nelle espressioni regolari</h2>
+<p>Ci sono diversi altri caratteri speciali che ci permettono di
+costruire espressioni regolari ancora più potenti. Il carattere speciale
+più usato è il punto, che corrisponde a qualsiasi carattere.</p>
 <p> </p>
-<p>In the following example, the regular expression <code>F..m:</code>
-would match any of the strings “From:”, “Fxxm:”, “F12m:”, or “F!<span
-class="citation" data-cites="m">@m</span>:” since the period characters
-in the regular expression match any character.</p>
+<p>Nell’esempio seguente, l’espressione regolare <code>F..m:</code>
+corrisponderebbe a una qualsiasi delle stringhe <code>From:</code>,
+<code>Fxxm:</code>, <code>F12m:</code> o <code>F!@m:</code>, perché
+nell’espressione regolare i punti corrispondono a qualsiasi
+carattere.</p>
 <pre class="python"><code># Search for lines that start with &#39;F&#39;, followed by
 # 2 characters, followed by &#39;m:&#39;
 import re
@@ -263,15 +284,16 @@ for line in hand:
         print(line)
 
 # Code: https://www.py4e.com/code3/re03.py</code></pre>
-<p>This is particularly powerful when combined with the ability to
-indicate that a character can be repeated any number of times using the
-<code>*</code> or <code>+</code> characters in your regular expression.
-These special characters mean that instead of matching a single
-character in the search string, they match zero-or-more characters (in
-the case of the asterisk) or one-or-more of the characters (in the case
-of the plus sign).</p>
-<p>We can further narrow down the lines that we match using a repeated
-<em>wild card</em> character in the following example:</p>
+<p>Questa caratteristica è particolarmente potente se combinata con la
+possibilità di indicare, con i caratteri <code>*</code> o <code>+</code>
+nell’espressione regolare, che un carattere può essere ripetuto un
+numero qualsiasi di volte. Questi caratteri speciali significano che,
+invece di corrispondere a un singolo carattere nella stringa di ricerca,
+corrispondono a zero o più caratteri (nel caso dell’asterisco) o a uno o
+più caratteri (nel caso del segno più).</p>
+<p>Possiamo restringere ancora di più le righe che corrispondono, usando
+un <em>carattere jolly</em> (wild card) ripetuto, come nell’esempio
+seguente:</p>
 <pre class="python"><code># Search for lines that start with From and have an at sign
 import re
 hand = open(&#39;mbox-short.txt&#39;)
@@ -281,45 +303,47 @@ for line in hand:
         print(line)
 
 # Code: https://www.py4e.com/code3/re04.py</code></pre>
-<p>The search string <code>^From:.+@</code> will successfully match
-lines that start with “From:”, followed by one or more characters
-(<code>.+</code>), followed by an at-sign. So this will match the
-following line:</p>
+<p>La stringa di ricerca <code>^From:.+@</code> corrisponderà
+correttamente alle righe che iniziano con <code>From:</code>, seguito da
+uno o più caratteri (<code>.+</code>), seguiti da una chiocciola. Quindi
+corrisponderà alla riga seguente:</p>
 <pre><code>From: stephen.marquard@uct.ac.za</code></pre>
-<p>You can think of the <code>.+</code> wildcard as expanding to match
-all the characters between the colon character and the at-sign.</p>
+<p>Puoi immaginare che il carattere jolly <code>.+</code> si espanda
+fino a corrispondere a tutti i caratteri compresi tra il carattere dei
+due punti e la chiocciola.</p>
 <pre><code>From:.+@</code></pre>
-<p>It is good to think of the plus and asterisk characters as “pushy” or
-“greedy.” For example, the following string would match the last at-sign
-in the string as the <code>.+</code> pushes outwards, the one in
-<code>cwen@iupui.edu</code>.</p>
+<p>È utile pensare al segno più e all’asterisco come “invadenti” o
+<em>avidi</em> (greedy). Ad esempio, nella stringa seguente la
+corrispondenza arriverebbe fino all’ultima chiocciola della stringa,
+quella in <code>cwen@iupui.edu</code>, perché <code>.+</code> spinge
+verso l’esterno.</p>
 <pre><code>From: stephen.marquard@uct.ac.za, csev@umich.edu, and cwen@iupui.edu</code></pre>
-<p>It is possible to tell an asterisk or plus sign not to be so
-“greedy.” If you append <code>?</code>, to make it <code>.*?</code> or
-<code>.+?</code>, your regex will match the very first instance rather
-than the last instance. In the example above, using <code>.+?@</code>
-would instead match the first at-sign, the one in
-<code>stephen.marquard@uct.ac.za</code>. For more details, see the <a
-href="https://docs.python.org/3/library/re.html">Python documentation on
-greedy vs non-greedy quantifiers</a>.</p>
-<p></p>
-<h2 id="extracting-data-using-regular-expressions">Extracting data using
-regular expressions</h2>
-<p>If we want to extract data from a string in Python we can use the
-<code>findall()</code> method to extract all of the substrings which
-match a regular expression. Let’s use the example of wanting to extract
-anything that looks like an email address from any line regardless of
-format. For example, we want to pull the email addresses from each of
-the following lines:</p>
+<p>È possibile dire a un asterisco o a un segno più di non essere così
+“avido”. Se aggiungi <code>?</code>, in modo da ottenere
+<code>.*?</code> o <code>.+?</code>, la tua regex corrisponderà alla
+primissima occorrenza anziché all’ultima. Nell’esempio qui sopra, usando
+<code>.+?@</code> la corrispondenza arriverebbe invece alla prima
+chiocciola, quella in <code>stephen.marquard@uct.ac.za</code>. Per
+maggiori dettagli, vedi la <a
+href="https://docs.python.org/3/library/re.html">documentazione di
+Python sui quantificatori avidi e non avidi</a>.</p>
+<h2 id="estrarre-dati-con-le-espressioni-regolari">Estrarre dati con le
+espressioni regolari</h2>
+<p>Se vogliamo estrarre dati da una stringa in Python, possiamo usare la
+funzione <code>findall()</code> per estrarre tutte le sottostringhe che
+corrispondono a un’espressione regolare. Supponiamo di voler estrarre da
+qualsiasi riga tutto ciò che somiglia a un indirizzo email,
+indipendentemente dal formato. Ad esempio, vogliamo ricavare gli
+indirizzi email da ognuna delle righe seguenti:</p>
 <pre><code>From stephen.marquard@uct.ac.za Sat Jan  5 09:14:16 2008
 Return-Path: &lt;postmaster@collab.sakaiproject.org&gt;
           for &lt;source@collab.sakaiproject.org&gt;;
 Received: (from apache@localhost)
 Author: stephen.marquard@uct.ac.za</code></pre>
-<p>We don’t want to write code for each of the types of lines, splitting
-and slicing differently for each line. This following program uses
-<code>findall()</code> to find the lines with email addresses in them
-and extract one or more addresses from each of those lines.</p>
+<p>Non vogliamo scrivere codice per ciascun tipo di riga, con divisioni
+e slice diverse per ogni riga. Il programma seguente usa
+<code>findall()</code> per trovare le righe che contengono indirizzi
+email ed estrarre uno o più indirizzi da ciascuna di quelle righe.</p>
 <p> </p>
 <pre class="python"><code>import re
 s = &#39;A message from csev@umich.edu to cwen@iupui.edu about meeting @2PM&#39;
@@ -327,27 +351,28 @@ lst = re.findall(r&#39;\S+@\S+&#39;, s)
 print(lst)
 
 # Code: https://www.py4e.com/code3/re05.py</code></pre>
-<p>The <code>findall()</code> method searches the string in the second
-argument and returns a list of all of the strings that look like email
-addresses. We are using a two-character sequence that matches a
-non-whitespace character (<code>\S</code>). You will notice we’ve also
-appended the letter <code>r</code> just before our regular expression;
-this tells Python to interpret our regular expression as a raw string,
-and not to treat backslashes as escape characters (like we use with
-<code>\n</code>).</p>
-<p>The output of the program would be:</p>
+<p>La funzione <code>findall()</code> cerca nella stringa del secondo
+argomento e restituisce una lista di tutte le stringhe che sembrano
+indirizzi email. Usiamo una sequenza di due caratteri che corrisponde a
+un carattere diverso dallo spazio bianco (<code>\S</code>). Noterai che
+abbiamo anche aggiunto la lettera <code>r</code> subito prima
+dell’espressione regolare; così diciamo a Python di interpretarla come
+una <em>stringa raw</em> (raw string) e di non trattare i backslash come
+caratteri di escape (come quello che usiamo in <code>\n</code>).</p>
+<p>L’output del programma sarebbe:</p>
 <pre><code>[&#39;csev@umich.edu&#39;, &#39;cwen@iupui.edu&#39;]</code></pre>
-<p>Translating the regular expression, we are looking for substrings
-that have at least one non-whitespace character, followed by an at-sign,
-followed by at least one more non-whitespace character. The
-<code>\S+</code> matches as many non-whitespace characters as
-possible.</p>
-<p>The regular expression would match twice (csev@umich.edu and
-cwen@iupui.edu), but it would not match the string “<span
-class="citation" data-cites="2PM">@2PM</span>” because there are no
-non-blank characters <em>before</em> the at-sign. We can use this
-regular expression in a program to read all the lines in a file and
-print out anything that looks like an email address as follows:</p>
+<p>Tradotta, l’espressione regolare dice che cerchiamo sottostringhe che
+hanno almeno un carattere diverso dallo spazio bianco, seguito da una
+chiocciola, seguita da almeno un altro carattere diverso dallo spazio
+bianco. <code>\S+</code> corrisponde al maggior numero possibile di
+caratteri diversi dallo spazio bianco.</p>
+<p>L’espressione regolare troverebbe due corrispondenze
+(<code>csev@umich.edu</code> e <code>cwen@iupui.edu</code>), ma non
+corrisponderebbe alla stringa <code>@2PM</code>, perché non ci sono
+caratteri diversi dallo spazio <em>prima</em> della chiocciola. Possiamo
+usare questa espressione regolare in un programma per leggere tutte le
+righe di un file e stampare tutto ciò che somiglia a un indirizzo email,
+come segue:</p>
 <pre class="python"><code># Search for lines that have an at sign between characters
 import re
 hand = open(&#39;mbox-short.txt&#39;)
@@ -358,13 +383,14 @@ for line in hand:
         print(x)
 
 # Code: https://www.py4e.com/code3/re06.py</code></pre>
-<p>We read each line and then extract all the substrings that match our
-regular expression. Since <code>findall()</code> returns a list, we
-simply check if the number of elements in our returned list is more than
-zero to print only lines where we found at least one substring that
-looks like an email address.</p>
-<p>If we run the program on <em>mbox-short.txt</em> we get the following
-output:</p>
+<p>Leggiamo ogni riga e poi estraiamo tutte le sottostringhe che
+corrispondono all’espressione regolare. Poiché <code>findall()</code>
+restituisce una lista, controlliamo semplicemente se il numero di
+elementi nella lista restituita è maggiore di zero, per stampare solo le
+righe in cui abbiamo trovato almeno una sottostringa che somiglia a un
+indirizzo email.</p>
+<p>Se eseguiamo il programma su <code>mbox-short.txt</code> otteniamo
+l’output seguente:</p>
 <pre><code>...
 [&#39;&lt;source@collab.sakaiproject.org&gt;;&#39;]
 [&#39;&lt;source@collab.sakaiproject.org&gt;;&#39;]
@@ -375,32 +401,33 @@ output:</p>
 [&#39;cwen@iupui.edu&#39;]
 [&#39;cwen@iupui.edu&#39;]
 [&#39;wagnermr@iupui.edu&#39;]</code></pre>
-<p>Some of our email addresses have incorrect characters like “&lt;” or
-“;” at the beginning or end. Let’s declare that we are only interested
-in the portion of the string that starts and ends with a letter or a
-number.</p>
-<p>To do this, we use another feature of regular expressions. Square
-brackets are used to indicate a set of multiple acceptable characters we
-are willing to consider matching. In a sense, the <code>\S</code> is
-asking to match the set of “non-whitespace characters”. Now we will be a
-little more explicit in terms of the characters we will match.</p>
-<p>Here is our new regular expression:</p>
+<p>Alcuni degli indirizzi email hanno caratteri sbagliati come
+<code>&lt;</code> o <code>;</code> all’inizio o alla fine. Stabiliamo
+che ci interessa solo la parte della stringa che inizia e finisce con
+una lettera o un numero.</p>
+<p>Per farlo, usiamo un’altra caratteristica delle espressioni regolari.
+Le parentesi quadre servono a indicare un insieme di più caratteri
+accettabili, che siamo disposti a considerare corrispondenti. In un
+certo senso, <code>\S</code> chiede la corrispondenza con l’insieme dei
+“caratteri diversi dallo spazio bianco”. Ora saremo un po’ più espliciti
+sui caratteri da far corrispondere.</p>
+<p>Ecco la nostra nuova espressione regolare:</p>
 <pre><code>[a-zA-Z0-9]\S*@\S*[a-zA-Z]</code></pre>
-<p>This is getting a little complicated and you can begin to see why
-regular expressions are their own little language unto themselves.
-Translating this regular expression, we are looking for substrings that
-start with a <em>single</em> lowercase letter, uppercase letter, or
-number “[a-zA-Z0-9]”, followed by zero or more non-blank characters
-(<code>\S*</code>), followed by an at-sign, followed by zero or more
-non-blank characters (<code>\S*</code>), followed by an uppercase or
-lowercase letter. Note that we switched from <code>+</code> to
-<code>*</code> to indicate zero or more non-blank characters since
-<code>[a-zA-Z0-9]</code> is already one non-blank character. Remember
-that the <code>*</code> or <code>+</code> applies to the single
-character immediately to the left of the plus or asterisk.</p>
-<p></p>
-<p>If we use this expression in our program, our data is much
-cleaner:</p>
+<p>Sta diventando un po’ complicato e puoi cominciare a capire perché le
+espressioni regolari sono un piccolo linguaggio a sé stante. Tradotta,
+questa espressione regolare dice che cerchiamo sottostringhe che
+iniziano con un <em>singolo</em> carattere (lettera minuscola, lettera
+maiuscola o numero) <code>[a-zA-Z0-9]</code>, seguito da zero o più
+caratteri diversi dallo spazio (<code>\S*</code>), seguiti da una
+chiocciola, seguita da zero o più caratteri diversi dallo spazio
+(<code>\S*</code>), seguiti da una lettera maiuscola o minuscola. Nota
+che siamo passati da <code>+</code> a <code>*</code> per indicare zero o
+più caratteri diversi dallo spazio, perché <code>[a-zA-Z0-9]</code> è
+già un carattere diverso dallo spazio. Ricorda che <code>*</code> o
+<code>+</code> si applica al singolo carattere immediatamente a sinistra
+del più o dell’asterisco.</p>
+<p>Se usiamo questa espressione nel programma, i dati sono molto più
+puliti:</p>
 <pre class="python"><code># Search for lines that have an at sign between characters
 # The characters must be a letter or number
 import re
@@ -421,36 +448,38 @@ for line in hand:
 [&#39;source@collab.sakaiproject.org&#39;]
 [&#39;source@collab.sakaiproject.org&#39;]
 [&#39;apache@localhost&#39;]</code></pre>
-<p>Notice that on the <code>source@collab.sakaiproject.org</code> lines,
-our regular expression eliminated two letters at the end of the string
-(“&gt;;”). This is because when we append <code>[a-zA-Z]</code> to the
-end of our regular expression, we are demanding that whatever string the
-regular expression parser finds must end with a letter. So when it sees
-the “&gt;” at the end of “sakaiproject.org&gt;;” it simply stops at the
-last “matching” letter it found (i.e., the “g” was the last good
-match).</p>
-<p>Also note that the output of the program is a Python list that has a
-string as the single element in the list.</p>
-<h2 id="combining-searching-and-extracting">Combining searching and
-extracting</h2>
-<p>If we want to find numbers on lines that start with the string “X-”
-such as:</p>
+<p>Nota che nelle righe con <code>source@collab.sakaiproject.org</code>
+l’espressione regolare ha eliminato due caratteri alla fine della
+stringa (<code>&gt;;</code>). Questo succede perché, quando aggiungiamo
+<code>[a-zA-Z]</code> alla fine dell’espressione regolare, pretendiamo
+che qualsiasi stringa trovata dal parser delle espressioni regolari
+finisca con una lettera. Quindi, quando vede il <code>&gt;</code> alla
+fine di <code>sakaiproject.org&gt;;</code>, si ferma semplicemente
+all’ultima lettera “corrispondente” che ha trovato (cioè la
+<code>g</code> era l’ultima corrispondenza valida).</p>
+<p>Nota anche che l’output del programma è una lista Python che ha una
+stringa come unico elemento.</p>
+<h2 id="combinare-ricerca-ed-estrazione">Combinare ricerca ed
+estrazione</h2>
+<p>Se vogliamo trovare i numeri nelle righe che iniziano con la stringa
+<code>X-</code>, come:</p>
 <pre><code>X-DSPAM-Confidence: 0.8475
 X-DSPAM-Probability: 0.0000</code></pre>
-<p>we don’t just want any floating-point numbers from any lines. We only
-want to extract numbers from lines that have the above syntax.</p>
-<p>We can construct the following regular expression to select the
-lines:</p>
+<p>non vogliamo semplicemente tutti i numeri in virgola mobile di tutte
+le righe. Vogliamo estrarre i numeri solo dalle righe che hanno la
+sintassi qui sopra.</p>
+<p>Possiamo costruire la seguente espressione regolare per selezionare
+le righe:</p>
 <pre><code>^X-.*: [0-9.]+</code></pre>
-<p>Translating this, we are saying, we want lines that start with
-<code>X-</code>, followed by zero or more characters (<code>.*</code>),
-followed by a colon (<code>:</code>) and then a space. After the space
-we are looking for one or more characters that are either a digit (0-9)
-or a period <code>[0-9.]+</code>. Note that inside the square brackets,
-the period matches an actual period (i.e., it is not a wildcard between
-the square brackets).</p>
-<p>This is a very tight expression that will pretty much match only the
-lines we are interested in as follows:</p>
+<p>Traducendo, diciamo che vogliamo le righe che iniziano con
+<code>X-</code>, seguito da zero o più caratteri (<code>.*</code>),
+seguiti dai due punti (<code>:</code>) e poi da uno spazio. Dopo lo
+spazio cerchiamo uno o più caratteri che siano una cifra (0-9) o un
+punto <code>[0-9.]+</code>. Nota che dentro le parentesi quadre il punto
+corrisponde a un punto vero e proprio (cioè tra le parentesi quadre non
+è un carattere jolly).</p>
+<p>È un’espressione molto restrittiva, che corrisponderà praticamente
+solo alle righe che ci interessano, come segue:</p>
 <pre class="python"><code># Search for lines that start with &#39;X&#39; followed by any non
 # whitespace characters and &#39;:&#39;
 # followed by a space and any number.
@@ -463,26 +492,26 @@ for line in hand:
         print(line)
 
 # Code: https://www.py4e.com/code3/re10.py</code></pre>
-<p>When we run the program, we see the data nicely filtered to show only
-the lines we are looking for.</p>
+<p>Quando eseguiamo il programma, vediamo i dati filtrati per bene, in
+modo da mostrare solo le righe che cerchiamo.</p>
 <pre><code>X-DSPAM-Confidence: 0.8475
 X-DSPAM-Probability: 0.0000
 X-DSPAM-Confidence: 0.6178
 X-DSPAM-Probability: 0.0000
 ...</code></pre>
-<p>But now we have to solve the problem of extracting the numbers. While
-it would be simple enough to use <code>split</code>, we can use another
-feature of regular expressions to both search and parse the line at the
-same time.</p>
-<p></p>
-<p>Parentheses are another special character in regular expressions.
-When you add parentheses to a regular expression, they are ignored when
-matching the string. But when you are using <code>findall()</code>,
-parentheses indicate that while you want the whole expression to match,
-you only are interested in extracting a portion of the substring that
-matches the regular expression.</p>
+<p>Ma ora dobbiamo risolvere il problema di estrarre i numeri. Anche se
+sarebbe abbastanza semplice usare <code>split</code>, possiamo usare
+un’altra caratteristica delle espressioni regolari per cercare e
+analizzare la riga allo stesso tempo.</p>
+<p>Le parentesi tonde sono un altro carattere speciale delle espressioni
+regolari. Quando aggiungi le parentesi tonde a un’espressione regolare,
+vengono ignorate nella ricerca della corrispondenza con la stringa. Ma
+quando usi <code>findall()</code>, le parentesi tonde indicano che,
+anche se vuoi che corrisponda l’intera espressione, ti interessa
+estrarre solo una parte della sottostringa che corrisponde
+all’espressione regolare.</p>
 <p> </p>
-<p>So we make the following change to our program:</p>
+<p>Quindi modifichiamo il programma come segue:</p>
 <pre class="python"><code># Search for lines that start with &#39;X&#39; followed by any
 # non whitespace characters and &#39;:&#39; followed by a space
 # and any number. The number can include a decimal.
@@ -496,11 +525,12 @@ for line in hand:
         print(x)
 
 # Code: https://www.py4e.com/code3/re11.py</code></pre>
-<p>Instead of calling <code>search()</code>, we add parentheses around
-the part of the regular expression that represents the floating-point
-number to indicate we only want <code>findall()</code> to give us back
-the floating-point number portion of the matching string.</p>
-<p>The output from this program is as follows:</p>
+<p>Invece di chiamare <code>search()</code>, aggiungiamo le parentesi
+tonde intorno alla parte dell’espressione regolare che rappresenta il
+numero in virgola mobile, per indicare che <code>findall()</code> ci
+deve restituire, della stringa corrispondente, solo la parte con il
+numero in virgola mobile.</p>
+<p>L’output di questo programma è il seguente:</p>
 <pre><code>[&#39;0.8475&#39;]
 [&#39;0.0000&#39;]
 [&#39;0.6178&#39;]
@@ -508,15 +538,16 @@ the floating-point number portion of the matching string.</p>
 [&#39;0.6961&#39;]
 [&#39;0.0000&#39;]
 ...</code></pre>
-<p>The numbers are still in a list and need to be converted from strings
-to floating point, but we have used the power of regular expressions to
-both search and extract the information we found interesting.</p>
-<p>As another example of this technique, if you look at the file there
-are a number of lines of the form:</p>
+<p>I numeri sono ancora in una lista e devono essere convertiti da
+stringhe a numeri in virgola mobile, ma abbiamo sfruttato la potenza
+delle espressioni regolari per cercare ed estrarre le informazioni che
+ci interessavano.</p>
+<p>Ecco un altro esempio di questa tecnica: se guardi il file, ci sono
+diverse righe della forma:</p>
 <pre><code>Details: http://source.sakaiproject.org/viewsvn/?view=rev&amp;rev=39772</code></pre>
-<p>If we wanted to extract all of the revision numbers (the integer
-number at the end of these lines) using the same technique as above, we
-could write the following program:</p>
+<p>Se volessimo estrarre tutti i numeri di revisione (il numero intero
+alla fine di queste righe) con la stessa tecnica vista sopra, potremmo
+scrivere il programma seguente:</p>
 <pre class="python"><code># Search for lines that start with &#39;Details: rev=&#39;
 # followed by numbers
 # Then print the number if one is found
@@ -529,51 +560,53 @@ for line in hand:
         print(x)
 
 # Code: https://www.py4e.com/code3/re12.py</code></pre>
-<p>Translating our regular expression, we are looking for lines that
-start with <code>Details:</code>, followed by any number of characters
-(<code>.*</code>), followed by <code>rev=</code>, and then by one or
-more digits. We want to find lines that match the entire expression but
-we only want to extract the integer number at the end of the line, so we
-surround <code>[0-9]+</code> with parentheses, and we add <code>$</code>
-to indicate matches specifically at the end of the line.</p>
-<p>When we run the program, we get the following output:</p>
+<p>Tradotta, l’espressione regolare dice che cerchiamo le righe che
+iniziano con <code>Details:</code>, seguito da un numero qualsiasi di
+caratteri (<code>.*</code>), seguiti da <code>rev=</code> e poi da una o
+più cifre. Vogliamo trovare le righe che corrispondono all’intera
+espressione, ma vogliamo estrarre solo il numero intero alla fine della
+riga, quindi racchiudiamo <code>[0-9]+</code> tra parentesi tonde e
+aggiungiamo <code>$</code> per indicare che la corrispondenza deve
+trovarsi proprio alla fine della riga.</p>
+<p>Quando eseguiamo il programma, otteniamo l’output seguente:</p>
 <pre><code>[&#39;39772&#39;]
 [&#39;39771&#39;]
 [&#39;39770&#39;]
 [&#39;39769&#39;]
 ...</code></pre>
-<p>Remember that the <code>[0-9]+</code> is “greedy” and it tries to
-make as large a string of digits as possible before extracting those
-digits. This “greedy” behavior is why we get all five digits for each
-number. The regular expression module expands in both directions until
-it encounters a non-digit, or the beginning or the end of a line.</p>
-<p>Now we can use regular expressions to redo an exercise from earlier
-in the book where we were interested in the time of day of each mail
-message. We looked for lines of the form:</p>
+<p>Ricorda che <code>[0-9]+</code> è “avido” e cerca di formare la
+stringa di cifre più lunga possibile prima di estrarle. Questo
+comportamento “avido” è il motivo per cui otteniamo tutte e cinque le
+cifre di ogni numero. Il modulo delle espressioni regolari si espande in
+entrambe le direzioni finché non incontra un carattere che non è una
+cifra, oppure l’inizio o la fine di una riga.</p>
+<p>Ora possiamo usare le espressioni regolari per rifare un esercizio
+che abbiamo visto prima nel libro, in cui ci interessava l’ora del
+giorno di ogni messaggio di posta. Cercavamo righe della forma:</p>
 <pre><code>From stephen.marquard@uct.ac.za Sat Jan  5 09:14:16 2008</code></pre>
-<p>and wanted to extract the hour of the day for each line. Previously
-we did this with two calls to <code>split</code>. First the line was
-split into words and then we pulled out the fifth word and split it
-again on the colon character to pull out the two characters we were
-interested in.</p>
-<p>While this worked, it actually results in pretty brittle code that is
-assuming the lines are nicely formatted. If you were to add enough error
-checking (or a big try/except block) to ensure that your program never
-failed when presented with incorrectly formatted lines, the code would
-balloon to 10-15 lines of code that was pretty hard to read.</p>
-<p>We can do this in a far simpler way with the following regular
-expression:</p>
+<p>e volevamo estrarre l’ora del giorno da ogni riga. In precedenza
+l’abbiamo fatto con due chiamate a <code>split</code>. Prima la riga è
+stata divisa in parole, poi abbiamo estratto la sesta parola e l’abbiamo
+divisa di nuovo con il carattere dei due punti, per estrarre i due
+caratteri che ci interessavano.</p>
+<p>Anche se ha funzionato, in realtà il risultato è un codice piuttosto
+fragile, che presuppone che le righe siano ben formattate. Se dovessi
+aggiungere abbastanza controlli degli errori (o un grande blocco
+<code>try</code>/<code>except</code>) per garantire che il programma non
+fallisse mai davanti a righe formattate in modo sbagliato, il codice si
+gonfierebbe fino a 10-15 righe piuttosto difficili da leggere.</p>
+<p>Possiamo farlo in modo molto più semplice con la seguente espressione
+regolare:</p>
 <pre><code>^From .* [0-9][0-9]:</code></pre>
-<p>The translation of this regular expression is that we are looking for
-lines that start with <code>From</code> (note the space), followed by
-any number of characters (<code>.*</code>), followed by a space,
-followed by two digits <code>[0-9][0-9]</code>, followed by a colon
-character. This is the definition of the kinds of lines we are looking
-for.</p>
-<p>In order to pull out only the hour using <code>findall()</code>, we
-add parentheses around the two digits as follows:</p>
+<p>Tradotta, questa espressione regolare dice che cerchiamo le righe che
+iniziano con <code>"From "</code> (nota lo spazio), seguito da un numero
+qualsiasi di caratteri (<code>.*</code>), seguiti da uno spazio, seguito
+da due cifre <code>[0-9][0-9]</code>, seguite da un carattere dei due
+punti. Questa è la definizione del tipo di righe che cerchiamo.</p>
+<p>Per estrarre solo l’ora con <code>findall()</code>, aggiungiamo le
+parentesi tonde intorno alle due cifre, come segue:</p>
 <pre><code>^From .* ([0-9][0-9]):</code></pre>
-<p>This results in the following program:</p>
+<p>Ne risulta il programma seguente:</p>
 <pre class="python"><code># Search for lines that start with From and a character
 # followed by a two digit number between 00 and 99 followed by &#39;:&#39;
 # Then print the number if one is found
@@ -585,124 +618,134 @@ for line in hand:
     if len(x) &gt; 0: print(x)
 
 # Code: https://www.py4e.com/code3/re13.py</code></pre>
-<p>When the program runs, it produces the following output:</p>
+<p>Quando il programma viene eseguito, produce l’output seguente:</p>
 <pre><code>[&#39;09&#39;]
 [&#39;18&#39;]
 [&#39;16&#39;]
 [&#39;15&#39;]
 ...</code></pre>
-<h2 id="escape-character">Escape character</h2>
-<p>Regular expressions utilize special characters like <code>^</code> to
-match the beginning of a line, <code>$</code> for the end of a line, and
-<code>.</code> as a wildcard; however, sometimes we want to match those
-characters literally. We need a way to indicate that we want to match
-the actual character such as a caret symbol, dollar sign, or period.</p>
-<p>We can indicate that we want to simply match a character by prefixing
-that character with a backslash. For example, we can find money amounts
-with the following regular expression.</p>
+<h2 id="carattere-di-escape">Carattere di escape</h2>
+<p>Le espressioni regolari usano caratteri speciali come <code>^</code>
+per corrispondere all’inizio di una riga, <code>$</code> per la fine di
+una riga e <code>.</code> come carattere jolly; a volte però vogliamo
+una corrispondenza letterale con quei caratteri. Ci serve un modo per
+indicare che vogliamo la corrispondenza con il carattere vero e proprio,
+come un accento circonflesso, un simbolo del dollaro o un punto.</p>
+<p>Possiamo indicare che vogliamo semplicemente la corrispondenza con un
+carattere anteponendogli un backslash. Ad esempio, possiamo trovare
+importi di denaro con la seguente espressione regolare.</p>
 <pre class="python"><code>import re
 x = &#39;We just received $10.00 for cookies.&#39;
 y = re.findall(&#39;\$[0-9.]+&#39;,x)</code></pre>
-<p>Since we prefix the dollar sign with a backslash, it actually matches
-the dollar sign in the input string instead of matching the “end of
-line”, and the rest of the regular expression matches one or more digits
-or the period character. Remember, as we saw above, inside square
-brackets, characters are not “special”. So when we say
-<code>[0-9.]</code>, it really means digits or a period. Outside of
-square brackets, a period is the “wild-card” character and matches any
-character. Inside square brackets, the period is a period.</p>
-<h2 id="summary">Summary</h2>
-<p>While this only scratched the surface of regular expressions, we have
-learned a bit about the language of regular expressions. They are search
-strings with special characters in them that communicate your wishes to
-the regular expression system as to what defines “matching” and what is
-extracted from the matched strings. Here are some of those special
-characters and character sequences:</p>
-<p><code>^</code> Matches the beginning of the line.</p>
-<p><code>$</code> Matches the end of the line.</p>
-<p><code>.</code> Matches any character (a wildcard).</p>
-<p><code>\s</code> Matches a whitespace character.</p>
-<p><code>\S</code> Matches a non-whitespace character (opposite of
-\s).</p>
-<p><code>*</code> Applies to the immediately preceding character(s) and
-indicates to match zero or more times.</p>
-<p><code>*?</code> Applies to the immediately preceding character(s) and
-indicates to match zero or more times in “non-greedy mode”.</p>
-<p><code>+</code> Applies to the immediately preceding character(s) and
-indicates to match one or more times.</p>
-<p><code>+?</code> Applies to the immediately preceding character(s) and
-indicates to match one or more times in “non-greedy mode”.</p>
-<p><code>?</code> Applies to the immediately preceding character(s) and
-indicates to match zero or one time.</p>
-<p><code>??</code> Applies to the immediately preceding character(s) and
-indicates to match zero or one time in “non-greedy mode”.</p>
-<p><code>[aeiou]</code> Matches a single character as long as that
-character is in the specified set. In this example, it would match “a”,
-“e”, “i”, “o”, or “u”, but no other characters.</p>
-<p><code>[a-z0-9]</code> You can specify ranges of characters using the
-minus sign. This example is a single character that must be a lowercase
-letter or a digit.</p>
-<p><code>[^A-Za-z]</code> When the first character in the set notation
-is a caret, it inverts the logic. This example matches a single
-character that is anything <em>other than</em> an uppercase or lowercase
-letter.</p>
-<p><code>( )</code> When parentheses are added to a regular expression,
-they are ignored for the purpose of matching, but allow you to extract a
-particular subset of the matched string rather than the whole string
-when using <code>findall()</code>.</p>
-<p><code>\b</code> Matches the empty string, but only at the start or
-end of a word.</p>
-<p><code>\B</code> Matches the empty string, but not at the start or end
-of a word.</p>
-<p><code>\d</code> Matches any decimal digit; equivalent to the set
-[0-9].</p>
-<p><code>\D</code> Matches any non-digit character; equivalent to the
-set [^0-9].</p>
-<h2 id="bonus-section-for-unix-linux-users">Bonus section for Unix /
-Linux users</h2>
-<p>Support for searching files using regular expressions was built into
-the Unix operating system since the 1960s and it is available in nearly
-all programming languages in one form or another.</p>
-<p></p>
-<p>As a matter of fact, there is a command-line program built into Unix
-called <em>grep</em> (Generalized Regular Expression Parser) that does
-pretty much the same as the <code>search()</code> examples in this
-chapter. So if you have a Macintosh or Linux system, you can try the
-following commands in your command-line window.</p>
+<p>Poiché anteponiamo un backslash al simbolo del dollaro, questo
+corrisponde davvero al simbolo del dollaro nella stringa di input,
+invece che alla “fine della riga”, e il resto dell’espressione regolare
+corrisponde a una o più cifre o al carattere punto. Ricorda, come
+abbiamo visto sopra, che dentro le parentesi quadre i caratteri non sono
+“speciali”. Quindi, quando diciamo <code>[0-9.]</code>, intendiamo
+proprio cifre o un punto. Fuori dalle parentesi quadre, il punto è il
+carattere “jolly” e corrisponde a qualsiasi carattere. Dentro le
+parentesi quadre, il punto è un punto.</p>
+<h2 id="riepilogo">Riepilogo</h2>
+<p>Anche se abbiamo solo scalfito la superficie delle espressioni
+regolari, abbiamo imparato un po’ del loro linguaggio. Sono stringhe di
+ricerca con caratteri speciali al loro interno, che comunicano al
+sistema delle espressioni regolari ciò che vuoi: cosa definisce una
+“corrispondenza” e cosa viene estratto dalle stringhe corrispondenti.
+Ecco alcuni di quei caratteri speciali e di quelle sequenze di
+caratteri:</p>
+<p><code>^</code> Corrisponde all’inizio della riga.</p>
+<p><code>$</code> Corrisponde alla fine della riga.</p>
+<p><code>.</code> Corrisponde a qualsiasi carattere (un carattere
+jolly).</p>
+<p><code>\s</code> Corrisponde a un carattere di spazio bianco.</p>
+<p><code>\S</code> Corrisponde a un carattere diverso dallo spazio
+bianco (l’opposto di <code>\s</code>).</p>
+<p><code>*</code> Si applica al carattere o ai caratteri immediatamente
+precedenti e indica che devono corrispondere zero o più volte.</p>
+<p><code>*?</code> Si applica al carattere o ai caratteri immediatamente
+precedenti e indica che devono corrispondere zero o più volte in
+“modalità non avida”.</p>
+<p><code>+</code> Si applica al carattere o ai caratteri immediatamente
+precedenti e indica che devono corrispondere una o più volte.</p>
+<p><code>+?</code> Si applica al carattere o ai caratteri immediatamente
+precedenti e indica che devono corrispondere una o più volte in
+“modalità non avida”.</p>
+<p><code>?</code> Si applica al carattere o ai caratteri immediatamente
+precedenti e indica che devono corrispondere zero o una volta.</p>
+<p><code>??</code> Si applica al carattere o ai caratteri immediatamente
+precedenti e indica che devono corrispondere zero o una volta in
+“modalità non avida”.</p>
+<p><code>[aeiou]</code> Corrisponde a un singolo carattere, purché quel
+carattere sia nell’insieme specificato. In questo esempio
+corrisponderebbe a <code>a</code>, <code>e</code>, <code>i</code>,
+<code>o</code> o <code>u</code>, ma a nessun altro carattere.</p>
+<p><code>[a-z0-9]</code> Puoi specificare intervalli di caratteri con il
+segno meno. Questo esempio è un singolo carattere che deve essere una
+lettera minuscola o una cifra.</p>
+<p><code>[^A-Za-z]</code> Quando il primo carattere nella notazione
+dell’insieme è un accento circonflesso, la logica si inverte. Questo
+esempio corrisponde a un singolo carattere qualsiasi, purché <em>diverso
+da</em> una lettera maiuscola o minuscola.</p>
+<p><code>( )</code> Quando si aggiungono parentesi tonde a
+un’espressione regolare, vengono ignorate ai fini della corrispondenza,
+ma ti permettono di estrarre un particolare sottoinsieme della stringa
+corrispondente, invece dell’intera stringa, quando usi
+<code>findall()</code>.</p>
+<p><code>\b</code> Corrisponde alla stringa vuota, ma solo all’inizio o
+alla fine di una parola.</p>
+<p><code>\B</code> Corrisponde alla stringa vuota, ma non all’inizio o
+alla fine di una parola.</p>
+<p><code>\d</code> Corrisponde a qualsiasi cifra decimale; equivale
+all’insieme <code>[0-9]</code>.</p>
+<p><code>\D</code> Corrisponde a qualsiasi carattere che non sia una
+cifra; equivale all’insieme <code>[^0-9]</code>.</p>
+<h2 id="sezione-bonus-per-gli-utenti-unix-linux">Sezione bonus per gli
+utenti Unix / Linux</h2>
+<p>Il supporto per la ricerca nei file con le espressioni regolari è
+incorporato nel sistema operativo Unix fin dagli anni ’60 ed è
+disponibile, in una forma o nell’altra, in quasi tutti i linguaggi di
+programmazione.</p>
+<p>In effetti, c’è un programma a riga di comando incorporato in Unix,
+chiamato <code>grep</code> (Generalized Regular Expression Parser), che
+fa più o meno le stesse cose degli esempi con <code>search()</code> di
+questo capitolo. Quindi, se hai un sistema Macintosh o Linux, puoi
+provare i seguenti comandi nella finestra della riga di comando.</p>
 <pre class="bash"><code>$ grep &#39;^From:&#39; mbox-short.txt
 From: stephen.marquard@uct.ac.za
 From: louis@media.berkeley.edu
 From: zqian@umich.edu
 From: rjlowe@iupui.edu</code></pre>
-<p>This tells <code>grep</code> to show you lines that start with the
-string “From:” in the file <em>mbox-short.txt</em>. If you experiment
-with the <code>grep</code> command a bit and read the documentation for
-<code>grep</code>, you will find some subtle differences between the
-regular expression support in Python and the regular expression support
-in <code>grep</code>. As an example, <code>grep</code> does not support
-the non-blank character <code>\S</code> so you will need to use the
-slightly more complex set notation <code>[^ ]</code>, which simply means
-match a character that is anything other than a space.</p>
-<h2 id="debugging">Debugging</h2>
-<p>Python has some simple and rudimentary built-in documentation that
-can be quite helpful if you need a quick refresher to trigger your
-memory about the exact name of a particular method. This documentation
-can be viewed in the Python interpreter in interactive mode.</p>
-<p>You can bring up an interactive help system using
+<p>Questo comando dice a <code>grep</code> di mostrarti le righe che
+iniziano con la stringa <code>From:</code> nel file
+<code>mbox-short.txt</code>. Se fai qualche esperimento con il comando
+<code>grep</code> e leggi la documentazione di <code>grep</code>,
+troverai alcune sottili differenze tra il supporto delle espressioni
+regolari in Python e quello in <code>grep</code>. Ad esempio,
+<code>grep</code> non supporta il carattere diverso dallo spazio
+<code>\S</code>, quindi dovrai usare la notazione degli insiemi,
+leggermente più complessa, <code>[^ ]</code>, che significa
+semplicemente: corrisponde a qualsiasi carattere tranne uno spazio.</p>
+<h2 id="debug">Debug</h2>
+<p>Python ha una documentazione built-in semplice e rudimentale, che può
+essere molto utile se ti serve un rapido ripasso per rinfrescarti la
+memoria sul nome esatto di un particolare metodo. Questa documentazione
+si può consultare nell’interprete Python in modalità interattiva.</p>
+<p>Puoi aprire un sistema di aiuto interattivo con
 <code>help()</code>.</p>
 <pre class="python"><code>&gt;&gt;&gt; help()
 
 help&gt; modules</code></pre>
-<p>If you know what module you want to use, you can use the
-<code>dir()</code> command to find the methods in the module as
-follows:</p>
+<p>Se sai quale modulo vuoi usare, puoi usare il comando
+<code>dir()</code> per trovare le funzioni del modulo, come segue:</p>
 <pre class="python"><code>&gt;&gt;&gt; import re
 &gt;&gt;&gt; dir(re)
 [.. &#39;compile&#39;, &#39;copy_reg&#39;, &#39;error&#39;, &#39;escape&#39;, &#39;findall&#39;,
 &#39;finditer&#39;, &#39;match&#39;, &#39;purge&#39;, &#39;search&#39;, &#39;split&#39;, &#39;sre_compile&#39;,
 &#39;sre_parse&#39;, &#39;sub&#39;, &#39;subn&#39;, &#39;sys&#39;, &#39;template&#39;]</code></pre>
-<p>You can also get a small amount of documentation on a particular
-method using the help command combined with the desired method.</p>
+<p>Puoi anche ottenere un po’ di documentazione su un particolare metodo
+usando il comando <code>help</code> insieme al metodo che ti
+interessa.</p>
 <pre class="python"><code>&gt;&gt;&gt; help (re.search)
 Help on function search in module re:
 
@@ -710,46 +753,48 @@ search(pattern, string, flags=0)
     Scan through string looking for a match to the pattern, returning
     a match object, or None if no match was found.
 &gt;&gt;&gt;</code></pre>
-<p>The built-in documentation is not very extensive, but it can be
-helpful when you are in a hurry or don’t have access to a web browser or
-search engine.</p>
-<h2 id="glossary">Glossary</h2>
+<p>La documentazione built-in non è molto ampia, ma può essere utile
+quando hai fretta o non hai accesso a un browser web o a un motore di
+ricerca.</p>
+<h2 id="glossario">Glossario</h2>
 <dl>
-<dt>brittle code</dt>
+<dt><strong>Carattere jolly</strong></dt>
 <dd>
-Code that works when the input data is in a particular format but is
-prone to breakage if there is some deviation from the correct format. We
-call this “brittle code” because it is easily broken.
+Un carattere speciale che corrisponde a qualsiasi carattere. Nelle
+espressioni regolari il carattere jolly è il punto.
 </dd>
-<dt>greedy matching</dt>
+<dt><strong>Codice fragile</strong></dt>
 <dd>
-The notion that the <code>+</code> and <code>*</code> characters in a
-regular expression expand outward to match the largest possible string.
+Un codice che funziona quando i dati di input sono in un formato
+particolare, ma che tende a rompersi se c’è qualche scostamento dal
+formato corretto. Lo chiamiamo “codice fragile” perché si rompe
+facilmente.
 </dd>
-<dt>grep</dt>
+<dt><strong>Corrispondenza avida</strong></dt>
 <dd>
-A command available in most Unix systems that searches through text
-files looking for lines that match regular expressions. The command name
-stands for “Generalized Regular Expression Parser”.
+L’idea che i caratteri <code>+</code> e <code>*</code> di un’espressione
+regolare si espandano verso l’esterno per corrispondere alla stringa più
+lunga possibile.
 </dd>
-<dt>regular expression</dt>
+<dt><strong>Espressione regolare</strong></dt>
 <dd>
-A language for expressing more complex search strings. A regular
-expression may contain special characters that indicate that a search
-only matches at the beginning or end of a line or many other similar
-capabilities.
+Un linguaggio per esprimere stringhe di ricerca più complesse.
+Un’espressione regolare può contenere caratteri speciali che indicano
+che una ricerca corrisponde solo all’inizio o alla fine di una riga, o
+che offrono molte altre funzionalità simili.
 </dd>
-<dt>wild card</dt>
+<dt><strong><code>grep</code></strong></dt>
 <dd>
-A special character that matches any character. In regular expressions
-the wild-card character is the period.
+Un comando disponibile nella maggior parte dei sistemi Unix, che cerca
+nei file di testo le righe che corrispondono a espressioni regolari. Il
+nome del comando sta per “Generalized Regular Expression Parser”.
 </dd>
 </dl>
-<h2 id="exercises">Exercises</h2>
-<p><strong>Exercise 1:</strong> Write a simple program to simulate the
-operation of the <code>grep</code> command on Unix. Ask the user to
-enter a regular expression and count the number of lines that matched
-the regular expression:</p>
+<h2 id="esercizi">Esercizi</h2>
+<p><strong>Esercizio 1:</strong> Scrivi un semplice programma per
+simulare il funzionamento del comando <code>grep</code> di Unix. Chiedi
+all’utente di inserire un’espressione regolare e conta il numero di
+righe che corrispondono all’espressione regolare:</p>
 <pre><code>$ python grep.py
 Enter a regular expression: ^Author
 mbox.txt had 1798 lines that matched ^Author
@@ -761,12 +806,12 @@ mbox.txt had 14368 lines that matched ^X-
 $ python grep.py
 Enter a regular expression: java$
 mbox.txt had 4175 lines that matched java$</code></pre>
-<p><strong>Exercise 2:</strong> Write a program to look for lines of the
-form:</p>
+<p><strong>Esercizio 2:</strong> Scrivi un programma che cerchi le righe
+della forma:</p>
 <pre><code>New Revision: 39772</code></pre>
-<p><strong>Extract the number from each of the lines using a regular
-expression and the <code>findall()</code> method. Compute the average of
-the numbers and print out the average as an integer.</strong></p>
+<p><strong>Estrai il numero da ciascuna riga usando un’espressione
+regolare e la funzione <code>findall()</code>. Calcola la media dei
+numeri e stampa la media come intero.</strong></p>
 <pre><code>Enter file:mbox.txt
 38549
 

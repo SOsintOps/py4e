@@ -3,16 +3,22 @@
   ob_start();
 }?>
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="pandoc" />
+  <meta name="generator" content="pandoc 3.14" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>Iteration</title>
+  <title>Iterazione</title>
   <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
     html {
       color: #1a1a1a;
+      color: light-dark(#1a1a1a, #fdfdfd);
       background-color: #fdfdfd;
+      background-color: light-dark(#fdfdfd, #1a1a1a);
+      color-scheme: light dark;
     }
     body {
       margin: 0 auto;
@@ -35,31 +41,11 @@
         font-size: 1.8em;
       }
     }
-    @media print {
-      html {
-        background-color: white;
-      }
-      body {
-        background-color: transparent;
-        color: black;
-        font-size: 12pt;
-      }
-      p, h2, h3 {
-        orphans: 3;
-        widows: 3;
-      }
-      h2, h3, h4 {
-        page-break-after: avoid;
-      }
-    }
     p {
       margin: 1em 0;
     }
-    a {
-      color: #1a1a1a;
-    }
-    a:visited {
-      color: #1a1a1a;
+    a, a:visited {
+      color: inherit;
     }
     img {
       max-width: 100%;
@@ -88,10 +74,14 @@
     blockquote {
       margin: 1em 0 1em 1.7em;
       padding-left: 1em;
-      border-left: 2px solid #e6e6e6;
+      border-left: 2px solid;
+      border-color: #e6e6e6;
+      border-color: light-dark(#e6e6e6, #4c4c4c);
       color: #606060;
+      color: light-dark(#606060, #b6b6b6);
     }
     code {
+      white-space: pre-wrap;
       font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
       font-size: 85%;
       margin: 0;
@@ -112,7 +102,7 @@
     }
     hr {
       border: none;
-      border-top: 1px solid #1a1a1a;
+      border-top: 1px solid currentColor;
       height: 1px;
       margin: 1em 0;
     }
@@ -129,11 +119,11 @@
     }
     tbody {
       margin-top: 0.5em;
-      border-top: 1px solid #1a1a1a;
-      border-bottom: 1px solid #1a1a1a;
+      border-top: 1px solid currentColor;
+      border-bottom: 1px solid currentColor;
     }
     th {
-      border-top: 1px solid #1a1a1a;
+      border-top: 1px solid currentColor;
       padding: 0.25em 0.5em 0.25em 0.5em;
     }
     td {
@@ -155,10 +145,19 @@
     #TOC a:not(:hover) {
       text-decoration: none;
     }
-    code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
-    div.columns{display: flex; gap: min(4vw, 1.5em);}
-    div.column{flex: auto; overflow-x: auto;}
+    em, em em em, em em em em em {
+      font-style: italic;
+    }
+    em em, em em em em {
+      font-style: normal;
+    }
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     /* The extra [class] is a hack that increases specificity enough to
        override a similar rule in reveal.js */
@@ -169,111 +168,131 @@
       margin: 0 0.8em 0.2em -1.6em;
       vertical-align: middle;
     }
-    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
-  </style>
+    @media print {
+      html {
+        color-scheme: light only;
+      }
+      html, body, pre, code {
+        background-color: transparent;
+      }
+      body, a, a:visited, blockquote {
+        color: black;
+      }
+      pre, code {
+        padding: 0;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }  </style>
 </head>
 <body>
-<h1 id="iteration">Iteration</h1>
-<p></p>
-<h2 id="updating-variables">Updating variables</h2>
+<h1 id="iterazione">Iterazione</h1>
+<h2 id="aggiornamento-delle-variabili">Aggiornamento delle
+variabili</h2>
 <p> </p>
-<p>A common pattern in assignment statements is an assignment statement
-that updates a variable, where the new value of the variable depends on
-the old.</p>
+<p>Uno schema comune nelle istruzioni di assegnazione è l’istruzione che
+aggiorna una variabile, in cui il nuovo valore della variabile dipende
+da quello vecchio.</p>
 <pre class="python"><code>x = x + 1</code></pre>
-<p>This means “get the current value of <code>x</code>, add 1, and then
-update <code>x</code> with the new value.”</p>
-<p>If you try to update a variable that doesn’t exist, you get an error,
-because Python evaluates the right side before it assigns a value to
-<code>x</code>:</p>
+<p>Significa: “prendi il valore corrente di <code>x</code>, aggiungi 1 e
+poi aggiorna <code>x</code> con il nuovo valore”.</p>
+<p>Se provi ad aggiornare una variabile che non esiste, ottieni un
+errore, perché Python valuta il lato destro prima di assegnare un valore
+a <code>x</code>:</p>
 <pre class="python"><code>&gt;&gt;&gt; x = x + 1
 NameError: name &#39;x&#39; is not defined</code></pre>
-<p>Before you can update a variable, you have to <em>initialize</em> it,
-usually with a simple assignment:</p>
-<p></p>
+<p>Prima di poter aggiornare una variabile, devi
+<em>inizializzarla</em>, di solito con una semplice assegnazione: </p>
 <pre class="python"><code>&gt;&gt;&gt; x = 0
 &gt;&gt;&gt; x = x + 1</code></pre>
-<p>Updating a variable by adding 1 is called an <em>increment</em>;
-subtracting 1 is called a <em>decrement</em>.</p>
+<p>Aggiornare una variabile aggiungendo 1 si chiama <em>incremento</em>;
+sottrarre 1 si chiama <em>decremento</em>.</p>
 <p> </p>
-<h2 id="the-while-statement">The <code>while</code> statement</h2>
+<h2 id="listruzione-while">L’istruzione <code>while</code></h2>
 <p> </p>
-<p>Computers are often used to automate repetitive tasks. Repeating
-identical or similar tasks without making errors is something that
-computers do well and people do poorly. Because iteration is so common,
-Python provides several language features to make it easier.</p>
-<p>One form of iteration in Python is the <code>while</code> statement.
-Here is a simple program that counts down from five and then says
-“Blastoff!”.</p>
+<p>I computer vengono usati spesso per automatizzare compiti ripetitivi.
+Ripetere compiti identici o simili senza fare errori è una cosa che i
+computer fanno bene e le persone fanno male. Poiché l’iterazione è così
+comune, Python fornisce diverse funzionalità del linguaggio per renderla
+più facile.</p>
+<p>Una forma di iterazione in Python è l’istruzione <code>while</code>.
+Ecco un semplice programma che fa il conto alla rovescia da cinque e poi
+dice <code>Blastoff!</code>.</p>
 <pre class="python"><code>n = 5
 while n &gt; 0:
     print(n)
     n = n - 1
 print(&#39;Blastoff!&#39;)</code></pre>
-<p>You can almost read the <code>while</code> statement as if it were
-English. It means, “While <code>n</code> is greater than 0, display the
-value of <code>n</code> and then reduce the value of <code>n</code> by
-1. When you get to 0, exit the <code>while</code> statement and display
-the word <code>Blastoff!</code>”</p>
-<p></p>
-<p>More formally, here is the flow of execution for a <code>while</code>
-statement:</p>
+<p>Puoi quasi leggere l’istruzione <code>while</code> come se fosse
+scritta in inglese. Significa: “Finché <code>n</code> è maggiore di 0,
+visualizza il valore di <code>n</code> e poi riduci di 1 il valore di
+<code>n</code>. Quando arrivi a 0, esci dall’istruzione
+<code>while</code> e visualizza la parola <code>Blastoff!</code>”.</p>
+<p>Più formalmente, ecco il flusso di esecuzione di un’istruzione
+<code>while</code>:</p>
 <ol type="1">
-<li><p>Evaluate the condition, yielding <code>True</code> or
-<code>False</code>.</p></li>
-<li><p>If the condition is false, exit the <code>while</code> statement
-and continue execution at the next statement.</p></li>
-<li><p>If the condition is true, execute the body and then go back to
-step 1.</p></li>
+<li><p>Valuta la condizione, ottenendo come risultato <code>True</code>
+o <code>False</code>.</p></li>
+<li><p>Se la condizione è falsa, esci dall’istruzione <code>while</code>
+e prosegui con l’istruzione successiva.</p></li>
+<li><p>Se la condizione è vera, esegui il corpo e torna al passaggio
+1.</p></li>
 </ol>
-<p>This type of flow is called a <em>loop</em> because the third step
-loops back around to the top. We call each time we execute the body of
-the loop an <em>iteration</em>. For the above loop, we would say, “It
-had five iterations”, which means that the body of the loop was executed
-five times.</p>
+<p>Questo tipo di flusso è chiamato <em>ciclo</em> (loop) perché il
+terzo passaggio torna indietro all’inizio. Chiamiamo <em>iterazione</em>
+ogni esecuzione del corpo del ciclo. Del ciclo qui sopra diremmo: “Ha
+fatto cinque iterazioni”, cioè il corpo del ciclo è stato eseguito
+cinque volte.</p>
 <p> </p>
-<p>The body of the loop should change the value of one or more variables
-so that eventually the condition becomes false and the loop terminates.
-We call the variable that changes each time the loop executes and
-controls when the loop finishes the <em>iteration variable</em>. If
-there is no iteration variable, the loop will repeat forever, resulting
-in an <em>infinite loop</em>.</p>
-<h2 id="infinite-loops">Infinite loops</h2>
-<p>An endless source of amusement for programmers is the observation
-that the directions on shampoo, “Lather, rinse, repeat,” are an infinite
-loop because there is no <em>iteration variable</em> telling you how
-many times to execute the loop.</p>
+<p>Il corpo del ciclo dovrebbe cambiare il valore di una o più
+variabili, in modo che prima o poi la condizione diventi falsa e il
+ciclo termini. Chiamiamo <em>variabile di iterazione</em> la variabile
+che cambia ogni volta che il ciclo viene eseguito e controlla quando il
+ciclo finisce. Se non c’è una variabile di iterazione, il ciclo si
+ripeterà per sempre, e il risultato è un <em>ciclo infinito</em>.</p>
+<h2 id="cicli-infiniti">Cicli infiniti</h2>
+<p>Per i programmatori è una fonte inesauribile di divertimento
+osservare che le istruzioni sul flacone dello shampoo, “Insapona,
+risciacqua, ripeti”, sono un ciclo infinito, perché non c’è una
+<em>variabile di iterazione</em> che ti dica quante volte eseguire il
+ciclo.</p>
 <p> </p>
-<p>In the case of <code>countdown</code>, we can prove that the loop
-terminates because we know that the value of <code>n</code> is finite,
-and we can see that the value of <code>n</code> gets smaller each time
-through the loop, so eventually we have to get to 0. Other times a loop
-is obviously infinite because it has no iteration variable at all.</p>
+<p>Nel caso di <code>countdown</code> possiamo dimostrare che il ciclo
+termina, perché sappiamo che il valore di <code>n</code> è finito e
+possiamo vedere che il valore di <code>n</code> diminuisce a ogni
+passaggio del ciclo, quindi prima o poi dobbiamo arrivare a 0. Altre
+volte un ciclo è evidentemente infinito, perché non ha nessuna variabile
+di iterazione.</p>
 <p> </p>
-<p>Sometimes you don’t know it’s time to end a loop until you get half
-way through the body. In that case you can write an infinite loop on
-purpose and then use the <code>break</code> statement to jump out of the
-loop.</p>
-<p>This loop is obviously an <em>infinite loop</em> because the logical
-expression on the <code>while</code> statement is simply the logical
-constant <code>True</code>:</p>
+<p>A volte non sai che è il momento di terminare un ciclo finché non
+arrivi a metà del corpo. In questo caso puoi scrivere di proposito un
+ciclo infinito e poi usare l’istruzione <code>break</code> per uscire
+dal ciclo.</p>
+<p>Il ciclo seguente è ovviamente un <em>ciclo infinito</em> perché
+l’espressione logica nell’istruzione <code>while</code> è semplicemente
+la costante logica <code>True</code>:</p>
 <pre class="python"><code>n = 10
 while True:
     print(n, end=&#39; &#39;)
     n = n - 1
 print(&#39;Done!&#39;)</code></pre>
-<p>If you make the mistake and run this code, you will learn quickly how
-to stop a runaway Python process on your system or find where the
-power-off button is on your computer. This program will run forever or
-until your battery runs out because the logical expression at the top of
-the loop is always true by virtue of the fact that the expression is the
-constant value <code>True</code>.</p>
-<p>While this is a dysfunctional infinite loop, we can still use this
-pattern to build useful loops as long as we carefully add code to the
-body of the loop to explicitly exit the loop using <code>break</code>
-when we have reached the exit condition.</p>
-<p>For example, suppose you want to take input from the user until they
-type <code>done</code>. You could write:</p>
+<p>Se commetti l’errore di eseguire questo codice, imparerai in fretta a
+fermare sul tuo sistema un processo Python fuori controllo, o a trovare
+dov’è il pulsante di spegnimento del computer. Questo programma resterà
+in esecuzione per sempre, o finché la batteria non si esaurisce, perché
+l’espressione logica all’inizio del ciclo è sempre vera, dato che è il
+valore costante <code>True</code>.</p>
+<p>Anche se questo è un ciclo infinito disfunzionale, possiamo comunque
+usare questo schema per costruire cicli utili, a patto di aggiungere con
+cura al corpo del ciclo il codice che esce esplicitamente dal ciclo con
+<code>break</code> quando abbiamo raggiunto la condizione di uscita.</p>
+<p>Ad esempio, supponi di voler accettare input dall’utente finché non
+digita <code>done</code>. Potresti scrivere:</p>
 <pre class="python"><code>while True:
     line = input(&#39;&gt; &#39;)
     if line == &#39;done&#39;:
@@ -282,33 +301,36 @@ type <code>done</code>. You could write:</p>
 print(&#39;Done!&#39;)
 
 # Code: https://www.py4e.com/code3/copytildone1.py</code></pre>
-<p>The loop condition is <code>True</code>, which is always true, so the
-loop runs repeatedly until it hits the break statement.</p>
-<p>Each time through, it prompts the user with an angle bracket. If the
-user types <code>done</code>, the <code>break</code> statement exits the
-loop. Otherwise the program echoes whatever the user types and goes back
-to the top of the loop. Here’s a sample run:</p>
+<p>La condizione del ciclo è <code>True</code>, che è sempre vera,
+quindi il ciclo viene ripetuto finché non incontra l’istruzione
+<code>break</code>.</p>
+<p>A ogni passaggio il programma mostra all’utente una parentesi
+angolare come prompt. Se l’utente digita <code>done</code>, l’istruzione
+<code>break</code> fa uscire dal ciclo. Altrimenti il programma ripete
+tutto ciò che l’utente digita e torna all’inizio del ciclo. Ecco un
+esempio di esecuzione:</p>
 <pre><code>&gt; hello there
 hello there
 &gt; finished
 finished
 &gt; done
 Done!</code></pre>
-<p>This way of writing <code>while</code> loops is common because you
-can check the condition anywhere in the loop (not just at the top) and
-you can express the stop condition affirmatively (“stop when this
-happens”) rather than negatively (“keep going until that happens.”).</p>
-<h2 id="finishing-iterations-with-continue">Finishing iterations with
-<code>continue</code></h2>
-<p> </p>
-<p>Sometimes you are in an iteration of a loop and want to finish the
-current iteration and immediately jump to the next iteration. In that
-case you can use the <code>continue</code> statement to skip to the next
-iteration without finishing the body of the loop for the current
-iteration.</p>
-<p>Here is an example of a loop that copies its input until the user
-types “done”, but treats lines that start with the hash character as
-lines not to be printed (kind of like Python comments).</p>
+<p>Questo modo di scrivere i cicli <code>while</code> è comune perché
+puoi controllare la condizione in qualsiasi punto del ciclo (non solo
+all’inizio) e puoi esprimere la condizione di arresto in forma
+affermativa (“fermati quando succede questo”) invece che in forma
+negativa (“continua finché non succede quello”).</p>
+<h2 id="terminare-le-iterazioni-con-continue">Terminare le iterazioni
+con <code>continue</code></h2>
+<p> A volte, durante un’iterazione di un ciclo, vuoi terminare
+l’iterazione corrente e passare subito alla successiva. In questo caso
+puoi usare l’istruzione <code>continue</code> per saltare all’iterazione
+successiva senza completare il corpo del ciclo per l’iterazione
+corrente.</p>
+<p>Ecco un esempio di ciclo che copia il suo input finché l’utente non
+digita <code>done</code>, ma tratta le righe che iniziano con il
+carattere cancelletto come righe da non stampare (un po’ come i commenti
+di Python).</p>
 <pre class="python"><code>while True:
     line = input(&#39;&gt; &#39;)
     if line[0] == &#39;#&#39;:
@@ -319,8 +341,8 @@ lines not to be printed (kind of like Python comments).</p>
 print(&#39;Done!&#39;)
 
 # Code: https://www.py4e.com/code3/copytildone2.py</code></pre>
-<p>Here is a sample run of this new program with <code>continue</code>
-added.</p>
+<p>Ecco un esempio di esecuzione di questo nuovo programma con
+l’aggiunta di <code>continue</code>.</p>
 <pre><code>&gt; hello there
 hello there
 &gt; # don&#39;t print this
@@ -328,116 +350,121 @@ hello there
 print this!
 &gt; done
 Done!</code></pre>
-<p>All the lines are printed except the one that starts with the hash
-sign because when the <code>continue</code> is executed, it ends the
-current iteration and jumps back to the <code>while</code> statement to
-start the next iteration, thus skipping the <code>print</code>
-statement.</p>
-<h2 id="definite-loops-using-for">Definite loops using
-<code>for</code></h2>
+<p>Vengono stampate tutte le righe tranne quella che inizia con il
+cancelletto perché, quando viene eseguito <code>continue</code>,
+l’iterazione corrente termina e si torna all’istruzione
+<code>while</code> per iniziare l’iterazione successiva, saltando così
+l’istruzione <code>print</code>.</p>
+<h2 id="cicli-definiti-con-for">Cicli definiti con <code>for</code></h2>
 <p> </p>
-<p>Sometimes we want to loop through a <em>set</em> of things such as a
-list of words, the lines in a file, or a list of numbers. When we have a
-list of things to loop through, we can construct a <em>definite</em>
-loop using a <code>for</code> statement. We call the <code>while</code>
-statement an <em>indefinite</em> loop because it simply loops until some
-condition becomes <code>False</code>, whereas the <code>for</code> loop
-is looping through a known set of items so it runs through as many
-iterations as there are items in the set.</p>
-<p>The syntax of a <code>for</code> loop is similar to the
-<code>while</code> loop in that there is a <code>for</code> statement
-and a loop body:</p>
+<p>A volte vogliamo scorrere un <em>insieme</em> di cose, come un elenco
+di parole, le righe di un file o un elenco di numeri. Quando abbiamo un
+elenco di cose da scorrere, possiamo costruire un ciclo
+<em>definito</em> con un’istruzione <code>for</code>. Chiamiamo
+l’istruzione <code>while</code> ciclo <em>indefinito</em> perché si
+limita a ripetersi finché una condizione non diventa <code>False</code>,
+mentre il ciclo <code>for</code> scorre un insieme noto di elementi e
+quindi esegue tante iterazioni quanti sono gli elementi
+dell’insieme.</p>
+<p>La sintassi di un ciclo <code>for</code> è simile a quella del ciclo
+<code>while</code>, perché ci sono un’istruzione <code>for</code> e un
+corpo del ciclo:</p>
 <pre class="python"><code>friends = [&#39;Joseph&#39;, &#39;Glenn&#39;, &#39;Sally&#39;]
 for friend in friends:
     print(&#39;Happy New Year:&#39;, friend)
 print(&#39;Done!&#39;)</code></pre>
-<p>In Python terms, the variable <code>friends</code> is a list<a
+<p>In termini di Python, la variabile <code>friends</code> è una lista<a
 href="#fn1" class="footnote-ref" id="fnref1"
-role="doc-noteref"><sup>1</sup></a> of three strings and the
-<code>for</code> loop goes through the list and executes the body once
-for each of the three strings in the list resulting in this output:</p>
+role="doc-noteref"><sup>1</sup></a> di tre stringhe e il ciclo
+<code>for</code> scorre la lista ed esegue il corpo una volta per ognuna
+delle tre stringhe della lista, producendo questo output:</p>
 <pre class="python"><code>Happy New Year: Joseph
 Happy New Year: Glenn
 Happy New Year: Sally
 Done!</code></pre>
-<p>Translating this <code>for</code> loop to English is not as direct as
-the <code>while</code>, but if you think of friends as a <em>set</em>,
-it goes like this: “Run the statements in the body of the for loop once
-for each friend <em>in</em> the set named friends.”</p>
-<p>Looking at the <code>for</code> loop, <em>for</em> and <em>in</em>
-are reserved Python keywords, and <code>friend</code> and
-<code>friends</code> are variables.</p>
+<p>La traduzione in linguaggio naturale di questo ciclo <code>for</code>
+non è diretta come quella del <code>while</code>, ma se pensi agli amici
+come a un <em>insieme</em>, suona così: “Esegui le istruzioni nel corpo
+del ciclo <code>for</code> una volta per ogni amico
+(<code>friend</code>) <em>contenuto</em> nell’insieme chiamato amici
+(<code>friends</code>)”.</p>
+<p>Nel ciclo <code>for</code>, <code>for</code> e <code>in</code> sono
+parole chiave riservate di Python, mentre <code>friend</code> e
+<code>friends</code> sono variabili.</p>
 <pre class="python"><code>for friend in friends:
     print(&#39;Happy New Year:&#39;, friend)</code></pre>
-<p>In particular, <code>friend</code> is the <em>iteration variable</em>
-for the for loop. The variable <code>friend</code> changes for each
-iteration of the loop and controls when the <code>for</code> loop
-completes. The <em>iteration variable</em> steps successively through
-the three strings stored in the <code>friends</code> variable.</p>
-<h2 id="loop-patterns">Loop patterns</h2>
-<p>Often we use a <code>for</code> or <code>while</code> loop to go
-through a list of items or the contents of a file and we are looking for
-something such as the largest or smallest value of the data we scan
-through.</p>
-<p>These loops are generally constructed by:</p>
+<p>In particolare, <code>friend</code> è la <em>variabile di
+iterazione</em> del ciclo <code>for</code>. La variabile
+<code>friend</code> cambia a ogni iterazione del ciclo e controlla
+quando il ciclo <code>for</code> termina. La <em>variabile di
+iterazione</em> scorre una dopo l’altra le tre stringhe memorizzate
+nella variabile <code>friends</code>.</p>
+<h2 id="schemi-di-ciclo">Schemi di ciclo</h2>
+<p>Spesso usiamo un ciclo <code>for</code> o <code>while</code> per
+scorrere un elenco di elementi o il contenuto di un file alla ricerca di
+qualcosa, come il valore più grande o più piccolo tra i dati che
+scorriamo.</p>
+<p>Di solito questi cicli si costruiscono così:</p>
 <ul>
-<li><p>Initializing one or more variables before the loop
-starts</p></li>
-<li><p>Performing some computation on each item in the loop body,
-possibly changing the variables in the body of the loop</p></li>
-<li><p>Looking at the resulting variables when the loop
-completes</p></li>
+<li><p>inizializzare una o più variabili prima che il ciclo
+inizi;</p></li>
+<li><p>eseguire qualche calcolo su ciascun elemento nel corpo del ciclo,
+eventualmente cambiando le variabili nel corpo del ciclo;</p></li>
+<li><p>guardare le variabili risultanti quando il ciclo
+termina.</p></li>
 </ul>
-<p>We will use a list of numbers to demonstrate the concepts and
-construction of these loop patterns.</p>
-<h3 id="counting-and-summing-loops">Counting and summing loops</h3>
-<p>For example, to count the number of items in a list, we would write
-the following <code>for</code> loop:</p>
+<p>Useremo una lista di numeri per illustrare i concetti e la
+costruzione di questi schemi di ciclo.</p>
+<h3 id="cicli-per-contare-e-sommare">Cicli per contare e sommare</h3>
+<p>Ad esempio, per contare il numero di elementi in una lista,
+scriveremmo il seguente ciclo <code>for</code>:</p>
 <pre class="python"><code>count = 0
 for itervar in [3, 41, 12, 9, 74, 15]:
     count = count + 1
 print(&#39;Count: &#39;, count)</code></pre>
-<p>We set the variable <code>count</code> to zero before the loop
-starts, then we write a <code>for</code> loop to run through the list of
-numbers. Our <em>iteration</em> variable is named <code>itervar</code>
-and while we do not use <code>itervar</code> in the loop, it does
-control the loop and cause the loop body to be executed once for each of
-the values in the list.</p>
-<p>In the body of the loop, we add 1 to the current value of
-<code>count</code> for each of the values in the list. While the loop is
-executing, the value of <code>count</code> is the number of values we
-have seen “so far”.</p>
-<p>Once the loop completes, the value of <code>count</code> is the total
-number of items. The total number “falls in our lap” at the end of the
-loop. We construct the loop so that we have what we want when the loop
-finishes.</p>
-<p>Another similar loop that computes the total of a set of numbers is
-as follows:</p>
+<p>Impostiamo la variabile <code>count</code> a zero prima che il ciclo
+inizi, poi scriviamo un ciclo <code>for</code> per scorrere la lista di
+numeri. La nostra variabile di <em>iterazione</em> si chiama
+<code>itervar</code> e, anche se non usiamo <code>itervar</code> nel
+ciclo, è lei che controlla il ciclo e fa eseguire il corpo del ciclo una
+volta per ciascuno dei valori della lista.</p>
+<p>Nel corpo del ciclo aggiungiamo 1 al valore corrente di
+<code>count</code> per ciascuno dei valori della lista. Mentre il ciclo
+è in esecuzione, il valore di <code>count</code> è il numero di valori
+che abbiamo visto “finora”.</p>
+<p>Una volta completato il ciclo, il valore di <code>count</code> è il
+numero totale di elementi. Il numero totale ci “cade in grembo” alla
+fine del ciclo. Costruiamo il ciclo in modo da avere ciò che vogliamo
+quando il ciclo termina.</p>
+<p>Un altro ciclo simile, che calcola il totale di un insieme di numeri,
+è il seguente:</p>
 <pre class="python"><code>total = 0
 for itervar in [3, 41, 12, 9, 74, 15]:
     total = total + itervar
 print(&#39;Total: &#39;, total)</code></pre>
-<p>In this loop we <em>do</em> use the <em>iteration variable</em>.
-Instead of simply adding one to the <code>count</code> as in the
-previous loop, we add the actual number (3, 41, 12, etc.) to the running
-total during each loop iteration. If you think about the variable
-<code>total</code>, it contains the “running total of the values so
-far”. So before the loop starts <code>total</code> is zero because we
-have not yet seen any values, during the loop <code>total</code> is the
-running total, and at the end of the loop <code>total</code> is the
-overall total of all the values in the list.</p>
-<p>As the loop executes, <code>total</code> accumulates the sum of the
-elements; a variable used this way is sometimes called an
-<em>accumulator</em>.</p>
-<p></p>
-<p>Neither the counting loop nor the summing loop are particularly
-useful in practice because there are built-in functions
-<code>len()</code> and <code>sum()</code> that compute the number of
-items in a list and the total of the items in the list respectively.</p>
-<h3 id="maximum-and-minimum-loops">Maximum and minimum loops</h3>
+<p>In questo ciclo <em>usiamo</em> la <em>variabile di iterazione</em>.
+Invece di aggiungere semplicemente uno a <code>count</code>, come nel
+ciclo precedente, a ogni iterazione del ciclo aggiungiamo al totale
+parziale il numero vero e proprio (3, 41, 12, ecc.). Se ci pensi, la
+variabile <code>total</code> contiene il “totale parziale dei valori
+visti finora”. Quindi prima che il ciclo inizi <code>total</code> è
+zero, perché non abbiamo ancora visto nessun valore; durante il ciclo
+<code>total</code> è il totale parziale; alla fine del ciclo
+<code>total</code> è il totale complessivo di tutti i valori della
+lista.</p>
+<p>Mentre il ciclo viene eseguito, <code>total</code> accumula la somma
+degli elementi; una variabile usata in questo modo a volte è chiamata
+<em>accumulatore</em>.</p>
+<p>Né il ciclo di conteggio né il ciclo di somma sono particolarmente
+utili in pratica, perché esistono le funzioni built-in
+<code>len()</code> e <code>sum()</code>, che calcolano rispettivamente
+il numero di elementi di una lista e il totale degli elementi della
+lista.</p>
+<h3 id="cicli-per-il-massimo-e-il-minimo">Cicli per il massimo e il
+minimo</h3>
 <p> </p>
-<p>To find the largest value in a list or sequence, we construct the
-following loop:</p>
+<p>Per trovare il valore più grande in una lista o in una sequenza,
+costruiamo il seguente ciclo:</p>
 <pre class="python"><code>largest = None
 print(&#39;Before:&#39;, largest)
 for itervar in [3, 41, 12, 9, 74, 15]:
@@ -445,7 +472,7 @@ for itervar in [3, 41, 12, 9, 74, 15]:
         largest = itervar
     print(&#39;Loop:&#39;, itervar, largest)
 print(&#39;Largest:&#39;, largest)</code></pre>
-<p>When the program executes, the output is as follows:</p>
+<p>Quando il programma viene eseguito, l’output è il seguente:</p>
 <pre><code>Before: None
 Loop: 3 3
 Loop: 41 41
@@ -454,30 +481,30 @@ Loop: 9 41
 Loop: 74 74
 Loop: 15 74
 Largest: 74</code></pre>
-<p>The variable <code>largest</code> is best thought of as the “largest
-value we have seen so far”. Before the loop, we set <code>largest</code>
-to the constant <code>None</code>. <code>None</code> is a special
-constant value which we can store in a variable to mark the variable as
-“empty”.</p>
-<p>Before the loop starts, the largest value we have seen so far is
-<code>None</code> since we have not yet seen any values. While the loop
-is executing, if <code>largest</code> is <code>None</code> then we take
-the first value we see as the largest so far. You can see in the first
-iteration when the value of <code>itervar</code> is 3, since
-<code>largest</code> is <code>None</code>, we immediately set
-<code>largest</code> to be 3.</p>
-<p>After the first iteration, <code>largest</code> is no longer
-<code>None</code>, so the second part of the compound logical expression
-that checks <code>itervar &gt; largest</code> triggers only when we see
-a value that is larger than the “largest so far”. When we see a new
-“even larger” value we take that new value for <code>largest</code>. You
-can see in the program output that <code>largest</code> progresses from
-3 to 41 to 74.</p>
-<p>At the end of the loop, we have scanned all of the values and the
-variable <code>largest</code> now does contain the largest value in the
-list.</p>
-<p>To compute the smallest number, the code is very similar with one
-small change:</p>
+<p>Conviene pensare alla variabile <code>largest</code> come al “valore
+più grande che abbiamo visto finora”. Prima del ciclo impostiamo
+<code>largest</code> alla costante <code>None</code>. <code>None</code>
+è un valore costante speciale che possiamo memorizzare in una variabile
+per contrassegnarla come “vuota”.</p>
+<p>Prima che il ciclo inizi, il valore più grande che abbiamo visto
+finora è <code>None</code>, perché non abbiamo ancora visto nessun
+valore. Mentre il ciclo è in esecuzione, se <code>largest</code> è
+<code>None</code> prendiamo il primo valore che vediamo come il più
+grande finora. Puoi vedere che nella prima iterazione, quando il valore
+di <code>itervar</code> è 3, dato che <code>largest</code> è
+<code>None</code> impostiamo subito <code>largest</code> a 3.</p>
+<p>Dopo la prima iterazione <code>largest</code> non è più
+<code>None</code>, quindi la seconda parte dell’espressione logica
+composta, che controlla <code>itervar &gt; largest</code>, scatta solo
+quando vediamo un valore maggiore del “più grande finora”. Quando
+vediamo un nuovo valore “ancora più grande”, lo prendiamo come nuovo
+valore di <code>largest</code>. Nell’output del programma puoi vedere
+che <code>largest</code> passa da 3 a 41 a 74.</p>
+<p>Alla fine del ciclo abbiamo esaminato tutti i valori e la variabile
+<code>largest</code> ora contiene davvero il valore più grande della
+lista.</p>
+<p>Per calcolare il numero più piccolo il codice è molto simile, con una
+piccola modifica:</p>
 <pre class="python"><code>smallest = None
 print(&#39;Before:&#39;, smallest)
 for itervar in [3, 41, 12, 9, 74, 15]:
@@ -485,90 +512,90 @@ for itervar in [3, 41, 12, 9, 74, 15]:
         smallest = itervar
     print(&#39;Loop:&#39;, itervar, smallest)
 print(&#39;Smallest:&#39;, smallest)</code></pre>
-<p>Again, <code>smallest</code> is the “smallest so far” before, during,
-and after the loop executes. When the loop has completed,
-<code>smallest</code> contains the minimum value in the list.</p>
-<p>Again as in counting and summing, the built-in functions
-<code>max()</code> and <code>min()</code> make writing these exact loops
-unnecessary.</p>
-<p>The following is a simple version of the Python built-in
-<code>min()</code> function:</p>
+<p>Di nuovo, <code>smallest</code> è il “più piccolo finora” prima,
+durante e dopo l’esecuzione del ciclo. Al termine del ciclo,
+<code>smallest</code> contiene il valore minimo della lista.</p>
+<p>Anche qui, come per il conteggio e la somma, le funzioni built-in
+<code>max()</code> e <code>min()</code> rendono superfluo scrivere
+proprio questi cicli.</p>
+<p>Quella che segue è una versione semplice della funzione built-in
+<code>min()</code> di Python:</p>
 <pre class="python"><code>def min(values):
     smallest = None
     for value in values:
         if smallest is None or value &lt; smallest:
             smallest = value
     return smallest</code></pre>
-<p>In the function version of the smallest code, we removed all of the
-<code>print</code> statements so as to be equivalent to the
-<code>min</code> function which is already built in to Python.</p>
-<h2 id="debugging">Debugging</h2>
-<p>As you start writing bigger programs, you might find yourself
-spending more time debugging. More code means more chances to make an
-error and more places for bugs to hide.</p>
-<p> </p>
-<p>One way to cut your debugging time is “debugging by bisection.” For
-example, if there are 100 lines in your program and you check them one
-at a time, it would take 100 steps.</p>
-<p>Instead, try to break the problem in half. Look at the middle of the
-program, or near it, for an intermediate value you can check. Add a
-<code>print</code> statement (or something else that has a verifiable
-effect) and run the program.</p>
-<p>If the mid-point check is incorrect, the problem must be in the first
-half of the program. If it is correct, the problem is in the second
-half.</p>
-<p>Every time you perform a check like this, you halve the number of
-lines you have to search. After six steps (which is much less than 100),
-you would be down to one or two lines of code, at least in theory.</p>
-<p>In practice it is not always clear what the “middle of the program”
-is and not always possible to check it. It doesn’t make sense to count
-lines and find the exact midpoint. Instead, think about places in the
-program where there might be errors and places where it is easy to put a
-check. Then choose a spot where you think the chances are about the same
-that the bug is before or after the check.</p>
-<h2 id="glossary">Glossary</h2>
+<p>Nella versione a funzione del codice per trovare il minimo abbiamo
+tolto tutte le istruzioni <code>print</code>, in modo da renderla
+equivalente alla funzione <code>min</code>, che in Python è già
+built-in.</p>
+<h2 id="debug">Debug</h2>
+<p>Quando inizi a scrivere programmi più grandi, potresti ritrovarti a
+dedicare più tempo al debug. Più codice significa più possibilità di
+commettere un errore e più posti in cui i bug possono nascondersi. </p>
+<p>Un modo per ridurre il tempo di debug è il “debug per bisezione”. Ad
+esempio, se il tuo programma ha 100 righe, a controllarle una alla volta
+ci vorrebbero 100 passaggi.</p>
+<p>Prova invece a dividere il problema a metà. Cerca a metà del
+programma, o lì vicino, un valore intermedio che puoi controllare.
+Aggiungi un’istruzione <code>print</code> (o qualcos’altro che abbia un
+effetto verificabile) ed esegui il programma.</p>
+<p>Se il controllo a metà programma dà un risultato sbagliato, il
+problema è per forza nella prima metà del programma. Se il risultato è
+corretto, il problema è nella seconda metà.</p>
+<p>Ogni volta che fai un controllo come questo, dimezzi il numero di
+righe in cui devi cercare. Dopo sei passaggi (che sono molti meno di
+100), ti resterebbero una o due righe di codice, almeno in teoria.</p>
+<p>In pratica non è sempre chiaro quale sia la “metà del programma”, e
+non sempre è possibile controllarla. Non ha senso contare le righe e
+trovare l’esatto punto centrale. Pensa invece ai punti del programma in
+cui potrebbero esserci errori e a quelli in cui è facile inserire un
+controllo. Poi scegli un punto in cui, secondo te, il bug ha più o meno
+le stesse probabilità di trovarsi prima o dopo il controllo.</p>
+<h2 id="glossario">Glossario</h2>
 <dl>
-<dt>accumulator</dt>
+<dt><strong>Accumulatore</strong></dt>
 <dd>
-A variable used in a loop to add up or accumulate a result.
+Una variabile usata in un ciclo per sommare o accumulare un risultato.
 </dd>
-<dt>counter</dt>
+<dt><strong>Ciclo infinito</strong></dt>
 <dd>
-A variable used in a loop to count the number of times something
-happened. We initialize a counter to zero and then increment the counter
-each time we want to “count” something.
+Un ciclo in cui la condizione di arresto non è mai soddisfatta o che non
+ha nessuna condizione di arresto.
 </dd>
-<dt>decrement</dt>
+<dt><strong>Contatore</strong></dt>
 <dd>
-An update that decreases the value of a variable.
+Una variabile usata in un ciclo per contare quante volte è successo
+qualcosa. Inizializziamo un contatore a zero e poi lo incrementiamo ogni
+volta che vogliamo “contare” qualcosa.
 </dd>
-<dt>initialize</dt>
+<dt><strong>Decremento</strong></dt>
 <dd>
-An assignment that gives an initial value to a variable that will be
-updated.
+Un aggiornamento che riduce il valore di una variabile.
 </dd>
-<dt>increment</dt>
+<dt><strong>Incremento</strong></dt>
 <dd>
-An update that increases the value of a variable (often by one).
+Un aggiornamento che aumenta il valore di una variabile (spesso di uno).
 </dd>
-<dt>infinite loop</dt>
+<dt><strong>Inizializzare</strong></dt>
 <dd>
-A loop in which the terminating condition is never satisfied or for
-which there is no terminating condition.
+Assegnare un valore iniziale a una variabile che verrà aggiornata.
 </dd>
-<dt>iteration</dt>
+<dt><strong>Iterazione</strong></dt>
 <dd>
-Repeated execution of a set of statements using either a function that
-calls itself or a loop.
+L’esecuzione ripetuta di un insieme di istruzioni, per mezzo di una
+funzione che chiama se stessa oppure di un ciclo.
 </dd>
 </dl>
-<h2 id="exercises">Exercises</h2>
-<p><strong>Exercise 1:</strong> Write a program which repeatedly reads
-integers until the user enters “done”. Once “done” is entered, print out
-the total, count, and average of the integers. If the user enters
-anything other than an integer, detect their mistake using
-<code>try</code> and <code>except</code> and print an error message and
-skip to the next integers.</p>
+<h2 id="esercizi">Esercizi</h2>
+<p><strong>Esercizio 1:</strong> Scrivi un programma che legga
+ripetutamente dei numeri interi finché l’utente non inserisce
+<code>done</code>. Quando viene inserito <code>done</code>, stampa il
+totale, il conteggio e la media degli interi. Se l’utente inserisce
+qualcosa di diverso da un intero, rileva l’errore usando
+<code>try</code> ed <code>except</code>, stampa un messaggio di errore e
+passa all’intero successivo.</p>
 <pre><code>Enter a number: 4
 Enter a number: 5
 Enter a number: bad data
@@ -576,15 +603,15 @@ Invalid input
 Enter a number: 7
 Enter a number: done
 16 3 5.333333333333333</code></pre>
-<p><strong>Exercise 2:</strong> Write another program that prompts for a
-list of numbers as above and at the end prints out both the maximum and
-minimum of the numbers instead of the average.</p>
+<p><strong>Esercizio 2:</strong> Scrivi un altro programma che chieda un
+elenco di numeri come sopra e alla fine stampi sia il massimo sia il
+minimo dei numeri, invece della media.</p>
 <section id="footnotes" class="footnotes footnotes-end-of-document"
 role="doc-endnotes">
 <hr />
 <ol>
-<li id="fn1"><p>We will examine lists in more detail in a later
-chapter.<a href="#fnref1" class="footnote-back"
+<li id="fn1"><p>Esamineremo le liste più in dettaglio in un capitolo
+successivo.<a href="#fnref1" class="footnote-back"
 role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>

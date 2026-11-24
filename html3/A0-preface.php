@@ -3,16 +3,22 @@
   ob_start();
 }?>
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="pandoc" />
+  <meta name="generator" content="pandoc 3.14" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>Credits</title>
+  <title>Crediti</title>
   <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
     html {
       color: #1a1a1a;
+      color: light-dark(#1a1a1a, #fdfdfd);
       background-color: #fdfdfd;
+      background-color: light-dark(#fdfdfd, #1a1a1a);
+      color-scheme: light dark;
     }
     body {
       margin: 0 auto;
@@ -35,31 +41,11 @@
         font-size: 1.8em;
       }
     }
-    @media print {
-      html {
-        background-color: white;
-      }
-      body {
-        background-color: transparent;
-        color: black;
-        font-size: 12pt;
-      }
-      p, h2, h3 {
-        orphans: 3;
-        widows: 3;
-      }
-      h2, h3, h4 {
-        page-break-after: avoid;
-      }
-    }
     p {
       margin: 1em 0;
     }
-    a {
-      color: #1a1a1a;
-    }
-    a:visited {
-      color: #1a1a1a;
+    a, a:visited {
+      color: inherit;
     }
     img {
       max-width: 100%;
@@ -88,10 +74,14 @@
     blockquote {
       margin: 1em 0 1em 1.7em;
       padding-left: 1em;
-      border-left: 2px solid #e6e6e6;
+      border-left: 2px solid;
+      border-color: #e6e6e6;
+      border-color: light-dark(#e6e6e6, #4c4c4c);
       color: #606060;
+      color: light-dark(#606060, #b6b6b6);
     }
     code {
+      white-space: pre-wrap;
       font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
       font-size: 85%;
       margin: 0;
@@ -112,7 +102,7 @@
     }
     hr {
       border: none;
-      border-top: 1px solid #1a1a1a;
+      border-top: 1px solid currentColor;
       height: 1px;
       margin: 1em 0;
     }
@@ -129,11 +119,11 @@
     }
     tbody {
       margin-top: 0.5em;
-      border-top: 1px solid #1a1a1a;
-      border-bottom: 1px solid #1a1a1a;
+      border-top: 1px solid currentColor;
+      border-bottom: 1px solid currentColor;
     }
     th {
-      border-top: 1px solid #1a1a1a;
+      border-top: 1px solid currentColor;
       padding: 0.25em 0.5em 0.25em 0.5em;
     }
     td {
@@ -155,10 +145,19 @@
     #TOC a:not(:hover) {
       text-decoration: none;
     }
-    code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
-    div.columns{display: flex; gap: min(4vw, 1.5em);}
-    div.column{flex: auto; overflow-x: auto;}
+    em, em em em, em em em em em {
+      font-style: italic;
+    }
+    em em, em em em em {
+      font-style: normal;
+    }
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     /* The extra [class] is a hack that increases specificity enough to
        override a similar rule in reveal.js */
@@ -169,120 +168,145 @@
       margin: 0 0.8em 0.2em -1.6em;
       vertical-align: middle;
     }
-    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
-  </style>
+    @media print {
+      html {
+        color-scheme: light only;
+      }
+      html, body, pre, code {
+        background-color: transparent;
+      }
+      body, a, a:visited, blockquote {
+        color: black;
+      }
+      pre, code {
+        padding: 0;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }  </style>
 </head>
 <body>
-<h2 id="credits">Credits</h2>
-<pre><code>Editorial Support: Elliott Hauser, Sue Blumenberg
-Cover Design: Aimee Andrion</code></pre>
-<h2 id="printing-history">Printing History</h2>
+<h2 id="crediti">Crediti</h2>
+<pre><code>Supporto editoriale: Elliott Hauser, Sue Blumenberg
+Progetto della copertina: Aimee Andrion</code></pre>
+<h2 id="cronologia-di-stampa">Cronologia di stampa</h2>
 <ul>
-<li>2024-Jan-01 Update examples to Python 3.12, remove references to
-Twitter APIs, rewrite Databases chapter</li>
-<li>2023-Jun-29 Many errata included, switch from Google APIs to
-OpenStreetMap APIs</li>
-<li>2016-Jul-05 First Complete Python 3.0 version</li>
-<li>2015-Dec-20 Initial Python 3.0 rough conversion</li>
+<li>1° gennaio 2024 — Esempi aggiornati a Python 3.12, rimossi i
+riferimenti alle API di Twitter, riscritto il capitolo sui database</li>
+<li>29 giugno 2023 — Inserite molte correzioni, passaggio dalle API di
+Google alle API di OpenStreetMap</li>
+<li>5 luglio 2016 — Prima versione completa per Python 3.0</li>
+<li>20 dicembre 2015 — Prima conversione approssimativa a Python
+3.0</li>
 </ul>
-<h2 id="copyright-details">Copyright Details</h2>
+<h2 id="dettagli-sul-copyright">Dettagli sul copyright</h2>
 <p>Copyright 2009- Dr. Charles R. Severance.</p>
-<p>This work is licensed under a Creative Commons
-Attribution-NonCommercial-ShareAlike 3.0 Unported License. This license
-is available at</p>
+<p>Quest’opera è distribuita con licenza Creative Commons
+Attribution-NonCommercial-ShareAlike 3.0 Unported. La licenza è
+disponibile all’indirizzo</p>
 <p>http://creativecommons.org/licenses/by-nc-sa/3.0/</p>
-<p>You can see what the author considers commercial and non-commercial
-uses of this material as well as license exemptions in the Appendix
-titled “Copyright Detail”.</p>
-<h1 id="preface">Preface</h1>
-<h2 id="remixing-an-open-book">Remixing an Open Book</h2>
-<p>It is quite natural for academics who are continuously told to
-“publish or perish” to want to always create something from scratch that
-is their own fresh creation. This book is an experiment in not starting
-from scratch, but instead “remixing” the book titled <em>Think Python:
-How to Think Like a Computer Scientist</em> written by Allen B. Downey,
-Jeff Elkner, and others.</p>
-<p>In December of 2009, I was preparing to teach <em>SI502 - Networked
-Programming</em> at the University of Michigan for the fifth semester in
-a row and decided it was time to write a Python textbook that focused on
-exploring data instead of understanding algorithms and abstractions. My
-goal in SI502 is to teach people lifelong data handling skills using
-Python. Few of my students were planning to be professional computer
-programmers. Instead, they planned to be librarians, managers, lawyers,
-biologists, economists, etc., who happened to want to skillfully use
-technology in their chosen field.</p>
-<p>I never seemed to find the perfect data-oriented Python book for my
-course, so I set out to write just such a book. Luckily at a faculty
-meeting three weeks before I was about to start my new book from scratch
-over the holiday break, Dr. Atul Prakash showed me the <em>Think
-Python</em> book which he had used to teach his Python course that
-semester. It is a well-written Computer Science text with a focus on
-short, direct explanations and ease of learning.</p>
-<p>The overall book structure has been changed to get to doing data
-analysis problems as quickly as possible and have a series of running
-examples and exercises about data analysis from the very beginning.</p>
-<p>Chapters 2–10 are similar to the <em>Think Python</em> book, but
-there have been major changes. Number-oriented examples and exercises
-have been replaced with data-oriented exercises. Topics are presented in
-the order needed to build increasingly sophisticated data analysis
-solutions. Some topics like <code>try</code> and <code>except</code> are
-pulled forward and presented as part of the chapter on conditionals.
-Functions are given very light treatment until they are needed to handle
-program complexity rather than introduced as an early lesson in
-abstraction. Nearly all user-defined functions have been removed from
-the example code and exercises outside of Chapter 4. The word
-“recursion”<a href="#fn1" class="footnote-ref" id="fnref1"
-role="doc-noteref"><sup>1</sup></a> does not appear in the book at
-all.</p>
-<p>In chapters 1 and 11–16, all of the material is brand new, focusing
-on real-world uses and simple examples of Python for data analysis
-including regular expressions for searching and parsing, automating
-tasks on your computer, retrieving data across the network, scraping web
-pages for data, object-oriented programming, using web services, parsing
-XML and JSON data, creating and using databases using Structured Query
-Language, and visualizing data.</p>
-<p>The ultimate goal of all of these changes is to shift from a Computer
-Science to an Informatics focus and to only include topics into a first
-technology class that can be useful even if one chooses not to become a
-professional programmer.</p>
-<p>Students who find this book interesting and want to further explore
-should look at Allen B. Downey’s <em>Think Python</em> book. Because
-there is a lot of overlap between the two books, students will quickly
-pick up skills in the additional areas of technical programming and
-algorithmic thinking that are covered in <em>Think Python</em>. And
-given that the books have a similar writing style, they should be able
-to move quickly through <em>Think Python</em> with a minimum of
-effort.</p>
+<p>Nell’appendice intitolata “Dettagli sul copyright” puoi vedere quali
+usi di questo materiale l’autore considera commerciali e non
+commerciali, e quali deroghe alla licenza concede.</p>
+<h1 id="prefazione">Prefazione</h1>
+<h2 id="il-remix-di-un-libro-aperto">Il remix di un libro aperto</h2>
+<p>Per gli accademici, che si sentono ripetere di continuo “pubblica o
+muori”, è abbastanza naturale voler sempre creare da zero un’opera nuova
+e tutta loro. Questo libro è un esperimento: non partire da zero, ma
+“remixare” il libro intitolato <em>Think Python: How to Think Like a
+Computer Scientist</em>, scritto da Allen B. Downey, Jeff Elkner e
+altri.</p>
+<p>Nel dicembre del 2009 mi stavo preparando a tenere il corso <em>SI502
+- Networked Programming</em> all’Università del Michigan per il quinto
+semestre consecutivo e decisi che era il momento di scrivere un libro di
+testo su Python che si concentrasse sull’esplorazione dei dati invece
+che sulla comprensione di algoritmi e astrazioni. Il mio obiettivo in
+SI502 è insegnare, usando Python, a gestire i dati: competenze che
+servono per tutta la vita. Pochi dei miei studenti pensavano di
+diventare programmatori professionisti. Pensavano invece di diventare
+bibliotecari, manager, avvocati, biologi, economisti e così via: persone
+che volevano usare con abilità la tecnologia nel campo che avevano
+scelto.</p>
+<p>Non riuscivo mai a trovare il libro su Python orientato ai dati
+perfetto per il mio corso, così decisi di scriverlo io. Per fortuna, a
+una riunione dei docenti, tre settimane prima che cominciassi a scrivere
+da zero il nuovo libro durante le vacanze, il Dr. Atul Prakash mi mostrò
+il libro <em>Think Python</em>, che quel semestre aveva usato per il suo
+corso di Python. È un testo di informatica ben scritto, incentrato su
+spiegazioni brevi e dirette e sulla facilità di apprendimento.</p>
+<p>La struttura complessiva del libro è stata modificata per arrivare il
+più presto possibile a risolvere problemi di analisi dei dati e per
+avere, fin dall’inizio, una serie di esempi ed esercizi ricorrenti
+sull’analisi dei dati.</p>
+<p>I capitoli 2–10 sono simili al libro <em>Think Python</em>, ma ci
+sono stati cambiamenti importanti. Gli esempi e gli esercizi orientati
+ai numeri sono stati sostituiti da esercizi orientati ai dati. Gli
+argomenti sono presentati nell’ordine che serve per costruire soluzioni
+di analisi dei dati via via più sofisticate. Alcuni argomenti, come
+<code>try</code> ed <code>except</code>, sono stati anticipati e
+presentati nel capitolo sull’esecuzione condizionale. Le funzioni sono
+trattate molto brevemente finché non servono a gestire la complessità
+dei programmi, invece di essere introdotte subito come lezione di
+astrazione. Quasi tutte le funzioni definite dall’utente sono state
+tolte dal codice degli esempi e dagli esercizi, tranne che nel Capitolo
+4. La parola “ricorsione”<a href="#fn1" class="footnote-ref" id="fnref1"
+role="doc-noteref"><sup>1</sup></a> non compare mai nel libro.</p>
+<p>Nei capitoli 1 e 11–16 tutto il materiale è nuovo di zecca e si
+concentra sugli usi reali di Python per l’analisi dei dati e su esempi
+semplici: le espressioni regolari per cercare e analizzare,
+l’automazione di attività sul computer, il recupero di dati attraverso
+la rete, lo scraping di pagine web per estrarne dati, la programmazione
+orientata agli oggetti, l’uso dei servizi web, l’analisi di dati XML e
+JSON, la creazione e l’uso di database con lo Structured Query Language
+e la visualizzazione dei dati.</p>
+<p>L’obiettivo finale di tutti questi cambiamenti è spostare
+l’attenzione dall’informatica teorica (Computer Science) all’informatica
+applicata (Informatics) e includere in un primo corso di tecnologia solo
+argomenti che possano tornare utili anche a chi sceglie di non diventare
+programmatore professionista.</p>
+<p>Gli studenti che trovano interessante questo libro e vogliono
+approfondire dovrebbero dare un’occhiata a <em>Think Python</em> di
+Allen B. Downey. Poiché i due libri si sovrappongono molto, gli studenti
+acquisiranno rapidamente competenze negli ambiti che <em>Think
+Python</em> tratta in più: la programmazione tecnica e il pensiero
+algoritmico. E dato che i due libri hanno uno stile di scrittura simile,
+dovrebbero riuscire a leggere <em>Think Python</em> rapidamente e con il
+minimo sforzo.</p>
 <p> </p>
-<p>As the copyright holder of <em>Think Python</em>, Allen has given me
-permission to change the book’s license on the material from his book
-that remains in this book from the GNU Free Documentation License to the
-more recent Creative Commons Attribution — Share Alike license. This
-follows a general shift in open documentation licenses moving from the
-GFDL to the CC-BY-SA (e.g., Wikipedia). Using the CC-BY-SA license
-maintains the book’s strong copyleft tradition while making it even more
-straightforward for new authors to reuse this material as they see
-fit.</p>
-<p>I feel that this book serves as an example of why open materials are
-so important to the future of education, and I want to thank Allen B.
-Downey and Cambridge University Press for their forward-looking decision
-to make the book available under an open copyright. I hope they are
-pleased with the results of my efforts and I hope that you, the reader,
-are pleased with <em>our</em> collective efforts.</p>
-<p>I would like to thank Allen B. Downey and Lauren Cowles for their
-help, patience, and guidance in dealing with and resolving the copyright
-issues around this book.</p>
+<p>In quanto detentore del copyright di <em>Think Python</em>, Allen mi
+ha dato il permesso di cambiare la licenza delle parti del suo libro
+rimaste in questo, dalla GNU Free Documentation License alla più recente
+licenza Creative Commons Attribution — Share Alike. Questo cambio segue
+una tendenza generale delle licenze per la documentazione aperta, che si
+stanno spostando dalla GFDL alla CC-BY-SA (ad esempio Wikipedia). La
+licenza CC-BY-SA mantiene la solida tradizione copyleft del libro e allo
+stesso tempo rende ancora più semplice per i nuovi autori riutilizzare
+questo materiale come meglio credono.</p>
+<p>Ritengo che questo libro sia un esempio di quanto i materiali aperti
+siano importanti per il futuro della formazione e voglio ringraziare
+Allen B. Downey e la Cambridge University Press per la loro lungimirante
+decisione di rendere il libro disponibile con un copyright aperto. Spero
+che siano soddisfatti del risultato dei miei sforzi e mi auguro che tu,
+lettore, sia soddisfatto del <em>nostro</em> sforzo collettivo.</p>
+<p>Vorrei ringraziare Allen B. Downey e Lauren Cowles per l’aiuto, la
+pazienza e la guida nell’affrontare e risolvere le questioni di
+copyright legate a questo libro.</p>
 <p>Charles Severance<br />
 www.dr-chuck.com<br />
 Ann Arbor, MI, USA<br />
-September 9, 2013</p>
-<p>Charles Severance is a Clinical Associate Professor at the University
-of Michigan School of Information.</p>
+9 settembre 2013</p>
+<p>Charles Severance è Clinical Associate Professor presso la School of
+Information dell’Università del Michigan.</p>
 <section id="footnotes" class="footnotes footnotes-end-of-document"
 role="doc-endnotes">
 <hr />
 <ol>
-<li id="fn1"><p>Except, of course, for this line.<a href="#fnref1"
+<li id="fn1"><p>Tranne, ovviamente, in questa riga.<a href="#fnref1"
 class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>

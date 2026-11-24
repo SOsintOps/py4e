@@ -3,16 +3,22 @@
   ob_start();
 }?>
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="pandoc" />
+  <meta name="generator" content="pandoc 3.14" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>Using Web Services</title>
+  <title>Usare i servizi web</title>
   <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
     html {
       color: #1a1a1a;
+      color: light-dark(#1a1a1a, #fdfdfd);
       background-color: #fdfdfd;
+      background-color: light-dark(#fdfdfd, #1a1a1a);
+      color-scheme: light dark;
     }
     body {
       margin: 0 auto;
@@ -35,31 +41,11 @@
         font-size: 1.8em;
       }
     }
-    @media print {
-      html {
-        background-color: white;
-      }
-      body {
-        background-color: transparent;
-        color: black;
-        font-size: 12pt;
-      }
-      p, h2, h3 {
-        orphans: 3;
-        widows: 3;
-      }
-      h2, h3, h4 {
-        page-break-after: avoid;
-      }
-    }
     p {
       margin: 1em 0;
     }
-    a {
-      color: #1a1a1a;
-    }
-    a:visited {
-      color: #1a1a1a;
+    a, a:visited {
+      color: inherit;
     }
     img {
       max-width: 100%;
@@ -88,10 +74,14 @@
     blockquote {
       margin: 1em 0 1em 1.7em;
       padding-left: 1em;
-      border-left: 2px solid #e6e6e6;
+      border-left: 2px solid;
+      border-color: #e6e6e6;
+      border-color: light-dark(#e6e6e6, #4c4c4c);
       color: #606060;
+      color: light-dark(#606060, #b6b6b6);
     }
     code {
+      white-space: pre-wrap;
       font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
       font-size: 85%;
       margin: 0;
@@ -112,7 +102,7 @@
     }
     hr {
       border: none;
-      border-top: 1px solid #1a1a1a;
+      border-top: 1px solid currentColor;
       height: 1px;
       margin: 1em 0;
     }
@@ -129,11 +119,11 @@
     }
     tbody {
       margin-top: 0.5em;
-      border-top: 1px solid #1a1a1a;
-      border-bottom: 1px solid #1a1a1a;
+      border-top: 1px solid currentColor;
+      border-bottom: 1px solid currentColor;
     }
     th {
-      border-top: 1px solid #1a1a1a;
+      border-top: 1px solid currentColor;
       padding: 0.25em 0.5em 0.25em 0.5em;
     }
     td {
@@ -155,10 +145,19 @@
     #TOC a:not(:hover) {
       text-decoration: none;
     }
-    code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
-    div.columns{display: flex; gap: min(4vw, 1.5em);}
-    div.column{flex: auto; overflow-x: auto;}
+    em, em em em, em em em em em {
+      font-style: italic;
+    }
+    em em, em em em em {
+      font-style: normal;
+    }
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     /* The extra [class] is a hack that increases specificity enough to
        override a similar rule in reveal.js */
@@ -169,27 +168,46 @@
       margin: 0 0.8em 0.2em -1.6em;
       vertical-align: middle;
     }
-    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
-  </style>
+    @media print {
+      html {
+        color-scheme: light only;
+      }
+      html, body, pre, code {
+        background-color: transparent;
+      }
+      body, a, a:visited, blockquote {
+        color: black;
+      }
+      pre, code {
+        padding: 0;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }  </style>
 </head>
 <body>
-<h1 id="using-web-services">Using Web Services</h1>
-<p>Once it became easy to retrieve documents and parse documents over
-HTTP using programs, it did not take long to develop an approach where
-we started producing documents that were specifically designed to be
-consumed by other programs (i.e., not HTML to be displayed in a
+<h1 id="usare-i-servizi-web">Usare i servizi web</h1>
+<p>Quando è diventato facile recuperare e analizzare documenti via HTTP
+con dei programmi, non ci è voluto molto per sviluppare un approccio in
+cui abbiamo cominciato a produrre documenti pensati apposta per essere
+usati da altri programmi (cioè non HTML da visualizzare in un
 browser).</p>
-<p>There are two common formats that we use when exchanging data across
-the web. eXtensible Markup Language (XML) has been in use for a very
-long time and is best suited for exchanging document-style data. When
-programs just want to exchange dictionaries, lists, or other internal
-information with each other, they use JavaScript Object Notation (JSON)
-(see <a href="http://www.json.org">www.json.org</a>). We will look at
-both formats.</p>
+<p>Per scambiare dati sul web usiamo due formati comuni. L’eXtensible
+Markup Language (XML) è in uso da moltissimo tempo ed è il più adatto
+per scambiare dati in forma di documento. Quando i programmi vogliono
+solo scambiarsi dizionari, liste o altre informazioni interne, usano la
+JavaScript Object Notation (JSON) (vedi <a
+href="http://www.json.org">www.json.org</a>). Vedremo entrambi i
+formati.</p>
 <h2 id="extensible-markup-language---xml">eXtensible Markup Language -
 XML</h2>
-<p>XML looks very similar to HTML, but XML is more structured than HTML.
-Here is a sample of an XML document:</p>
+<p>XML somiglia molto a HTML, ma è più strutturato. Ecco un esempio di
+documento XML:</p>
 <pre class="xml"><code>&lt;person&gt;
   &lt;name&gt;Chuck&lt;/name&gt;
   &lt;phone type=&quot;intl&quot;&gt;
@@ -197,27 +215,30 @@ Here is a sample of an XML document:</p>
   &lt;/phone&gt;
   &lt;email hide=&quot;yes&quot; /&gt;
 &lt;/person&gt;</code></pre>
-<p>Each pair of opening (e.g., <code>&lt;person&gt;</code>) and closing
-tags (e.g., <code>&lt;/person&gt;</code>) represents an <em>element</em>
-or <em>node</em> with the same name as the tag (e.g.,
-<code>person</code>). Each element can have some text, some attributes
-(e.g., <code>hide</code>), and other nested elements. If an XML element
-is empty (i.e., has no content), then it may be depicted by a
-self-closing tag (e.g., <code>&lt;email /&gt;</code>).</p>
-<p>Often it is helpful to think of an XML document as a tree structure
-where there is a top element (here: <code>person</code>), and other tags
-(e.g., <code>phone</code>) are drawn as <em>children</em> of their
-<em>parent</em> elements.</p>
+<p>Ogni coppia formata da un tag di apertura (come
+<code>&lt;person&gt;</code>) e da uno di chiusura (come
+<code>&lt;/person&gt;</code>) rappresenta un <em>elemento</em> o
+<em>nodo</em> che ha lo stesso nome del tag (ad esempio
+<code>person</code>). Ogni elemento può avere del testo, alcuni
+attributi (ad esempio <code>hide</code>) e altri elementi annidati. Se
+un elemento XML è vuoto (cioè non ha contenuto), lo si può rappresentare
+con un <em>tag a chiusura automatica</em> (self-closing tag), come
+<code>&lt;email /&gt;</code>.</p>
+<p>Spesso è utile pensare a un documento XML come a una struttura ad
+albero, in cui c’è un elemento di primo livello (qui
+<code>person</code>) e gli altri tag (ad esempio <code>phone</code>)
+sono disegnati come <em>figli</em> dei rispettivi elementi
+<em>padre</em>.</p>
 <figure>
-<img src="../images/xml-tree.svg" alt="A Tree Representation of XML" style="height: 2.0in;"/>
+<img src="../images/xml-tree.svg" alt="Rappresentazione ad albero dell'XML" style="height: 2.0in;"/>
 <figcaption>
-A Tree Representation of XML
+Rappresentazione ad albero dell’XML
 </figcaption>
 </figure>
-<h2 id="parsing-xml">Parsing XML</h2>
+<h2 id="analizzare-xml">Analizzare XML</h2>
 <p> </p>
-<p>Here is a simple application that parses some XML and extracts some
-data elements from the XML:</p>
+<p>Ecco una semplice applicazione che analizza un po’ di XML e ne estrae
+alcuni dati:</p>
 <pre class="python"><code>import xml.etree.ElementTree as ET
 
 data = &#39;&#39;&#39;
@@ -234,26 +255,27 @@ print(&#39;Name:&#39;, tree.find(&#39;name&#39;).text)
 print(&#39;Attr:&#39;, tree.find(&#39;email&#39;).get(&#39;hide&#39;))
 
 # Code: https://www.py4e.com/code3/xml1.py</code></pre>
-<p>The triple single quote (<code>'''</code>), as well as the triple
-double quote (<code>"""</code>), allow for the creation of strings that
-span multiple lines.</p>
-<p>Calling <code>fromstring</code> converts the string representation of
-the XML into a “tree” of XML elements. When the XML is in a tree, we
-have a series of methods we can call to extract portions of data from
-the XML string. The <code>find</code> function searches through the XML
-tree and retrieves the element that matches the specified tag.</p>
+<p>Le triple virgolette singole (<code>'''</code>), così come le triple
+virgolette doppie (<code>"""</code>), permettono di creare stringhe che
+si estendono su più righe.</p>
+<p>La chiamata a <code>fromstring</code> converte la stringa che
+rappresenta l’XML in un “albero” di elementi XML. Una volta che l’XML è
+in forma di albero, abbiamo una serie di metodi che possiamo chiamare
+per estrarre parti dei dati dalla stringa XML. Il metodo
+<code>find</code> cerca nell’albero XML e recupera l’elemento che
+corrisponde al tag indicato.</p>
 <pre><code>Name: Chuck
 Attr: yes</code></pre>
-<p>Using an XML parser such as <code>ElementTree</code> has the
-advantage that while the XML in this example is quite simple, it turns
-out there are many rules regarding valid XML, and using
-<code>ElementTree</code> allows us to extract data from XML without
-worrying about the rules of XML syntax.</p>
-<h2 id="looping-through-nodes">Looping through nodes</h2>
+<p>Usare un parser XML come <code>ElementTree</code> ha un vantaggio:
+l’XML di questo esempio è piuttosto semplice, ma in realtà le regole che
+rendono valido un documento XML sono molte; con <code>ElementTree</code>
+possiamo estrarre dati da XML senza preoccuparci delle regole della sua
+sintassi.</p>
+<h2 id="scorrere-i-nodi">Scorrere i nodi</h2>
 <p> </p>
-<p>Often the XML has multiple nodes and we need to write a loop to
-process all of the nodes. In the following program, we loop through all
-of the <code>user</code> nodes:</p>
+<p>Spesso l’XML ha più nodi e dobbiamo scrivere un ciclo per elaborarli
+tutti. Nel programma seguente scorriamo tutti i nodi
+<code>user</code>:</p>
 <pre class="python"><code>import xml.etree.ElementTree as ET
 
 input = &#39;&#39;&#39;
@@ -280,12 +302,12 @@ for item in lst:
     print(&#39;Attribute&#39;, item.get(&#39;x&#39;))
 
 # Code: https://www.py4e.com/code3/xml2.py</code></pre>
-<p>The <code>findall</code> method retrieves a Python list of subtrees
-that represent the <code>user</code> structures in the XML tree. Then we
-can write a <code>for</code> loop that looks at each of the user nodes,
-and prints the <code>name</code> and <code>id</code> text elements as
-well as the <code>x</code> attribute from the <code>user</code>
-node.</p>
+<p>Il metodo <code>findall</code> recupera una lista Python di
+sottoalberi che rappresentano le strutture <code>user</code> nell’albero
+XML. Poi possiamo scrivere un ciclo <code>for</code> che esamina ogni
+nodo <code>user</code> e ne stampa gli elementi di testo
+<code>name</code> e <code>id</code>, oltre all’attributo
+<code>x</code>.</p>
 <pre><code>User count: 2
 Name Chuck
 Id 001
@@ -293,10 +315,10 @@ Attribute 2
 Name Brent
 Id 009
 Attribute 7</code></pre>
-<p>It is important to include all parent level elements in the
-<code>findall</code> statement except for the top level element (e.g.,
-<code>users/user</code>). Otherwise, Python will not find any desired
-nodes.</p>
+<p>È importante includere nella chiamata al metodo <code>findall</code>
+tutti gli elementi padre, tranne quello di primo livello (ad esempio
+<code>users/user</code>). Altrimenti Python non troverà i nodi
+desiderati.</p>
 <pre class="python"><code>import xml.etree.ElementTree as ET
 
 input = &#39;&#39;&#39;
@@ -320,22 +342,23 @@ print(&#39;User count:&#39;, len(lst))
 
 lst2 = stuff.findall(&#39;user&#39;)
 print(&#39;User count:&#39;, len(lst2))</code></pre>
-<p><code>lst</code> stores all <code>user</code> elements that are
-nested within their <code>users</code> parent. <code>lst2</code> looks
-for <code>user</code> elements that are not nested within the top level
-<code>stuff</code> element where there are none.</p>
+<p><code>lst</code> contiene tutti gli elementi <code>user</code>
+annidati nel loro padre <code>users</code>. <code>lst2</code> cerca gli
+elementi <code>user</code> che stanno direttamente nell’elemento di
+primo livello <code>stuff</code>, senza essere annidati in un altro
+elemento, e lì non ce n’è nessuno.</p>
 <pre><code>User count: 2
 User count: 0</code></pre>
 <h2 id="javascript-object-notation---json">JavaScript Object Notation -
 JSON</h2>
 <p> </p>
-<p>The JSON format was inspired by the object and array format used in
-the JavaScript language. But since Python was invented before
-JavaScript, Python’s syntax for dictionaries and lists influenced the
-syntax of JSON. So the format of JSON is nearly identical to a
-combination of Python lists and dictionaries.</p>
-<p>Here is a JSON encoding that is roughly equivalent to the simple XML
-from above:</p>
+<p>Il formato JSON si è ispirato a quello degli oggetti e degli array
+del linguaggio JavaScript. Ma poiché Python è stato inventato prima di
+JavaScript, la sintassi di Python per dizionari e liste ha influenzato
+quella di JSON. Per questo il formato di JSON è quasi identico a una
+combinazione di liste e dizionari Python.</p>
+<p>Ecco una codifica JSON più o meno equivalente al semplice XML visto
+sopra:</p>
 <pre class="json"><code>{
   &quot;name&quot; : &quot;Chuck&quot;,
   &quot;phone&quot; : {
@@ -346,31 +369,33 @@ from above:</p>
      &quot;hide&quot; : &quot;yes&quot;
    }
 }</code></pre>
-<p>You will notice some differences. First, in XML, we can add
-attributes like “intl” to the “phone” tag. In JSON, we simply have
-key-value pairs. Also the XML “person” tag is gone, replaced by a set of
-outer curly braces.</p>
-<p>In general, JSON structures are simpler than XML because JSON has
-fewer capabilities than XML. But JSON has the advantage that it maps
-<em>directly</em> to some combination of dictionaries and lists. And
-since nearly all programming languages have something equivalent to
-Python’s dictionaries and lists, JSON is a very natural format to have
-two cooperating programs exchange data.</p>
-<p>JSON is quickly becoming the format of choice for nearly all data
-exchange between applications because of its relative simplicity
-compared to XML.</p>
-<h2 id="parsing-json">Parsing JSON</h2>
-<p>We construct our JSON by nesting dictionaries and lists as needed. In
-this example, we represent a list of users where each user is a set of
-key-value pairs (i.e., a dictionary). So we have a list of
-dictionaries.</p>
-<p>In the following program, we use the built-in <code>json</code>
-library to parse the JSON and read through the data. Compare this
-closely to the equivalent XML data and code above. The JSON has less
-detail, so we must know in advance that we are getting a list and that
-the list is of users and each user is a set of key-value pairs. The JSON
-is more succinct (an advantage) but also is less self-describing (a
-disadvantage).</p>
+<p>Noterai alcune differenze. Innanzitutto, in XML possiamo aggiungere
+al tag <code>phone</code> attributi come <code>type="intl"</code>. In
+JSON abbiamo semplicemente coppie chiave-valore. Inoltre il tag XML
+<code>person</code> è scomparso, sostituito da una coppia di parentesi
+graffe esterne.</p>
+<p>In generale le strutture JSON sono più semplici di quelle XML, perché
+JSON offre meno funzionalità di XML. Ma JSON ha il vantaggio di
+corrispondere <em>direttamente</em> a una qualche combinazione di
+dizionari e liste. E poiché quasi tutti i linguaggi di programmazione
+hanno qualcosa di equivalente ai dizionari e alle liste di Python, JSON
+è un formato molto naturale per far scambiare dati a due programmi che
+collaborano.</p>
+<p>JSON sta diventando rapidamente il formato preferito per quasi tutti
+gli scambi di dati tra applicazioni, grazie alla sua relativa semplicità
+rispetto a XML.</p>
+<h2 id="analizzare-json">Analizzare JSON</h2>
+<p>Costruiamo il JSON annidando dizionari e liste secondo le necessità.
+In questo esempio rappresentiamo una lista di utenti in cui ogni utente
+è un insieme di coppie chiave-valore (cioè un dizionario). Abbiamo
+quindi una lista di dizionari.</p>
+<p>Nel programma seguente usiamo la libreria built-in <code>json</code>
+per analizzare il JSON e leggerne i dati. Confronta attentamente questo
+programma con i dati e il codice XML equivalenti visti sopra. Il JSON ha
+meno dettagli, quindi dobbiamo sapere in anticipo che riceviamo una
+lista, che i suoi elementi sono utenti e che ogni utente è un insieme di
+coppie chiave-valore. Il JSON è più conciso (un vantaggio), ma è anche
+meno autodescrittivo (uno svantaggio).</p>
 <pre class="python"><code>import json
 
 data = &#39;&#39;&#39;
@@ -394,16 +419,16 @@ for item in info:
     print(&#39;Attribute&#39;, item[&#39;x&#39;])
 
 # Code: https://www.py4e.com/code3/json2.py</code></pre>
-<p>If you compare the code to extract data from the parsed JSON and XML
-you will see that what we get from <code>json.loads()</code> is a Python
-list which we traverse with a <code>for</code> loop, and each item
-within that list is a Python dictionary. Once the JSON has been parsed,
-we can use the Python index operator to extract the various bits of data
-for each user. We don’t have to use the JSON library to dig through the
-parsed JSON, since the returned data is simply native Python
-structures.</p>
-<p>The output of this program is exactly the same as the XML version
-above.</p>
+<p>Se confronti il codice che estrae i dati dal JSON e dall’XML
+analizzati, vedrai che ciò che otteniamo da <code>json.loads()</code> è
+una lista Python, che scorriamo con un ciclo <code>for</code> e i cui
+elementi sono dizionari Python. Una volta analizzato il JSON, possiamo
+usare l’operatore di indicizzazione di Python per estrarre i vari dati
+di ogni utente. Non abbiamo bisogno di usare la libreria
+<code>json</code> per frugare nel JSON analizzato, perché i dati
+restituiti sono semplicemente strutture native di Python.</p>
+<p>L’output di questo programma è identico a quello della versione XML
+vista sopra.</p>
 <pre><code>User count: 2
 Name Chuck
 Id 001
@@ -411,105 +436,110 @@ Attribute 2
 Name Brent
 Id 009
 Attribute 7</code></pre>
-<p>In general, there is an industry trend away from XML and towards JSON
-for web services. Because the JSON is simpler and more directly maps to
-native data structures we already have in programming languages, the
-parsing and data extraction code is usually simpler and more direct when
-using JSON. But XML is more self-descriptive than JSON and so there are
-some applications where XML retains an advantage. For example, most word
-processors store documents internally using XML rather than JSON.</p>
-<h2 id="application-programming-interfaces">Application Programming
-Interfaces</h2>
-<p>We now have the ability to exchange data between applications using
-Hypertext Transport Protocol (HTTP) and a way to represent complex data
-that we are sending back and forth between these applications using
-eXtensible Markup Language (XML) or JavaScript Object Notation
-(JSON).</p>
-<p>The next step is to begin to define and document “contracts” between
-applications using these techniques. The general name for these
-application-to-application contracts is <em>Application Program
-Interfaces</em> (APIs). When we use an API, generally one program makes
-a set of <em>services</em> available for use by other applications and
-publishes the APIs (i.e., the “rules”) that must be followed to access
-the services provided by the program.</p>
-<p>When we begin to build our programs where the functionality of our
-program includes access to services provided by other programs, we call
-the approach a <em>Service-oriented architecture</em> (SOA). An SOA
-approach is one where our overall application makes use of the services
-of other applications. A non-SOA approach is where the application is a
-single standalone application which contains all of the code necessary
-to implement the application.</p>
-<p>We see many examples of SOA when we use the web. We can go to a
-single web site and book air travel, hotels, and automobiles all from a
-single site. The data for hotels is not stored on the airline computers.
-Instead, the airline computers contact the services on the hotel
-computers and retrieve the hotel data and present it to the user. When
-the user agrees to make a hotel reservation using the airline site, the
-airline site uses another web service on the hotel systems to actually
-make the reservation. And when it comes time to charge your credit card
-for the whole transaction, still other computers become involved in the
-process.</p>
+<p>In generale, per i servizi web il settore tende ad abbandonare XML in
+favore di JSON. Poiché JSON è più semplice e corrisponde in modo più
+diretto alle strutture dati native che abbiamo già nei linguaggi di
+programmazione, con JSON il codice che analizza ed estrae i dati è di
+solito più semplice e più diretto. Ma XML è più autodescrittivo di JSON,
+e per questo ci sono alcune applicazioni in cui XML conserva un
+vantaggio. Ad esempio, la maggior parte dei programmi di videoscrittura
+memorizza internamente i documenti in XML invece che in JSON.</p>
+<h2 id="interfacce-di-programmazione-delle-applicazioni">Interfacce di
+programmazione delle applicazioni</h2>
+<p>Ora possiamo scambiare dati tra applicazioni con l’Hypertext Transfer
+Protocol (HTTP) e abbiamo un modo per rappresentare i dati complessi che
+queste applicazioni si scambiano, con l’eXtensible Markup Language (XML)
+o la JavaScript Object Notation (JSON).</p>
+<p>Il passo successivo è cominciare a definire e documentare, con queste
+tecniche, dei “contratti” tra applicazioni. Questi contratti tra
+un’applicazione e l’altra si chiamano in generale <em>interfacce di
+programmazione delle applicazioni</em> (API, Application Program
+Interfaces). Quando usiamo un’API, di solito un programma mette a
+disposizione di altre applicazioni un insieme di <em>servizi</em> e
+pubblica le API (cioè le “regole”) da seguire per accedere ai servizi
+forniti dal programma.</p>
+<p>Quando cominciamo a costruire programmi le cui funzionalità
+comprendono l’accesso a servizi forniti da altri programmi, chiamiamo
+questo approccio <em>architettura orientata ai servizi</em> (SOA,
+Service-Oriented Architecture). In un approccio SOA l’applicazione nel
+suo complesso usa i servizi di altre applicazioni. In un approccio non
+SOA l’applicazione è unica e autonoma e contiene tutto il codice
+necessario per implementarla.</p>
+<p>Quando usiamo il web vediamo molti esempi di SOA. Possiamo prenotare
+voli, alberghi e automobili, tutto da un solo sito web. I dati degli
+alberghi non sono memorizzati sui computer della compagnia aerea: sono
+questi computer a contattare i servizi sui computer degli alberghi, a
+recuperarne i dati e a presentarli all’utente. Quando l’utente accetta
+di prenotare un albergo tramite il sito della compagnia aerea, il sito
+usa un altro servizio web dei sistemi dell’albergo per fare la
+prenotazione vera e propria. E quando arriva il momento di addebitare
+l’intera transazione sulla tua carta di credito, entrano in gioco altri
+computer ancora.</p>
 <figure>
-<img src="../images/soa.svg" alt="Service-oriented architecture" style="height: 3.0in;"/>
+<img src="../images/soa.svg" alt="Architettura orientata ai servizi" style="height: 3.0in;"/>
 <figcaption>
-Service-oriented architecture
+Architettura orientata ai servizi
 </figcaption>
 </figure>
-<p>A Service-oriented architecture has many advantages, including: (1)
-we always maintain only one copy of data (this is particularly important
-for things like hotel reservations where we do not want to over-commit)
-and (2) the owners of the data can set the rules about the use of their
-data. With these advantages, an SOA system must be carefully designed to
-have good performance and meet the user’s needs.</p>
-<p>When an application makes a set of services in its API available over
-the web, we call these <em>web services</em>.</p>
-<h2 id="security-and-api-usage">Security and API usage</h2>
+<p>Un’architettura orientata ai servizi ha molti vantaggi, tra cui: (1)
+manteniamo sempre una sola copia dei dati (cosa particolarmente
+importante in casi come le prenotazioni degli alberghi, in cui non
+vogliamo accettarne più di quante sono le camere disponibili) e (2) i
+proprietari dei dati possono stabilire le regole per il loro uso. A
+fronte di questi vantaggi, un sistema SOA deve essere progettato con
+cura per avere buone prestazioni e soddisfare le esigenze
+dell’utente.</p>
+<p>Quando un’applicazione mette a disposizione sul web un insieme di
+servizi della sua API, li chiamiamo <em>servizi web</em>.</p>
+<h2 id="sicurezza-e-uso-delle-api">Sicurezza e uso delle API</h2>
 <p> </p>
-<p>It is quite common that you need an API key to make use of a vendor’s
-API. The general idea is that they want to know who is using their
-services and how much each user is using. Perhaps they have free and pay
-tiers of their services or have a policy that limits the number of
-requests that a single individual can make during a particular time
-period.</p>
-<p>Sometimes once you get your API key, you simply include the key as
-part of POST data or perhaps as a parameter on the URL when calling the
-API.</p>
-<p>Other times, the vendor wants increased assurance of the source of
-the requests and so they expect you to send cryptographically signed
-messages using shared keys and secrets. A very common technology that is
-used to sign requests over the Internet is called <em>OAuth</em>. You
-can read more about the OAuth protocol at <a
+<p>Capita spesso che ti serva una chiave API per usare l’API di un
+fornitore. L’idea generale è che il fornitore voglia sapere chi usa i
+suoi servizi e quanto li usa ogni utente. Magari offre i suoi servizi
+con piani gratuiti e piani a pagamento, o applica una politica che
+limita il numero di richieste che una sola persona può fare in un certo
+periodo di tempo.</p>
+<p>A volte, dopo aver ottenuto la chiave API, ti basta includerla tra i
+dati <code>POST</code>, o magari come parametro dell’URL, quando chiami
+l’API.</p>
+<p>Altre volte il fornitore vuole più garanzie sulla provenienza delle
+richieste: per questo si aspetta che tu invii messaggi firmati
+crittograficamente con chiavi e segreti condivisi. Una tecnologia molto
+diffusa per firmare le richieste su Internet si chiama <em>OAuth</em>.
+Puoi saperne di più sul protocollo OAuth all’indirizzo <a
 href="http://www.oauth.net">www.oauth.net</a>.</p>
-<p>Thankfully there are a number of convenient and free OAuth libraries
-so you can avoid writing an OAuth implementation from scratch by reading
-the specification. These libraries are of varying complexity and have
-varying degrees of richness. The OAuth web site has information about
-various OAuth libraries.</p>
-<h2 id="glossary">Glossary</h2>
+<p>Per fortuna esistono diverse librerie OAuth comode e gratuite, così
+puoi evitare di scrivere da zero un’implementazione di OAuth partendo
+dalla specifica. Queste librerie sono di complessità diversa e offrono
+funzionalità più o meno ricche. Il sito web di OAuth contiene
+informazioni su varie librerie OAuth.</p>
+<h2 id="glossario">Glossario</h2>
 <dl>
-<dt>API</dt>
+<dt><strong>API</strong></dt>
 <dd>
-Application Program Interface - A contract between applications that
-defines the patterns of interaction between two application components.
+Application Program Interface (interfaccia di programmazione delle
+applicazioni) - Un contratto tra applicazioni che definisce gli schemi
+di interazione tra due componenti applicativi.
 </dd>
-<dt>ElementTree</dt>
+<dt><strong><code>ElementTree</code></strong></dt>
 <dd>
-A built-in Python library used to parse XML data.
+Una libreria built-in di Python usata per analizzare dati XML.
 </dd>
-<dt>JSON</dt>
+<dt><strong>JSON</strong></dt>
 <dd>
-JavaScript Object Notation - A format that allows for the markup of
-structured data based on the syntax of JavaScript Objects.
+JavaScript Object Notation - Un formato, basato sulla sintassi degli
+oggetti JavaScript, che permette il markup di dati strutturati.
 </dd>
-<dt>SOA</dt>
+<dt><strong>SOA</strong></dt>
 <dd>
-Service-Oriented Architecture - When an application is made of
-components connected across a network.
+Service-Oriented Architecture (architettura orientata ai servizi) -
+Un’architettura in cui un’applicazione è formata da componenti collegati
+attraverso una rete.
 </dd>
-<dt>XML</dt>
+<dt><strong>XML</strong></dt>
 <dd>
-eXtensible Markup Language - A format that allows for the markup of
-structured data.
+eXtensible Markup Language - Un formato che permette il markup di dati
+strutturati.
 </dd>
 </dl>
 </body>

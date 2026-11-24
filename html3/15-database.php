@@ -3,16 +3,22 @@
   ob_start();
 }?>
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="pandoc" />
+  <meta name="generator" content="pandoc 3.14" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>Using Databases and SQL</title>
+  <title>Usare i database e SQL</title>
   <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
     html {
       color: #1a1a1a;
+      color: light-dark(#1a1a1a, #fdfdfd);
       background-color: #fdfdfd;
+      background-color: light-dark(#fdfdfd, #1a1a1a);
+      color-scheme: light dark;
     }
     body {
       margin: 0 auto;
@@ -35,31 +41,11 @@
         font-size: 1.8em;
       }
     }
-    @media print {
-      html {
-        background-color: white;
-      }
-      body {
-        background-color: transparent;
-        color: black;
-        font-size: 12pt;
-      }
-      p, h2, h3 {
-        orphans: 3;
-        widows: 3;
-      }
-      h2, h3, h4 {
-        page-break-after: avoid;
-      }
-    }
     p {
       margin: 1em 0;
     }
-    a {
-      color: #1a1a1a;
-    }
-    a:visited {
-      color: #1a1a1a;
+    a, a:visited {
+      color: inherit;
     }
     img {
       max-width: 100%;
@@ -88,10 +74,14 @@
     blockquote {
       margin: 1em 0 1em 1.7em;
       padding-left: 1em;
-      border-left: 2px solid #e6e6e6;
+      border-left: 2px solid;
+      border-color: #e6e6e6;
+      border-color: light-dark(#e6e6e6, #4c4c4c);
       color: #606060;
+      color: light-dark(#606060, #b6b6b6);
     }
     code {
+      white-space: pre-wrap;
       font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
       font-size: 85%;
       margin: 0;
@@ -112,7 +102,7 @@
     }
     hr {
       border: none;
-      border-top: 1px solid #1a1a1a;
+      border-top: 1px solid currentColor;
       height: 1px;
       margin: 1em 0;
     }
@@ -129,11 +119,11 @@
     }
     tbody {
       margin-top: 0.5em;
-      border-top: 1px solid #1a1a1a;
-      border-bottom: 1px solid #1a1a1a;
+      border-top: 1px solid currentColor;
+      border-bottom: 1px solid currentColor;
     }
     th {
-      border-top: 1px solid #1a1a1a;
+      border-top: 1px solid currentColor;
       padding: 0.25em 0.5em 0.25em 0.5em;
     }
     td {
@@ -155,10 +145,19 @@
     #TOC a:not(:hover) {
       text-decoration: none;
     }
-    code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
-    div.columns{display: flex; gap: min(4vw, 1.5em);}
-    div.column{flex: auto; overflow-x: auto;}
+    em, em em em, em em em em em {
+      font-style: italic;
+    }
+    em em, em em em em {
+      font-style: normal;
+    }
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     /* The extra [class] is a hack that increases specificity enough to
        override a similar rule in reveal.js */
@@ -169,87 +168,108 @@
       margin: 0 0.8em 0.2em -1.6em;
       vertical-align: middle;
     }
-    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
-  </style>
+    @media print {
+      html {
+        color-scheme: light only;
+      }
+      html, body, pre, code {
+        background-color: transparent;
+      }
+      body, a, a:visited, blockquote {
+        color: black;
+      }
+      pre, code {
+        padding: 0;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }  </style>
 </head>
 <body>
-<h1 id="using-databases-and-sql">Using Databases and SQL</h1>
-<h2 id="what-is-a-database">What is a database?</h2>
-<p></p>
-<p>A <em>database</em> is a file that is organized for storing data.
-Most databases are organized like a dictionary in the sense that they
-map from keys to values. The biggest difference is that the database is
-on disk (or other permanent storage), so it persists after the program
-ends. Because a database is stored on permanent storage, it can store
-far more data than a dictionary, which is limited to the size of the
-memory in the computer.</p>
-<p></p>
-<p>Like a dictionary, database software is designed to keep the
-inserting and accessing of data very fast, even for large amounts of
-data. Database software maintains its performance by building
-<em>indexes</em> as data is added to the database to allow the computer
-to jump quickly to a particular entry.</p>
-<p>There are many different database systems which are used for a wide
-variety of purposes including: Oracle, MySQL, Microsoft SQL Server,
-PostgreSQL, and SQLite. We focus on SQLite in this book because it is a
-very common database and is already built into Python. SQLite is
-designed to be <em>embedded</em> into other applications to provide
-database support within the application. For example, the Firefox
-browser also uses the SQLite database internally as do many other
-products.</p>
+<h1 id="usare-i-database-e-sql">Usare i database e SQL</h1>
+<h2 id="cosè-un-database">Cos’è un database?</h2>
+<p>Un <em>database</em> è un file organizzato per memorizzare dati. La
+maggior parte dei database è organizzata come un dizionario, nel senso
+che fa corrispondere chiavi a valori. La differenza principale è che il
+database si trova su disco (o su un’altra memoria permanente), quindi
+continua a esistere dopo la fine del programma. Poiché risiede su una
+memoria permanente, un database può memorizzare molti più dati di un
+dizionario, che è limitato dalla dimensione della memoria del
+computer.</p>
+<p>Come un dizionario, il software di database è progettato per rendere
+molto veloci sia l’inserimento dei dati sia l’accesso, anche quando sono
+in grande quantità. Il software di database mantiene le sue prestazioni
+costruendo degli <em>indici</em> man mano che i dati vengono aggiunti al
+database, così il computer può saltare rapidamente a una determinata
+voce.</p>
+<p>Esistono molti sistemi di database diversi, usati per gli scopi più
+vari: tra gli altri Oracle, MySQL, Microsoft SQL Server, PostgreSQL e
+SQLite. In questo libro ci concentriamo su SQLite perché è un database
+molto diffuso ed è già incluso in Python. SQLite è progettato per essere
+<em>incorporato</em> (embedded) in altre applicazioni, per fornire il
+supporto di un database all’interno dell’applicazione. Ad esempio, anche
+il browser Firefox usa internamente il database SQLite, come molti altri
+prodotti.</p>
 <p><a href="http://sqlite.org/" class="uri">http://sqlite.org/</a></p>
-<p>SQLite is well suited to some of the data manipulation problems that
-we see in Informatics.</p>
-<h2 id="database-concepts">Database concepts</h2>
-<p>When you first look at a database it looks like a spreadsheet with
-multiple sheets. The primary data structures in a database are:
-<em>tables</em>, <em>rows</em>, and <em>columns</em>.</p>
+<p>SQLite si presta bene ad alcuni dei problemi di manipolazione dei
+dati che incontriamo in informatica.</p>
+<h2 id="concetti-dei-database">Concetti dei database</h2>
+<p>Quando guardi un database per la prima volta, sembra un foglio di
+calcolo con più fogli. Le strutture dati principali di un database sono:
+<em>tabelle</em>, <em>righe</em> e <em>colonne</em>.</p>
 <figure>
-<img src="../images/relational.svg" alt="Relational Databases" style="height: 2.0in;"/>
+<img src="../images/relational.svg" alt="Database relazionali" style="height: 2.0in;"/>
 <figcaption>
-Relational Databases
+Database relazionali
 </figcaption>
 </figure>
-<p>In technical descriptions of relational databases the concepts of
-table, row, and column are more formally referred to as
-<em>relation</em>, <em>tuple</em>, and <em>attribute</em>, respectively.
-We will use the less formal terms in this chapter.</p>
+<p>Nelle descrizioni tecniche dei database relazionali i concetti di
+tabella, riga e colonna si chiamano, in modo più formale,
+rispettivamente <em>relazione</em>, <em>tupla</em> e <em>attributo</em>.
+In questo capitolo useremo i termini meno formali.</p>
 <h2 id="database-browser-for-sqlite">Database Browser for SQLite</h2>
-<p>While this chapter will focus on using Python to work with data in
-SQLite database files, many operations can be done more conveniently
-using software called the <em>Database Browser for SQLite</em> which is
-freely available from:</p>
+<p>Anche se questo capitolo si concentrerà sull’uso di Python per
+lavorare con i dati contenuti nei file di database SQLite, molte
+operazioni si possono fare più comodamente con un software chiamato
+<em>Database Browser for SQLite</em>, disponibile gratuitamente
+all’indirizzo:</p>
 <p><a href="http://sqlitebrowser.org/"
 class="uri">http://sqlitebrowser.org/</a></p>
-<p>Using the browser you can easily create tables, insert data, edit
-data, or run simple SQL queries on the data in the database.</p>
-<p>In a sense, the database browser is similar to a text editor when
-working with text files. When you want to do one or very few operations
-on a text file, you can just open it in a text editor and make the
-changes you want. When you have many changes that you need to do to a
-text file, often you will write a simple Python program. You will find
-the same pattern when working with databases. You will do simple
-operations in the database manager and more complex operations will be
-most conveniently done in Python.</p>
-<h2 id="creating-a-database-table">Creating a database table</h2>
-<p>Databases require more defined structure than Python lists or
-dictionaries<a href="#fn1" class="footnote-ref" id="fnref1"
+<p>Con il browser puoi creare facilmente tabelle, inserire dati,
+modificarli o eseguire semplici query SQL sui dati del database.</p>
+<p>In un certo senso, il browser di database è per i database quello che
+un editor di testo è per i file di testo. Quando vuoi fare una sola
+operazione, o pochissime, su un file di testo, puoi semplicemente
+aprirlo in un editor di testo e apportare le modifiche che vuoi. Quando
+devi fare molte modifiche a un file di testo, spesso scrivi un semplice
+programma Python. Troverai lo stesso schema quando lavori con i
+database. Farai le operazioni semplici nel gestore di database, mentre
+quelle più complesse sarà più comodo farle in Python.</p>
+<h2 id="creare-una-tabella-di-database">Creare una tabella di
+database</h2>
+<p>I database richiedono una struttura più definita delle liste o dei
+dizionari Python<a href="#fn1" class="footnote-ref" id="fnref1"
 role="doc-noteref"><sup>1</sup></a>.</p>
-<p>When we create a database <em>table</em> we must tell the database in
-advance the names of each of the <em>columns</em> in the table and the
-type of data which we are planning to store in each <em>column</em>.
-When the database software knows the type of data in each column, it can
-choose the most efficient way to store and look up the data based on the
-type of data.</p>
-<p>You can look at the various data types supported by SQLite at the
-following url:</p>
+<p>Quando creiamo una <em>tabella</em> di database, dobbiamo comunicare
+in anticipo al database i nomi delle <em>colonne</em> della tabella e il
+tipo di dati che pensiamo di memorizzare in ogni <em>colonna</em>.
+Quando il software di database conosce il tipo di dati di ogni colonna,
+può scegliere il modo più efficiente per memorizzarli e cercarli in base
+al loro tipo.</p>
+<p>Puoi consultare i vari tipi di dati supportati da SQLite al seguente
+URL:</p>
 <p><a href="http://www.sqlite.org/datatypes.html"
 class="uri">http://www.sqlite.org/datatypes.html</a></p>
-<p>Defining structure for your data up front may seem inconvenient at
-the beginning, but the payoff is fast access to your data even when the
-database contains a large amount of data.</p>
-<p>The code to create a database file and a table named
-<code>Track</code> with two columns in the database is as follows:</p>
+<p>Definire in anticipo la struttura dei dati può sembrare scomodo
+all’inizio, ma il vantaggio è un accesso veloce ai dati anche quando il
+database ne contiene una grande quantità.</p>
+<p>Il codice per creare un file di database e, al suo interno, una
+tabella chiamata <code>Track</code> con due colonne è il seguente:</p>
 <p> </p>
 <pre class="python"><code>import sqlite3
 
@@ -263,58 +283,59 @@ conn.close()
 
 # Code: https://www.py4e.com/code3/db1.py</code></pre>
 <p> </p>
-<p>The <code>connect</code> operation makes a “connection” to the
-database stored in the file <code>music.sqlite</code> in the current
-directory. If the file does not exist, it will be created. The reason
-this is called a “connection” is that sometimes the database is stored
-on a separate “database server” from the server on which we are running
-our application. In our simple examples the database will just be a
-local file in the same directory as the Python code we are running.</p>
-<p>A <em>cursor</em> is like a file handle that we can use to perform
-operations on the data stored in the database. Calling
-<code>cursor()</code> is very similar conceptually to calling
-<code>open()</code> when dealing with text files.</p>
+<p>L’operazione <code>connect</code> crea una “connessione” con il
+database memorizzato nel file <code>music.sqlite</code> nella directory
+corrente. Se il file non esiste, verrà creato. Si parla di “connessione”
+perché a volte il database è memorizzato su un “server di database”
+separato dal server su cui eseguiamo l’applicazione. Nei nostri semplici
+esempi il database sarà solo un file locale nella stessa directory del
+codice Python che stiamo eseguendo.</p>
+<p>Un <em>cursore</em> è come un handle del file che possiamo usare per
+eseguire operazioni sui dati memorizzati nel database. Concettualmente,
+chiamare <code>cursor()</code> è molto simile a chiamare
+<code>open()</code> quando si lavora con i file di testo.</p>
 <figure>
-<img src="../images/cursor.svg" alt="A Database Cursor" style="height: 2.0in;"/>
+<img src="../images/cursor.svg" alt="Un cursore di database" style="height: 2.0in;"/>
 <figcaption>
-A Database Cursor
+Un cursore di database
 </figcaption>
 </figure>
-<p>Once we have the cursor, we can begin to execute commands on the
-contents of the database using the <code>execute()</code> method.</p>
-<p>Database commands are expressed in a special language that has been
-standardized across many different database vendors to allow us to learn
-a single database language. The database language is called
-<em>Structured Query Language</em> or <em>SQL</em> for short.</p>
+<p>Una volta ottenuto il cursore, possiamo cominciare a eseguire comandi
+sul contenuto del database con il metodo <code>execute()</code>.</p>
+<p>I comandi del database si esprimono in un linguaggio speciale,
+standardizzato tra molti fornitori di database diversi per permetterci
+di imparare un solo linguaggio per i database. Il linguaggio dei
+database si chiama <em>Structured Query Language</em>, o in breve
+<em>SQL</em>.</p>
 <p><a href="http://en.wikipedia.org/wiki/SQL"
 class="uri">http://en.wikipedia.org/wiki/SQL</a></p>
-<p>In our example, we are executing two SQL commands in our database. As
-a convention, we will show the SQL keywords in uppercase and the parts
-of the command that we are adding (such as the table and column names)
-will be shown in lowercase.</p>
-<p>The first SQL command removes the <code>Track</code> table from the
-database if it exists. This pattern is simply to allow us to run the
-same program to create the <code>Track</code> table over and over again
-without causing an error. Note that the <code>DROP TABLE</code> command
-deletes the table and all of its contents from the database (i.e., there
-is no “undo”).</p>
+<p>Nel nostro esempio eseguiamo due comandi SQL sul database. Per
+convenzione, mostreremo le parole chiave SQL in maiuscolo e le parti del
+comando che aggiungiamo noi (come i nomi delle tabelle e delle colonne)
+in minuscolo.</p>
+<p>Il primo comando SQL rimuove la tabella <code>Track</code> dal
+database, se esiste. Questo schema serve solo a permetterci di eseguire
+più e più volte lo stesso programma che crea la tabella
+<code>Track</code> senza causare errori. Nota che il comando
+<code>DROP TABLE</code> elimina dal database la tabella e tutto il suo
+contenuto (cioè non esiste un “annulla”).</p>
 <pre class="python"><code>cur.execute(&#39;DROP TABLE IF EXISTS Track &#39;)</code></pre>
-<p>The second command creates a table named <code>Track</code> with a
-text column named <code>title</code> and an integer column named
-<code>plays</code>.</p>
+<p>Il secondo comando crea una tabella chiamata <code>Track</code> con
+una colonna di testo chiamata <code>title</code> e una colonna di interi
+chiamata <code>plays</code>.</p>
 <pre class="python"><code>cur.execute(&#39;CREATE TABLE Track (title TEXT, plays INTEGER)&#39;)</code></pre>
-<p>Now that we have created a table named <code>Track</code>, we can put
-some data into that table using the SQL <code>INSERT</code> operation.
-Again, we begin by making a connection to the database and obtaining the
-<code>cursor</code>. We can then execute SQL commands using the
-cursor.</p>
-<p>The SQL <code>INSERT</code> command indicates which table we are
-using and then defines a new row by listing the fields we want to
-include <code>(title, plays)</code> followed by the <code>VALUES</code>
-we want placed in the new row. We specify the values as question marks
-<code>(?, ?)</code> to indicate that the actual values are passed in as
-a tuple <code>( 'My Way', 15 )</code> as the second parameter to the
-<code>execute()</code> call.</p>
+<p>Ora che abbiamo creato una tabella chiamata <code>Track</code>,
+possiamo inserirvi alcuni dati con l’operazione SQL <code>INSERT</code>.
+Anche qui cominciamo creando una connessione con il database e ottenendo
+il <code>cursor</code>. Poi possiamo eseguire comandi SQL con il
+cursore.</p>
+<p>Il comando SQL <code>INSERT</code> indica quale tabella usiamo e poi
+definisce una nuova riga elencando i campi che vogliamo includere
+<code>(title, plays)</code>, seguiti da <code>VALUES</code> e dai valori
+che vogliamo mettere nella nuova riga. Indichiamo i valori con dei punti
+interrogativi <code>(?, ?)</code> per dire che i valori veri e propri
+vengono passati nella tupla <code>( 'My Way', 15 )</code>, secondo
+parametro della chiamata <code>execute()</code>.</p>
 <pre class="python"><code>import sqlite3
 
 conn = sqlite3.connect(&#39;music.sqlite&#39;)
@@ -337,148 +358,152 @@ conn.commit()
 cur.close()
 
 # Code: https://www.py4e.com/code3/db2.py</code></pre>
-<p>First we <code>INSERT</code> two rows into our table and use
-<code>commit()</code> to force the data to be written to the database
-file.</p>
+<p>Per prima cosa inseriamo due righe nella tabella con
+<code>INSERT</code> e usiamo <code>commit()</code> per forzare la
+scrittura dei dati nel file di database.</p>
 <figure>
-<img src="../images/tracks.svg" alt="Rows in a Table" style="height: 1.5in;"/>
+<img src="../images/tracks.svg" alt="Righe in una tabella" style="height: 1.5in;"/>
 <figcaption>
-Rows in a Table
+Righe in una tabella
 </figcaption>
 </figure>
-<p>Then we use the <code>SELECT</code> command to retrieve the rows we
-just inserted from the table. On the <code>SELECT</code> command, we
-indicate which columns we would like <code>(title, plays)</code> and
-indicate which table we want to retrieve the data from. After we execute
-the <code>SELECT</code> statement, the cursor is something we can loop
-through in a <code>for</code> statement. For efficiency, the cursor does
-not read all of the data from the database when we execute the
-<code>SELECT</code> statement. Instead, the data is read on demand as we
-loop through the rows in the <code>for</code> statement.</p>
-<p>The output of the program is as follows:</p>
+<p>Poi usiamo il comando <code>SELECT</code> per recuperare dalla
+tabella le righe appena inserite. Nel comando <code>SELECT</code>
+indichiamo quali colonne vogliamo <code>(title, plays)</code> e da quale
+tabella vogliamo recuperare i dati. Dopo aver eseguito l’istruzione
+<code>SELECT</code>, possiamo scorrere il cursore con un’istruzione
+<code>for</code>. Per efficienza, il cursore non legge tutti i dati dal
+database quando eseguiamo l’istruzione <code>SELECT</code>. I dati
+vengono invece letti su richiesta, man mano che scorriamo le righe
+nell’istruzione <code>for</code>.</p>
+<p>L’output del programma è il seguente:</p>
 <pre><code>Track:
 (&#39;Thunderstruck&#39;, 20)
 (&#39;My Way&#39;, 15)</code></pre>
-<p></p>
-<p>Our <code>for</code> loop finds two rows, and each row is a Python
-tuple with the first value as the <code>title</code> and the second
-value as the number of <code>plays</code>.</p>
-<p>At the very end of the program, we execute an SQL command to
-<code>DELETE</code> the rows we have just created so we can run the
-program over and over. The <code>DELETE</code> command shows the use of
-a <code>WHERE</code> clause that allows us to express a selection
-criterion so that we can ask the database to apply the command to only
-the rows that match the criterion. In this example the criterion happens
-to apply to all the rows so we empty the table out so we can run the
-program repeatedly. After the <code>DELETE</code> is performed, we also
-call <code>commit()</code> to force the data to be removed from the
-database.</p>
-<h2 id="structured-query-language-summary">Structured Query Language
-summary</h2>
-<p> So far, we have been using the Structured Query Language in our
-Python examples and have covered many of the basics of the SQL commands.
-In this section, we look at the SQL language in particular and give an
-overview of SQL syntax.</p>
-<p>Since there are so many different database vendors, the Structured
-Query Language (SQL) was standardized so we could communicate in a
-portable manner to database systems from multiple vendors.</p>
-<p>A relational database is made up of tables, rows, and columns. The
-columns generally have a type such as text, numeric, or date data. When
-we create a table, we indicate the names and types of the columns:</p>
+<p>Il ciclo <code>for</code> trova due righe, e ogni riga è una tupla
+Python che ha come primo valore il <code>title</code> e come secondo il
+numero di <code>plays</code>.</p>
+<p>Alla fine del programma eseguiamo un comando SQL che elimina con
+<code>DELETE</code> le righe appena create, così possiamo eseguire il
+programma più e più volte. Il comando <code>DELETE</code> mostra l’uso
+di una clausola <code>WHERE</code>, che permette di esprimere un
+criterio di selezione: così possiamo chiedere al database di applicare
+il comando solo alle righe che soddisfano il criterio. In questo esempio
+il criterio vale per tutte le righe, quindi svuotiamo la tabella e
+possiamo eseguire il programma ripetutamente. Dopo aver eseguito il
+<code>DELETE</code>, chiamiamo anche <code>commit()</code> per forzare
+la rimozione dei dati dal database.</p>
+<h2 id="riepilogo-dello-structured-query-language">Riepilogo dello
+Structured Query Language</h2>
+<p> Finora abbiamo usato lo Structured Query Language negli esempi
+Python e abbiamo visto buona parte delle basi dei comandi SQL. In questa
+sezione esaminiamo in particolare il linguaggio SQL e diamo una
+panoramica della sua sintassi.</p>
+<p>Poiché i fornitori di database sono tantissimi, lo Structured Query
+Language (SQL) è stato standardizzato, così possiamo comunicare in modo
+portabile con i sistemi di database di fornitori diversi.</p>
+<p>Un database relazionale è formato da tabelle, righe e colonne. Di
+solito le colonne hanno un tipo, ad esempio testo, numero o data. Quando
+creiamo una tabella, indichiamo i nomi e i tipi delle colonne:</p>
 <pre class="sql"><code>CREATE TABLE Track (title TEXT, plays INTEGER)</code></pre>
-<p>To insert a row into a table, we use the SQL <code>INSERT</code>
-command:</p>
+<p>Per inserire una riga in una tabella usiamo il comando SQL
+<code>INSERT</code>:</p>
 <pre class="sql"><code>INSERT INTO Track (title, plays) VALUES (&#39;My Way&#39;, 15)</code></pre>
-<p>The <code>INSERT</code> statement specifies the table name, then a
-list of the fields/columns that you would like to set in the new row,
-and then the keyword <code>VALUES</code> and a list of corresponding
-values for each of the fields.</p>
-<p>The SQL <code>SELECT</code> command is used to retrieve rows and
-columns from a database. The <code>SELECT</code> statement lets you
-specify which columns you would like to retrieve as well as a
-<code>WHERE</code> clause to select which rows you would like to see. It
-also allows an optional <code>ORDER BY</code> clause to control the
-sorting of the returned rows.</p>
+<p>L’istruzione <code>INSERT</code> specifica il nome della tabella, poi
+un elenco dei campi/colonne che vuoi impostare nella nuova riga, poi la
+parola chiave <code>VALUES</code> e un elenco dei valori corrispondenti
+a ciascun campo.</p>
+<p>Il comando SQL <code>SELECT</code> si usa per recuperare righe e
+colonne da un database. L’istruzione <code>SELECT</code> ti permette di
+specificare quali colonne vuoi recuperare e una clausola
+<code>WHERE</code> per selezionare le righe che vuoi vedere. Ammette
+anche una clausola <code>ORDER BY</code> facoltativa per controllare
+l’ordinamento delle righe restituite.</p>
 <pre class="sql"><code>SELECT * FROM Track WHERE title = &#39;My Way&#39;</code></pre>
-<p>Using <code>*</code> indicates that you want the database to return
-all of the columns for each row that matches the <code>WHERE</code>
-clause.</p>
-<p>Note, unlike in Python, in a SQL <code>WHERE</code> clause we use a
-single equal sign to indicate a test for equality rather than a double
-equal sign. Other logical operations allowed in a <code>WHERE</code>
-clause include <code>&lt;</code>, <code>&gt;</code>, <code>&lt;=</code>,
-<code>&gt;=</code>, <code>!=</code>, as well as <code>AND</code> and
-<code>OR</code> and parentheses to build your logical expressions.</p>
-<p>You can request that the returned rows be sorted by one of the fields
-as follows:</p>
+<p>Con <code>*</code> chiedi al database di restituire tutte le colonne
+di ogni riga che soddisfa la clausola <code>WHERE</code>.</p>
+<p>Nota che, a differenza di Python, in una clausola <code>WHERE</code>
+di SQL usiamo un solo segno di uguale per indicare un test di
+uguaglianza, invece di un doppio segno di uguale. Tra le altre
+operazioni logiche ammesse in una clausola <code>WHERE</code> ci sono
+<code>&lt;</code>, <code>&gt;</code>, <code>&lt;=</code>,
+<code>&gt;=</code>, <code>!=</code>, oltre ad <code>AND</code> e
+<code>OR</code> e alle parentesi tonde per costruire le espressioni
+logiche.</p>
+<p>Puoi chiedere che le righe restituite siano ordinate in base a uno
+dei campi, in questo modo:</p>
 <pre class="sql"><code>SELECT title,plays FROM Track ORDER BY title</code></pre>
-<p>It is possible to <code>UPDATE</code> a column or columns within one
-or more rows in a table using the SQL <code>UPDATE</code> statement as
-follows:</p>
+<p>Puoi aggiornare una o più colonne in una o più righe di una tabella
+con l’istruzione SQL <code>UPDATE</code>, in questo modo:</p>
 <pre class="sql"><code>UPDATE Track SET plays = 16 WHERE title = &#39;My Way&#39;</code></pre>
-<p>The <code>UPDATE</code> statement specifies a table and then a list
-of fields and values to change after the <code>SET</code> keyword and
-then an optional <code>WHERE</code> clause to select the rows that are
-to be updated. A single <code>UPDATE</code> statement will change all of
-the rows that match the <code>WHERE</code> clause. If a
-<code>WHERE</code> clause is not specified, it performs the
-<code>UPDATE</code> on all of the rows in the table.</p>
-<p>To remove a row, you need a <code>WHERE</code> clause on an SQL
-<code>DELETE</code> statement. The <code>WHERE</code> clause determines
-which rows are to be deleted:</p>
+<p>L’istruzione <code>UPDATE</code> specifica una tabella, poi, dopo la
+parola chiave <code>SET</code>, un elenco di campi e valori da
+modificare, e infine una clausola <code>WHERE</code> facoltativa che
+seleziona le righe da aggiornare. Una sola istruzione
+<code>UPDATE</code> modifica tutte le righe che soddisfano la clausola
+<code>WHERE</code>. Se la clausola <code>WHERE</code> non è specificata,
+l’<code>UPDATE</code> viene eseguito su tutte le righe della
+tabella.</p>
+<p>Per rimuovere una riga ti serve una clausola <code>WHERE</code> in
+un’istruzione SQL <code>DELETE</code>. La clausola <code>WHERE</code>
+determina quali righe eliminare:</p>
 <pre class="sql"><code>DELETE FROM Track WHERE title = &#39;My Way&#39;</code></pre>
-<p> These four basic SQL commands (INSERT, SELECT, UPDATE, and DELETE)
-allow the four basic operations needed to create and maintain data. We
-use “CRUD” (Create, Read, Update, and Delete) to capture all these
-concepts in a single term.<a href="#fn2" class="footnote-ref"
-id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
-<h2 id="multiple-tables-and-basic-data-modeling">Multiple tables and
-basic data modeling</h2>
-<p> The real power of a relational database is when we create multiple
-tables and make links between those tables. The act of deciding how to
-break up your application data into multiple tables and establishing the
-relationships between the tables is called <em>data modeling</em>. The
-design document that shows the tables and their relationships is called
-a <em>data model</em>.</p>
-<p>Data modeling is a relatively sophisticated skill and we will only
-introduce the most basic concepts of relational data modeling in this
-section. For more detail on data modeling you can start with:</p>
+<p> Questi quattro comandi SQL di base (<code>INSERT</code>,
+<code>SELECT</code>, <code>UPDATE</code> e <code>DELETE</code>)
+permettono le quattro operazioni fondamentali necessarie per creare e
+mantenere i dati. Usiamo “CRUD” (Create, Read, Update e Delete) per
+riassumere tutti questi concetti in un solo termine.<a href="#fn2"
+class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
+<h2 id="più-tabelle-e-modellazione-elementare-dei-dati">Più tabelle e
+modellazione elementare dei dati</h2>
+<p> La vera potenza di un database relazionale si vede quando creiamo
+più tabelle e le colleghiamo tra loro. Decidere come suddividere i dati
+dell’applicazione in più tabelle e stabilire le relazioni tra queste si
+chiama <em>modellazione dei dati</em>. Il documento di progetto che
+mostra le tabelle e le loro relazioni si chiama <em>modello dei
+dati</em>.</p>
+<p>La modellazione dei dati è un’abilità piuttosto sofisticata, e in
+questa sezione introdurremo solo i concetti più elementari della
+modellazione relazionale dei dati. Per approfondire la modellazione dei
+dati puoi cominciare da:</p>
 <p><a href="http://en.wikipedia.org/wiki/Relational_model"
 class="uri">http://en.wikipedia.org/wiki/Relational_model</a></p>
-<p> Lets say for our tracks database we wanted to track the name of the
-<code>artist</code> for each track in addition to the <code>title</code>
-and number of plays for each track. A simple approach might be to simply
-add another column to the database called <code>artist</code> and put
-the name of the artist in the column as follows:</p>
+<p> Supponiamo che nel database dei brani, oltre al <code>title</code> e
+al numero di riproduzioni, volessimo tenere traccia anche del nome
+dell’<code>artist</code> di ogni brano. Un approccio semplice potrebbe
+essere aggiungere al database un’altra colonna chiamata
+<code>artist</code> e metterci il nome dell’artista, in questo modo:</p>
 <pre class="python"><code>DROP TABLE IF EXISTS Track;
 CREATE TABLE Track (title TEXT, plays INTEGER, artist TEXT);</code></pre>
-<p>Then we could insert a few tracks into our table.</p>
+<p>Poi potremmo inserire alcuni brani nella tabella.</p>
 <pre class="sql"><code>INSERT INTO Track (title, plays, artist)
     VALUES (&#39;My Way&#39;, 15, &#39;Frank Sinatra&#39;);
 INSERT INTO Track (title, plays, artist)
     VALUES (&#39;New York&#39;, 25, &#39;Frank Sinatra&#39;);</code></pre>
-<p>If we were to look at our data with a
-<code>SELECT * FROM Track</code> statement, it looks like we have done a
-fine job.</p>
+<p>Se guardassimo i dati con un’istruzione
+<code>SELECT * FROM Track</code>, ci sembrerebbe di aver fatto un ottimo
+lavoro.</p>
 <pre><code>sqlite&gt; SELECT * FROM Track;
 My Way|15|Frank Sinatra
 New York|25|Frank Sinatra
 sqlite&gt;</code></pre>
-<p>We have made a <em>very bad error</em> in our data modeling. We have
-violated the rules of <em>database normalization</em>.</p>
+<p>Abbiamo commesso un <em>errore molto grave</em> nella modellazione
+dei dati. Abbiamo violato le regole della <em>normalizzazione del
+database</em>.</p>
 <p><a href="https://en.wikipedia.org/wiki/Database_normalization"
 class="uri">https://en.wikipedia.org/wiki/Database_normalization</a></p>
-<p> While database normalization seems very complex on the surface and
-contains a lot of mathematical justifications, for now we can reduce it
-all into one simple rule that we will follow.</p>
-<p> We should never put the same string data in a column more than once.
-If we need the data more than once, we create a numeric <em>key</em> for
-the data and reference the actual data using this key. Especially if the
-multiple entries refer to the same object.</p>
-<p>To demonstrate the slippery slope we are going down by assigning
-string columns to our database model, think about how we would change
-the data model if we wanted to keep track of the eye color of our
-artists? Would we do this?</p>
+<p> Anche se a prima vista la normalizzazione del database sembra molto
+complessa e contiene molte giustificazioni matematiche, per ora possiamo
+ridurla tutta a una sola regola semplice, che seguiremo.</p>
+<p> Non dovremmo mai mettere la stessa stringa in una colonna più di una
+volta. Se ci servono i dati più di una volta, creiamo una
+<em>chiave</em> numerica per quei dati e facciamo riferimento ai dati
+veri e propri tramite questa chiave. Soprattutto se le diverse voci si
+riferiscono allo stesso oggetto.</p>
+<p>Per mostrare la china pericolosa su cui ci avviamo assegnando colonne
+di tipo stringa al modello del database, pensa a questo: come
+cambieremmo il modello dei dati se volessimo tenere traccia del colore
+degli occhi degli artisti? Faremmo così?</p>
 <pre class="sql"><code>DROP TABLE IF EXISTS Track;
 CREATE TABLE Track (title TEXT, plays INTEGER,
     artist TEXT, eyes TEXT);
@@ -486,36 +511,38 @@ INSERT INTO Track (title, plays, artist, eyes)
     VALUES (&#39;My Way&#39;, 15, &#39;Frank Sinatra&#39;, &#39;Blue&#39;);
 INSERT INTO Track (title, plays, artist, eyes)
     VALUES (&#39;New York&#39;, 25, &#39;Frank Sinatra&#39;, &#39;Blue&#39;);</code></pre>
-<p>Since Frank Sinatra recorded over 1200 songs, are we really going to
-put the string ‘Blue’ in 1200 rows in our <code>Track</code> table. And
-what would happen if we decided his eye color was ‘Light Blue’?
-Something just does not feel right.</p>
-<p>The correct solution is to create a table for the each
-<code>Artist</code> and store all the data about the artist in that
-table. And then somehow we need to make a connection between a row in
-the <code>Track</code> table to a row in the <code>Artist</code> table.
-Perhaps we could call this “link” between two “tables” a “relationship”
-between two tables. And that is exactly what database experts decided to
-all these links.</p>
-<p>Lets make an <code>Artist</code> table as follows:</p>
+<p>Frank Sinatra ha inciso più di 1200 canzoni: vogliamo davvero mettere
+la stringa <code>'Blue'</code> in 1200 righe della tabella
+<code>Track</code>? E cosa succederebbe se decidessimo che il colore dei
+suoi occhi è <code>'Light Blue'</code>? C’è qualcosa che non torna.</p>
+<p>La soluzione corretta è creare una tabella <code>Artist</code> e
+memorizzare in quella tabella tutti i dati di ogni artista. Poi, in
+qualche modo, dobbiamo creare un collegamento tra una riga della tabella
+<code>Track</code> e una riga della tabella <code>Artist</code>. Forse
+potremmo chiamare questo “collegamento” tra due “tabelle” una
+“relazione” tra due tabelle. Ed è proprio così che gli esperti di
+database hanno deciso di chiamare questi collegamenti.</p>
+<p>Creiamo una tabella <code>Artist</code> in questo modo:</p>
 <pre class="sql"><code>DROP TABLE IF EXISTS Artist;
 CREATE TABLE Artist (name TEXT, eyes TEXT);
 INSERT INTO Artist (name, eyes)
    VALUES (&#39;Frank Sinatra&#39;, &#39;blue&#39;);</code></pre>
-<p> Now we have two tables but we need a way to <em>link</em> rows in
-the two tables. To do this, we need what we call ‘keys’. These keys will
-just be integer numbers that we can use to lookup a row in different
-table. If we are going to make links to rows inside of a table, we need
-to add a <em>primary key</em> to the rows in the table. By convention we
-usually name the primary key column ‘id’. So our <code>Artist</code>
-table looks as follows:</p>
+<p> Ora abbiamo due tabelle, ma ci serve un modo per <em>collegare</em>
+le righe delle due tabelle. Per farlo ci servono quelle che chiamiamo
+“chiavi”. Queste chiavi saranno semplicemente numeri interi che possiamo
+usare per cercare una riga in un’altra tabella. Se vogliamo creare
+collegamenti alle righe di una tabella, dobbiamo aggiungere alle sue
+righe una <em>chiave primaria</em>. Per convenzione di solito chiamiamo
+<code>id</code> la colonna della chiave primaria. Quindi la tabella
+<code>Artist</code> diventa così:</p>
 <pre class="sql"><code>DROP TABLE IF EXISTS Artist;
 CREATE TABLE Artist (id INTEGER, name TEXT, eyes TEXT);
 INSERT INTO Artist (id, name, eyes)
    VALUES (42, &#39;Frank Sinatra&#39;, &#39;blue&#39;);</code></pre>
-<p>Now we have a row in the table for ‘Frank Sinatra’ (and his eye
-color) and a primary key of ‘42’ to use to link our tracks to him. So we
-alter our Track table as follows:</p>
+<p>Ora nella tabella c’è una riga per <code>'Frank Sinatra'</code> (e il
+colore dei suoi occhi) e una chiave primaria <code>42</code> da usare
+per collegargli i brani. Quindi modifichiamo la tabella
+<code>Track</code> così:</p>
 <pre class="sql"><code>DROP TABLE IF EXISTS Track;
 CREATE TABLE Track (title TEXT, plays INTEGER,
     artist_id INTEGER);
@@ -523,91 +550,96 @@ INSERT INTO Track (title, plays, artist_id)
     VALUES (&#39;My Way&#39;, 15, 42);
 INSERT INTO Track (title, plays, artist_id)
     VALUES (&#39;New York&#39;, 25, 42);</code></pre>
-<p> The <code>artist_id</code> column is an integer, and by naming
-convention is a <em>foreign key</em> pointing at a <em>primary</em> key
-in the <code>Artist</code> table. We call it a foreign key because it is
-pointing to a row in a different table.</p>
-<p> Now we are following the rules of database normalization, but when
-we want to get data out of our database, we don’t want to see the 42, we
-want to see the name and eye color of the artist. To do this we use the
-<code>JOIN</code> keyword in our SELECT statement.</p>
+<p> La colonna <code>artist_id</code> è un intero e, secondo la
+convenzione sui nomi, è una <em>chiave esterna</em> che punta a una
+chiave <em>primaria</em> della tabella <code>Artist</code>. La chiamiamo
+chiave esterna perché punta a una riga di un’altra tabella.</p>
+<p> Ora seguiamo le regole della normalizzazione del database, ma quando
+vogliamo estrarre i dati dal database non vogliamo vedere il
+<code>42</code>: vogliamo vedere il nome e il colore degli occhi
+dell’artista. Per farlo usiamo la parola chiave <code>JOIN</code>
+nell’istruzione <code>SELECT</code>.</p>
 <pre class="sql"><code>SELECT title, plays, name, eyes
 FROM Track JOIN Artist
 ON Track.artist_id = Artist.id;</code></pre>
-<p>The <code>JOIN</code> clause includes an <code>ON</code> condition
-that defines how the rows are to to be connected. For each row in
-<code>Track</code> add the data from <code>Artist</code> from the row
-where <code>artist_id</code> <code>Track</code> table matches the
-<code>id</code> from the <code>Artist</code> table.</p>
-<p>The output would be:</p>
+<p>La clausola <code>JOIN</code> include una condizione <code>ON</code>
+che definisce come collegare le righe. A ogni riga di <code>Track</code>
+si aggiungono i dati di <code>Artist</code> presi dalla riga in cui
+<code>artist_id</code> della tabella <code>Track</code> corrisponde a
+<code>id</code> della tabella <code>Artist</code>.</p>
+<p>L’output sarebbe:</p>
 <pre><code>My Way|15|Frank Sinatra|blue
 New York|25|Frank Sinatra|blue</code></pre>
-<p>While it might seem a little clunky and your instincts might tell you
-that it would be faster just to keep the data in one table, it turns out
-the limit on database performance is how much data needs to be scanned
-when retrieving a query. While the details are very complex, integers
-are a lot smaller than strings (especially Unicode) and far quicker to
-move and compare.</p>
-<h2 id="data-model-diagrams">Data model diagrams</h2>
-<p> While our <code>Track</code> and <code>Artist</code> database design
-is simple with just two tables and a single one-to-many relationship,
-these data models can get complicated quickly and are easier to
-understand if we can make a graphical representation of our data
-model.</p>
+<p>Può sembrare un po’ macchinoso, e l’istinto potrebbe dirti che
+sarebbe più veloce tenere i dati in una sola tabella, ma in realtà il
+limite alle prestazioni di un database è la quantità di dati da
+scansionare quando si recuperano i risultati di una query. I dettagli
+sono molto complessi, ma gli interi sono molto più piccoli delle
+stringhe (soprattutto Unicode) e molto più veloci da spostare e
+confrontare.</p>
+<h2 id="diagrammi-dei-modelli-dei-dati">Diagrammi dei modelli dei
+dati</h2>
+<p> Il progetto di database con <code>Track</code> e <code>Artist</code>
+è semplice, con due sole tabelle e una sola relazione uno-a-molti, ma
+questi modelli dei dati possono complicarsi in fretta, e si capiscono
+meglio se ne facciamo una rappresentazione grafica.</p>
 <figure>
-<img src="../images/one-to-many-verbose.png" alt="A Verbose One-to-Many Data Model\label{figvrbo2m}" style="height: 1.5in;"/>
+<img src="../images/one-to-many-verbose.png" alt="Un modello dei dati uno-a-molti in forma estesa\label{figvrbo2m}" style="height: 1.5in;"/>
 <figcaption>
-A Verbose One-to-Many Data Model
+Un modello dei dati uno-a-molti in forma estesa
 </figcaption>
 </figure>
-<p> While there are many graphical representations of data models, we
-will use one of the “classic” approaches, called “Crow’s Foot Diagrams”
-as shown in Figure . Each table is shown as a box with the name of the
-table and its columns. Then where there is a relationship between two
-tables a line is drawn connecting the tables with a notation added to
-the end of each line indicating the nature of the relationship.</p>
+<p> Esistono molte rappresentazioni grafiche dei modelli dei dati; noi
+useremo uno degli approcci “classici”, quello dei <em>diagrammi a zampa
+di gallina</em> (crow’s foot diagrams), come si vede nella Figura . Ogni
+tabella è rappresentata da un riquadro con il nome della tabella e le
+sue colonne. Poi, dove c’è una relazione tra due tabelle, si traccia una
+linea che collega le tabelle, con un simbolo a ciascuna estremità della
+linea che indica la natura della relazione.</p>
 <p><a href="https://en.wikipedia.org/wiki/Entity-relationship_model"
 class="uri">https://en.wikipedia.org/wiki/Entity-relationship_model</a></p>
-<p>In this case, “many” tracks can be associated with each artist. So
-the track end is shown with the crow’s foot spread out indicating it is
-the” “many” end. The artist end is shown with a vertical like that
-indicates “one”. There will be “many” artists in general, but the
-important aspect is that for each artist there will be many tracks. And
-each of those artists may be associated with multiple tracks.</p>
-<p> You will note that the column that holds the <em>foreign_key</em>
-like <code>artist_id</code> is on the “many” end and the <em>primary
-key</em> is at the “one” end.</p>
-<p>Since the pattern of foreign and primary key placement is so
-consistent and follows the “many” and “one” ends of the lines, we never
-include either the primary or foreign key columns in our diagram of the
-data model as shown in the second diagram as shown in Figure . The
-columns are thought of as “implementation detail” to capture the nature
-of the relationship details and not an essential part of the data being
-modeled.</p>
+<p>In questo caso a ogni artista possono essere associati “molti” brani.
+Per questo l’estremità dei brani è disegnata con la zampa di gallina
+aperta, a indicare che è l’estremità “molti”. L’estremità dell’artista è
+disegnata con una linea verticale, che indica “uno”. In generale ci
+saranno “molti” artisti, ma l’aspetto importante è che per ogni artista
+ci saranno molti brani. E ognuno di quegli artisti può essere associato
+a più brani.</p>
+<p> Noterai che la colonna che contiene la <em>chiave esterna</em>, come
+<code>artist_id</code>, si trova all’estremità “molti”, mentre la
+<em>chiave primaria</em> si trova all’estremità “uno”.</p>
+<p>Poiché lo schema con cui si collocano le chiavi esterne e primarie è
+così regolare e segue le estremità “molti” e “uno” delle linee, nel
+diagramma del modello dei dati non includiamo mai né le colonne della
+chiave primaria né quelle della chiave esterna, come si vede nel secondo
+diagramma, nella Figura . Queste colonne sono considerate un “dettaglio
+di implementazione” che serve a rappresentare la natura della relazione,
+e non una parte essenziale dei dati che si modellano.</p>
 <figure>
-<img src="../images/one-to-many.png" alt="A Succinct One-to-Many Data Model\label{figo2m}" style="height: 1.5in;"/>
+<img src="../images/one-to-many.png" alt="Un modello dei dati uno-a-molti in forma sintetica\label{figo2m}" style="height: 1.5in;"/>
 <figcaption>
-A Succinct One-to-Many Data Model
+Un modello dei dati uno-a-molti in forma sintetica
 </figcaption>
 </figure>
-<h2 id="automatically-creating-primary-keys">Automatically creating
-primary keys</h2>
-<p> In the above example, we arbitrarily assigned Frank the primary key
-of 42. However when we are inserting millions or rows, it is nice to
-have the database automatically generate the values for the id column.
-We do this by declaring the <code>id</code> column as a
-<code>PRIMARY KEY</code> and leave out the <code>id</code> value when
-inserting the row:</p>
+<h2 id="creare-automaticamente-le-chiavi-primarie">Creare
+automaticamente le chiavi primarie</h2>
+<p> Nell’esempio precedente abbiamo assegnato a Frank, in modo
+arbitrario, la chiave primaria <code>42</code>. Ma quando inseriamo
+milioni di righe è comodo che sia il database a generare automaticamente
+i valori della colonna <code>id</code>. Lo otteniamo dichiarando la
+colonna <code>id</code> come <code>PRIMARY KEY</code> e omettendo il
+valore di <code>id</code> quando inseriamo la riga:</p>
 <pre class="sql"><code>DROP TABLE IF EXISTS Artist;
 CREATE TABLE Artist (id INTEGER PRIMARY KEY,
     name TEXT, eyes TEXT);
 INSERT INTO Artist (name, eyes)
    VALUES (&#39;Frank Sinatra&#39;, &#39;blue&#39;);</code></pre>
-<p>Now we have instructed the database to auto-assign us a unique value
-to the Frank Sinatra row. But we then need a way to have the database
-tell us the <code>id</code> value for the recently inserted row. One way
-is to use a <code>SELECT</code> statement to retrieve data from an
-SQLite built-in-function called <code>last_insert_rowid()</code>.</p>
+<p>Ora abbiamo chiesto al database di assegnare automaticamente per noi
+un valore univoco alla riga di Frank Sinatra. Ma poi dobbiamo poter
+chiedere al database il valore di <code>id</code> della riga appena
+inserita. Una possibilità è usare un’istruzione <code>SELECT</code> per
+recuperare i dati da una funzione built-in di SQLite chiamata
+<code>last_insert_rowid()</code>.</p>
 <pre><code>sqlite&gt; DROP TABLE IF EXISTS Artist;
 sqlite&gt; CREATE TABLE Artist (id INTEGER PRIMARY KEY,
    ...&gt;     name TEXT, eyes TEXT);
@@ -618,20 +650,21 @@ sqlite&gt; select last_insert_rowid();
 sqlite&gt; SELECT * FROM Artist;
 1|Frank Sinatra|blue
 sqlite&gt;</code></pre>
-<p>Once we know the <code>id</code> of our ‘Frank Sinatra’ row, we can
-use it when we <code>INSERT</code> the tracks into the
-<code>Track</code> table. As a general strategy, we add these
-<code>id</code> columns to any table we create:</p>
+<p>Una volta noto l’<code>id</code> della riga di
+<code>'Frank Sinatra'</code>, possiamo usarlo quando inseriamo con
+<code>INSERT</code> i brani nella tabella <code>Track</code>. Come
+strategia generale, aggiungiamo queste colonne <code>id</code> a ogni
+tabella che creiamo:</p>
 <pre><code>sqlite&gt; DROP TABLE IF EXISTS Track;
 sqlite&gt; CREATE TABLE Track (id INTEGER PRIMARY KEY,
    ...&gt;     title TEXT, plays INTEGER, artist_id INTEGER);</code></pre>
-<p>Note that the <code>artist_id</code> value is the new auto-assigned
-row in the <code>Artist</code> table and that while we added an
-<code>INTEGER PRIMARY KEY</code> to the <code>Track</code> table, we did
-not include <code>id</code> in the list of fields on the
-<code>INSERT</code> statements into the <code>Track</code> table. Again
-this tells the database to choose a unique value for us for the
-<code>id</code> column.</p>
+<p>Nota che il valore di <code>artist_id</code> è quello assegnato
+automaticamente alla nuova riga della tabella <code>Artist</code>, e
+che, anche se abbiamo aggiunto una <code>INTEGER PRIMARY KEY</code> alla
+tabella <code>Track</code>, non abbiamo incluso <code>id</code>
+nell’elenco dei campi delle istruzioni <code>INSERT</code> nella tabella
+<code>Track</code>. Anche qui, in questo modo diciamo al database di
+scegliere per noi un valore univoco per la colonna <code>id</code>.</p>
 <pre><code>sqlite&gt; INSERT INTO Track (title, plays, artist_id)
    ...&gt;     VALUES (&#39;My Way&#39;, 15, 1);
 sqlite&gt; select last_insert_rowid();
@@ -641,71 +674,74 @@ sqlite&gt; INSERT INTO Track (title, plays, artist_id)
 sqlite&gt; select last_insert_rowid();
 2
 sqlite&gt;</code></pre>
-<p> You can call <code>SELECT last_insert_rowid();</code> after each of
-the inserts to retrieve the value that the database assigned to the
-<code>id</code> of each newly created row. Later when we are coding in
-Python, we can ask for the <code>id</code> value in our code and store
-it in a variable for later use.</p>
-<h2 id="logical-keys-for-fast-lookup">Logical keys for fast lookup</h2>
-<p> If we had a table full of artists and a table full of tracks, each
-with a foreign key link to a row in a table full of artists and we
-wanted to list all the tracks that were sung by ‘Frank Sinatra’ as
-follows:</p>
+<p> Puoi chiamare <code>SELECT last_insert_rowid();</code> dopo ogni
+inserimento per recuperare il valore che il database ha assegnato
+all’<code>id</code> di ogni riga appena creata. Più avanti, quando
+scriveremo il codice in Python, potremo chiedere il valore di
+<code>id</code> nel codice e memorizzarlo in una variabile da usare in
+seguito.</p>
+<h2 id="chiavi-logiche-per-ricerche-veloci">Chiavi logiche per ricerche
+veloci</h2>
+<p> Supponiamo di avere una tabella piena di artisti e una tabella piena
+di brani, ognuno con un collegamento tramite chiave esterna a una riga
+della tabella degli artisti, e di voler elencare tutti i brani cantati
+da <code>'Frank Sinatra'</code>, in questo modo:</p>
 <pre><code>SELECT title, plays, name, eyes
 FROM Track JOIN Artist
 ON Track.artist_id = Artist.id
 WHERE Artist.name = &#39;Frank Sinatra&#39;;</code></pre>
-<p>Since we have two tables and a foreign key between the two tables,
-our data is well-modeled, but if we are going to have millions of
-records in the <code>Artist</code> table and going to do a lot of
-lookups by artist name, we would benefit if we gave the database a hint
-about our intended use of the <code>name</code> column.</p>
-<p> We do this by adding an “index” to a text column that we intend to
-use in <code>WHERE</code> clauses:</p>
+<p>Poiché abbiamo due tabelle e una chiave esterna tra le due, i dati
+sono ben modellati; ma se nella tabella <code>Artist</code> avremo
+milioni di record e faremo molte ricerche per nome dell’artista, ci
+converrà dare al database un suggerimento sull’uso che intendiamo fare
+della colonna <code>name</code>.</p>
+<p> Lo facciamo aggiungendo un “indice” a una colonna di testo che
+intendiamo usare nelle clausole <code>WHERE</code>:</p>
 <pre><code>CREATE INDEX artist_name ON Artist(name);</code></pre>
-<p>When the database has been told that an index is needed on a column
-in a table, it stores extra information to make it possible to look up a
-row more quickly using the indexed field (<code>name</code> in this
-example). Once you request that an index be created, there is nothing
-special that is needed in the SQL to access the table. The database
-keeps the index up to date as data is inserted, deleted, and updated,
-and uses it automatically if it will increase the performance of a
-database query.</p>
-<p>These text columns that are used to find rows based on some
-information in the “real world” like the name of an artist are called
-<em>Logical keys</em>.</p>
-<h2 id="adding-constraints-to-the-database">Adding constraints to the
+<p>Quando sa che su una colonna di una tabella serve un indice, il
+database memorizza informazioni aggiuntive che permettono di cercare più
+rapidamente una riga usando il campo indicizzato (in questo esempio
+<code>name</code>). Una volta chiesta la creazione dell’indice, nel
+codice SQL non serve niente di speciale per accedere alla tabella. Il
+database tiene aggiornato l’indice man mano che i dati vengono inseriti,
+eliminati e aggiornati, e lo usa automaticamente se migliora le
+prestazioni di una query.</p>
+<p>Queste colonne di testo, usate per trovare le righe in base a qualche
+informazione del “mondo reale” come il nome di un artista, si chiamano
+<em>chiavi logiche</em>.</p>
+<h2 id="aggiungere-vincoli-al-database">Aggiungere vincoli al
 database</h2>
-<p> We can also use an index to enforce a constraint (i.e. rules) on our
-database operations. The most common constraint is a <em>uniqueness
-constraint</em> which insists that all of the values in a column are
-unique. We can add the optional <code>UNIQUE</code> keyword, to the
-<code>CREATE INDEX</code> statement to tell the database that we would
-like it to enforce the constraint on our SQL. We can drop and re-create
-the <code>artist_name</code> index with a <code>UNIQUE</code> constraint
-as follows.</p>
+<p> Possiamo usare un indice anche per imporre un vincolo (cioè delle
+regole) alle operazioni sul database. Il vincolo più comune è il
+<em>vincolo di unicità</em>, che richiede che tutti i valori di una
+colonna siano univoci. Possiamo aggiungere all’istruzione
+<code>CREATE INDEX</code> la parola chiave facoltativa
+<code>UNIQUE</code>, per chiedere al database di far rispettare il
+vincolo alle istruzioni SQL. Possiamo eliminare e ricreare l’indice
+<code>artist_name</code> con un vincolo <code>UNIQUE</code> in questo
+modo.</p>
 <pre><code>DROP INDEX artist_name;
 CREATE UNIQUE INDEX artist_name ON Artist(name);</code></pre>
-<p>If we try to insert ‘Frank Sinatra’ a second time, it will fail with
-an error.</p>
+<p>Se proviamo a inserire <code>'Frank Sinatra'</code> una seconda
+volta, l’operazione fallirà con un errore.</p>
 <pre><code>sqlite&gt; SELECT * FROM Artist;
 1|Frank Sinatra|blue
 sqlite&gt; INSERT INTO Artist (name, eyes)
    ...&gt;    VALUES (&#39;Frank Sinatra&#39;, &#39;blue&#39;);
 Runtime error: UNIQUE constraint failed: Artist.name (19)
 sqlite&gt;</code></pre>
-<p> We can tell the database to ignore any duplicate key errors by
-adding the <code>IGNORE</code> keyword to the <code>INSERT</code>
-statement as follows:</p>
+<p> Possiamo dire al database di ignorare gli errori di chiave duplicata
+aggiungendo le parole chiave <code>OR IGNORE</code> all’istruzione
+<code>INSERT</code>, in questo modo:</p>
 <pre><code>sqlite&gt; INSERT OR IGNORE INTO Artist (name, eyes)
    ...&gt;     VALUES (&#39;Frank Sinatra&#39;, &#39;blue&#39;);
 sqlite&gt; SELECT id FROM Artist WHERE name=&#39;Frank Sinatra&#39;;
 1
 sqlite&gt;</code></pre>
-<p>By combining an <code>INSERT OR IGNORE</code> and a
-<code>SELECT</code> we can insert a new record if the name is not
-already there and whether or not the record is already there, retrieve
-the <em>primary</em> key of the record.</p>
+<p>Combinando un <code>INSERT OR IGNORE</code> e un <code>SELECT</code>
+possiamo inserire un nuovo record se il nome non c’è ancora e, che il
+record ci fosse già o no, recuperare la chiave <em>primaria</em> del
+record.</p>
 <pre><code>sqlite&gt; INSERT OR IGNORE INTO Artist (name, eyes)
    ...&gt;      VALUES (&#39;Elvis&#39;, &#39;blue&#39;);
 sqlite&gt; SELECT id FROM Artist WHERE name=&#39;Elvis&#39;;
@@ -714,33 +750,33 @@ sqlite&gt; SELECT * FROM Artist;
 1|Frank Sinatra|blue
 2|Elvis|blue
 sqlite&gt;</code></pre>
-<p>Since we have not added a uniqueness constraint to the eye color
-column, there is no problem having multiple ‘Blue’ values in the
-<code>eye</code> column.</p>
+<p>Poiché non abbiamo aggiunto un vincolo di unicità alla colonna del
+colore degli occhi, non è un problema avere più valori
+<code>'blue'</code> nella colonna <code>eyes</code>.</p>
 <figure>
-<img src="../images/tracks-albums-artists.png" alt="Tracks, Albums, and Artists\label{figtaa}" style="height: 1.5in;"/>
+<img src="../images/tracks-albums-artists.png" alt="Brani, album e artisti\label{figtaa}" style="height: 1.5in;"/>
 <figcaption>
-Tracks, Albums, and Artists
+Brani, album e artisti
 </figcaption>
 </figure>
-<h2 id="sample-multi-table-application">Sample multi-table
-application</h2>
-<p>A sample application called <code>tracks_csv.py</code> shows how
-these ideas can be combined to parse textual data and load it into
-several tables using a proper data model with relational connections
-between the tables.</p>
-<p>This application reads and parses a comma-separated file
-<code>tracks.csv</code> based on an export from Dr. Chuck’s iTunes
-library.</p>
+<h2 id="unapplicazione-di-esempio-con-più-tabelle">Un’applicazione di
+esempio con più tabelle</h2>
+<p>Un’applicazione di esempio chiamata <code>tracks_csv.py</code> mostra
+come combinare queste idee per analizzare dati testuali e caricarli in
+più tabelle, con un modello dei dati corretto e con collegamenti
+relazionali tra le tabelle.</p>
+<p>L’applicazione legge e analizza un file di valori separati da
+virgole, <code>tracks.csv</code>, ricavato da un’esportazione della
+libreria di iTunes del Dr. Chuck.</p>
 <pre><code>Another One Bites The Dust,Queen,Greatest Hits,55,100,217103
 Asche Zu Asche,Rammstein,Herzeleid,79,100,231810
 Beauty School Dropout,Various,Grease,48,100,239960
 Black Dog,Led Zeppelin,IV,109,100,296620
 ...</code></pre>
-<p>The columns in this file are: title, artist, album, number of plays,
-rating (0-100) and length in milliseconds.</p>
-<p>Our data model is shown in Figure and described in SQL as
-follows:</p>
+<p>Le colonne di questo file sono: titolo, artista, album, numero di
+riproduzioni, valutazione (0-100) e durata in millisecondi.</p>
+<p>Il modello dei dati è mostrato nella Figura ed è descritto in SQL
+così:</p>
 <pre class="sql"><code>DROP TABLE IF EXISTS Artist;
 DROP TABLE IF EXISTS Album;
 DROP TABLE IF EXISTS Track;
@@ -762,14 +798,14 @@ CREATE TABLE Track (
     album_id INTEGER,
     len INTEGER, rating INTEGER, count INTEGER
 );</code></pre>
-<p>We are adding the <code>UNIQUE</code> keyword to <code>TEXT</code>
-columns that we would like to have a uniqueness constraint that we will
-use in <code>INSERT IGNORE</code> statements. This is more succinct than
-separate <code>CREATE INDEX</code> statements but has the same
-effect.</p>
-<p>With these tables in place, we write the following code
-<code>tracks_csv.py</code> to parse the data and insert it into the
-tables:</p>
+<p>Aggiungiamo la parola chiave <code>UNIQUE</code> alle colonne
+<code>TEXT</code> su cui vogliamo un vincolo di unicità, che useremo
+nelle istruzioni <code>INSERT OR IGNORE</code>. Questa forma è più
+concisa di istruzioni <code>CREATE INDEX</code> separate, ma ha lo
+stesso effetto.</p>
+<p>Con queste tabelle pronte, scriviamo il codice seguente,
+<code>tracks_csv.py</code>, per analizzare i dati e inserirli nelle
+tabelle:</p>
 <pre class="python"><code>import sqlite3
 
 conn = sqlite3.connect(&#39;trackdb.sqlite&#39;)
@@ -807,18 +843,18 @@ for line in handle:
         ( name, album_id, length, rating, count ) )
 
     conn.commit()</code></pre>
-<p>You can see that we are repeating the pattern of
-<code>INSERT OR IGNORE</code> followed by a <code>SELECT</code> to get
-the appropriate <code>artist_id</code> and <code>album_id</code> for use
-in later <code>INSERT</code> statements. We start from
-<code>Artist</code> because we need <code>artist_id</code> to insert the
-<code>Album</code> and need the <code>album_id</code> to insert the
+<p>Puoi vedere che ripetiamo lo schema di un
+<code>INSERT OR IGNORE</code> seguito da un <code>SELECT</code> per
+ottenere gli <code>artist_id</code> e <code>album_id</code> giusti da
+usare nelle istruzioni <code>INSERT</code> successive. Partiamo da
+<code>Artist</code> perché ci serve <code>artist_id</code> per inserire
+in <code>Album</code>, e ci serve <code>album_id</code> per inserire in
 <code>Track</code>.</p>
-<p> If we look at the <code>Album</code> table, we can see that the
-entries were added and assigned a <em>primary</em> key as necessary as
-the data was parsed. We can also see the <em>foreign key</em> pointing
-to a row in the <code>Artist</code> table for each <code>Album</code>
-row.</p>
+<p> Se guardiamo la tabella <code>Album</code>, vediamo che le voci sono
+state aggiunte e hanno ricevuto una chiave <em>primaria</em> quando
+serviva, man mano che i dati venivano analizzati. Vediamo anche la
+<em>chiave esterna</em> che, per ogni riga di <code>Album</code>, punta
+a una riga della tabella <code>Artist</code>.</p>
 <pre><code>sqlite&gt; .mode column
 sqlite&gt; SELECT * FROM Album LIMIT 5;
 id  artist_id  title
@@ -828,10 +864,10 @@ id  artist_id  title
 3   3          Grease
 4   4          IV
 5   5          The Wall [Disc 2]</code></pre>
-<p> We can reconstruct all of the <code>Track</code> data, following all
-the relations using <code>JOIN / ON</code> clauses. You can see both
-ends of each of the (2) relational connections in each row in the output
-below:</p>
+<p> Possiamo ricostruire tutti i dati di <code>Track</code> seguendo
+tutte le relazioni con le clausole <code>JOIN / ON</code>. Nell’output
+qui sotto puoi vedere, in ogni riga, le due estremità di ciascuno dei
+due collegamenti relazionali:</p>
 <pre><code>sqlite&gt; .mode line
 sqlite&gt; SELECT * FROM Track
    ...&gt; JOIN Album ON Track.album_id = Album.id
@@ -860,48 +896,48 @@ artist_id = 2
     title = Herzeleid
        id = 2
      name = Rammstein</code></pre>
-<p>This example shows three tables and two <em>one-to-many</em>
-relationships between the tables. It also shows how to use indexes and
-uniqueness constraints to programmatically construct the tables and
-their relationships.</p>
+<p>Questo esempio mostra tre tabelle e due relazioni
+<em>uno-a-molti</em> che le collegano. Mostra anche come usare indici e
+vincoli di unicità per costruire con un programma le tabelle e le loro
+relazioni.</p>
 <p><a href="https://en.wikipedia.org/wiki/One-to-many_(data_model)"
 class="uri">https://en.wikipedia.org/wiki/One-to-many_(data_model)</a></p>
-<p>Up next we will look at the many-to-many relationships in data
-models.</p>
-<h2 id="many-to-many-relationships-in-databases">Many to many
-relationships in databases</h2>
-<p> Some data relationships cannot be modeled by a simple one-to-many
-relationship. For example, lets say we are going to build a data model
-for a course management system. There will be courses, users, and
-rosters. A user can be on the roster for many courses and a course will
-have many users on its roster.</p>
-<p>It is pretty simple to <em>draw</em> a many-to-many relationship as
-shown in Figure . We simply draw two tables and connect them with a line
-that has the “many” indicator on both ends of the lines. The problem is
-how to <em>implement</em> the relationship using primary keys and
-foreign keys.</p>
-<p>Before we explore how we implement many-to-many relationships, let’s
-see if we could hack something up by extending a one-to many
-relationship.</p>
+<p>Nella prossima sezione vedremo le relazioni molti-a-molti nei modelli
+dei dati.</p>
+<h2 id="relazioni-molti-a-molti-nei-database">Relazioni molti-a-molti
+nei database</h2>
+<p> Alcune relazioni tra dati non si possono modellare con una semplice
+relazione uno-a-molti. Ad esempio, supponiamo di dover costruire il
+modello dei dati per un sistema di gestione dei corsi. Ci saranno corsi,
+utenti ed elenchi degli iscritti. Un utente può essere nell’elenco degli
+iscritti di molti corsi, e un corso avrà molti utenti nel suo
+elenco.</p>
+<p>È piuttosto semplice <em>disegnare</em> una relazione molti-a-molti,
+come si vede nella Figura . Basta disegnare due tabelle e collegarle con
+una linea che ha il simbolo “molti” a entrambe le estremità. Il problema
+è come <em>implementare</em> la relazione usando chiavi primarie e
+chiavi esterne.</p>
+<p>Prima di esaminare come implementare le relazioni molti-a-molti,
+vediamo se riusciamo a mettere insieme qualcosa alla buona estendendo
+una relazione uno-a-molti.</p>
 <figure>
-<img src="../images/many-to-many.png" alt="A Many to Many Relationship\label{figm2m}" style="height: 1.5in;"/>
+<img src="../images/many-to-many.png" alt="Una relazione molti-a-molti\label{figm2m}" style="height: 1.5in;"/>
 <figcaption>
-A Many to Many Relationship
+Una relazione molti-a-molti
 </figcaption>
 </figure>
-<p>If SQL supported the notion of arrays, we might try to define
-this:</p>
+<p>Se SQL supportasse il concetto di array, potremmo provare a definire
+qualcosa del genere:</p>
 <pre class="sql"><code>CREATE TABLE Course (
     id     INTEGER PRIMARY KEY,
     title  TEXT UNIQUE
     student_ids ARRAY OF INTEGER;
 );</code></pre>
-<p>Sadly, while this is a tempting idea, SQL does not support arrays.<a
-href="#fn3" class="footnote-ref" id="fnref3"
+<p>Purtroppo, per quanto l’idea sia allettante, SQL non supporta gli
+array.<a href="#fn3" class="footnote-ref" id="fnref3"
 role="doc-noteref"><sup>3</sup></a></p>
-<p>Or we could just make long string and concatenate all the
-<code>User</code> primary keys into a long string separated by
-commas.</p>
+<p>Oppure potremmo semplicemente creare una stringa lunga e concatenarvi
+tutte le chiavi primarie di <code>User</code>, separate da virgole.</p>
 <pre class="sql"><code>CREATE TABLE Course (
     id     INTEGER PRIMARY KEY,
     title  TEXT UNIQUE
@@ -910,26 +946,29 @@ commas.</p>
 
 INSERT INTO Course (title, student_ids)
 VALUES( &#39;si311&#39;, &#39;1,3,4,5,6,9,14&#39;);</code></pre>
-<p>This would be very inefficient because as the course roster grows in
-size and the number of courses increases it becomes quite expensive to
-figure out which courses have student 14 on their roster.</p>
+<p>Questa soluzione sarebbe molto inefficiente: man mano che l’elenco
+degli iscritti cresce e il numero dei corsi aumenta, diventa piuttosto
+costoso capire quali corsi hanno lo studente <code>14</code> tra gli
+iscritti.</p>
 <figure>
-<img src="../images/many-to-many-verbose.png" alt="A Many to Many Connector Table\label{figm2mvrb}" style="height: 1.5in;"/>
+<img src="../images/many-to-many-verbose.png" alt="Una tabella di collegamento molti-a-molti\label{figm2mvrb}" style="height: 1.5in;"/>
 <figcaption>
-A Many to Many Connector Table
+Una tabella di collegamento molti-a-molti
 </figcaption>
 </figure>
-<p> Instead of either of these approaches, we model a many-to-many
-relationship using an additional table that we call a “junction table”,
-“through table”, “connector table”, or “join table” as shown in Figure .
-The purpose of this table is to capture the <em>connection</em> between
-<em>a</em> course and <em>a</em> student.</p>
-<p>In a sense the table sits between the <code>Course</code> and
-<code>User</code> table and has a one-to-many relationship to both
-tables. By using an intermediate table we break a many-to-many
-relationship into two one-to-many relationships. Databases are very good
-at modeling and processing one-to-many relationships.</p>
-<p>An example <code>Member</code> table would be as follows:</p>
+<p> Invece di usare uno di questi due approcci, modelliamo una relazione
+molti-a-molti con una tabella aggiuntiva, che chiamiamo <em>tabella di
+giunzione</em> (junction table), <em>tabella intermedia</em> (through
+table), <em>tabella di collegamento</em> (connector table) o <em>tabella
+di join</em> (join table), come si vede nella Figura . Lo scopo di
+questa tabella è rappresentare il <em>collegamento</em> tra <em>un</em>
+corso e <em>uno</em> studente.</p>
+<p>In un certo senso la tabella sta tra le tabelle <code>Course</code> e
+<code>User</code> e ha una relazione uno-a-molti con entrambe. Usando
+una tabella intermedia scomponiamo una relazione molti-a-molti in due
+relazioni uno-a-molti. I database sono molto bravi a modellare ed
+elaborare le relazioni uno-a-molti.</p>
+<p>Una tabella <code>Member</code> di esempio sarebbe fatta così:</p>
 <pre class="sql"><code>CREATE TABLE User (
     id     INTEGER PRIMARY KEY,
     name   TEXT UNIQUE
@@ -945,19 +984,19 @@ CREATE TABLE Member (
     course_id   INTEGER,
     PRIMARY KEY (user_id, course_id)
 );</code></pre>
-<p>Following our naming convention, <code>Member.user_id</code> and
-<code>Member.course_id</code> are foreign keys pointing at the
-corresponding rows in the <code>User</code> and <code>Course</code>
-tables. Each entry in the member table links a row in the
-<code>User</code> table to a row in the <code>Course</code> table by
-going <em>through</em> the <code>Member</code> table.</p>
-<p> We indicate that the <em>combination</em> of <code>course_id</code>
-and <code>user_id</code> is the <code>PRIMARY KEY</code> for the
-<code>Member</code> table, also creating an uniqueness constraint for a
-<code>course_id</code> / <code>user_id</code> combination.</p>
-<p>Now lets say we need to insert a number of students into the rosters
-of a number of courses. Lets assume the data comes to us in a
-JSON-formatted file with records like this:</p>
+<p>Secondo la nostra convenzione sui nomi, <code>Member.user_id</code> e
+<code>Member.course_id</code> sono chiavi esterne che puntano alle righe
+corrispondenti delle tabelle <code>User</code> e <code>Course</code>.
+Ogni voce della tabella <code>Member</code> collega una riga della
+tabella <code>User</code> a una riga della tabella <code>Course</code>
+<em>passando per</em> la tabella <code>Member</code>.</p>
+<p> Indichiamo che la <em>combinazione</em> di <code>course_id</code> e
+<code>user_id</code> è la <code>PRIMARY KEY</code> della tabella
+<code>Member</code>, e così creiamo anche un vincolo di unicità per la
+combinazione <code>course_id</code> / <code>user_id</code>.</p>
+<p>Ora supponiamo di dover inserire vari studenti negli elenchi degli
+iscritti di vari corsi. Immaginiamo che i dati ci arrivino in un file in
+formato JSON con record come questi:</p>
 <pre><code>[
   [ &quot;Charley&quot;, &quot;si110&quot;],
   [ &quot;Mea&quot;, &quot;si110&quot;],
@@ -971,9 +1010,9 @@ JSON-formatted file with records like this:</p>
   [ &quot;Rosa&quot;, &quot;si106&quot;],
 ...
 ]</code></pre>
-<p> We could write code as follows to read the JSON file and insert the
-members of each course roster into the database using the following
-code:</p>
+<p> Potremmo scrivere il codice seguente, <code>roster.py</code>, per
+leggere il file JSON e inserire nel database gli iscritti di ogni
+corso:</p>
 <pre class="python"><code>import json
 import sqlite3
 
@@ -1005,19 +1044,21 @@ for entry in json_data:
         ( user_id, course_id ) )
 
     conn.commit()</code></pre>
-<p>Like in a previous example, we first make sure that we have an entry
-in the <code>User</code> table and know the primary key of the entry as
-well as an entry in the <code>Course</code> table and know its primary
-key. We use the ‘INSERT OR IGNORE’ and ‘SELECT’ pattern so our code
-works regardless of whether the record is in the table or not.</p>
-<p>Our insert into the <code>Member</code> table is simply inserting the
-two integers as a new or existing row depending on the constraint to
-make sure we do not end up with duplicate entries in the
-<code>Member</code> table for a particular <code>user_id</code> /
-<code>course_id</code> combination.</p>
-<p> To reconstruct our data across all three tables, we again use
-<code>JOIN</code> / <code>ON</code> to construct a <code>SELECT</code>
-query;</p>
+<p>Come in un esempio precedente, per prima cosa ci assicuriamo di avere
+una voce nella tabella <code>User</code> e di conoscerne la chiave
+primaria, e di avere una voce nella tabella <code>Course</code> e di
+conoscerne la chiave primaria. Usiamo lo schema
+<code>INSERT OR IGNORE</code> e <code>SELECT</code>, così il codice
+funziona sia che il record si trovi già nella tabella sia che non ci
+sia.</p>
+<p>Nella tabella <code>Member</code> ci limitiamo a inserire i due
+interi in una riga nuova o in una già esistente, a seconda del vincolo,
+così non ci ritroviamo con voci duplicate nella tabella
+<code>Member</code> per una data combinazione <code>user_id</code> /
+<code>course_id</code>.</p>
+<p> Per ricostruire i dati delle tre tabelle, usiamo ancora una volta
+<code>JOIN</code> / <code>ON</code> per costruire una query
+<code>SELECT</code>:</p>
 <pre><code>sqlite&gt; SELECT * FROM Course
    ...&gt; JOIN Member ON Course.id = Member.course_id
    ...&gt; JOIN User ON Member.user_id = User.id;
@@ -1039,30 +1080,31 @@ query;</p>
 | 2  | si106 | 9       | 2         | 9  | Rosa    |
 +----+-------+---------+-----------+----+---------+
 sqlite&gt;</code></pre>
-<p>You can see the three tables from left to right -
-<code>Course</code>, <code>Member</code>, and <code>User</code> and you
-can see the connections between the primary keys and foreign keys in
-each row of output.</p>
-<h2 id="modeling-data-at-the-many-to-many-connection">Modeling data at
-the many-to-many connection</h2>
-<p>While we have presented the “join table” as having two foreign keys
-making a connection between rows in two tables, this is the simplest
-form of a join table. It is quite common to want to add some data to the
-connection itself.</p>
-<p>Continuing with our example of users, courses, and rosters to model a
-simple learning management system, we will also need to understand the
-<em>role</em> that each user is assigned in each course.</p>
-<p>If we first try to solve this by adding an “instructor” flag to the
-<code>User</code> table, we will find that this does not work because a
-user can be a instructor in one course and a student in another course.
-If we add an <code>instructor_id</code> to the <code>Course</code> table
-it will not work because a course can have multiple instructors. And
-there is no one-to-many hack that can deal with the fact that the number
-of roles will expand into roles like Teaching Assistant or Parent.</p>
-<p>But if we simply add a <code>role</code> column to the
-<code>Member</code> table - we can represent a wide range of roles, role
-combinations, etc.</p>
-<p>Lets change our member table as follows:</p>
+<p>Puoi vedere le tre tabelle da sinistra a destra (<code>Course</code>,
+<code>Member</code> e <code>User</code>) e, in ogni riga dell’output, i
+collegamenti tra chiavi primarie e chiavi esterne.</p>
+<h2 id="modellare-i-dati-nel-collegamento-molti-a-molti">Modellare i
+dati nel collegamento molti-a-molti</h2>
+<p>Abbiamo presentato la “tabella di join” come una tabella con due
+chiavi esterne che collegano le righe di due tabelle, ma questa è la
+forma più semplice di tabella di join. Capita spesso di voler aggiungere
+dei dati al collegamento stesso.</p>
+<p>Continuando con l’esempio di utenti, corsi ed elenchi degli iscritti
+per modellare un semplice sistema di gestione dell’apprendimento,
+dovremo anche conoscere il <em>ruolo</em> assegnato a ogni utente in
+ogni corso.</p>
+<p>Se proviamo prima a risolvere il problema aggiungendo alla tabella
+<code>User</code> un flag “docente”, scopriremo che non funziona, perché
+un utente può essere docente in un corso e studente in un altro. Se
+aggiungiamo un <code>instructor_id</code> alla tabella
+<code>Course</code>, non funzionerà, perché un corso può avere più
+docenti. E non c’è trucco uno-a-molti che regga quando il numero dei
+ruoli crescerà, fino a comprendere ruoli come assistente alla didattica
+o genitore.</p>
+<p>Ma se aggiungiamo semplicemente una colonna <code>role</code> alla
+tabella <code>Member</code>, possiamo rappresentare un’ampia gamma di
+ruoli, di combinazioni di ruoli e così via.</p>
+<p>Modifichiamo la tabella <code>Member</code> così:</p>
 <pre class="sql"><code>DROP TABLE Member;
 
 CREATE TABLE Member (
@@ -1071,9 +1113,9 @@ CREATE TABLE Member (
     role        INTEGER,
     PRIMARY KEY (user_id, course_id)
 );</code></pre>
-<p>For simplicity, we will decide that zero in the role means “student”
-and one in the <code>role</code> means instructor. Lets assume our JSON
-data is augmented with the role as follows:</p>
+<p>Per semplicità, stabiliamo che <code>0</code> in <code>role</code>
+significa “studente” e <code>1</code> significa “docente”. Supponiamo
+che i dati JSON siano arricchiti con il ruolo, in questo modo:</p>
 <pre><code>[
   [ &quot;Charley&quot;, &quot;si110&quot;, 1],
   [ &quot;Mea&quot;, &quot;si110&quot;, 0],
@@ -1087,8 +1129,8 @@ data is augmented with the role as follows:</p>
   [ &quot;Rosa&quot;, &quot;si106&quot;, 0],
 ...
 ]</code></pre>
-<p>We could alter the <code>roster.py</code> program above to
-incorporate role as follows:</p>
+<p>Potremmo modificare il programma <code>roster.py</code> visto sopra
+per includere il ruolo, in questo modo:</p>
 <pre class="python"><code>for entry in json_data:
 
     name = entry[0]
@@ -1100,9 +1142,10 @@ incorporate role as follows:</p>
     cur.execute(&#39;&#39;&#39;INSERT OR REPLACE INTO Member
         (user_id, course_id, role) VALUES ( ?, ?, ? )&#39;&#39;&#39;,
         ( user_id, course_id, role ) )</code></pre>
-<p>In a real system, we would probably build a <code>Role</code> table
-and make the <code>role</code> column in <code>Member</code> a foreign
-key into the Role table as follows:</p>
+<p>In un sistema reale probabilmente costruiremmo una tabella
+<code>Role</code> e faremmo della colonna <code>role</code> di
+<code>Member</code> una chiave esterna, <code>role_id</code>, verso la
+tabella <code>Role</code>, in questo modo:</p>
 <pre class="sql"><code>DROP TABLE Member;
 
 CREATE TABLE Member (
@@ -1119,134 +1162,138 @@ CREATE TABLE Role (
 
 INSERT INTO Role (id, name) VALUES (0, &#39;Student&#39;);
 INSERT INTO Role (id, name) VALUES (1, &#39;Instructor&#39;);</code></pre>
-<p>Notice that because we declared the <code>id</code> column in the
-<code>Role</code> table as a <code>PRIMARY KEY</code>, we <em>could</em>
-omit it in the <code>INSERT</code> statement. But we can also choose the
-<code>id</code> value as long as the value is not already in the
-<code>id</code> column and does not violate the implied
-<code>UNIQUE</code> constaint on primary keys.</p>
-<h2 id="summary">Summary</h2>
-<p>This chapter has covered a lot of ground to give you an overview of
-the basics of using a database in Python. It is more complicated to
-write the code to use a database to store data than Python dictionaries
-or flat files so there is little reason to use a database unless your
-application truly needs the capabilities of a database. The situations
-where a database can be quite useful are: (1) when your application
-needs to make many small random updates within a large data set, (2)
-when your data is so large it cannot fit in a dictionary and you need to
-look up information repeatedly, or (3) when you have a long-running
-process that you want to be able to stop and restart and retain the data
-from one run to the next.</p>
-<p>You can build a simple database with a single table to suit many
-application needs, but most problems will require several tables and
-links/relationships between rows in different tables. When you start
-making links between tables, it is important to do some thoughtful
-design and follow the rules of database normalization to make the best
-use of the database’s capabilities. Since the primary motivation for
-using a database is that you have a large amount of data to deal with,
-it is important to model your data efficiently so your programs run as
-fast as possible.</p>
-<h2 id="debugging">Debugging</h2>
-<p>One common pattern when you are developing a Python program to
-connect to an SQLite database will be to run a Python program and check
-the results using the Database Browser for SQLite. The browser allows
-you to quickly check to see if your program is working properly.</p>
-<p>You must be careful because SQLite takes care to keep two programs
-from changing the same data at the same time. For example, if you open a
-database in the browser and make a change to the database and have not
-yet pressed the “save” button in the browser, the browser “locks” the
-database file and keeps any other program from accessing the file. In
-particular, your Python program will not be able to access the file if
-it is locked.</p>
-<p>So a solution is to make sure to either close the database browser or
-use the <em>File</em> menu to close the database in the browser before
-you attempt to access the database from Python to avoid the problem of
-your Python code failing because the database is locked.</p>
-<h2 id="glossary">Glossary</h2>
+<p>Nota che, poiché abbiamo dichiarato la colonna <code>id</code> della
+tabella <code>Role</code> come <code>PRIMARY KEY</code>,
+<em>potremmo</em> ometterla nell’istruzione <code>INSERT</code>. Ma
+possiamo anche scegliere noi il valore di <code>id</code>, purché non
+sia già presente nella colonna <code>id</code> e non violi il vincolo
+<code>UNIQUE</code> implicito sulle chiavi primarie.</p>
+<h2 id="riepilogo">Riepilogo</h2>
+<p>Questo capitolo ha toccato molti argomenti per darti una panoramica
+sulle basi dell’uso di un database in Python. Scrivere il codice che usa
+un database per memorizzare i dati è più complicato che usare i
+dizionari Python o i semplici file, quindi ci sono pochi motivi per
+usare un database, a meno che l’applicazione non abbia davvero bisogno
+delle sue capacità. Le situazioni in cui un database può essere molto
+utile sono: (1) quando l’applicazione deve fare molti piccoli
+aggiornamenti sparsi all’interno di un grande insieme di dati, (2)
+quando i dati sono così tanti che non entrano in un dizionario e devi
+cercare informazioni ripetutamente, o (3) quando hai un processo di
+lunga durata che vuoi poter fermare e riavviare, conservando i dati da
+un’esecuzione all’altra.</p>
+<p>Puoi costruire un semplice database con una sola tabella per
+soddisfare le esigenze di molte applicazioni, ma la maggior parte dei
+problemi richiede più tabelle e collegamenti/relazioni tra righe di
+tabelle diverse. Quando cominci a creare collegamenti tra le tabelle, è
+importante progettare con attenzione e seguire le regole della
+normalizzazione del database per sfruttare al meglio le sue capacità.
+Poiché il motivo principale per usare un database è che hai una grande
+quantità di dati da gestire, è importante modellare i dati in modo
+efficiente, perché i programmi siano il più veloci possibile.</p>
+<h2 id="debug">Debug</h2>
+<p>Quando sviluppi un programma Python che si connette a un database
+SQLite, uno schema comune è eseguire il programma Python e controllare i
+risultati con il Database Browser for SQLite. Il browser ti permette di
+verificare rapidamente se il programma funziona correttamente.</p>
+<p>Devi fare attenzione, perché SQLite fa in modo che due programmi non
+modifichino gli stessi dati allo stesso tempo. Ad esempio, se apri un
+database nel browser, fai una modifica e non hai ancora premuto il
+pulsante “salva” del browser, il browser “blocca” il file di database e
+impedisce a qualsiasi altro programma di accedervi. In particolare, il
+tuo programma Python non potrà accedere al file se è bloccato.</p>
+<p>Quindi una soluzione è assicurarti di chiudere il browser di
+database, oppure di usare il menu <em>File</em> per chiudere il database
+nel browser, prima di provare ad accedere al database da Python: così
+eviti che il codice Python fallisca perché il database è bloccato.</p>
+<h2 id="glossario">Glossario</h2>
 <dl>
-<dt>attribute</dt>
+<dt><strong>Attributo</strong></dt>
 <dd>
-One of the values within a tuple. More commonly called a “column” or
-“field”.
+Uno dei valori all’interno di una tupla. Più comunemente chiamato
+“colonna” o “campo”.
 </dd>
-<dt>constraint</dt>
+<dt><strong>Browser di database</strong></dt>
 <dd>
-When we tell the database to enforce a rule on a field or a row in a
-table. A common constraint is to insist that there can be no duplicate
-values in a particular field (i.e., all the values must be unique).
+Un software che ti permette di connetterti direttamente a un database e
+di manipolarlo senza scrivere un programma.
 </dd>
-<dt>cursor</dt>
+<dt><strong>Chiave esterna</strong></dt>
 <dd>
-A cursor allows you to execute SQL commands in a database and retrieve
-data from the database. A cursor is similar to a socket or file handle
-for network connections and files, respectively.
+Una chiave numerica che punta alla chiave primaria di una riga in
+un’altra tabella. Le chiavi esterne stabiliscono relazioni tra righe
+memorizzate in tabelle diverse.
 </dd>
-<dt>database browser</dt>
+<dt><strong>Chiave logica</strong></dt>
 <dd>
-A piece of software that allows you to directly connect to a database
-and manipulate the database directly without writing a program.
+Una chiave che il “mondo esterno” usa per cercare una determinata riga.
+Ad esempio, in una tabella di account utente, l’indirizzo email di una
+persona potrebbe essere un buon candidato come chiave logica per i dati
+dell’utente.
 </dd>
-<dt>foreign key</dt>
+<dt><strong>Chiave primaria</strong></dt>
 <dd>
-A numeric key that points to the primary key of a row in another table.
-Foreign keys establish relationships between rows stored in different
-tables.
+Una chiave numerica assegnata a ogni riga, usata per fare riferimento a
+una riga di una tabella da un’altra tabella. Spesso il database è
+configurato per assegnare automaticamente le chiavi primarie man mano
+che le righe vengono inserite.
 </dd>
-<dt>index</dt>
+<dt><strong>Cursore</strong></dt>
 <dd>
-Additional data that the database software maintains as rows and inserts
-into a table to make lookups very fast.
+Un cursore ti permette di eseguire comandi SQL in un database e di
+recuperare dati dal database. Un cursore è simile a un socket o a un
+handle del file, rispettivamente per le connessioni di rete e per i
+file.
 </dd>
-<dt>logical key</dt>
+<dt><strong>Indice</strong></dt>
 <dd>
-A key that the “outside world” uses to look up a particular row. For
-example in a table of user accounts, a person’s email address might be a
-good candidate as the logical key for the user’s data.
+I dati aggiuntivi che il software di database mantiene man mano che le
+righe vengono inserite in una tabella, per rendere le ricerche molto
+veloci.
 </dd>
-<dt>normalization</dt>
+<dt><strong>Normalizzazione</strong></dt>
 <dd>
-Designing a data model so that no data is replicated. We store each item
-of data at one place in the database and reference it elsewhere using a
-foreign key.
+La progettazione di un modello dei dati in cui nessun dato è replicato.
+Memorizziamo ogni dato in un solo punto del database e vi facciamo
+riferimento altrove con una chiave esterna.
 </dd>
-<dt>primary key</dt>
+<dt><strong>Relazione</strong></dt>
 <dd>
-A numeric key assigned to each row that is used to refer to one row in a
-table from another table. Often the database is configured to
-automatically assign primary keys as rows are inserted.
+Un’area all’interno di un database che contiene tuple e attributi. Di
+solito chiamata “tabella”.
 </dd>
-<dt>relation</dt>
+<dt><strong>Tupla</strong></dt>
 <dd>
-An area within a database that contains tuples and attributes. More
-typically called a “table”.
+Una singola voce di una tabella di database, formata da un insieme di
+attributi. Di solito chiamata “riga”.
 </dd>
-<dt>tuple</dt>
+<dt><strong>Vincolo</strong></dt>
 <dd>
-A single entry in a database table that is a set of attributes. More
-typically called “row”.
+Una regola che chiediamo al database di far rispettare su un campo o su
+una riga di una tabella. Un vincolo comune è richiedere che in un campo
+non ci possano essere valori duplicati (cioè che tutti i valori siano
+univoci).
 </dd>
 </dl>
-<p></p>
 <section id="footnotes" class="footnotes footnotes-end-of-document"
 role="doc-endnotes">
 <hr />
 <ol>
-<li id="fn1"><p>SQLite actually does allow some flexibility in the type
-of data stored in a column, but we will keep our data types strict in
-this chapter so the concepts apply equally to other database systems
-such as MySQL.<a href="#fnref1" class="footnote-back"
-role="doc-backlink">↩︎</a></p></li>
-<li id="fn2"><p>Yes there is a disconnect between “CRUD” term and the
-first letters of the four SQL statements that implement “CRUD”. A
-possible explanation might be to claim that “CRUD” is the “concept” and
-SQL is the implementation. Another possible explanation is that “CRUD”
-is more fun to say than “ISUD”.<a href="#fnref2" class="footnote-back"
-role="doc-backlink">↩︎</a></p></li>
-<li id="fn3"><p>Some SQL dialects support arrays but arrays do not scale
-well. NoSQL databases use arrays and data replication but at a cost of
-database integrity. NoSQL is a story for another course
-https://www.pg4e.com/ <a href="#fnref3" class="footnote-back"
-role="doc-backlink">↩︎</a></p></li>
+<li id="fn1"><p>In realtà SQLite permette una certa flessibilità nel
+tipo di dati memorizzati in una colonna, ma in questo capitolo saremo
+rigorosi con i tipi di dati, così i concetti valgono allo stesso modo
+per altri sistemi di database come MySQL.<a href="#fnref1"
+class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>Sì, c’è una discrepanza tra il termine “CRUD” e le
+iniziali delle quattro istruzioni SQL che implementano il “CRUD”. Una
+possibile spiegazione è sostenere che “CRUD” sia il “concetto” e SQL
+l’implementazione. Un’altra possibile spiegazione è che “CRUD” è più
+divertente da pronunciare di “ISUD”.<a href="#fnref2"
+class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>Alcuni dialetti SQL supportano gli array, ma gli array
+non scalano bene. I database NoSQL usano gli array e la replica dei
+dati, ma a scapito dell’integrità del database. NoSQL è una storia per
+un altro corso: https://www.pg4e.com/.<a href="#fnref3"
+class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 </body>
