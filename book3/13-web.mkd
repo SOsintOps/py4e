@@ -2,7 +2,7 @@
 Usare i servizi web
 ==================
 
-Quando è diventato facile recuperare e analizzare documenti via HTTP con dei programmi, non ci è voluto molto per sviluppare un approccio in cui produciamo documenti pensati apposta per essere usati da altri programmi (cioè non HTML da visualizzare in un browser).
+Quando è diventato facile recuperare e analizzare documenti via HTTP con dei programmi, non ci è voluto molto per sviluppare un approccio in cui abbiamo cominciato a produrre documenti pensati apposta per essere usati da altri programmi (cioè non HTML da visualizzare in un browser).
 
 Per scambiare dati sul web usiamo due formati comuni. L'eXtensible Markup Language (XML) è in uso da moltissimo tempo ed è il più adatto per scambiare dati in forma di documento. Quando i programmi vogliono solo scambiarsi dizionari, liste o altre informazioni interne, usano la JavaScript Object Notation (JSON) (vedi [www.json.org](http://www.json.org)). Vedremo entrambi i formati.
 
@@ -34,7 +34,7 @@ Analizzare XML
 \index{ElementTree!fromstring}
 \index{ElementTree!find}
 
-Ecco una semplice applicazione che analizza un po' di XML e ne estrae alcuni elementi di dati:
+Ecco una semplice applicazione che analizza un po' di XML e ne estrae alcuni dati:
 
 \VerbatimInput{../code3/xml1.py} 
 
@@ -47,7 +47,7 @@ Name: Chuck
 Attr: yes
 ~~~~
 
-Usare un parser XML come `ElementTree` ha un vantaggio: l'XML di questo esempio è piuttosto semplice, ma in realtà le regole che rendono valido un XML sono molte; con `ElementTree` possiamo estrarre dati da XML senza preoccuparci delle regole della sua sintassi.
+Usare un parser XML come `ElementTree` ha un vantaggio: l'XML di questo esempio è piuttosto semplice, ma in realtà le regole che rendono valido un documento XML sono molte; con `ElementTree` possiamo estrarre dati da XML senza preoccuparci delle regole della sua sintassi.
 
 Scorrere i nodi
 ---------------------
@@ -99,7 +99,7 @@ lst2 = stuff.findall('user')
 print('User count:', len(lst2))
 ~~~~
 
-`lst` memorizza tutti gli elementi `user` annidati nel loro padre `users`. `lst2` cerca gli elementi `user` che non sono annidati nell'elemento di primo livello `stuff`, dove non ce n'è nessuno.
+`lst` contiene tutti gli elementi `user` annidati nel loro padre `users`. `lst2` cerca nell'elemento di primo livello `stuff` gli elementi `user` che non sono annidati, e lì non ce n'è nessuno.
 
 ~~~~
 User count: 2
@@ -144,7 +144,7 @@ Nel programma seguente usiamo la libreria built-in `json` per analizzare il JSON
 
 \VerbatimInput{../code3/json2.py}
 
-Se confronti il codice che estrae i dati dal JSON e dall'XML analizzati, vedrai che ciò che otteniamo da `json.loads()` è una lista Python, che scorriamo con un ciclo `for` e i cui elementi sono dizionari Python. Una volta analizzato il JSON, possiamo usare l'operatore di indicizzazione di Python per estrarre i vari dati di ogni utente. Non abbiamo bisogno di usare la libreria JSON per frugare nel JSON analizzato, perché i dati restituiti sono semplicemente strutture native di Python.
+Se confronti il codice che estrae i dati dal JSON e dall'XML analizzati, vedrai che ciò che otteniamo da `json.loads()` è una lista Python, che scorriamo con un ciclo `for` e i cui elementi sono dizionari Python. Una volta analizzato il JSON, possiamo usare l'operatore di indicizzazione di Python per estrarre i vari dati di ogni utente. Non abbiamo bisogno di usare la libreria `json` per frugare nel JSON analizzato, perché i dati restituiti sono semplicemente strutture native di Python.
 
 L'output di questo programma è identico a quello della versione XML vista sopra.
 
@@ -158,7 +158,7 @@ Id 009
 Attribute 7
 ~~~~
 
-In generale, per i servizi web il settore tende ad abbandonare XML in favore di JSON. Poiché JSON è più semplice e corrisponde in modo più diretto alle strutture di dati native che abbiamo già nei linguaggi di programmazione, con JSON il codice che analizza ed estrae i dati è di solito più semplice e più diretto. Ma XML è più autodescrittivo di JSON, e per questo ci sono alcune applicazioni in cui XML conserva un vantaggio. Ad esempio, la maggior parte dei programmi di videoscrittura memorizza internamente i documenti in XML invece che in JSON.
+In generale, per i servizi web il settore tende ad abbandonare XML in favore di JSON. Poiché JSON è più semplice e corrisponde in modo più diretto alle strutture dati native che abbiamo già nei linguaggi di programmazione, con JSON il codice che analizza ed estrae i dati è di solito più semplice e più diretto. Ma XML è più autodescrittivo di JSON, e per questo ci sono alcune applicazioni in cui XML conserva un vantaggio. Ad esempio, la maggior parte dei programmi di videoscrittura memorizza internamente i documenti in XML invece che in JSON.
 
 Interfacce di programmazione delle applicazioni
 ----------------------------------
@@ -169,11 +169,11 @@ Il passo successivo è cominciare a definire e documentare, con queste tecniche,
 
 Quando cominciamo a costruire programmi le cui funzionalità comprendono l'accesso a servizi forniti da altri programmi, chiamiamo questo approccio *architettura orientata ai servizi* (SOA, Service-Oriented Architecture). In un approccio SOA l'applicazione nel suo complesso usa i servizi di altre applicazioni. In un approccio non SOA l'applicazione è unica e autonoma e contiene tutto il codice necessario per implementarla.
 
-Quando usiamo il web vediamo molti esempi di SOA. Possiamo prenotare voli, alberghi e automobili, tutto da un solo sito web. I dati degli alberghi non sono memorizzati sui computer della compagnia aerea: sono questi computer a contattare i servizi sui computer degli alberghi, a recuperarne i dati e a presentarli all'utente. Quando l'utente accetta di prenotare un albergo tramite il sito della compagnia aerea, il sito usa un altro servizio web dei sistemi dell'albergo per effettuare la prenotazione vera e propria. E quando arriva il momento di addebitare l'intera transazione sulla tua carta di credito, entrano in gioco altri computer ancora.
+Quando usiamo il web vediamo molti esempi di SOA. Possiamo prenotare voli, alberghi e automobili, tutto da un solo sito web. I dati degli alberghi non sono memorizzati sui computer della compagnia aerea: sono questi computer a contattare i servizi sui computer degli alberghi, a recuperarne i dati e a presentarli all'utente. Quando l'utente accetta di prenotare un albergo tramite il sito della compagnia aerea, il sito usa un altro servizio web dei sistemi dell'albergo per fare la prenotazione vera e propria. E quando arriva il momento di addebitare l'intera transazione sulla tua carta di credito, entrano in gioco altri computer ancora.
 
 ![Architettura orientata ai servizi](height=3.0in@../images/soa)
 
-Un'architettura orientata ai servizi ha molti vantaggi, tra cui: (1) manteniamo sempre una sola copia dei dati (cosa particolarmente importante per prenotazioni come quelle degli alberghi, in cui non vogliamo prenotare più camere di quelle che ci sono) e (2) i proprietari dei dati possono stabilire le regole per il loro uso. A fronte di questi vantaggi, un sistema SOA deve essere progettato con cura per avere buone prestazioni e soddisfare le esigenze dell'utente.
+Un'architettura orientata ai servizi ha molti vantaggi, tra cui: (1) manteniamo sempre una sola copia dei dati (cosa particolarmente importante in casi come le prenotazioni degli alberghi, in cui non vogliamo accettarne più di quante sono le camere disponibili) e (2) i proprietari dei dati possono stabilire le regole per il loro uso. A fronte di questi vantaggi, un sistema SOA deve essere progettato con cura per avere buone prestazioni e soddisfare le esigenze dell'utente.
 
 Quando un'applicazione mette a disposizione sul web un insieme di servizi della sua API, li chiamiamo *servizi web*.
 
@@ -183,9 +183,9 @@ Sicurezza e uso delle API
 \index{OAuth}
 \index{API!chiave}
 
-Capita spesso che ti serva una chiave API per usare l'API di un fornitore. L'idea generale è che il fornitore vuole sapere chi usa i suoi servizi e quanto li usa ogni utente. Magari offre i suoi servizi con piani gratuiti e piani a pagamento, o applica una politica che limita il numero di richieste che una sola persona può fare in un certo periodo di tempo.
+Capita spesso che ti serva una chiave API per usare l'API di un fornitore. L'idea generale è che il fornitore voglia sapere chi usa i suoi servizi e quanto li usa ogni utente. Magari offre i suoi servizi con piani gratuiti e piani a pagamento, o applica una politica che limita il numero di richieste che una sola persona può fare in un certo periodo di tempo.
 
-A volte, dopo aver ottenuto la chiave API, ti basta includerla tra i dati POST, o magari come parametro dell'URL, quando chiami l'API.
+A volte, dopo aver ottenuto la chiave API, ti basta includerla tra i dati `POST`, o magari come parametro dell'URL, quando chiami l'API.
 
 Altre volte il fornitore vuole più garanzie sulla provenienza delle richieste: per questo si aspetta che tu invii messaggi firmati crittograficamente con chiavi e segreti condivisi. Una tecnologia molto diffusa per firmare le richieste su Internet si chiama *OAuth*. Puoi saperne di più sul protocollo OAuth all'indirizzo [www.oauth.net](http://www.oauth.net).
 
@@ -198,7 +198,7 @@ Glossario
 : Application Program Interface (interfaccia di programmazione delle applicazioni) - Un contratto tra applicazioni che definisce gli schemi di interazione tra due componenti applicativi.
 \index{API}
 
-**ElementTree**
+**`ElementTree`**
 : Una libreria built-in di Python usata per analizzare dati XML.
 \index{ElementTree}
 
