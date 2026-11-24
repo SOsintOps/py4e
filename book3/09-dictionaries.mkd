@@ -113,7 +113,7 @@ L'operatore `in` usa algoritmi diversi per le liste e per i dizionari. Per le li
 
 **Esercizio 1:** Scarica una copia del file
 
-[www.py4e.com/code3/words.txt](http://www.py4e.com/code3/words.txt).
+[www.py4e.com/code3/words.txt](http://www.py4e.com/code3/words.txt)
 
 Scrivi un programma che legga le parole di `words.txt` e le memorizzi come chiavi in un dizionario. Non importa quali siano i valori. Poi puoi usare l'operatore `in` come modo rapido per controllare se una stringa è nel dizionario.
 
