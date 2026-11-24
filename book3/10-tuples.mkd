@@ -41,7 +41,7 @@ Per creare una tupla con un solo elemento, devi includere la virgola finale:
 <type 'tuple'>
 ~~~~
 
-Senza la virgola Python tratta `('a')` come un'espressione con una stringa tra parentesi, che viene valutata come una stringa:
+Senza la virgola Python tratta `('a')` come un'espressione con una stringa tra parentesi tonde, che viene valutata come una stringa:
 
 ~~~~ {.python}
 >>> t2 = ('a')
@@ -130,7 +130,7 @@ True
 True
 ~~~~
 
-La funzione `sort` si comporta allo stesso modo. Ordina prima di tutto in base al primo elemento, ma in caso di parità ordina in base al secondo elemento, e così via.
+Il metodo `sort` si comporta allo stesso modo. Ordina prima di tutto in base al primo elemento, ma in caso di parità ordina in base al secondo elemento, e così via.
 
 Questa caratteristica si presta a uno schema chiamato *DSU*, che sta per
 
@@ -219,7 +219,7 @@ Non è magia: Python traduce *approssimativamente* la sintassi dell'assegnazione
 >>>
 ~~~~
 
-Per una questione di stile, quando usiamo una tupla sul lato sinistro dell'istruzione di assegnazione omettiamo le parentesi, ma la sintassi seguente è altrettanto valida:
+Per una questione di stile, quando usiamo una tupla sul lato sinistro dell'istruzione di assegnazione omettiamo le parentesi tonde, ma la sintassi seguente è altrettanto valida:
 
 ~~~~ {.python}
 >>> m = ( 'have', 'fun' )
@@ -277,7 +277,7 @@ Dizionari e tuple
 \index{metodo!items}
 \index{coppia chiave-valore}
 
-I dizionari hanno un metodo chiamato `items` che restituisce una lista di tuple, in cui ogni tupla è una coppia chiave-valore:
+I dizionari hanno un metodo chiamato `items` che restituisce le coppie chiave-valore del dizionario, ognuna sotto forma di tupla:
 
 ~~~~ {.python}
 >>> d = {'b':1, 'a':10, 'c':22}
@@ -316,9 +316,9 @@ for key, val in d.items():
     print(val, key)
 ~~~~
 
-Questo ciclo ha due *variabili di iterazione*, perché `items` restituisce una lista di tuple e `key, val` è un'assegnazione di tupla che scorre in successione le coppie chiave-valore del dizionario.
+Questo ciclo ha due *variabili di iterazione*, perché `items` dà una tupla per ogni coppia e `key, val` è un'assegnazione di tupla che scorre in successione le coppie chiave-valore del dizionario.
 
-A ogni iterazione del ciclo, sia `key` sia `val` avanzano alla coppia chiave-valore successiva del dizionario (sempre nell'ordine dell'hash).
+A ogni iterazione del ciclo, sia `key` sia `val` avanzano alla coppia chiave-valore successiva del dizionario (sempre nell'ordine di inserimento).
 
 L'output di questo ciclo è:
 
@@ -328,11 +328,11 @@ L'output di questo ciclo è:
 22 c
 ~~~~
 
-Di nuovo, l'ordine è quello dell'hash delle chiavi (cioè nessun ordine particolare).
+Di nuovo, l'ordine è quello in cui le chiavi sono state inserite.
 
 Se combiniamo queste due tecniche, possiamo stampare il contenuto di un dizionario ordinato in base al *valore* memorizzato in ciascuna coppia chiave-valore.
 
-Per farlo, creiamo prima una lista di tuple in cui ogni tupla è `(value, key)`. Il metodo `items` ci darebbe una lista di tuple `(key, value)`, ma questa volta vogliamo ordinare per valore, non per chiave. Una volta costruita la lista con le tuple valore-chiave, è semplice ordinarla in senso inverso e stamparla.
+Per farlo, creiamo prima una lista di tuple in cui ogni tupla è `(value, key)`. Il metodo `items` ci darebbe delle tuple `(key, value)`, ma questa volta vogliamo ordinare per valore, non per chiave. Una volta costruita la lista con le tuple valore-chiave, è semplice ordinarla in senso inverso e stamparla.
 
 ~~~~ {.python}
 >>> d = {'a':10, 'b':1, 'c':22}
@@ -361,7 +361,7 @@ Tornando al nostro esempio ricorrente, il testo di *Romeo e Giulietta*, atto II,
 
 La prima parte del programma non è cambiata: legge il file e calcola il dizionario che fa corrispondere ogni parola al suo conteggio nel documento. Ma invece di stampare semplicemente `counts` e terminare il programma, costruiamo una lista di tuple `(val, key)` e poi la ordiniamo in senso inverso.
 
-Poiché il valore viene per primo, sarà usato per i confronti. Se c'è più di una tupla con lo stesso valore, verrà esaminato il secondo elemento (la chiave), quindi le tuple con lo stesso valore saranno ordinate ulteriormente secondo l'ordine alfabetico della chiave.
+Poiché il valore viene per primo, sarà usato per i confronti. Se c'è più di una tupla con lo stesso valore, verrà esaminato il secondo elemento (la chiave), quindi le tuple con lo stesso valore saranno ordinate ulteriormente secondo l'ordine alfabetico inverso della chiave.
 
 Alla fine scriviamo un bel ciclo `for` che esegue un'iterazione con assegnazione multipla e stampa le dieci parole più comuni scorrendo una slice della lista (`lst[:10]`).
 
