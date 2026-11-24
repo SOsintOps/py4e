@@ -21,7 +21,7 @@ Esistono molti documenti che descrivono questi protocolli di rete. L'Hypertext T
 
 <https://www.w3.org/Protocols/rfc2616/rfc2616.txt>
 
-È un documento lungo e complesso, di 176 pagine, con moltissimi dettagli. Se lo trovi interessante, leggilo pure tutto. Ma se dai un'occhiata intorno a pagina 36 dell'RFC2616, troverai la sintassi della richiesta `GET`. Per richiedere un documento a un server web, apriamo una connessione, ad esempio con il server `www.pr4e.org` sulla porta 80, e poi inviamo una riga di questa forma
+È un documento lungo e complesso, di 176 pagine, con moltissimi dettagli. Se lo trovi interessante, leggilo pure tutto. Ma se dai un'occhiata intorno a pagina 36 dell'RFC2616, troverai la sintassi della richiesta `GET`. Per richiedere un documento a un server web, apriamo una connessione, ad esempio con il server `data.pr4e.org` sulla porta 80, e poi inviamo una riga di questa forma
 
 `GET http://data.pr4e.org/romeo.txt HTTP/1.0 `
 
@@ -34,7 +34,7 @@ Forse il modo più facile per mostrare come funziona il protocollo HTTP è scriv
 
 \VerbatimInput{../code3/socket1.py}
 
-Per prima cosa il programma apre una connessione sulla porta 80 del server [www.pr4e.com](http://www.pr4e.com). Dato che il programma recita la parte del "browser web", il protocollo HTTP dice che dobbiamo inviare il comando `GET` seguito da una riga vuota. `\r\n` indica un EOL (end of line, fine riga), quindi `\r\n\r\n` indica che tra due sequenze EOL non c'è niente. Equivale a una riga vuota.
+Per prima cosa il programma apre una connessione sulla porta 80 del server `data.pr4e.org`. Dato che il programma recita la parte del "browser web", il protocollo HTTP dice che dobbiamo inviare il comando `GET` seguito da una riga vuota. `\r\n` indica un EOL (end of line, fine riga), quindi `\r\n\r\n` indica che tra due sequenze EOL non c'è niente. Equivale a una riga vuota.
 
 ![Una connessione tramite socket](height=2.0in@../images/socket)
 
@@ -203,7 +203,7 @@ Lo schema consiste nell'aprire l'URL e usare `read` per scaricare l'intero conte
 
 \VerbatimInput{../code3/curl1.py}
 
-Questo programma legge dalla rete tutti i dati in una volta sola e li memorizza nella variabile `img`, nella memoria principale del computer; poi apre il file `cover.jpg` e scrive i dati sul disco. L'argomento `wb` di `open()` apre un file binario in sola scrittura. Il programma funzionerà se la dimensione del file è minore di quella della memoria del computer.
+Questo programma legge dalla rete tutti i dati in una volta sola e li memorizza nella variabile `img`, nella memoria principale del computer; poi apre il file `cover3.jpg` e scrive i dati sul disco. L'argomento `wb` di `open()` apre un file binario in sola scrittura. Il programma funzionerà se la dimensione del file è minore di quella della memoria del computer.
 
 Se però si tratta di un file audio o video di grandi dimensioni, quando il computer esaurisce la memoria il programma potrebbe andare in crash o almeno rallentare moltissimo. Per non esaurire la memoria, recuperiamo i dati a blocchi (o buffer) e scriviamo ogni blocco sul disco prima di recuperare il successivo. In questo modo il programma può leggere file di qualsiasi dimensione senza consumare tutta la memoria del computer.
 
