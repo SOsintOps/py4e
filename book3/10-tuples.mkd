@@ -442,7 +442,7 @@ Poiché le tuple sono immutabili, non forniscono metodi come `sort` e `reverse`,
 Comprensione di lista
 ------------------
 
-A volte vuoi creare una sequenza usando i dati di un'altra sequenza. Puoi farlo scrivendo un ciclo `for` e aggiungendo un elemento alla volta. Ad esempio, se volessi convertire una lista di stringhe -- ognuna delle quali memorizza delle cifre -- in numeri da sommare, scriveresti:
+A volte vuoi creare una sequenza usando i dati di un'altra sequenza. Puoi farlo scrivendo un ciclo `for` e aggiungendo un elemento alla volta. Ad esempio, se volessi convertire una lista di stringhe -- ognuna delle quali contiene delle cifre -- in numeri da sommare, scriveresti:
 
 ~~~~ {.python}
 list_of_ints_in_strings = ['42', '65', '12']
