@@ -7,7 +7,7 @@ $error = U::get($_REQUEST, 'detail');
 if ( strpos($error,"Session expired - please re-launch") === 0 ||
     strpos($error,"Session has expired") === 0 ) {
 
-    $error = __('Your session has expired');
+    $error = __('La tua sessione è scaduta');
 }
 
 $_SESSION['error'] = $error;

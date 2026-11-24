@@ -21,58 +21,58 @@ function buildMenu() {
 
     $set = new \Tsugi\UI\MenuSet();
     $set->setHome($CFG->servicename, $CFG->apphome);
-    $set->addLeft('Lessons', $R.'lessons');
+    $set->addLeft('Lezioni', $R.'lessons');
     if ( isset($_SESSION['id']) ) {
-        $set->addLeft('Assignments', $R.'assignments');
-        $set->addLeft('Book', $R . 'book');
+        $set->addLeft('Compiti', $R.'assignments');
+        $set->addLeft('Libro', $R . 'book');
     } else {
-        $set->addLeft('Book', $R . 'book');
+        $set->addLeft('Libro', $R . 'book');
     }
     
     if ( isset($_SESSION['id']) ) {
         $submenu = new \Tsugi\UI\Menu();
-        $submenu->addLink('Announcements', $R.'announcements');
-        $submenu->addLink('Grades', $R.'grades');
-        $submenu->addLink('Pages', $R.'pages');
-        $submenu->addLink('Discussions', $R.'discussions');
+        $submenu->addLink('Avvisi', $R.'announcements');
+        $submenu->addLink('Voti', $R.'grades');
+        $submenu->addLink('Pagine', $R.'pages');
+        $submenu->addLink('Discussioni', $R.'discussions');
         if ( $isInstructor ) {
-            $submenu->addLink('Notifications', $R.'notifications');
+            $submenu->addLink('Notifiche', $R.'notifications');
         }
-        $submenu->addLink('Courses', 'https://online.dr-chuck.com', false, 'target="_self"');
+        $submenu->addLink('Corsi', 'https://online.dr-chuck.com', false, 'target="_self"');
         if ( isset($CFG->google_map_api_key) ) {
-            $submenu->addLink('Map', $R.'map');
+            $submenu->addLink('Mappa', $R.'map');
         }
-        $submenu->addLink('Profile', $R.'profile');
+        $submenu->addLink('Profilo', $R.'profile');
         if ( $showCalendarDueUi ) {
-            $submenu->addLink('Calendar', $R.'calendar');
+            $submenu->addLink('Calendario', $R.'calendar');
         }
 
-        $submenu->addLink('Badges', $R.'badges');
-        $submenu->addLink('Materials', $R.'materials');
+        $submenu->addLink('Badge', $R.'badges');
+        $submenu->addLink('Materiali', $R.'materials');
         if ( $CFG->providekeys ) {
-            $submenu->addLink('LMS Integration', $T . 'settings');
+            $submenu->addLink('Integrazioni con LMS', $T . 'settings');
         }
         if ( isset($CFG->google_classroom_secret) && (int) ($_SESSION['gc_count'] ?? 0) > 0 ) {
-            $submenu->addLink('Google Classes', $T.'gclass/courses');
+            $submenu->addLink('Corsi di Google Classroom', $T.'gclass/courses');
         }
-        $submenu->addLink('Free App Store', 'https://www.tsugicloud.org');
-        $submenu->addLink('Rate this course', 'https://www.class-central.com/mooc/7363/python-for-everybody');
+        $submenu->addLink('App Store gratuito', 'https://www.tsugicloud.org');
+        $submenu->addLink('Valuta questo corso', 'https://www.class-central.com/mooc/7363/python-for-everybody');
         $submenu->addLink('Privacy', $R.'privacy');
-        $submenu->addLink('Service Level', $R.'service');
+        $submenu->addLink('Livello di servizio', $R.'service');
         if ( isset($_COOKIE['adminmenu']) && $_COOKIE['adminmenu'] == "true" ) {
-            $submenu->addLink('Administer', $T . 'admin/');
+            $submenu->addLink('Amministra', $T . 'admin/');
         }
-        $submenu->addLink('Logout', $R.'logout');
+        $submenu->addLink('Esci', $R.'logout');
 
         if ( isset($_SESSION['avatar']) ) {
-            $set->addRight('<img src="'.$_SESSION['avatar'].'" title="'.htmlentities(__('User Profile Menu - Includes logout')).'" style="height: 2em;" referrerpolicy="no-referrer" alt="Avatar" loading="lazy"/>', $submenu);
+            $set->addRight('<img src="'.$_SESSION['avatar'].'" title="'.htmlentities(__('Menu del profilo utente, con il comando Esci')).'" style="height: 2em;" referrerpolicy="no-referrer" alt="Avatar" loading="lazy"/>', $submenu);
             // htmlentities($_SESSION['displayname']), $submenu);
         } else {
             $set->addRight(htmlentities($_SESSION['displayname']), $submenu);
         }
     } else {
-        $set->addRight('Login', $R.'login');
-        $set->addRight('Courses', 'https://online.dr-chuck.com', true, 'target="_self"');
+        $set->addRight('Accedi', $R.'login');
+        $set->addRight('Corsi', 'https://online.dr-chuck.com', true, 'target="_self"');
     }
 
     if ( isset($_SESSION['id']) ) {

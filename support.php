@@ -63,23 +63,23 @@ $until_label = $extending ? (string) ($support['premium_until_label'] ?? '') : '
 <main id="container">
 <div class="support-body">
 <a class="support-hero-link" href="https://www.masterprogrammer.com/" target="_blank" rel="noopener noreferrer" title="Master Programmer">
-<img class="support-hero" src="<?= htmlspecialchars($hero_image) ?>" alt="Master Programmer — grow, build, solve, lead">
+<img class="support-hero" src="<?= htmlspecialchars($hero_image) ?>" alt="Master Programmer — cresci, costruisci, risolvi, guida">
 </a>
 <h1><?= htmlspecialchars($supporter_label) ?></h1>
 <p>
-<?= htmlspecialchars($site_label) ?> is free for everyone. We built it to stay that way — open lessons,
-autograders, and materials you can use without a paywall.
+<?= htmlspecialchars($site_label) ?> è gratuito per tutti, e lo abbiamo creato perché resti così: lezioni aperte,
+correttori automatici e materiali che puoi usare senza pagare.
 </p>
 
-<h2>Why we ask for support</h2>
+<h2>Perché chiediamo un sostegno</h2>
 <p>
-Running this site takes real work: servers, software, video hosting, security updates, and time to keep
-hundreds of lessons and tools working smoothly for learners around the world.
+Gestire questo sito richiede lavoro vero: server, software, hosting dei video, aggiornamenti di sicurezza e il tempo
+per far funzionare bene centinaia di lezioni e strumenti per chi studia in tutto il mondo.
 </p>
 <p>
-A <strong><?= htmlspecialchars($supporter_label) ?></strong> contribution is optional. It helps cover those costs
-and keeps <?= htmlspecialchars($site_name) ?> available for the next student who finds their way here.
-In return, you receive <?= htmlspecialchars($premium_period) ?> of supporter status on your profile — a small thank-you, not a feature unlock.
+Il contributo <strong><?= htmlspecialchars($supporter_label) ?></strong> è facoltativo. Aiuta a coprire questi costi
+e tiene <?= htmlspecialchars($site_name) ?> a disposizione del prossimo studente che arriva qui.
+In cambio ricevi sul tuo profilo lo stato di sostenitore per <?= htmlspecialchars($premium_period) ?>: è un piccolo grazie, non sblocca funzioni in più.
 </p>
 </div>
 
@@ -90,17 +90,17 @@ In return, you receive <?= htmlspecialchars($premium_period) ?> of supporter sta
 </div>
 */ ?>
 
-<h2><?= $extending ? 'Extend your support' : 'Become a supporter' ?></h2>
+<h2><?= $extending ? 'Prolunga il tuo sostegno' : 'Diventa un sostenitore' ?></h2>
 <?php if ($extending) { ?>
 <p>
-You already have <?= htmlspecialchars($supporter_label) ?> status<?php if ($until_label !== '') { ?>
- through <strong><?= htmlspecialchars($until_label) ?></strong><?php } ?>.
-Another contribution adds <?= htmlspecialchars($premium_period) ?> to that date.
+Hai già lo stato di <?= htmlspecialchars($supporter_label) ?><?php if ($until_label !== '') { ?>
+, con scadenza <strong><?= htmlspecialchars($until_label) ?></strong><?php } ?>.
+Un altro contributo aggiunge <?= htmlspecialchars($premium_period) ?> a quella data.
 </p>
 <?php } ?>
 <p>
-Payments are processed securely through our payment provider. The exact amount in your currency is shown
-on the next screen<?php if ($price_phrase !== '') { ?>
+I pagamenti passano in modo sicuro attraverso il nostro fornitore di servizi di pagamento. L'importo esatto nella tua valuta
+compare nella schermata successiva<?php if ($price_phrase !== '') { ?>
  (<?= htmlspecialchars($price_phrase) ?>)<?php } ?>.
 <?php if ($refund_policy !== '') { ?>
 <em><?= htmlspecialchars($refund_policy) ?></em>
@@ -110,12 +110,12 @@ on the next screen<?php if ($price_phrase !== '') { ?>
 <div class="support-cta">
 <p style="margin: 0;">
 <?= $extending
-    ? 'Ready to add ' . htmlspecialchars($premium_period) . '? Continue to checkout when you are set.'
-    : 'Ready to help? Continue to checkout when you are set.' ?>
+    ? 'Vuoi aggiungere ' . htmlspecialchars($premium_period) . '? Quando sei pronto, vai al pagamento.'
+    : 'Vuoi dare una mano? Quando sei pronto, vai al pagamento.' ?>
 </p>
 <p style="margin: 0.5rem 0 0;">
-<a href="<?= htmlspecialchars($stripe_url) ?>" class="btn btn-success">Continue to payment</a>
-<a href="<?= htmlspecialchars(rtrim($CFG->apphome, '/') . '/profile') ?>" class="btn btn-default">Back to profile</a>
+<a href="<?= htmlspecialchars($stripe_url) ?>" class="btn btn-success">Vai al pagamento</a>
+<a href="<?= htmlspecialchars(rtrim($CFG->apphome, '/') . '/profile') ?>" class="btn btn-default">Torna al profilo</a>
 </p>
 </div>
 </main>
