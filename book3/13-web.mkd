@@ -129,7 +129,7 @@ Ecco una codifica JSON più o meno equivalente al semplice XML visto sopra:
 }
 ~~~~
 
-Noterai alcune differenze. Innanzitutto, in XML possiamo aggiungere attributi come `intl` al tag `phone`. In JSON abbiamo semplicemente coppie chiave-valore. Inoltre il tag XML `person` è scomparso, sostituito da una coppia di parentesi graffe esterne.
+Noterai alcune differenze. Innanzitutto, in XML possiamo aggiungere al tag `phone` attributi come `type="intl"`. In JSON abbiamo semplicemente coppie chiave-valore. Inoltre il tag XML `person` è scomparso, sostituito da una coppia di parentesi graffe esterne.
 
 In generale le strutture JSON sono più semplici di quelle XML, perché JSON offre meno funzionalità di XML. Ma JSON ha il vantaggio di corrispondere *direttamente* a una qualche combinazione di dizionari e liste. E poiché quasi tutti i linguaggi di programmazione hanno qualcosa di equivalente ai dizionari e alle liste di Python, JSON è un formato molto naturale per far scambiare dati a due programmi che collaborano.
 
