@@ -88,7 +88,7 @@ Recuperare un'immagine tramite HTTP
 \index{immagine!jpg}
 \index{jpg}
 
-Nell'esempio precedente abbiamo recuperato un file di solo testo che conteneva dei newline (il carattere di fine riga) e ci siamo limitati a copiare i dati sullo schermo mentre il programma veniva eseguito. Possiamo usare un programma simile per recuperare un'immagine tramite HTTP. Invece di copiare i dati sullo schermo durante l'esecuzione, li accumuliamo in una stringa, togliamo le intestazioni e poi salviamo i dati dell'immagine in un file, come segue:
+Nell'esempio precedente abbiamo recuperato un file di solo testo che conteneva dei newline (caratteri di fine riga) e ci siamo limitati a copiare i dati sullo schermo mentre il programma veniva eseguito. Possiamo usare un programma simile per recuperare un'immagine tramite HTTP. Invece di copiare i dati sullo schermo durante l'esecuzione, li accumuliamo in una stringa, togliamo le intestazioni e poi salviamo i dati dell'immagine in un file, come segue:
 
 \VerbatimInput{../code3/urljpeg.py}
 
@@ -160,14 +160,14 @@ Content-Type: image/jpeg
 
 Ora, tranne che nella prima e nell'ultima chiamata a `recv()`, riceviamo 5120 caratteri ogni volta che chiediamo nuovi dati.
 
-Tra il server che fa richieste `send()` e la nostra applicazione che fa richieste `recv()` c'è un buffer. Quando eseguiamo il programma con il ritardo attivo, a un certo punto il server potrebbe riempire il buffer del socket ed essere costretto a fermarsi finché il nostro programma non comincia a svuotarlo. La pausa dell'applicazione che invia o di quella che riceve si chiama "controllo di flusso" (flow control).
+Tra il server che fa richieste `send()` e la nostra applicazione che fa richieste `recv()` c'è un buffer. Quando eseguiamo il programma con il ritardo attivo, a un certo punto il server potrebbe riempire il buffer del socket ed essere costretto a fermarsi finché il nostro programma non comincia a svuotarlo. La pausa dell'applicazione che invia o di quella che riceve si chiama *controllo di flusso* (flow control).
 
 \index{controllo di flusso}
 
 Recuperare pagine web con `urllib`
 ---------------------------------------------
 
-Anche se possiamo inviare e ricevere a mano dati via HTTP con la libreria `socket`, in Python c'è un modo molto più semplice per svolgere questo compito comune: usare la libreria `urllib`.
+Anche se con la libreria `socket` possiamo inviare e ricevere dati via HTTP a mano, in Python c'è un modo molto più semplice per svolgere questo compito comune: usare la libreria `urllib`.
 
 Con `urllib` puoi trattare una pagina web in modo molto simile a un file. Ti basta indicare quale pagina web vuoi recuperare, e `urllib` gestisce tutti i dettagli del protocollo HTTP e delle intestazioni.
 
@@ -195,7 +195,7 @@ Di nuovo, una volta aperta la pagina web, possiamo leggerla come un file locale.
 Leggere file binari con `urllib`
 -----------------------------------
 
-A volte vuoi recuperare un file non di testo (o binario), come un'immagine o un video. Di solito stampare i dati di questi file non serve, ma con `urllib` puoi facilmente fare una copia di un URL in un file locale sul disco rigido.
+A volte vuoi recuperare un file non testuale (o binario), come un'immagine o un video. Di solito stampare i dati di questi file non serve, ma con `urllib` puoi facilmente fare una copia di un URL in un file locale sul disco rigido.
 
 \index{file binario}
 
@@ -252,14 +252,14 @@ Possiamo costruire un'espressione regolare ben formata che individui ed estragga
 href="http[s]?://.+?"
 ~~~~
 
-L'espressione regolare cerca le stringhe che iniziano con `href="http://` o `href="https://`, seguite da uno o più caratteri (`.+?`) e poi di nuovo da virgolette doppie. Il punto interrogativo di `[s]?` indica di cercare la stringa `http` seguita da zero o una `s`.
+L'espressione regolare cerca le stringhe che iniziano con `href="http://` o `href="https://`, seguite da uno o più caratteri (`.+?`) e poi da un'altra virgoletta doppia. Il punto interrogativo di `[s]?` indica di cercare la stringa `http` seguita da zero o una `s`.
 
-Il punto interrogativo aggiunto a `.+?` indica che la corrispondenza va cercata in modo "non avido" (non-greedy) invece che in modo "avido" (greedy). Una corrispondenza non avida cerca la stringa corrispondente *più corta* possibile, mentre una corrispondenza avida cerca quella *più lunga* possibile.
+Il punto interrogativo aggiunto a `.+?` indica che la corrispondenza va cercata in modo *non avido* (non-greedy) invece che in modo *avido* (greedy). Una corrispondenza non avida cerca la stringa corrispondente *più corta* possibile, mentre una corrispondenza avida cerca quella *più lunga* possibile.
 
 \index{avido}
 \index{non avido}
 
-Aggiungiamo all'espressione regolare delle parentesi per indicare quale parte della stringa trovata vogliamo estrarre, e otteniamo il programma seguente:
+Aggiungiamo all'espressione regolare delle parentesi tonde per indicare quale parte della stringa trovata vogliamo estrarre, e otteniamo il programma seguente:
 
 \index{regex!parentesi}
 \index{parentesi!espressione regolare}
@@ -297,7 +297,7 @@ Analizzare l'HTML con BeautifulSoup
 
 \index{BeautifulSoup}
 
-Anche se l'HTML somiglia all'XML^[Il formato XML è descritto nel prossimo capitolo.] e alcune pagine sono costruite con cura per essere XML, la maggior parte dell'HTML contiene di solito errori che portano un parser XML a rifiutare l'intera pagina HTML come malformata.
+Anche se l'HTML somiglia a XML^[Il formato XML è descritto nel prossimo capitolo.] e alcune pagine sono costruite con cura per essere XML, la maggior parte dell'HTML contiene di solito errori che portano un parser XML a rifiutare l'intera pagina HTML come malformata.
 
 Esistono diverse librerie Python che possono aiutarti ad analizzare l'HTML e a estrarre dati dalle pagine. Ognuna ha i suoi punti di forza e di debolezza, e puoi sceglierne una in base alle tue esigenze.
 
@@ -425,7 +425,7 @@ Glossario
 \index{porta}
 
 **Scraping**
-: L'attività di un programma che finge di essere un browser web, recupera una pagina web e poi ne esamina il contenuto. Spesso i programmi seguono i link di una pagina per trovare la pagina successiva, così da poter scorrere una rete di pagine o un social network.
+: L'attività di un programma che finge di essere un browser web, recupera una pagina web e poi ne esamina il contenuto. Spesso i programmi seguono i link di una pagina per trovare la pagina successiva, così da poter percorrere una rete di pagine o un social network.
 \index{scraping}
 
 **Socket**
@@ -433,7 +433,7 @@ Glossario
 \index{socket}
 
 **Spider**
-: L'attività di un motore di ricerca web che recupera una pagina, poi tutte le pagine a cui rimanda, e così via, finché non ha quasi tutte le pagine di Internet, che usa per costruire il proprio indice di ricerca.
+: L'attività di un motore di ricerca web che recupera una pagina, poi tutte le pagine a cui questa rimanda, e così via, finché non ha raccolto quasi tutte le pagine di Internet, che usa per costruire il proprio indice di ricerca.
 \index{spider}
 
 Esercizi
