@@ -611,3 +611,71 @@ c) `x - 1`\
 d) Errore perché `x = x - 1` non è matematicamente possibile
 
 **Esercizio 8:** Spiega ognuno dei seguenti elementi usando come esempio una capacità umana: (1) CPU, (2) memoria principale, (3) memoria secondaria, (4) dispositivo di input e (5) dispositivo di output. Ad esempio: "Qual è l'equivalente umano di una CPU?"
+
+Facciamolo assieme
+------------------
+
+**Obiettivo:** Alla fine di questo esercizio avrai scritto il tuo primo programma, che stampa tre righe su di te. Avrai anche visto con i tuoi occhi un `SyntaxError` e come si corregge.
+
+**Passaggi:**
+
+1.  Apri un editor di testo e crea un file chiamato `biglietto.py`.
+
+2.  Scrivi tre istruzioni `print`, una per riga, che stampino il tuo nome, il tuo passatempo preferito e perché stai imparando Python. Ricordati di mettere il testo tra virgolette.
+
+3.  Esegui il programma con `python biglietto.py` (su Linux e macOS spesso `python3 biglietto.py`) e controlla che stampi le tre righe.
+
+4.  Ora togli di proposito la virgoletta di chiusura da una delle tre righe ed esegui di nuovo il programma. Leggi con calma il `SyntaxError` che Python mostra: dice dove si trova il problema?
+
+5.  Rimetti la virgoletta al suo posto ed esegui di nuovo il programma: deve tornare a funzionare come al passaggio 3.
+
+Ad esempio, se al passaggio 4 togli la virgoletta di chiusura dalla seconda riga, Python mostra:
+
+~~~~
+$ python biglietto.py
+  File "biglietto.py", line 2
+    print("Il mio passatempo preferito è leggere)
+          ^
+SyntaxError: unterminated string literal (detected at line 2)
+~~~~
+
+Python indica la riga del problema (`line 2`) e, con il segno `^`, il punto in cui comincia la stringa. `unterminated string literal` vuol dire che la stringa non è chiusa: manca la virgoletta di chiusura.
+
+**Il programma finito:**
+
+~~~~ {.python}
+print("Mi chiamo Alex")
+print("Il mio passatempo preferito è leggere")
+print("Sto imparando Python per automatizzare compiti noiosi")
+~~~~
+
+Quando lo esegui, stampa:
+
+~~~~
+$ python biglietto.py
+Mi chiamo Alex
+Il mio passatempo preferito è leggere
+Sto imparando Python per automatizzare compiti noiosi
+~~~~
+
+Prova da solo
+-------------
+
+**Consegna:** Scrivi un programma che stampi una piccola scheda su un libro che hai letto: il titolo, l'autore e, in una riga, perché ti è piaciuto. Usa tre istruzioni `print`, come nell'esercizio precedente, ma con un contenuto tuo.
+
+**Una possibile soluzione:**
+
+~~~~ {.python}
+print("Titolo: Il visconte dimezzato")
+print("Autore: Italo Calvino")
+print("Perché mi è piaciuto: la storia è breve ma fa pensare")
+~~~~
+
+Se salvi il programma in `scheda.py` e lo esegui, stampa:
+
+~~~~
+$ python scheda.py
+Titolo: Il visconte dimezzato
+Autore: Italo Calvino
+Perché mi è piaciuto: la storia è breve ma fa pensare
+~~~~

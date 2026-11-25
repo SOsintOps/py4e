@@ -394,3 +394,94 @@ Enter a number: done
 
 
 **Esercizio 2:** Scrivi un altro programma che chieda un elenco di numeri come sopra e alla fine stampi sia il massimo sia il minimo dei numeri, invece della media.
+
+Facciamolo assieme
+------------------
+
+**Obiettivo:** Alla fine di questo esercizio avrai scritto un ciclo `while` che conta quanti numeri positivi inserisce l'utente, finché non digita `fine`. Userai `break` per uscire dal ciclo e `continue` per saltare i numeri che non sono positivi.
+
+**Passaggi:**
+
+1.  Crea un file chiamato `conta_positivi.py`.
+
+2.  Inizializza un contatore: `conteggio = 0`.
+
+3.  Scrivi un ciclo `while True:` che a ogni iterazione chieda con `input()` un numero o la parola `fine`. Memorizza la risposta in una variabile `riga`.
+
+4.  Se l'utente digita `fine`, esci dal ciclo con `break`.
+
+5.  Altrimenti converti `riga` in un intero con `int()`. Se il numero non è positivo, usa `continue` per passare all'iterazione successiva senza contarlo.
+
+6.  Se il numero è positivo, aumenta il contatore di uno.
+
+7.  Dopo il ciclo, stampa quanti numeri positivi sono stati inseriti.
+
+8.  Esegui il programma con `python conta_positivi.py` (su Linux e macOS spesso `python3 conta_positivi.py`).
+
+**Il programma finito:**
+
+~~~~ {.python}
+conteggio = 0
+while True:
+    riga = input("Inserisci un numero positivo (o 'fine' per finire): ")
+    if riga == "fine":
+        break
+    numero = int(riga)
+    if numero <= 0:
+        continue
+    conteggio = conteggio + 1
+print("Numeri positivi inseriti:", conteggio)
+~~~~
+
+Quando lo esegui e inserisci `5`, `-2`, `7` e poi `fine`, stampa:
+
+~~~~
+$ python conta_positivi.py
+Inserisci un numero positivo (o 'fine' per finire): 5
+Inserisci un numero positivo (o 'fine' per finire): -2
+Inserisci un numero positivo (o 'fine' per finire): 7
+Inserisci un numero positivo (o 'fine' per finire): fine
+Numeri positivi inseriti: 2
+~~~~
+
+Il numero `-2` non viene contato: quando il programma esegue `continue`, salta l'istruzione che aumenta il contatore e torna all'inizio del ciclo.
+
+Prova da solo
+-------------
+
+**Consegna:** Scrivi un programma che legga dei numeri dalla tastiera finché l'utente non digita `fatto`. Alla fine stampa quanti numeri sono stati inseriti, la loro somma e il più grande.
+
+**Una possibile soluzione:**
+
+~~~~ {.python}
+conteggio = 0
+somma = 0
+massimo = None
+while True:
+    riga = input("Inserisci un numero (o 'fatto' per finire): ")
+    if riga == "fatto":
+        break
+    numero = float(riga)
+    conteggio = conteggio + 1
+    somma = somma + numero
+    if massimo is None or numero > massimo:
+        massimo = numero
+print("Quanti numeri:", conteggio)
+print("Somma:", somma)
+print("Il più grande:", massimo)
+~~~~
+
+Se salvi il programma in `numeri.py` e lo esegui con `4`, `10`, `2` e poi `fatto`, stampa:
+
+~~~~
+$ python numeri.py
+Inserisci un numero (o 'fatto' per finire): 4
+Inserisci un numero (o 'fatto' per finire): 10
+Inserisci un numero (o 'fatto' per finire): 2
+Inserisci un numero (o 'fatto' per finire): fatto
+Quanti numeri: 3
+Somma: 16.0
+Il più grande: 10.0
+~~~~
+
+La somma e il più grande hanno il punto decimale (`16.0`, `10.0`) perché il programma converte i numeri con `float()`.

@@ -575,3 +575,96 @@ F
 
 
 Esegui più volte il programma, come mostrato sopra, per testare i diversi valori di input.
+
+Facciamolo assieme
+------------------
+
+**Obiettivo:** Alla fine di questo esercizio avrai scritto un programma che assegna un giudizio a un voto da 0 a 30 con una condizione concatenata (`if`, `elif` ed `else`). Il programma non si ferma con un traceback se l'utente scrive qualcosa che non è un numero.
+
+**Passaggi:**
+
+1.  Crea un file chiamato `giudizio.py`.
+
+2.  Chiedi un voto con `input()` e convertilo in un intero con `int()`.
+
+3.  Con una condizione concatenata assegna un giudizio a una variabile `giudizio`: `"ottimo"` da 28 in su, `"buono"` da 24 a 27, `"sufficiente"` da 18 a 23, `"insufficiente"` sotto il 18.
+
+4.  Stampa il giudizio.
+
+5.  Esegui il programma con `python giudizio.py` (su Linux e macOS spesso `python3 giudizio.py`) e inserisci `28`. Poi eseguilo di nuovo e, al posto di un numero, digita `abc`: cosa succede?
+
+6.  Metti le istruzioni dei passaggi 2-4 dentro un blocco `try`, con l'indentazione, e aggiungi un blocco `except` che stampi un messaggio gentile al posto del traceback.
+
+7.  Esegui di nuovo il programma e digita `abc`: ora stampa il tuo messaggio.
+
+Al passaggio 5, quando digiti `abc`, Python mostra:
+
+~~~~
+$ python giudizio.py
+Inserisci un voto da 0 a 30: abc
+Traceback (most recent call last):
+  File "giudizio.py", line 1, in <module>
+    voto = int(input("Inserisci un voto da 0 a 30: "))
+ValueError: invalid literal for int() with base 10: 'abc'
+~~~~
+
+Il traceback dice che il problema è alla riga 1 (`line 1`): `int()` non riesce a convertire `abc` in un intero. È lo stesso `ValueError` che hai visto in questo capitolo, e il programma si ferma prima di stampare il giudizio.
+
+**Il programma finito:**
+
+~~~~ {.python}
+try:
+    voto = int(input("Inserisci un voto da 0 a 30: "))
+    if voto >= 28:
+        giudizio = "ottimo"
+    elif voto >= 24:
+        giudizio = "buono"
+    elif voto >= 18:
+        giudizio = "sufficiente"
+    else:
+        giudizio = "insufficiente"
+    print("Giudizio: " + giudizio)
+except:
+    print("Devi inserire un numero intero.")
+~~~~
+
+Quando lo esegui due volte, prima con `28` e poi con `abc`, stampa:
+
+~~~~
+$ python giudizio.py
+Inserisci un voto da 0 a 30: 28
+Giudizio: ottimo
+$ python giudizio.py
+Inserisci un voto da 0 a 30: abc
+Devi inserire un numero intero.
+~~~~
+
+Prova da solo
+-------------
+
+**Consegna:** Scrivi un programma che chieda un numero intero e dica, in una sola frase, se è positivo, negativo o zero, e se è pari o dispari.
+
+**Una possibile soluzione:**
+
+~~~~ {.python}
+numero = int(input("Inserisci un numero intero: "))
+if numero > 0:
+    segno = "positivo"
+elif numero < 0:
+    segno = "negativo"
+else:
+    segno = "zero"
+if numero % 2 == 0:
+    parita = "pari"
+else:
+    parita = "dispari"
+print(str(numero) + " è " + segno + " e " + parita)
+~~~~
+
+Se salvi il programma in `pari_dispari.py` e lo esegui con `-4`, stampa:
+
+~~~~
+$ python pari_dispari.py
+Inserisci un numero intero: -4
+-4 è negativo e pari
+~~~~

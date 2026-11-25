@@ -715,3 +715,86 @@ F
 
 
 Esegui più volte il programma per testare i diversi valori di input.
+
+Facciamolo assieme
+------------------
+
+**Obiettivo:** Alla fine di questo esercizio avrai scritto una funzione produttiva che converte una temperatura da Celsius a Fahrenheit. La chiamerai più volte con valori diversi e la proverai su una temperatura scelta a caso con il modulo `random`.
+
+**Passaggi:**
+
+1.  Crea un file chiamato `temperatura.py`.
+
+2.  Definisci una funzione `fahrenheit_da_celsius(celsius)` che restituisca con `return` il valore di `celsius * 9 / 5 + 32`.
+
+3.  Chiama la funzione tre volte, con 0, 37 e 100 gradi, e stampa ogni risultato. Scrivi le tre chiamate una dopo l'altra: i cicli, che ripetono le istruzioni al posto tuo, arrivano nel Capitolo 5.
+
+4.  All'inizio del file importa il modulo `random`. Poi usa `random.randint(-10, 40)` per ottenere una temperatura casuale in gradi Celsius.
+
+5.  Passa quella temperatura alla tua funzione e stampa sia il valore in Celsius sia quello in Fahrenheit.
+
+6.  Esegui il programma con `python temperatura.py` (su Linux e macOS spesso `python3 temperatura.py`) un paio di volte.
+
+**Il programma finito:**
+
+~~~~ {.python}
+import random
+
+def fahrenheit_da_celsius(celsius):
+    return celsius * 9 / 5 + 32
+
+print(fahrenheit_da_celsius(0))
+print(fahrenheit_da_celsius(37))
+print(fahrenheit_da_celsius(100))
+
+celsius_casuale = random.randint(-10, 40)
+fahrenheit_casuale = fahrenheit_da_celsius(celsius_casuale)
+print("Temperatura casuale: " + str(celsius_casuale) + " gradi C")
+print("In Fahrenheit: " + str(fahrenheit_casuale) + " gradi F")
+~~~~
+
+Quando lo esegui, stampa ad esempio:
+
+~~~~
+$ python temperatura.py
+32.0
+98.6
+212.0
+Temperatura casuale: 36 gradi C
+In Fahrenheit: 96.8 gradi F
+~~~~
+
+Le prime tre righe sono sempre uguali. Le ultime due cambiano a ogni esecuzione, perché la temperatura viene scelta a caso.
+
+Prova da solo
+-------------
+
+**Consegna:** Scrivi due funzioni produttive. La prima, `e_pari(n)` ("è pari", senza accento), restituisce `True` se `n` è pari e `False` altrimenti. La seconda, `area_cerchio(raggio)`, restituisce l'area di un cerchio, cioè pi greco per il quadrato del raggio. Per pi greco puoi usare `3.14159`, oppure `math.pi`, che hai visto in questo capitolo. Chiama ogni funzione un paio di volte con valori diversi, per controllare che funzioni.
+
+**Una possibile soluzione:**
+
+~~~~ {.python}
+def e_pari(n):
+    return n % 2 == 0
+
+def area_cerchio(raggio):
+    pi_greco = 3.14159
+    return pi_greco * raggio ** 2
+
+print(e_pari(4))
+print(e_pari(7))
+print(area_cerchio(2))
+print(area_cerchio(5))
+~~~~
+
+Se salvi il programma in `funzioni.py` e lo esegui, stampa:
+
+~~~~
+$ python funzioni.py
+True
+False
+12.56636
+78.53975
+~~~~
+
+Se usi `math.pi` al posto di `3.14159`, le aree hanno più cifre decimali.

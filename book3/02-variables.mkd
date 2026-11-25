@@ -697,3 +697,78 @@ Per ciascuna delle seguenti espressioni, scrivi il valore dell'espressione e il 
 Usa l'interprete Python per controllare le tue risposte.
 
 **Esercizio 5:** Scrivi un programma che chieda all'utente una temperatura in gradi Celsius, la converta in gradi Fahrenheit e stampi la temperatura convertita.
+
+Facciamolo assieme
+------------------
+
+**Obiettivo:** Alla fine di questo esercizio avrai scritto un programma che chiede all'utente il nome e l'età e calcola in che anno compirà 100 anni. Metterai insieme le variabili, la funzione `input`, la conversione con `int()` e la concatenazione di stringhe.
+
+**Passaggi:**
+
+1.  Crea un file chiamato `secolo.py`.
+
+2.  Chiedi il nome all'utente con `input()` e memorizzalo in una variabile `nome`.
+
+3.  Chiedi l'età con `input()`. Metti la chiamata a `input()` dentro `int(...)`, così la risposta viene subito convertita in un numero intero, e memorizza il risultato in una variabile `eta`. Il nome è senza accento, come consiglia la nota sui nomi delle variabili in questo capitolo.
+
+4.  Calcola quanti anni mancano ai 100 con `100 - eta` e memorizza il risultato in `anni_al_secolo`.
+
+5.  Supponi che l'anno corrente sia il 2026 e calcola l'anno in cui l'utente compirà 100 anni: somma `anni_al_secolo` all'anno corrente.
+
+6.  Stampa un saluto e poi l'anno, unendo testo e valori con l'operatore `+`. Per unire un numero a una stringa devi prima trasformare il numero in una stringa con la funzione `str()`: ad esempio `str(2096)` restituisce la stringa `'2096'`. Vedrai meglio la funzione `str()` nel Capitolo 4.
+
+7.  Esegui il programma con `python secolo.py` (su Linux e macOS spesso `python3 secolo.py`) e rispondi alle due domande.
+
+**Il programma finito:**
+
+~~~~ {.python}
+nome = input("Come ti chiami? ")
+eta = int(input("Quanti anni hai? "))
+anni_al_secolo = 100 - eta
+anno_corrente = 2026
+anno_del_secolo = anno_corrente + anni_al_secolo
+print("Ciao " + nome + "!")
+print("Compirai 100 anni nel " + str(anno_del_secolo) + ".")
+~~~~
+
+Quando lo esegui e rispondi `Alex` e `30`, stampa:
+
+~~~~
+$ python secolo.py
+Come ti chiami? Alex
+Quanti anni hai? 30
+Ciao Alex!
+Compirai 100 anni nel 2096.
+~~~~
+
+Prova da solo
+-------------
+
+**Consegna:** Scrivi una piccola calcolatrice. Chiedi all'utente due numeri interi con `input()` e convertili con `int()`. Poi stampa la loro somma, la differenza, il prodotto, il quoziente e il resto (operatore `%`), una riga per ciascuno.
+
+**Una possibile soluzione:**
+
+~~~~ {.python}
+a = int(input("Primo numero: "))
+b = int(input("Secondo numero: "))
+print("Somma: " + str(a + b))
+print("Differenza: " + str(a - b))
+print("Prodotto: " + str(a * b))
+print("Quoziente: " + str(a / b))
+print("Resto: " + str(a % b))
+~~~~
+
+Se salvi il programma in `calcolatrice.py` e lo esegui con `10` e `3`, stampa:
+
+~~~~
+$ python calcolatrice.py
+Primo numero: 10
+Secondo numero: 3
+Somma: 13
+Differenza: 7
+Prodotto: 30
+Quoziente: 3.3333333333333335
+Resto: 1
+~~~~
+
+Il quoziente ha il punto decimale anche se `10` e `3` sono interi: in Python 3 l'operatore `/` dà sempre un numero in virgola mobile (per il quoziente intero senza parte decimale si usa `//`).
