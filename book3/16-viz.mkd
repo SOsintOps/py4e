@@ -356,3 +356,110 @@ L'output viene scritto in `gline.js`, che si visualizza con `gline.htm`.
 ![Attività di posta di Sakai per organizzazione](../images/mailorg)
 
 Si tratta di un'applicazione relativamente complessa e sofisticata, con funzionalità per un vero lavoro di recupero, pulizia e visualizzazione dei dati.
+
+Facciamolo assieme
+------------------
+
+**Obiettivo:** Alla fine di questo esercizio avrai scritto una versione in miniatura dell'idea alla base di `gword.py`: conterai quante volte compare ogni parola in un testo e troverai le parole più frequenti. È il primo passo verso una nuvola di parole.
+
+**Passaggi:**
+
+1.  Crea un file chiamato `parole.py`.
+
+2.  Memorizza alcune frasi in una variabile `testo`. Per scrivere una stringa su più righe usa le virgolette triple, come hai visto nel Capitolo 13 (e nei comandi SQL su più righe del Capitolo 15).
+
+3.  Trasforma il testo in minuscolo con `lower()`, togli la punteggiatura con `replace()` e dividi il testo in parole con `split()`.
+
+4.  Costruisci un dizionario `conteggio` che conta quante volte compare ogni parola, con `conteggio.get(parola, 0) + 1`.
+
+5.  Ordina le parole per frequenza, come nella sezione "Le parole più comuni" del Capitolo 10: costruisci una lista di tuple `(volte, parola)`, con il conteggio come primo elemento, e ordinala con `sort(reverse=True)`.
+
+6.  Stampa il numero totale di parole, il numero di parole distinte e le tre parole più frequenti.
+
+7.  Esegui il programma con `python parole.py` (su Linux e macOS spesso `python3 parole.py`).
+
+**Il programma finito:**
+
+~~~~ {.python}
+testo = """Python è un linguaggio semplice. Python è anche potente.
+Imparare Python apre molte porte: con Python puoi fare automazione,
+analisi dei dati e molto altro."""
+
+parole = testo.lower()
+for segno in [',', '.', ':']:
+    parole = parole.replace(segno, '')
+parole = parole.split()
+
+conteggio = dict()
+for parola in parole:
+    conteggio[parola] = conteggio.get(parola, 0) + 1
+
+classifica = list()
+for parola, volte in list(conteggio.items()):
+    classifica.append((volte, parola))
+classifica.sort(reverse=True)
+
+print('Parole totali:', len(parole))
+print('Parole distinte:', len(conteggio))
+print('Le 3 parole più frequenti:')
+for volte, parola in classifica[:3]:
+    print(' ', parola, '->', volte)
+~~~~
+
+Quando lo esegui, stampa:
+
+~~~~
+$ python parole.py
+Parole totali: 25
+Parole distinte: 21
+Le 3 parole più frequenti:
+  python -> 4
+  è -> 2
+  un -> 1
+~~~~
+
+Le parole sono 25, ma quelle distinte sono 21, perché `python` compare quattro volte ed `è` due volte. Le altre parole compaiono una volta sola: a parità di conteggio, `sort` confronta il secondo elemento delle tuple e, con `reverse=True`, mette le parole in ordine alfabetico inverso. Per questo al terzo posto c'è `un`.
+
+Prova da solo
+-------------
+
+**Consegna:** Il programma `geoload.py` di questo capitolo usa il database come cache: prima di chiamare l'API di geocodifica controlla se ha già i dati di una località. Prova la stessa idea con un dizionario usato come cache. Scrivi una funzione `calcola_quadrato(numero)` che prima controlla se il numero è già nella cache: se c'è, restituisce subito il suo quadrato senza ricalcolarlo; altrimenti lo calcola, lo memorizza nella cache e lo restituisce. Chiama la funzione su una lista di numeri con qualche ripetizione e stampa, per ogni numero, se il risultato era già nella cache o è stato calcolato. Alla fine stampa quanti valori distinti sono stati calcolati davvero.
+
+**Una possibile soluzione:**
+
+~~~~ {.python}
+import time
+
+cache = dict()
+
+def calcola_quadrato(numero):
+    if numero in cache:
+        print(numero, '-> trovato in cache:', cache[numero])
+        return cache[numero]
+    time.sleep(0.2)
+    risultato = numero ** 2
+    cache[numero] = risultato
+    print(numero, '-> calcolato ora:', risultato)
+    return risultato
+
+numeri = [3, 5, 3, 8, 5, 3]
+for n in numeri:
+    calcola_quadrato(n)
+
+print('Valori distinti calcolati:', len(cache))
+~~~~
+
+Se salvi il programma in `quadrati.py` e lo esegui, stampa:
+
+~~~~
+$ python quadrati.py
+3 -> calcolato ora: 9
+5 -> calcolato ora: 25
+3 -> trovato in cache: 9
+8 -> calcolato ora: 64
+5 -> trovato in cache: 25
+3 -> trovato in cache: 9
+Valori distinti calcolati: 3
+~~~~
+
+La chiamata `time.sleep(0.2)` ferma il programma per due decimi di secondo e simula un calcolo lento, come una richiesta a un'API. Quando esegui il programma, le righe con "calcolato ora" compaiono con un piccolo ritardo, quelle con "trovato in cache" subito: la cache fa risparmiare tempo quando lo stesso valore serve più volte.

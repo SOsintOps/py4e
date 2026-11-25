@@ -378,3 +378,98 @@ Glossario
 **Oggetto**
 : Un'istanza costruita a partire da una classe. Un oggetto contiene tutti gli attributi e i metodi definiti dalla classe. Parte della documentazione sulla programmazione orientata agli oggetti usa il termine "istanza" in modo intercambiabile con "oggetto".
 \index{oggetto}
+
+Facciamolo assieme
+------------------
+
+**Obiettivo:** Alla fine di questo esercizio avrai scritto la tua prima classe, `Libro`. Il costruttore imposta il titolo e l'autore, e un metodo tiene il conto di quante volte il libro è stato "letto". Vedrai anche che ogni istanza ha i suoi attributi, come nella sezione "Più istanze".
+
+**Passaggi:**
+
+1.  Crea un file chiamato `libri.py`.
+
+2.  Definisci la classe `Libro` con la parola chiave `class`: `class Libro:`.
+
+3.  Scrivi il costruttore `__init__(self, titolo, autore)`. Con la notazione puntata imposta gli attributi `self.titolo` e `self.autore`, e inizializza a zero l'attributo `self.letture`.
+
+4.  Scrivi il metodo `descrivi(self)`: aumenta `self.letture` di uno e stampa il titolo, l'autore e il numero di letture. La chiamata a `print` è lunga: puoi andare a capo dopo una virgola, perché Python sa che la chiamata continua finché non trova la parentesi di chiusura.
+
+5.  Crea due istanze di `Libro`, `libro1` e `libro2`, con titoli e autori diversi.
+
+6.  Chiama `descrivi()` due volte su `libro1` e una volta su `libro2`.
+
+7.  Esegui il programma con `python libri.py` (su Linux e macOS spesso `python3 libri.py`).
+
+**Il programma finito:**
+
+~~~~ {.python}
+class Libro:
+
+    def __init__(self, titolo, autore):
+        self.titolo = titolo
+        self.autore = autore
+        self.letture = 0
+
+    def descrivi(self):
+        self.letture = self.letture + 1
+        print(self.titolo, 'di', self.autore,
+              '- letture:', self.letture)
+
+libro1 = Libro('Il nome della rosa', 'Umberto Eco')
+libro2 = Libro('Se questo è un uomo', 'Primo Levi')
+
+libro1.descrivi()
+libro1.descrivi()
+libro2.descrivi()
+~~~~
+
+Quando lo esegui, stampa:
+
+~~~~
+$ python libri.py
+Il nome della rosa di Umberto Eco - letture: 1
+Il nome della rosa di Umberto Eco - letture: 2
+Se questo è un uomo di Primo Levi - letture: 1
+~~~~
+
+Il contatore di `libro2` parte da 1 anche se `libro1` è già stato letto due volte: ogni istanza ha il suo attributo `letture`, e il metodo `descrivi` aumenta solo quello dell'istanza su cui lo chiami.
+
+Prova da solo
+-------------
+
+**Consegna:** Scrivi una classe `Animale` con un costruttore che imposta l'attributo `nome` e con un metodo `verso()` che stampa un verso generico. Poi scrivi una classe `Cane` che estende `Animale` e definisce un suo metodo `verso()`, con lo stesso nome, che stampa l'abbaiare del cane. Crea un'istanza di ciascuna classe e chiama `verso()` su entrambe. Infine stampa il tipo dell'istanza di `Cane` con `type`, come nella sezione "Le classi come tipi".
+
+**Una possibile soluzione:**
+
+~~~~ {.python}
+class Animale:
+
+    def __init__(self, nome):
+        self.nome = nome
+
+    def verso(self):
+        print(self.nome, 'fa un verso generico')
+
+class Cane(Animale):
+
+    def verso(self):
+        print(self.nome, 'abbaia: Bau!')
+
+animale = Animale('Creatura')
+cane = Cane('Fido')
+
+animale.verso()
+cane.verso()
+print(type(cane))
+~~~~
+
+Se salvi il programma in `animali.py` e lo esegui, stampa:
+
+~~~~
+$ python animali.py
+Creatura fa un verso generico
+Fido abbaia: Bau!
+<class '__main__.Cane'>
+~~~~
+
+La classe `Cane` non ha un suo costruttore: eredita quello di `Animale`, che imposta `self.nome`. Il metodo `verso()`, invece, è definito in tutte e due le classi, e per l'istanza `cane` Python usa quello della classe figlia. L'ultima riga dice che `cane` è un'istanza della classe `Cane`.

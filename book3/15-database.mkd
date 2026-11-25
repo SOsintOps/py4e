@@ -903,3 +903,113 @@ Glossario
 **Vincolo**
 : Una regola che chiediamo al database di far rispettare su un campo o su una riga di una tabella. Un vincolo comune è richiedere che in un campo non ci possano essere valori duplicati (cioè che tutti i valori siano univoci).
 \index{vincolo}
+
+Facciamolo assieme
+------------------
+
+**Obiettivo:** Alla fine di questo esercizio avrai creato un piccolo database SQLite con una tabella `Libro`. Inserirai due righe, le leggerai in ordine di anno e alla fine svuoterai la tabella. Sono gli stessi passi dei programmi `db1.py` e `db2.py` di questo capitolo.
+
+**Passaggi:**
+
+1.  Crea un file chiamato `biblioteca.py`.
+
+2.  Importa il modulo `sqlite3` e apri una connessione con `sqlite3.connect('biblioteca.sqlite')`.
+
+3.  Ottieni il cursore con `conn.cursor()`.
+
+4.  Elimina la tabella `Libro`, se esiste già, con `DROP TABLE IF EXISTS`. Poi ricreala con `CREATE TABLE` e due colonne: `titolo` di tipo `TEXT` e `anno` di tipo `INTEGER`.
+
+5.  Inserisci due righe con `INSERT`, usando i punti interrogativi al posto dei valori, e chiama `conn.commit()` per scrivere i dati nel file di database.
+
+6.  Recupera le righe con un `SELECT` e la clausola `ORDER BY anno`, e stampale scorrendo il cursore con un ciclo `for`.
+
+7.  Elimina tutte le righe con `DELETE FROM Libro`, chiama di nuovo `conn.commit()` e chiudi la connessione con `conn.close()`.
+
+8.  Esegui il programma con `python biblioteca.py` (su Linux e macOS spesso `python3 biblioteca.py`).
+
+**Il programma finito:**
+
+~~~~ {.python}
+import sqlite3
+
+conn = sqlite3.connect('biblioteca.sqlite')
+cur = conn.cursor()
+
+cur.execute('DROP TABLE IF EXISTS Libro')
+cur.execute('CREATE TABLE Libro (titolo TEXT, anno INTEGER)')
+
+cur.execute('INSERT INTO Libro (titolo, anno) VALUES (?, ?)',
+            ('Il nome della rosa', 1980))
+cur.execute('INSERT INTO Libro (titolo, anno) VALUES (?, ?)',
+            ('Se questo è un uomo', 1947))
+conn.commit()
+
+cur.execute('SELECT titolo, anno FROM Libro ORDER BY anno')
+for riga in cur:
+    print(riga)
+
+cur.execute('DELETE FROM Libro')
+conn.commit()
+conn.close()
+~~~~
+
+Quando lo esegui, stampa:
+
+~~~~
+$ python biblioteca.py
+('Se questo è un uomo', 1947)
+('Il nome della rosa', 1980)
+~~~~
+
+Ogni riga è una tupla con i valori delle due colonne. Le righe escono in ordine di anno, anche se le hai inserite nell'ordine opposto: è l'effetto di `ORDER BY anno`. Il comando `DELETE` del passaggio 7 non ha una clausola `WHERE`, quindi elimina tutte le righe della tabella. Puoi eseguire il programma tutte le volte che vuoi: a ogni esecuzione `DROP TABLE IF EXISTS` ricrea la tabella da capo e l'output resta lo stesso.
+
+Prova da solo
+-------------
+
+**Consegna:** Crea due tabelle collegate da una chiave esterna: `Classe`, con le colonne `id` e `nome`, e `Studente`, con le colonne `id`, `nome` e `classe_id`. Inserisci una classe e due studenti che ne fanno parte. Poi usa una query con `JOIN` per stampare il nome di ogni studente insieme al nome della sua classe. Per sapere quale `id` ha ricevuto la classe, usa lo stesso schema di `tracks_csv.py`: un `SELECT` seguito da `fetchone()`.
+
+**Una possibile soluzione:**
+
+~~~~ {.python}
+import sqlite3
+
+conn = sqlite3.connect('scuola.sqlite')
+cur = conn.cursor()
+
+cur.execute('DROP TABLE IF EXISTS Studente')
+cur.execute('DROP TABLE IF EXISTS Classe')
+cur.execute('''CREATE TABLE Classe (
+    id INTEGER PRIMARY KEY,
+    nome TEXT UNIQUE)''')
+cur.execute('''CREATE TABLE Studente (
+    id INTEGER PRIMARY KEY,
+    nome TEXT,
+    classe_id INTEGER)''')
+
+cur.execute("INSERT INTO Classe (nome) VALUES ('3A')")
+cur.execute("SELECT id FROM Classe WHERE nome = '3A'")
+classe_id = cur.fetchone()[0]
+
+cur.execute('INSERT INTO Studente (nome, classe_id) VALUES (?, ?)',
+            ('Anna', classe_id))
+cur.execute('INSERT INTO Studente (nome, classe_id) VALUES (?, ?)',
+            ('Marco', classe_id))
+conn.commit()
+
+cur.execute('''SELECT Studente.nome, Classe.nome
+    FROM Studente JOIN Classe ON Studente.classe_id = Classe.id''')
+for riga in cur:
+    print(riga)
+
+conn.close()
+~~~~
+
+Se salvi il programma in `scuola.py` e lo esegui, stampa:
+
+~~~~
+$ python scuola.py
+('Anna', '3A')
+('Marco', '3A')
+~~~~
+
+La colonna `classe_id` della tabella `Studente` è la chiave esterna: contiene l'`id` della riga di `Classe` a cui lo studente appartiene. La condizione `ON` del `JOIN` usa questo collegamento per affiancare a ogni studente il nome della sua classe.
