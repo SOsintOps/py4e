@@ -300,7 +300,7 @@ Possiamo indicare che vogliamo semplicemente la corrispondenza con un carattere 
 ~~~~ {.python}
 import re
 x = 'We just received $10.00 for cookies.'
-y = re.findall('\$[0-9.]+',x)
+y = re.findall(r'\$[0-9.]+',x)
 ~~~~
 
 Poiché anteponiamo un backslash al simbolo del dollaro, questo corrisponde davvero al simbolo del dollaro nella stringa di input, invece che alla "fine della riga", e il resto dell'espressione regolare corrisponde a una o più cifre o al carattere punto. Ricorda, come abbiamo visto sopra, che dentro le parentesi quadre i caratteri non sono "speciali". Quindi, quando diciamo `[0-9.]`, intendiamo proprio cifre o un punto. Fuori dalle parentesi quadre, il punto è il carattere "jolly" e corrisponde a qualsiasi carattere. Dentro le parentesi quadre, il punto è un punto.
