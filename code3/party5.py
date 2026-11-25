@@ -1,7 +1,7 @@
 class PartyAnimal:
-   x = 0
-   name = ''
+
    def __init__(self, nam):
+     self.x = 0
      self.name = nam
      print(self.name,'constructed')
 
@@ -10,9 +10,9 @@ class PartyAnimal:
      print(self.name,'party count',self.x)
 
 s = PartyAnimal('Sally')
+s.party()
 j = PartyAnimal('Jim')
 
-s.party()
 j.party()
 s.party()
 
