@@ -7,17 +7,17 @@ Traduzioni
 
 Questo libro è stato tradotto in diverse lingue: puoi trovare le traduzioni all'indirizzo https://www.py4e.com/book.
 
-* Spagnolo - Python para todos: Explorando la información con Python 3 - Libro tradotto, correttori automatici, risorse e sito web all'indirizzo https://es.py4e.com - Collaboratori: Juan Carlos Perez Castellanos, Juan Dougnac, Daniel Merino Echeverría, Jaime Bermeo Ramírez e Fernando Tardío
-
 * Italiano - Python per tutti: Esplorare dati con Python3 - Collaboratori: Alessandro Rossetti e Vittore Zen
 
-* Portoghese - Python Para Todos: Explorando Dados com Python 3 - Traduzione: Yuri Loia de Medeiros
-
-* Polacco - Python dla wszystkich: Odkrywanie danych z Python 3 - Libro tradotto, correttori automatici, risorse e sito web all'indirizzo https://py4e.pl - Traduzione: Andrzej Wójtowicz (Università Adam Mickiewicz di Poznań, Polonia)
+* Arabo - Traduzione: Electronics Go
 
 * Greco - Libro tradotto, correttori automatici, risorse e sito web all'indirizzo https://gr.py4e.com - Traduzione: Konstantia Kiourtidou
 
-* Arabo - Traduzione: Electronics Go
+* Polacco - Python dla wszystkich: Odkrywanie danych z Python 3 - Libro tradotto, correttori automatici, risorse e sito web all'indirizzo https://py4e.pl - Traduzione: Andrzej Wójtowicz (Università Adam Mickiewicz di Poznań, Polonia)
+
+* Portoghese - Python Para Todos: Explorando Dados com Python 3 - Traduzione: Yuri Loia de Medeiros
+
+* Spagnolo - Python para todos: Explorando la información con Python 3 - Libro tradotto, correttori automatici, risorse e sito web all'indirizzo https://es.py4e.com - Collaboratori: Juan Carlos Perez Castellanos, Juan Dougnac, Daniel Merino Echeverría, Jaime Bermeo Ramírez e Fernando Tardío
 
 Chi riceve il permesso di tradurre il libro si impegna a renderne disponibile online una copia gratuita. Alcune traduzioni sono disponibili anche in versione stampata e si possono acquistare.
 
