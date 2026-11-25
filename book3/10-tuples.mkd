@@ -560,3 +560,91 @@ Il programma dovrebbe convertire tutto l'input in minuscolo e contare solo le le
 
 \index{frequenza delle lettere}
 \index{frequenza!lettera}
+
+Facciamolo assieme
+------------------
+
+**Obiettivo:** Alla fine di questo esercizio avrai scritto una funzione che restituisce due valori insieme, dentro una tupla. Poi assegnerai i due valori a due variabili con un'assegnazione di tupla.
+
+**Passaggi:**
+
+1.  Crea un file chiamato `voti.py`.
+
+2.  Definisci una funzione `minimo_e_massimo(numeri)` che restituisca `min(numeri), max(numeri)`. I due valori sono separati da una virgola, quindi Python li mette insieme in una tupla, come in `t = 'a', 'b', 'c', 'd', 'e'` all'inizio di questo capitolo.
+
+3.  Crea una lista `voti`, ad esempio `[7, 9, 6, 8, 10, 5]`.
+
+4.  Chiama la funzione e assegna il risultato a due variabili con un'assegnazione di tupla: `piccolo, grande = minimo_e_massimo(voti)`.
+
+5.  Stampa le due variabili, ognuna su una riga.
+
+6.  Chiama di nuovo la funzione, questa volta senza assegnare il risultato a due variabili, e stampa la tupla intera.
+
+7.  Esegui il programma con `python voti.py` (su Linux e macOS spesso `python3 voti.py`).
+
+**Il programma finito:**
+
+~~~~ {.python}
+def minimo_e_massimo(numeri):
+    return min(numeri), max(numeri)
+
+voti = [7, 9, 6, 8, 10, 5]
+
+piccolo, grande = minimo_e_massimo(voti)
+print('Voto più basso:', piccolo)
+print('Voto più alto:', grande)
+print('Coppia completa:', minimo_e_massimo(voti))
+~~~~
+
+Quando lo esegui, stampa:
+
+~~~~
+$ python voti.py
+Voto più basso: 5
+Voto più alto: 10
+Coppia completa: (5, 10)
+~~~~
+
+Nell'ultima riga `print` stampa la tupla così com'è, tra parentesi tonde.
+
+Prova da solo
+-------------
+
+**Consegna:** Hai una lista di tuple `(nome, punteggio)`:
+
+~~~~ {.python}
+punteggi = [('Anna', 82), ('Marco', 95), ('Lucia', 78)]
+~~~~
+
+Scrivi un programma che ordini i concorrenti dal punteggio più alto al più basso, stampi la classifica e poi il nome del primo classificato. Ricorda che `sort` confronta le tuple a partire dal primo elemento: costruisci una nuova lista di tuple con il punteggio al primo posto, `(punteggio, nome)`, come nella sezione "Assegnazione multipla con i dizionari", e ordinala con `reverse=True`.
+
+**Una possibile soluzione:**
+
+~~~~ {.python}
+punteggi = [('Anna', 82), ('Marco', 95), ('Lucia', 78)]
+
+classifica = list()
+for nome, punti in punteggi:
+    classifica.append((punti, nome))
+
+classifica.sort(reverse=True)
+
+print('Classifica:')
+for punti, nome in classifica:
+    print(nome, '->', punti)
+
+print('Primo classificato:', classifica[0][1])
+~~~~
+
+Se salvi il programma in `classifica.py` e lo esegui, stampa:
+
+~~~~
+$ python classifica.py
+Classifica:
+Marco -> 95
+Anna -> 82
+Lucia -> 78
+Primo classificato: Marco
+~~~~
+
+Dopo l'ordinamento ogni tupla è `(punti, nome)`, quindi il nome del primo classificato è `classifica[0][1]`: il secondo elemento della prima tupla.

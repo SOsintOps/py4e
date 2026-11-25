@@ -935,3 +935,90 @@ Enter a number: done
 Maximum: 9.0
 Minimum: 2.0
 ~~~~
+
+Facciamolo assieme
+------------------
+
+**Obiettivo:** Alla fine di questo esercizio avrai scritto un programma che gestisce una lista della spesa: aggiunge articoli, ne toglie uno, ordina la lista e conta gli articoli. Userai i metodi delle liste `append`, `remove` e `sort` e la funzione `len`.
+
+**Passaggi:**
+
+1.  Crea un file chiamato `spesa.py`.
+
+2.  Crea una lista `spesa` con tre articoli: `'pane'`, `'latte'` e `'uova'`.
+
+3.  Aggiungi in fondo alla lista due articoli, `'mele'` e `'pasta'`, con `append`, poi stampa la lista.
+
+4.  Togli `'latte'` con `remove`. Ricorda che `remove` cerca l'elemento per valore, non per indice.
+
+5.  Ordina la lista con `sort` e stampala di nuovo. `sort` modifica la lista e restituisce `None`: scrivi `spesa.sort()`, non `spesa = spesa.sort()`.
+
+6.  Stampa il numero di articoli con `len`.
+
+7.  Esegui il programma con `python spesa.py` (su Linux e macOS spesso `python3 spesa.py`).
+
+**Il programma finito:**
+
+~~~~ {.python}
+spesa = ['pane', 'latte', 'uova']
+
+spesa.append('mele')
+spesa.append('pasta')
+print('Dopo le aggiunte:', spesa)
+
+spesa.remove('latte')
+spesa.sort()
+print('Lista aggiornata:', spesa)
+print('Numero di articoli:', len(spesa))
+~~~~
+
+Quando lo esegui, stampa:
+
+~~~~
+$ python spesa.py
+Dopo le aggiunte: ['pane', 'latte', 'uova', 'mele', 'pasta']
+Lista aggiornata: ['mele', 'pane', 'pasta', 'uova']
+Numero di articoli: 4
+~~~~
+
+`append` aggiunge ogni articolo in fondo alla lista; dopo `sort` le stringhe sono in ordine alfabetico.
+
+Prova da solo
+-------------
+
+**Consegna:** Hai le temperature di una settimana in una lista:
+
+~~~~ {.python}
+temperature = [18, 22, 25, 19, 30, 27, 21]
+~~~~
+
+Scrivi un programma che metta in una nuova lista le temperature che superano una soglia, ad esempio 23 gradi, e stampi quella lista e quante temperature contiene. Poi calcola la media della settimana con le funzioni `sum` e `len`, come nella sezione "Liste e funzioni", e stampala.
+
+**Una possibile soluzione:**
+
+~~~~ {.python}
+temperature = [18, 22, 25, 19, 30, 27, 21]
+
+soglia = 23
+sopra_soglia = list()
+for valore in temperature:
+    if valore > soglia:
+        sopra_soglia.append(valore)
+
+media = sum(temperature) / len(temperature)
+
+print('Temperature sopra', soglia, 'gradi:', sopra_soglia)
+print('Quante:', len(sopra_soglia))
+print('Media della settimana:', media)
+~~~~
+
+Se salvi il programma in `temperature.py` e lo esegui, stampa:
+
+~~~~
+$ python temperature.py
+Temperature sopra 23 gradi: [25, 30, 27]
+Quante: 3
+Media della settimana: 23.142857142857142
+~~~~
+
+La media ha il punto decimale e molte cifre perché l'operatore `/` dà sempre un numero in virgola mobile, e 162 diviso 7 non dà un numero intero.

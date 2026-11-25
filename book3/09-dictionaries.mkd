@@ -494,3 +494,107 @@ Enter a file name: mbox-short.txt
 {'media.berkeley.edu': 4, 'uct.ac.za': 6, 'umich.edu': 7,
 'gmail.com': 1, 'caret.cam.ac.uk': 1, 'iupui.edu': 8}
 ~~~~
+
+Facciamolo assieme
+------------------
+
+**Obiettivo:** Alla fine di questo esercizio avrai scritto un programma che conta, con un dizionario, quante volte compare ogni lettera di una parola. Poi userai il metodo `get` per chiedere il conteggio di una lettera qualsiasi, anche di una che nella parola non c'è.
+
+**Passaggi:**
+
+1.  Crea un file chiamato `conta_lettere.py`.
+
+2.  Memorizza una parola in una variabile `parola`, ad esempio `'programmazione'`.
+
+3.  Crea un dizionario vuoto `conteggio` con `dict()`.
+
+4.  Scorri la parola lettera per lettera con un ciclo `for`. Per ogni lettera aggiorna il conteggio con `conteggio[lettera] = conteggio.get(lettera, 0) + 1`: se la lettera non è ancora nel dizionario, `get` restituisce 0.
+
+5.  Stampa la parola, poi ogni lettera con il suo conteggio, scorrendo il dizionario con un ciclo `for`.
+
+6.  Chiedi all'utente una lettera con `input()` e memorizzala in una variabile `cercata`. Poi stampa quante volte compare, con `conteggio.get(cercata, 0)`.
+
+7.  Esegui il programma con `python conta_lettere.py` (su Linux e macOS spesso `python3 conta_lettere.py`) e, quando ti chiede una lettera, digita `x`.
+
+**Il programma finito:**
+
+~~~~ {.python}
+parola = 'programmazione'
+
+conteggio = dict()
+for lettera in parola:
+    conteggio[lettera] = conteggio.get(lettera, 0) + 1
+
+print('Parola:', parola)
+for lettera in conteggio:
+    print(lettera, '->', conteggio[lettera])
+
+cercata = input('Quale lettera cerchi? ')
+volte = conteggio.get(cercata, 0)
+print('La lettera', cercata, 'compare', volte, 'volte')
+~~~~
+
+Quando lo esegui e digiti `x`, stampa:
+
+~~~~
+$ python conta_lettere.py
+Parola: programmazione
+p -> 1
+r -> 2
+o -> 2
+g -> 1
+a -> 2
+m -> 2
+z -> 1
+i -> 1
+n -> 1
+e -> 1
+Quale lettera cerchi? x
+La lettera x compare 0 volte
+~~~~
+
+Le lettere compaiono nell'ordine in cui sono state inserite nel dizionario, cioè nell'ordine in cui compaiono per la prima volta nella parola. La `x` non è nel dizionario, quindi `get` restituisce il valore predefinito 0. Con `conteggio[cercata]` al posto di `get`, Python avrebbe segnalato un `KeyError`, come hai visto all'inizio di questo capitolo.
+
+Prova da solo
+-------------
+
+**Consegna:** Hai un dizionario con i prezzi in euro di alcuni articoli e una lista di articoli da comprare:
+
+~~~~ {.python}
+prezzi = {'pane': 2, 'latte': 1, 'uova': 3, 'pasta': 1}
+da_comprare = ['pane', 'uova', 'formaggio']
+~~~~
+
+Scrivi un programma che stampi il prezzo di ogni articolo della lista, o dica che non lo trova, e poi calcoli il totale degli articoli trovati. Usa l'operatore `in` per sapere se un articolo è nel dizionario e il metodo `get` per il totale.
+
+**Una possibile soluzione:**
+
+~~~~ {.python}
+prezzi = {'pane': 2, 'latte': 1, 'uova': 3, 'pasta': 1}
+
+da_comprare = ['pane', 'uova', 'formaggio']
+
+for articolo in da_comprare:
+    if articolo in prezzi:
+        print(articolo, '->', prezzi[articolo], 'euro')
+    else:
+        print(articolo, '-> prezzo non trovato')
+
+totale = 0
+for articolo in da_comprare:
+    totale = totale + prezzi.get(articolo, 0)
+
+print('Totale articoli trovati:', totale, 'euro')
+~~~~
+
+Se salvi il programma in `prezzi.py` e lo esegui, stampa:
+
+~~~~
+$ python prezzi.py
+pane -> 2 euro
+uova -> 3 euro
+formaggio -> prezzo non trovato
+Totale articoli trovati: 5 euro
+~~~~
+
+Il formaggio non è nel dizionario: nel totale `get` gli dà il valore 0, così la somma comprende solo gli articoli trovati.

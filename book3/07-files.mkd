@@ -462,3 +462,117 @@ NA NA BOO BOO TO YOU - You have been punk'd!
 ~~~~
 
 Non ti stiamo incoraggiando a mettere Easter egg nei tuoi programmi; questo è solo un esercizio.
+
+Facciamolo assieme
+------------------
+
+**Obiettivo:** Alla fine di questo esercizio avrai scritto un programma che apre un file di testo con `try` ed `except`, così non si ferma con un traceback se il file non c'è. Il programma legge il file riga per riga e conta quante righe contengono una certa parola, con l'operatore `in` che hai visto per le stringhe nel Capitolo 6.
+
+**Passaggi:**
+
+1.  Scarica il file `mbox-short.txt` da [www.py4e.com/code3/mbox-short.txt](http://www.py4e.com/code3/mbox-short.txt) e salvalo nella cartella in cui scriverai il programma.
+
+2.  Crea un file chiamato `cerca_parola.py`.
+
+3.  Memorizza il nome del file in una variabile `nome_file`. Poi apri il file con `open` dentro un blocco `try`. Nel blocco `except` stampa un messaggio e termina il programma con `exit()`, come fa `search7.py` in questo capitolo.
+
+4.  Scegli la parola da cercare, scritta in minuscolo, ad esempio `"java"`, e memorizzala in una variabile `parola`.
+
+5.  Prepara due contatori che partono da zero: `righe_totali` e `righe_con_parola`.
+
+6.  Scorri il file riga per riga con un ciclo `for`. Per ogni riga aumenta di uno `righe_totali`. Se la parola è contenuta nella riga convertita in minuscolo con `lower()`, aumenta di uno anche `righe_con_parola`. Così conti anche le righe in cui la parola è scritta `Java` o `JAVA`.
+
+7.  Dopo il ciclo, stampa i due contatori.
+
+8.  Esegui il programma con `python cerca_parola.py` (su Linux e macOS spesso `python3 cerca_parola.py`).
+
+**Il programma finito:**
+
+~~~~ {.python}
+nome_file = "mbox-short.txt"
+try:
+    fhand = open(nome_file)
+except:
+    print("Impossibile aprire il file", nome_file)
+    exit()
+
+parola = "java"
+righe_totali = 0
+righe_con_parola = 0
+for riga in fhand:
+    righe_totali = righe_totali + 1
+    if parola in riga.lower():
+        righe_con_parola = righe_con_parola + 1
+
+print("Righe totali:", righe_totali)
+print("Righe che contengono '" + parola + "':", righe_con_parola)
+~~~~
+
+Quando lo esegui, stampa:
+
+~~~~
+$ python cerca_parola.py
+Righe totali: 1910
+Righe che contengono 'java': 83
+~~~~
+
+Quasi tutte queste righe sono percorsi di file del codice sorgente Java, citati nei messaggi. Se `mbox-short.txt` non è nella stessa cartella del programma, `open` fallisce e il programma stampa soltanto:
+
+~~~~
+$ python cerca_parola.py
+Impossibile aprire il file mbox-short.txt
+~~~~
+
+Prova da solo
+-------------
+
+**Consegna:** Scrivi un programma che chieda all'utente il nome di un file con `input()` e che, se il file non si può aprire, stampi un messaggio invece del traceback. Poi il programma chiede una parola da cercare e conta quante righe del file la contengono, senza distinguere tra maiuscole e minuscole. Alla fine scrive il risultato (il nome del file, la parola cercata e il numero di righe trovate) in un nuovo file `risultato.txt`, aperto in modalità `'w'` come nella sezione "Scrivere i file". Ricordati il newline `\n` alla fine di ogni riga e la chiamata a `close`.
+
+**Una possibile soluzione:**
+
+~~~~ {.python}
+nome_file = input("Nome del file da leggere: ")
+try:
+    fhand = open(nome_file)
+except:
+    print("Il file", nome_file, "non esiste.")
+    exit()
+
+parola_cercata = input("Parola da cercare: ").lower()
+righe_trovate = 0
+for riga in fhand:
+    if parola_cercata in riga.lower():
+        righe_trovate = righe_trovate + 1
+
+fout = open("risultato.txt", "w")
+fout.write("File analizzato: " + nome_file + "\n")
+fout.write("Parola cercata: " + parola_cercata + "\n")
+fout.write("Righe che la contengono: " + str(righe_trovate) + "\n")
+fout.close()
+print("Risultato scritto in risultato.txt")
+~~~~
+
+Se salvi il programma in `conta_righe.py` e lo esegui con `mbox-short.txt` e `Jira`, stampa:
+
+~~~~
+$ python conta_righe.py
+Nome del file da leggere: mbox-short.txt
+Parola da cercare: Jira
+Risultato scritto in risultato.txt
+~~~~
+
+Il file `risultato.txt` contiene:
+
+~~~~
+File analizzato: mbox-short.txt
+Parola cercata: jira
+Righe che la contengono: 8
+~~~~
+
+La parola cercata è `jira`, in minuscolo, perché il programma la converte con `lower()` subito dopo averla letta. Se invece inserisci il nome di un file che non esiste, il programma stampa il messaggio e si ferma:
+
+~~~~
+$ python conta_righe.py
+Nome del file da leggere: manca.txt
+Il file manca.txt non esiste.
+~~~~

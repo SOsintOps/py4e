@@ -616,3 +616,86 @@ Leggi la documentazione dei metodi delle stringhe su
 Ti conviene fare esperimenti con alcuni di questi metodi per assicurarti di aver capito come funzionano. `strip` e `replace` sono particolarmente utili.
 
 La documentazione usa una sintassi che potrebbe creare confusione. Ad esempio, in `find(sub[, start[, end]])` le parentesi quadre indicano argomenti opzionali. Quindi `sub` è obbligatorio, ma `start` è opzionale, e se includi `start`, allora `end` è opzionale.
+
+Facciamolo assieme
+------------------
+
+**Obiettivo:** Alla fine di questo esercizio avrai scritto un programma che spezza una data scritta come `24/11/2026` nei suoi tre pezzi (giorno, mese e anno) con le slice di stringhe. Userai anche il metodo `find` per trovare la posizione di un carattere dentro una stringa.
+
+**Passaggi:**
+
+1.  Crea un file chiamato `spezza_data.py`.
+
+2.  Memorizza la stringa `"24/11/2026"` in una variabile `data`.
+
+3.  Conta a mano le posizioni dei caratteri, ricordando che il primo carattere ha indice 0: il giorno occupa le posizioni 0 e 1, la prima barra la 2, il mese la 3 e la 4, la seconda barra la 5, l'anno le posizioni dalla 6 alla 9.
+
+4.  Con le slice (`data[inizio:fine]`) ricava `giorno`, `mese` e `anno`. La slice comprende il carattere in posizione `inizio` ma non quello in posizione `fine`: per il giorno ti serve quindi `data[0:2]`.
+
+5.  Stampa i tre pezzi, uno per riga.
+
+6.  Usa `data.find("/")` per trovare la posizione della prima barra e stampala.
+
+7.  Esegui il programma con `python spezza_data.py` (su Linux e macOS spesso `python3 spezza_data.py`).
+
+**Il programma finito:**
+
+~~~~ {.python}
+data = "24/11/2026"
+giorno = data[0:2]
+mese = data[3:5]
+anno = data[6:10]
+print("Giorno:", giorno)
+print("Mese:", mese)
+print("Anno:", anno)
+
+posizione = data.find("/")
+print("La prima barra è alla posizione", posizione)
+~~~~
+
+Quando lo esegui, stampa:
+
+~~~~
+$ python spezza_data.py
+Giorno: 24
+Mese: 11
+Anno: 2026
+La prima barra è alla posizione 2
+~~~~
+
+`find` restituisce `2`, la stessa posizione che hai contato a mano al passaggio 3: la prima barra è il terzo carattere, ma le posizioni si contano da 0.
+
+Prova da solo
+-------------
+
+**Consegna:** Scrivi un programma che chieda una parola e dica se è palindroma, cioè se si legge uguale anche al contrario, come "Anna" o "radar". Non distinguere tra maiuscole e minuscole: per Python `A` e `a` sono caratteri diversi, quindi prima converti la parola in minuscolo con il metodo `lower`. Poi, con un ciclo `while`, confronta il primo carattere con l'ultimo, il secondo con il penultimo e così via.
+
+**Una possibile soluzione:**
+
+~~~~ {.python}
+parola = input("Scrivi una parola: ")
+parola = parola.lower()
+e_palindroma = True
+i = 0
+while i < len(parola):
+    if parola[i] != parola[len(parola) - 1 - i]:
+        e_palindroma = False
+    i = i + 1
+if e_palindroma:
+    print(parola, "è palindroma")
+else:
+    print(parola, "non è palindroma")
+~~~~
+
+Se salvi il programma in `palindroma.py` e lo esegui due volte, prima con `Anna` e poi con `Python`, stampa:
+
+~~~~
+$ python palindroma.py
+Scrivi una parola: Anna
+anna è palindroma
+$ python palindroma.py
+Scrivi una parola: Python
+python non è palindroma
+~~~~
+
+L'indice `len(parola) - 1 - i` conta dalla fine della parola: quando `i` vale 0 indica l'ultimo carattere, quando vale 1 il penultimo. Il programma stampa la parola in minuscolo perché, dopo `parola = parola.lower()`, la variabile `parola` contiene la versione in minuscolo.
