@@ -33,7 +33,7 @@ Quando vogliamo leggere o scrivere un file (ad esempio sul tuo disco rigido), do
 ~~~~ {.python}
 >>> fhand = open('mbox.txt')
 >>> print(fhand)
-<_io.TextIOWrapper name='mbox.txt' mode='r' encoding='cp1252'>
+<_io.TextIOWrapper name='mbox.txt' mode='r' encoding='utf-8'>
 ~~~~
 
 \index{handle del file}
@@ -314,7 +314,7 @@ Per scrivere un file, devi aprirlo con la modalità `'w'` come secondo parametro
 ~~~~ {.python}
 >>> fout = open('output.txt', 'w')
 >>> print(fout)
-<_io.TextIOWrapper name='output.txt' mode='w' encoding='cp1252'>
+<_io.TextIOWrapper name='output.txt' mode='w' encoding='utf-8'>
 ~~~~
 
 Se il file esiste già, aprirlo in modalità di scrittura cancella i vecchi dati e riparte da zero, quindi fai attenzione! Se il file non esiste, ne viene creato uno nuovo.
