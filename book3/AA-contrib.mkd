@@ -39,13 +39,19 @@ https://github.com/csev/py4e/graphs/contributors
 Elenco dei traduttori di Python per tutti
 -------------------------------------------
 
+**Edizione 2027**
+
+Revisione e aggiornamento all'edizione inglese attuale: Alessandro Rossetti
+
+Controllo tecnico del codice: Vittore Zen
+
+**Edizione 2018**
+
 Traduzione a cura di Vittore Zen e Alessandro Rossetti
 
 Traduttori: Umberto Buonora, Gianfranco Frisani, Alessandro Rella, Alessandro Rossetti
 
 Correzione bozze: Silvia Baseggio, Alessandro Rella, Alessandro Rossetti
-
-Revisione e aggiornamento all'edizione inglese attuale (2026): Alessandro Rossetti. Controllo tecnico del codice: Vittore Zen.
 
 Elenco dei collaboratori di Python for Informatics
 -------------------------------------------
