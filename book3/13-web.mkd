@@ -216,3 +216,100 @@ Glossario
 : eXtensible Markup Language - Un formato che permette il markup di dati strutturati.
 \index{XML}
 \index{eXtensible Markup Language}
+
+Facciamolo assieme
+------------------
+
+**Obiettivo:** Alla fine di questo esercizio avrai scritto un programma che analizza una rubrica in formato XML con `ElementTree` ed estrae il nome e il telefono di ogni contatto.
+
+**Passaggi:**
+
+1.  Crea un file chiamato `rubrica.py`.
+
+2.  Importa la libreria con `import xml.etree.ElementTree as ET`.
+
+3.  Scrivi in una variabile `dati` una stringa XML con l'elemento di primo livello `rubrica`, che contiene due elementi `contatto`. Ogni `contatto` contiene un elemento `nome` e un elemento `telefono`. Come in `xml1.py`, metti la stringa tra tre virgolette singole (`'''`), così può occupare più righe.
+
+4.  Converti la stringa in un albero con `ET.fromstring()` e memorizzalo in una variabile `albero`.
+
+5.  Chiama `albero.findall('contatto')` per ottenere la lista dei contatti e stampa quanti sono con `len()`.
+
+6.  Scorri la lista con un ciclo `for`. Per ogni contatto prendi il testo del nome con `find('nome').text` e quello del telefono con `find('telefono').text`, poi stampali.
+
+7.  Esegui il programma con `python rubrica.py` (su Linux e macOS spesso `python3 rubrica.py`).
+
+**Il programma finito:**
+
+~~~~ {.python}
+import xml.etree.ElementTree as ET
+
+dati = '''
+<rubrica>
+  <contatto>
+    <nome>Anna</nome>
+    <telefono>02 1234567</telefono>
+  </contatto>
+  <contatto>
+    <nome>Marco</nome>
+    <telefono>06 7654321</telefono>
+  </contatto>
+</rubrica>'''
+
+albero = ET.fromstring(dati)
+contatti = albero.findall('contatto')
+print('Numero di contatti:', len(contatti))
+for contatto in contatti:
+    nome = contatto.find('nome').text
+    telefono = contatto.find('telefono').text
+    print(nome, '->', telefono)
+~~~~
+
+Quando lo esegui, stampa:
+
+~~~~
+$ python rubrica.py
+Numero di contatti: 2
+Anna -> 02 1234567
+Marco -> 06 7654321
+~~~~
+
+In `findall('contatto')` non devi scrivere `rubrica`, perché è l'elemento di primo livello: gli elementi `contatto` sono suoi figli diretti.
+
+Prova da solo
+-------------
+
+**Consegna:** Scrivi un programma che analizzi con `json.loads()` una lista di libri in formato JSON. Ogni libro ha un `titolo` e un `anno` di pubblicazione. Stampa quanti sono i libri, poi il titolo e l'anno di ciascuno, e alla fine l'anno medio di pubblicazione, arrotondato a un intero con la funzione built-in `round`.
+
+**Una possibile soluzione:**
+
+~~~~ {.python}
+import json
+
+dati = '''
+[
+  {"titolo": "Il nome della rosa", "anno": 1980},
+  {"titolo": "Se questo è un uomo", "anno": 1947},
+  {"titolo": "Il visconte dimezzato", "anno": 1952}
+]'''
+
+libri = json.loads(dati)
+print('Numero di libri:', len(libri))
+somma_anni = 0
+for libro in libri:
+    print(libro['titolo'], '-', libro['anno'])
+    somma_anni += libro['anno']
+print('Anno medio di pubblicazione:', round(somma_anni / len(libri)))
+~~~~
+
+Se salvi il programma in `libri.py` e lo esegui, stampa:
+
+~~~~
+$ python libri.py
+Numero di libri: 3
+Il nome della rosa - 1980
+Se questo è un uomo - 1947
+Il visconte dimezzato - 1952
+Anno medio di pubblicazione: 1960
+~~~~
+
+`json.loads()` restituisce una lista di dizionari, quindi ogni `libro` è un dizionario e `libro['anno']` è già un intero: puoi sommarlo senza convertirlo. La media esatta è circa `1959.67`; `round` la arrotonda all'intero più vicino, `1960`.

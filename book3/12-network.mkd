@@ -450,3 +450,95 @@ Puoi usare `split('/')` per scomporre l'URL nelle sue parti, così da estrarre i
 **Esercizio 4:** Modifica il programma `urllinks.py` in modo che estragga e conti i tag di paragrafo (`p`) del documento HTML recuperato e visualizzi come output del programma il numero dei paragrafi. Non visualizzare il testo dei paragrafi: contali e basta. Testa il programma su diverse pagine web piccole e anche su alcune pagine web più grandi.
 
 **Esercizio 5:** (Avanzato) Modifica il programma con i socket in modo che mostri i dati solo dopo aver ricevuto le intestazioni e una riga vuota. Ricorda che `recv` riceve caratteri (newline compresi), non righe.
+
+Facciamolo assieme
+------------------
+
+**Obiettivo:** Alla fine di questo esercizio avrai scritto un programma che recupera un file di testo dalla rete con `urllib` e ne conta le righe, le parole e i caratteri, come faresti con un file sul tuo computer.
+
+**Passaggi:**
+
+1.  Crea un file chiamato `conta_romeo.py`.
+
+2.  Importa `urllib.request`.
+
+3.  Apri `http://data.pr4e.org/romeo.txt` con `urllib.request.urlopen()` e memorizza il risultato in una variabile `file_remoto`.
+
+4.  Inizializza tre contatori a zero: `righe`, `parole` e `caratteri`.
+
+5.  Scorri `file_remoto` riga per riga con un ciclo `for`, come faresti con un file locale. Ogni riga arriva come oggetto bytes: convertila in una stringa con il metodo `decode()` e memorizzala in una variabile `testo`.
+
+6.  A ogni riga aumenta `righe` di uno, `parole` del numero di parole della riga (`len(testo.split())`) e `caratteri` della lunghezza della riga (`len(testo)`). Puoi usare l'operatore `+=`, che hai visto nel Capitolo 9.
+
+7.  Dopo il ciclo, stampa i tre totali.
+
+8.  Esegui il programma con `python conta_romeo.py` (su Linux e macOS spesso `python3 conta_romeo.py`). Il computer deve essere collegato a Internet.
+
+**Il programma finito:**
+
+~~~~ {.python}
+import urllib.request
+
+url = 'http://data.pr4e.org/romeo.txt'
+file_remoto = urllib.request.urlopen(url)
+righe = 0
+parole = 0
+caratteri = 0
+for riga in file_remoto:
+    testo = riga.decode()
+    righe += 1
+    parole += len(testo.split())
+    caratteri += len(testo)
+
+print('Righe:', righe)
+print('Parole:', parole)
+print('Caratteri:', caratteri)
+~~~~
+
+Quando lo esegui, stampa:
+
+~~~~
+$ python conta_romeo.py
+Righe: 4
+Parole: 33
+Caratteri: 167
+~~~~
+
+Il conteggio dei caratteri comprende anche il newline alla fine di ogni riga, perché il programma non chiama `strip()`.
+
+Prova da solo
+-------------
+
+**Consegna:** Scrivi un programma che chieda un URL, recuperi la pagina HTML e conti i link (`href="..."`) della pagina: quanti sono in tutto, quanti sono assoluti (iniziano con `http://` o `https://`) e quanti sono relativi o interni (tutti gli altri, ad esempio `pagina.html` o `#sezione`). Usa la libreria `ssl` come nel programma `urlregex.py`, così puoi leggere anche le pagine che impongono HTTPS.
+
+**Una possibile soluzione:**
+
+~~~~ {.python}
+import urllib.request, ssl, re
+
+contesto = ssl.create_default_context()
+contesto.check_hostname = False
+contesto.verify_mode = ssl.CERT_NONE
+
+url = input('Inserisci un URL: ')
+pagina = urllib.request.urlopen(url, context=contesto)
+html = pagina.read().decode()
+
+tutti = re.findall(r'href="[^"]+"', html)
+assoluti = re.findall(r'href="http[s]?://[^"]+"', html)
+print('Link trovati:', len(tutti))
+print('Assoluti (http/https):', len(assoluti))
+print('Relativi o interni:', len(tutti) - len(assoluti))
+~~~~
+
+Se salvi il programma in `conta_link.py` e lo esegui con l'URL `http://py4e-data.dr-chuck.net/`, stampa:
+
+~~~~
+$ python conta_link.py
+Inserisci un URL: http://py4e-data.dr-chuck.net/
+Link trovati: 12
+Assoluti (http/https): 5
+Relativi o interni: 7
+~~~~
+
+`[^"]+` corrisponde a uno o più caratteri diversi dalla virgoletta doppia, cioè a tutto il valore del link. La seconda espressione regolare usa lo stesso `http[s]?` di `urlregex.py` e trova solo i link assoluti; i link relativi sono la differenza tra i due conteggi. Se la pagina cambia, cambiano anche i numeri.

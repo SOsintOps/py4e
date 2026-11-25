@@ -460,3 +460,88 @@ Enter file:mbox.txt
 Enter file:mbox-short.txt
 39756
 ~~~~
+
+Facciamolo assieme
+------------------
+
+**Obiettivo:** Alla fine di questo esercizio avrai scritto un programma che estrae con un'espressione regolare i CAP (i codici di avviamento postale, di 5 cifre) da un elenco di indirizzi. Il programma gestisce anche gli indirizzi senza CAP.
+
+**Passaggi:**
+
+1.  Crea un file chiamato `estrai_cap.py`.
+
+2.  Importa il modulo `re` e crea una lista `indirizzi` con quattro indirizzi come stringhe: tre con il CAP e uno senza.
+
+3.  Scrivi l'espressione regolare `\b[0-9][0-9][0-9][0-9][0-9]\b`. Ogni `[0-9]` corrisponde a una cifra, quindi cinque `[0-9]` di seguito corrispondono a cinque cifre. `\b` corrisponde all'inizio o alla fine di una parola: così l'espressione non prende cinque cifre in mezzo a un numero più lungo. Scrivi l'espressione come stringa raw, con la `r` davanti.
+
+4.  Scorri la lista con un ciclo `for`. Per ogni indirizzo chiama `re.findall()` con l'espressione regolare e memorizza la lista restituita in una variabile `cap`.
+
+5.  Se la lista `cap` contiene almeno un elemento (`len(cap) > 0`), stampa l'indirizzo e il CAP trovato, cioè `cap[0]`. Altrimenti stampa che non è stato trovato nessun CAP.
+
+6.  Esegui il programma con `python estrai_cap.py` (su Linux e macOS spesso `python3 estrai_cap.py`).
+
+**Il programma finito:**
+
+~~~~ {.python}
+import re
+
+indirizzi = [
+    "Via Roma 12, 20100 Milano",
+    "Piazza Garibaldi 3, 40121 Bologna",
+    "Corso Italia, Napoli (senza CAP)",
+    "Viale Europa 8, 00144 Roma",
+]
+
+for indirizzo in indirizzi:
+    cap = re.findall(r'\b[0-9][0-9][0-9][0-9][0-9]\b', indirizzo)
+    if len(cap) > 0:
+        print(indirizzo, '->', cap[0])
+    else:
+        print(indirizzo, '-> nessun CAP trovato')
+~~~~
+
+Quando lo esegui, stampa:
+
+~~~~
+$ python estrai_cap.py
+Via Roma 12, 20100 Milano -> 20100
+Piazza Garibaldi 3, 40121 Bologna -> 40121
+Corso Italia, Napoli (senza CAP) -> nessun CAP trovato
+Viale Europa 8, 00144 Roma -> 00144
+~~~~
+
+I numeri civici `12`, `3` e `8` non corrispondono, perché hanno meno di cinque cifre. Il CAP trovato è una stringa: per questo `00144` conserva gli zeri iniziali.
+
+Prova da solo
+-------------
+
+**Consegna:** Scrivi un programma che cerchi gli hashtag (le parole che iniziano con `#`) in una stringa di testo. Estrai tutti gli hashtag con un'espressione regolare e `findall()`, stampa quanti sono in totale e poi stampa la lista degli hashtag distinti, senza ripetizioni, in ordine alfabetico. Per la lista senza ripetizioni puoi partire da una lista vuota e usare l'operatore `not in` e il metodo `sort`.
+
+**Una possibile soluzione:**
+
+~~~~ {.python}
+import re
+
+testo = 'Oggi #python è bellissimo. Sto imparando #regex '
+testo = testo + 'con #python4e. Qualche hashtag si ripete: '
+testo = testo + '#python è ovunque, anche #programmazione conta.'
+
+hashtag = re.findall(r'#[a-zA-Z0-9]+', testo)
+distinti = []
+for parola in hashtag:
+    if parola not in distinti:
+        distinti.append(parola)
+distinti.sort()
+print('Hashtag trovati:', len(hashtag))
+print('Hashtag distinti:', distinti)
+~~~~
+
+Se salvi il programma in `hashtag.py` e lo esegui, stampa:
+
+~~~~
+$ python hashtag.py
+Hashtag trovati: 5
+Hashtag distinti: ['#programmazione', '#python', '#python4e', '#regex']
+~~~~
+
+`#python` compare due volte nel testo: per questo gli hashtag trovati sono 5 e quelli distinti 4. L'insieme `[a-zA-Z0-9]` contiene solo lettere e cifre, quindi la corrispondenza si ferma prima del punto che segue `#python4e`. Con `#\S+` il punto entrerebbe nell'hashtag.
