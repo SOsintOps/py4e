@@ -491,7 +491,7 @@ Facciamolo assieme
 ~~~~ {.python}
 nome_file = "mbox-short.txt"
 try:
-    fhand = open(nome_file)
+    file_testo = open(nome_file)
 except:
     print("Impossibile aprire il file", nome_file)
     exit()
@@ -499,7 +499,7 @@ except:
 parola = "java"
 righe_totali = 0
 righe_con_parola = 0
-for riga in fhand:
+for riga in file_testo:
     righe_totali = righe_totali + 1
     if parola in riga.lower():
         righe_con_parola = righe_con_parola + 1
@@ -533,22 +533,22 @@ Prova da solo
 ~~~~ {.python}
 nome_file = input("Nome del file da leggere: ")
 try:
-    fhand = open(nome_file)
+    file_testo = open(nome_file)
 except:
     print("Il file", nome_file, "non esiste.")
     exit()
 
 parola_cercata = input("Parola da cercare: ").lower()
 righe_trovate = 0
-for riga in fhand:
+for riga in file_testo:
     if parola_cercata in riga.lower():
         righe_trovate = righe_trovate + 1
 
-fout = open("risultato.txt", "w")
-fout.write("File analizzato: " + nome_file + "\n")
-fout.write("Parola cercata: " + parola_cercata + "\n")
-fout.write("Righe che la contengono: " + str(righe_trovate) + "\n")
-fout.close()
+uscita = open("risultato.txt", "w")
+uscita.write("File analizzato: " + nome_file + "\n")
+uscita.write("Parola cercata: " + parola_cercata + "\n")
+uscita.write("Righe che la contengono: " + str(righe_trovate) + "\n")
+uscita.close()
 print("Risultato scritto in risultato.txt")
 ~~~~
 
