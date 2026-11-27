@@ -961,7 +961,7 @@ $ python biblioteca.py
 ('Il nome della rosa', 1980)
 ~~~~
 
-Ogni riga è una tupla con i valori delle due colonne. Le righe escono in ordine di anno, anche se le hai inserite nell'ordine opposto: è l'effetto di `ORDER BY anno`. Il comando `DELETE` del passaggio 7 non ha una clausola `WHERE`, quindi elimina tutte le righe della tabella. Puoi eseguire il programma tutte le volte che vuoi: a ogni esecuzione `DROP TABLE IF EXISTS` ricrea la tabella da capo e l'output resta lo stesso.
+Ogni riga è una tupla con i valori delle due colonne. Le righe escono in ordine di anno, anche se le hai inserite nell'ordine opposto: è l'effetto di `ORDER BY anno`. Il comando `DELETE` del passaggio 7 non ha una clausola `WHERE`, quindi elimina tutte le righe della tabella. Puoi eseguire il programma tutte le volte che vuoi: a ogni esecuzione `DROP TABLE IF EXISTS` elimina la tabella, `CREATE TABLE` la ricrea da capo e l'output resta lo stesso.
 
 Prova da solo
 -------------

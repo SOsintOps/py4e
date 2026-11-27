@@ -357,7 +357,7 @@ Facciamolo assieme
 
 2.  Memorizza alcune frasi in una variabile `testo`. Per scrivere una stringa su più righe usa le virgolette triple, come hai visto nel Capitolo 13 (e nei comandi SQL su più righe del Capitolo 15).
 
-3.  Trasforma il testo in minuscolo con `lower()`, togli la punteggiatura con `replace()` e dividi il testo in parole con `split()`.
+3.  Trasforma il testo in minuscolo con `lower()`. Togli la punteggiatura con il metodo `replace`: ad esempio `parole.replace('.', '')` restituisce una copia della stringa senza i punti. Poi dividi il testo in parole con `split()`.
 
 4.  Costruisci un dizionario `conteggio` che conta quante volte compare ogni parola, con `conteggio.get(parola, 0) + 1`.
 
