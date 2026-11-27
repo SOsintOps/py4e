@@ -355,7 +355,7 @@ Il supporto per la ricerca nei file con le espressioni regolari è incorporato n
 
 \index{grep}
 
-In effetti, c'è un programma a riga di comando incorporato in Unix, chiamato `grep` (Generalized Regular Expression Parser), che fa più o meno le stesse cose degli esempi con `search()` di questo capitolo. Quindi, se hai un sistema Macintosh o Linux, puoi provare i seguenti comandi nella finestra della riga di comando.
+In effetti, c'è un programma a riga di comando incorporato in Unix, chiamato `grep` (dal comando `g/re/p` dell'editor `ed`: Global Regular Expression Print), che fa più o meno le stesse cose degli esempi con `search()` di questo capitolo. Quindi, se hai un sistema Macintosh o Linux, puoi provare i seguenti comandi nella finestra della riga di comando.
 
 ~~~~ {.bash}
 $ grep '^From:' mbox-short.txt
@@ -423,7 +423,7 @@ Glossario
 : Un linguaggio per esprimere stringhe di ricerca più complesse. Un'espressione regolare può contenere caratteri speciali che indicano che una ricerca corrisponde solo all'inizio o alla fine di una riga, o che offrono molte altre funzionalità simili.
 
 **`grep`**
-: Un comando disponibile nella maggior parte dei sistemi Unix, che cerca nei file di testo le righe che corrispondono a espressioni regolari. Il nome del comando sta per "Generalized Regular Expression Parser".
+: Un comando disponibile nella maggior parte dei sistemi Unix, che cerca nei file di testo le righe che corrispondono a espressioni regolari. Il nome viene dal comando `g/re/p` dell'editor `ed`, che sta per "Global Regular Expression Print".
 \index{grep}
 
 Esercizi
