@@ -278,7 +278,7 @@ In `findall('contatto')` non devi scrivere `rubrica`, perché è l'elemento di p
 Prova da solo
 -------------
 
-**Consegna:** Scrivi un programma che analizzi con `json.loads()` una lista di libri in formato JSON. Ogni libro ha un `titolo` e un `anno` di pubblicazione. Stampa quanti sono i libri, poi il titolo e l'anno di ciascuno, e alla fine l'anno medio di pubblicazione, arrotondato a un intero con la funzione built-in `round`.
+**Consegna:** Scrivi un programma che analizzi con `json.loads()` una lista di libri in formato JSON. Ogni libro ha un `titolo` e un `anno` di pubblicazione. Stampa quanti sono i libri, poi il titolo e l'anno di ciascuno, e alla fine l'anno medio di pubblicazione, arrotondato a un intero con la funzione built-in `round` (ad esempio `round(2.7)` restituisce `3`).
 
 **Una possibile soluzione:**
 
@@ -301,10 +301,10 @@ for libro in libri:
 print('Anno medio di pubblicazione:', round(somma_anni / len(libri)))
 ~~~~
 
-Se salvi il programma in `libri.py` e lo esegui, stampa:
+Se salvi il programma in `libri_json.py` e lo esegui, stampa:
 
 ~~~~
-$ python libri.py
+$ python libri_json.py
 Numero di libri: 3
 Il nome della rosa - 1980
 Se questo è un uomo - 1947
@@ -312,4 +312,4 @@ Il visconte dimezzato - 1952
 Anno medio di pubblicazione: 1960
 ~~~~
 
-`json.loads()` restituisce una lista di dizionari, quindi ogni `libro` è un dizionario e `libro['anno']` è già un intero: puoi sommarlo senza convertirlo. La media esatta è circa `1959.67`; `round` la arrotonda all'intero più vicino, `1960`.
+`json.loads()` restituisce una lista di dizionari, quindi ogni `libro` è un dizionario e `libro['anno']` è già un intero: puoi sommarlo senza convertirlo. Prima dell'arrotondamento la media è circa `1959.67`; `round` la arrotonda all'intero più vicino, `1960`.
