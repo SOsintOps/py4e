@@ -10,6 +10,6 @@ ctx.verify_mode = ssl.CERT_NONE
 
 url = input('Enter - ')
 html = urllib.request.urlopen(url, context=ctx).read()
-links = re.findall(b'href="(http[s]?://.*?)"', html)
+links = re.findall(b'href="(http[s]?://.+?)"', html)
 for link in links:
     print(link.decode())

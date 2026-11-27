@@ -380,8 +380,9 @@ Enter - http://www.dr-chuck.com/page1.htm
 TAG: <a href="http://www.dr-chuck.com/page2.htm">
 Second Page</a>
 URL: http://www.dr-chuck.com/page2.htm
-Content: ['\nSecond Page']
-Attrs: [('href', 'http://www.dr-chuck.com/page2.htm')]
+Contents:
+Second Page
+Attrs: {'href': 'http://www.dr-chuck.com/page2.htm'}
 ~~~~
 
 `html.parser` è il parser HTML incluso nella libreria standard di Python 3. Le informazioni sugli altri parser HTML sono disponibili su:
@@ -398,7 +399,7 @@ Se hai un computer Linux, Unix o Macintosh, probabilmente il sistema operativo i
 \index{curl}
 
 ~~~~ {.bash}
-$ curl -O http://www.py4e.com/cover.jpg
+$ curl -O https://www.py4e.com/cover.jpg
 ~~~~
 
 Il comando `curl` è l'abbreviazione di "copy URL", e per questo i due esempi visti prima per recuperare file binari con `urllib` hanno i nomi ingegnosi di `curl1.py` e `curl2.py` su [www.py4e.com/code3](http://www.py4e.com/code3): svolgono una funzione simile a quella del comando `curl`. C'è anche un programma di esempio, `curl3.py`, che svolge questo compito in modo un po' più efficace, nel caso tu voglia davvero usare questo schema in un programma che stai scrivendo.

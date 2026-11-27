@@ -365,7 +365,7 @@ From: zqian@umich.edu
 From: rjlowe@iupui.edu
 ~~~~
 
-Questo comando dice a `grep` di mostrarti le righe che iniziano con la stringa `From:` nel file `mbox-short.txt`. Se fai qualche esperimento con il comando `grep` e leggi la documentazione di `grep`, troverai alcune sottili differenze tra il supporto delle espressioni regolari in Python e quello in `grep`. Ad esempio, `grep` non supporta il carattere diverso dallo spazio `\S`, quindi dovrai usare la notazione degli insiemi, leggermente più complessa, `[^ ]`, che significa semplicemente: corrisponde a qualsiasi carattere tranne uno spazio.
+Questo comando dice a `grep` di mostrarti le righe che iniziano con la stringa `From:` nel file `mbox-short.txt`. Se fai qualche esperimento con il comando `grep` e leggi la documentazione di `grep`, troverai alcune sottili differenze tra il supporto delle espressioni regolari in Python e quello in `grep`. Ad esempio, alcune versioni di `grep` non supportano il carattere diverso dallo spazio `\S`: in quel caso dovrai usare la notazione degli insiemi, leggermente più complessa, `[^ ]`, che significa semplicemente: corrisponde a qualsiasi carattere tranne uno spazio.
 
 Debug
 ---------
@@ -385,9 +385,9 @@ Se sai quale modulo vuoi usare, puoi usare il comando `dir()` per trovare le fun
 ~~~~ {.python}
 >>> import re
 >>> dir(re)
-[.. 'compile', 'copy_reg', 'error', 'escape', 'findall',
-'finditer', 'match', 'purge', 'search', 'split', 'sre_compile',
-'sre_parse', 'sub', 'subn', 'sys', 'template']
+[.. 'compile', 'copyreg', 'enum', 'error', 'escape', 'findall',
+'finditer', 'fullmatch', 'functools', 'match', 'prefixmatch',
+'purge', 'search', 'split', 'sub', 'subn']
 ~~~~
 
 Puoi anche ottenere un po' di documentazione su un particolare metodo usando il comando `help` insieme al metodo che ti interessa.
@@ -398,7 +398,7 @@ Help on function search in module re:
 
 search(pattern, string, flags=0)
     Scan through string looking for a match to the pattern, returning
-    a match object, or None if no match was found.
+    a Match object, or None if no match was found.
 >>>
 ~~~~
 
