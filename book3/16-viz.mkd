@@ -69,31 +69,20 @@ Una volta caricati alcuni dati in `opengeo.sqlite`, puoi visualizzarli con il pr
 Ecco un'esecuzione del programma `geodump.py`:
 
 ~~~~
-AGH University of Science and Technology, Czarnowiejska,
-Czarna Wieś, Krowodrza, Kraków, Lesser Poland
-Voivodeship, 31-126, Poland 50.0657 19.91895
-
-Academy of Fine Arts, Krakowskie Przedmieście,
-Northern Śródmieście, Śródmieście, Warsaw, Masovian
-Voivodeship, 00-046, Poland 52.239 21.0155
-...
-260 lines were written to where.js
-Open the where.html file in a web browser to view the data.
+AGH University of Science and Technology 50.0657583 19.9192221
+Academy of Fine Arts in Warsaw 52.2394966 21.0156931
+Ahmet Yesevi 40.8682556 29.3083772
+3 records written to where.js
+Open where.html to view the data in a browser
 ~~~~
 
 Il file `where.html` contiene HTML e JavaScript per visualizzare una mappa OpenStreetMap. Per sapere cosa visualizzare, legge i dati più recenti in `where.js`. Ecco il formato del file `where.js`:
 
 ~~~~ {.js}
 myData = [
-[50.0657,19.91895,
-'AGH University of Science and Technology, Czarnowiejska,
-Czarna Wieś, Krowodrza, Kraków, Lesser Poland
-Voivodeship, 31-126, Poland '],
-[52.239,21.0155,
-'Academy of Fine Arts, Krakowskie Przedmieściee,
-Śródmieście Północne, Śródmieście, Warsaw,
-Masovian Voivodeship, 00-046, Poland'],
-   ...
+[50.0657583,19.9192221, 'AGH University of Science and Technology'],
+[52.2394966,21.0156931, 'Academy of Fine Arts in Warsaw'],
+[40.8682556,29.3083772, 'Ahmet Yesevi']
 ];
 ~~~~
 
@@ -202,7 +191,7 @@ A ogni iterazione dell'algoritmo PageRank il programma stampa la variazione medi
 Se vuoi visualizzare le pagine che al momento hanno il PageRank più alto, esegui `spjson.py`: il programma legge il database e scrive in formato JSON i dati delle pagine con più link, da vedere in un browser web.
 
 ~~~~
-Creating JSON output on spider.json...
+Creating JSON output on spider.js...
 How many nodes? 30
 Open force.html in a browser to view the visualization
 ~~~~
@@ -344,7 +333,7 @@ Una seconda visualizzazione è prodotta da `gline.py`. Il programma calcola la p
 
 ~~~~
 Loaded messages= 51330 senders= 1584
-Top 10 Oranizations
+Top 10 Organizations
 ['gmail.com', 'umich.edu', 'uct.ac.za', 'indiana.edu',
 'unicon.net', 'tfd.co.uk', 'berkeley.edu', 'longsight.com',
 'stanford.edu', 'ox.ac.uk']

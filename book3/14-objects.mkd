@@ -62,16 +62,17 @@ Possiamo dare un'occhiata alle capacità di un oggetto esaminando l'output della
 
     >>> stuff = list()
     >>> dir(stuff)
-    ['__add__', '__class__', '__contains__', '__delattr__',
-    '__delitem__', '__dir__', '__doc__', '__eq__',
+    ['__add__', '__class__', '__class_getitem__', '__contains__',
+    '__delattr__', '__delitem__', '__dir__', '__doc__', '__eq__',
     '__format__', '__ge__', '__getattribute__', '__getitem__',
-    '__gt__', '__hash__', '__iadd__', '__imul__', '__init__',
-    '__iter__', '__le__', '__len__', '__lt__', '__mul__',
-    '__ne__', '__new__', '__reduce__', '__reduce_ex__',
-    '__repr__', '__reversed__', '__rmul__', '__setattr__',
-    '__setitem__', '__sizeof__', '__str__', '__subclasshook__',
-    'append', 'clear', 'copy', 'count', 'extend', 'index',
-    'insert', 'pop', 'remove', 'reverse', 'sort']
+    '__getstate__', '__gt__', '__hash__', '__iadd__', '__imul__',
+    '__init__', '__init_subclass__', '__iter__', '__le__',
+    '__len__', '__lt__', '__mul__', '__ne__', '__new__',
+    '__reduce__', '__reduce_ex__', '__repr__', '__reversed__',
+    '__rmul__', '__setattr__', '__setitem__', '__sizeof__',
+    '__str__', '__subclasshook__', 'append', 'clear', 'copy',
+    'count', 'extend', 'index', 'insert', 'pop', 'remove',
+    'reverse', 'sort']
     >>>
 
 Il resto del capitolo definirà tutti i termini usati qui sopra, quindi, quando avrai finito il capitolo, ricordati di tornare qui e di rileggere i paragrafi precedenti per verificare di averli capiti.
@@ -192,7 +193,6 @@ Quando viene eseguito, il programma produce l'output seguente:
 So far 1
 So far 2
 So far 3
-So far 4
 ~~~~
 
 L'oggetto viene costruito e il metodo `party` viene chiamato tre volte; ogni chiamata incrementa e stampa il valore di `x` all'interno dell'oggetto `an`.
@@ -335,7 +335,7 @@ La seconda e la terza riga chiamano il metodo `append` con un parametro, per agg
 
 Poi stampiamo il primo elemento della lista con le parentesi quadre, che sono una scorciatoia per chiamare il metodo `__getitem__` all'interno di `stuff`. Questa scrittura equivale a chiamare il metodo `__getitem__` della *classe* `list`, passando l'oggetto `stuff` come primo parametro e la posizione che cerchiamo come secondo parametro.
 
-Alla fine del programma l'oggetto `stuff` viene scartato, ma non prima che sia stato chiamato il *distruttore* (di nome `__del__`), in modo che l'oggetto possa sistemare, se serve, le questioni rimaste in sospeso.
+Alla fine del programma l'oggetto `stuff` viene scartato e Python ne libera la memoria.
 
 Queste sono le basi della programmazione orientata agli oggetti. Ci sono molti altri dettagli su come usare al meglio gli approcci orientati agli oggetti quando si sviluppano grandi applicazioni e librerie, ma vanno oltre l'ambito di questo capitolo.^[Se sei curioso di sapere dove è definita la classe `list`, dai un'occhiata (speriamo che l'URL non cambi) a https://github.com/python/cpython/blob/main/Objects/listobject.c - la classe `list` è scritta in un linguaggio chiamato "C". Se guardi quel codice sorgente e ti incuriosisce, potresti esplorare la programmazione in C, con un occhio alla costruzione di oggetti, su https://www.cc4e.com/.]
 

@@ -187,7 +187,7 @@ La modellazione dei dati è un'abilità piuttosto sofisticata, e in questa sezio
 \index{SQL!CREATE}
 Supponiamo che nel database dei brani, oltre al `title` e al numero di riproduzioni, volessimo tenere traccia anche del nome dell'`artist` di ogni brano. Un approccio semplice potrebbe essere aggiungere al database un'altra colonna chiamata `artist` e metterci il nome dell'artista, in questo modo:
 
-~~~~ {.python}
+~~~~ {.sql}
 DROP TABLE IF EXISTS Track;
 CREATE TABLE Track (title TEXT, plays INTEGER, artist TEXT);
 ~~~~
@@ -452,7 +452,7 @@ Poiché non abbiamo aggiunto un vincolo di unicità alla colonna del colore degl
 Un'applicazione di esempio con più tabelle
 ------------------------------
 
-Un'applicazione di esempio chiamata `tracks_csv.py` mostra come combinare queste idee per analizzare dati testuali e caricarli in più tabelle, con un modello dei dati corretto e con collegamenti relazionali tra le tabelle.
+Un'applicazione di esempio chiamata `tracks.py` mostra come combinare queste idee per analizzare dati testuali e caricarli in più tabelle, con un modello dei dati corretto e con collegamenti relazionali tra le tabelle.
 
 L'applicazione legge e analizza un file di valori separati da virgole, `tracks.csv`, ricavato da un'esportazione della libreria di iTunes del Dr. Chuck.
 
@@ -494,7 +494,7 @@ CREATE TABLE Track (
 
 Aggiungiamo la parola chiave `UNIQUE` alle colonne `TEXT` su cui vogliamo un vincolo di unicità, che useremo nelle istruzioni `INSERT OR IGNORE`. Questa forma è più concisa di istruzioni `CREATE INDEX` separate, ma ha lo stesso effetto.
 
-Con queste tabelle pronte, scriviamo il codice seguente, `tracks_csv.py`, per analizzare i dati e inserirli nelle tabelle:
+Con queste tabelle pronte, scriviamo il codice seguente, `tracks.py`, per analizzare i dati e inserirli nelle tabelle:
 
 ~~~~ {.python}
 import sqlite3
@@ -505,9 +505,9 @@ cur = conn.cursor()
 handle = open('tracks.csv')
 
 for line in handle:
-    line = line.strip();
+    line = line.strip()
     pieces = line.split(',')
-    if len(pieces) != 6 : continue
+    if len(pieces) < 6 : continue
 
     name = pieces[0]
     artist = pieces[1]
@@ -614,8 +614,8 @@ Se SQL supportasse il concetto di array, potremmo provare a definire qualcosa de
 ~~~~ {.sql}
 CREATE TABLE Course (
     id     INTEGER PRIMARY KEY,
-    title  TEXT UNIQUE
-    student_ids ARRAY OF INTEGER;
+    title  TEXT UNIQUE,
+    student_ids ARRAY OF INTEGER
 );
 ~~~~
 
@@ -626,8 +626,8 @@ Oppure potremmo semplicemente creare una stringa lunga e concatenarvi tutte le c
 ~~~~ {.sql}
 CREATE TABLE Course (
     id     INTEGER PRIMARY KEY,
-    title  TEXT UNIQUE
-    student_ids ARRAY OF INTEGER;
+    title  TEXT UNIQUE,
+    student_ids TEXT
 );
 
 INSERT INTO Course (title, student_ids)
@@ -966,7 +966,7 @@ Ogni riga è una tupla con i valori delle due colonne. Le righe escono in ordine
 Prova da solo
 -------------
 
-**Consegna:** Crea due tabelle collegate da una chiave esterna: `Classe`, con le colonne `id` e `nome`, e `Studente`, con le colonne `id`, `nome` e `classe_id`. Inserisci una classe e due studenti che ne fanno parte. Poi usa una query con `JOIN` per stampare il nome di ogni studente insieme al nome della sua classe. Per sapere quale `id` ha ricevuto la classe, usa lo stesso schema di `tracks_csv.py`: un `SELECT` seguito da `fetchone()`.
+**Consegna:** Crea due tabelle collegate da una chiave esterna: `Classe`, con le colonne `id` e `nome`, e `Studente`, con le colonne `id`, `nome` e `classe_id`. Inserisci una classe e due studenti che ne fanno parte. Poi usa una query con `JOIN` per stampare il nome di ogni studente insieme al nome della sua classe. Per sapere quale `id` ha ricevuto la classe, usa lo stesso schema di `tracks.py`: un `SELECT` seguito da `fetchone()`.
 
 **Una possibile soluzione:**
 
